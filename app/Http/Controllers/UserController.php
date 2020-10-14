@@ -6,13 +6,15 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UseResetPasswordRequest;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
 {
     public function getUsers()
     {
-        return response()->json(['status' => true, 'userData' => User::all()]);
+        $userData = User::where('id' , '!=' , Auth::user()->id)->get();
+        return response()->json(['status' => true, 'userData' => $userData]);
     }
 
     public function getOneUser($id)
@@ -20,7 +22,7 @@ class UserController extends Controller
         return response()->json(['status' => true, 'userData' => User::find($id)]);
     }
 
-    public function create(Request $request)
+    public function create(UserRequest $request)
     {
         $item = new User;
         $item->name = $request->input('name');

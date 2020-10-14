@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\StockBranch;
+use App\Http\Requests\BranchRequest;
+
 
 class BranchController extends Controller
 {
@@ -17,15 +19,14 @@ class BranchController extends Controller
         return response()->json(['status' => true, 'branch' => StockBranch::find($id)]);
     }
 
-    public function create(Request $request)
+    public function create(BranchRequest $request)
     {
         $item = new StockBranch;
         $item->name = $request->input('name');
-        $item->phone_number->input('phone_number');
-        $item->latitude->input('latitude');
-        $item->longitude->input('longitude');
-//        18.816235, 98.982101
-
+        $item->phone_number = $request->input('phone_number');
+        $item->latitude = $request->input('latitude');
+        $item->longitude = $request->input('longitude');
+        $item->address = $request->input('address');
         if ($item->save()) {
             return response()->json(['status' => true]);
         } else {
@@ -33,13 +34,14 @@ class BranchController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(BranchRequest $request, $id)
     {
         $item = StockBranch::find($id);
         $item->name = $request->input('name');
-        $item->phone_number->input('phone_number');
-        $item->latitude->input('latitude');
-        $item->longitude->input('longitude');
+        $item->phone_number = $request->input('phone_number');
+        $item->latitude = $request->input('latitude');
+        $item->longitude = $request->input('longitude');
+        $item->address = $request->input('address');
         if ($item->save()) {
             return response()->json(['status' => true]);
         } else {

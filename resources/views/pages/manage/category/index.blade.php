@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">Category Infomation</h4>
+                    <h4 class="card-title text-dark">Category Information</h4>
                     <button type="button" class="btn btn-info pnt-bnt-add-category">Add <span class="btn-icon-right"><i class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
@@ -155,7 +155,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Add User Success fully',
+                            title: 'Add Category Success fully',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -201,14 +201,14 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "get",
-                        url: "categories/destroy/"+id,
+                        url: "{!! url('manage/categories/destroy') !!}/"+window.id,
                         success: function (data) {
                             resetTable();
 
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Delete User Success fully',
+                                title: 'Delete Category Success fully',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -225,7 +225,7 @@
             window.id = $(e.currentTarget).val();
             $.ajax({
                 type: "get",
-                url: "categories/getCategory/"+window.id,
+                url: "{!! url('manage/categories/getCategory') !!}/"+window.id,
                 success: function (data) {
                     if(data.status)
                     {
@@ -244,7 +244,7 @@
 
             $.ajax({
                 type: "post",
-                url: "categories/update/"+window.id,
+                url: "{!! url('manage/categories/update') !!}/"+window.id,
                 data: {
                     name : $(".pnt-input-name").val(),
                     '_token': window.token,
@@ -256,7 +256,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Update User Success fully',
+                            title: 'Update Category Success fully',
                             showConfirmButton: false,
                             timer: 1500
                         })

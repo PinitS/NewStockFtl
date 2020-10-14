@@ -2,8 +2,8 @@
 
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <div class="row">
 
+    <div class="row">
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
@@ -19,6 +19,7 @@
                                 <th class="text-dark">#</th>
                                 <th class="text-dark">Username</th>
                                 <th class="text-dark">Email</th>
+                                <th class="text-dark">Status</th>
                                 <th class="text-dark">Manage</th>
                             </tr>
                             </thead>
@@ -87,9 +88,6 @@
                             <select class="form-control pnt-input-status" id="pnt-input-status">
                                 <option value="1">Admin</option>
                                 <option value="0">Member</option>
-                                <option value="2">test2</option>
-                                <option value="3">test3</option>
-
                             </select>
                     </div>
 
@@ -160,7 +158,6 @@
 
         var token = $('meta[name="csrf-token"]').attr('content');
         var id = 0;
-
         var table = $('#userData').DataTable();
 
         function resetTable()
@@ -175,20 +172,25 @@
                         $('.data-section').html(null);
                         $.each(data.userData, function( index, value ) {
 
-                            $('.data-section').append(
-                                "<tr><td>" +
-                                (index + 1) +
-                                "</td><td>" +
-                                value.name +
-                                "</td><td>"+
-                                value.email +
-                                "</td><td>"+
-                                "<div class = 'd-flex'>"+
-                                "<button  class='btn btn-primary pnt-btn-reset-password shadow btn-xs sharp mr-1' value = '" + value.id + "' >" +
-                                "<i class='fa fa-key'></i></button>"+
-                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button></button>"+
-                                "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
-                            )
+                            var text_status = "";
+
+                            (value.status > 0 ? text_status = "<span class='badge badge-pill badge-danger'>Admin</span>" : text_status = "<span class='badge badge-pill badge-primary'>Member</span>")
+                                $('.data-section').append(
+                                    "<tr><td>" +
+                                    (index + 1) +
+                                    "</td><td>" +
+                                    value.name +
+                                    "</td><td>"+
+                                    value.email +
+                                    "</td><td>"+
+                                    text_status +
+                                    "</td><td>"+
+                                    "<div class = 'd-flex'>"+
+                                    "<button  class='btn btn-primary pnt-btn-reset-password shadow btn-xs sharp mr-1' value = '" + value.id + "' >" +
+                                    "<i class='fa fa-key'></i></button>"+
+                                    "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button></button>"+
+                                    "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
+                                )
                         });
                         table = $('#userData').DataTable();
                     }
@@ -300,7 +302,7 @@
 
             $.ajax({
                 type: "post",
-                url: "users/resetPassword/"+window.id,
+                url: "{!! url('manage/users/resetPassword') !!}/"+window.id,
                 data: {
                     password : $(".pnt-input-password").val(),
                     password_confirmation : $(".pnt-input-password_confirmation").val(),
@@ -342,7 +344,7 @@
 
             $.ajax({
                 type: "get",
-                url: "users/oneUser/"+window.id,
+                url: "{!! url('manage/users/oneUser') !!}/"+window.id,
                 success: function (data) {
                     if(data.status)
                     {
@@ -351,9 +353,6 @@
                         $(".pnt-input-status").val(data.userData.status).change();
                         $(".pnt-input-username").val(data.userData.name);
                         $(".pnt-input-email").val(data.userData.email);
-
-
-
                         $(".pnt-modal-edit").modal();
                     }
                 }
@@ -365,7 +364,7 @@
         $(document).off('click', '.pnt-btn-modal-save').on('click', '.pnt-btn-modal-save', e => {
             $.ajax({
                 type: "post",
-                url: "users/update/"+window.id,
+                url: "{!! url('manage/users/update') !!}/"+window.id,
                 data: {
                     name : $(".pnt-input-username").val(),
                     email : $(".pnt-input-email").val(),

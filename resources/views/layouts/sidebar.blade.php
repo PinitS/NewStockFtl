@@ -7,7 +7,7 @@
                     <span class="nav-text">Stock FarmThailand</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="index.html">AddProduct</a></li>
+                    <li><a href="index.html">Parts</a></li>
                     <li><a href="index-4.html">DashBoard</a></li>
                     <li><a href="index-3.html">Report</a></li>
                 </ul>
@@ -35,17 +35,20 @@
                 </ul>
             </li>
 
-            <li class="nav-label">Setting</li>
+            @if (Auth::user()->status == 1)
+            <li class="nav-label">Manage</li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><polygon points="0 0 24 0 24 24 0 24"/><path d="M5.85714286,2 L13.7364114,2 C14.0910962,2 14.4343066,2.12568431 14.7051108,2.35473959 L19.4686994,6.3839416 C19.8056532,6.66894833 20,7.08787823 20,7.52920201 L20,20.0833333 C20,21.8738751 19.9795521,22 18.1428571,22 L5.85714286,22 C4.02044787,22 4,21.8738751 4,20.0833333 L4,3.91666667 C4,2.12612489 4.02044787,2 5.85714286,2 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/><rect fill="#000000" x="6" y="11" width="9" height="2" rx="1"/><rect fill="#000000" x="6" y="15" width="5" height="2" rx="1"/></g></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><polygon points="0 0 24 0 24 24 0 24"></polygon><path d="M22,15 L22,19 C22,20.1045695 21.1045695,21 20,21 L8,21 C5.790861,21 4,19.209139 4,17 C4,14.790861 5.790861,13 8,13 L20,13 C21.1045695,13 22,13.8954305 22,15 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z" fill="#000000" opacity="0.3"></path><path d="M15.5421357,5.69999981 L18.3705628,8.52842693 C19.1516114,9.30947552 19.1516114,10.5758055 18.3705628,11.3568541 L9.88528147,19.8421354 C8.3231843,21.4042326 5.79052439,21.4042326 4.22842722,19.8421354 C2.66633005,18.2800383 2.66633005,15.7473784 4.22842722,14.1852812 L12.7137086,5.69999981 C13.4947572,4.91895123 14.7610871,4.91895123 15.5421357,5.69999981 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z" fill="#000000" opacity="0.3"></path><path d="M5,3 L9,3 C10.1045695,3 11,3.8954305 11,5 L11,17 C11,19.209139 9.209139,21 7,21 C4.790861,21 3,19.209139 3,17 L3,5 C3,3.8954305 3.8954305,3 5,3 Z M7,19 C8.1045695,19 9,18.1045695 9,17 C9,15.8954305 8.1045695,15 7,15 C5.8954305,15 5,15.8954305 5,17 C5,18.1045695 5.8954305,19 7,19 Z" fill="#000000" opacity="0.3"></path></g></svg>
                     <span class="nav-text">Manage</span>
                 </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{ url('manage/users/') }}">User</a></li>
-                    <li><a href="{{ url('manage/categories/') }}">Category</a></li>
-                    <li><a href="{{ url('manage/branch/') }}">Branch</a></li>
-                </ul>
+
+                    <ul aria-expanded="false">
+                        <li><a href="{{ url('manage/users/') }}">User</a></li>
+                        <li><a href="{{ url('manage/categories/') }}">Category</a></li>
+                        <li><a href="{{ url('manage/branches/') }}">Branch</a></li>
+                    </ul>
             </li>
+            @endif
         </ul>
     </div>
 </div>

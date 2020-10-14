@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BranchController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +46,17 @@ Route::prefix('manage')->group(function () {
         Route::post('create', [CategoryController::class, 'create'])->name('createCategory');
         Route::post('update/{id}', [CategoryController::class, 'update']);
         Route::get('destroy/{id}', [CategoryController::class, 'delete']);
+    });
+
+    Route::prefix('branches')->group(function () {
+        Route::get('/', function () {
+            return view('pages.manage.branch.index');
+        });
+        Route::get('getBranches', [BranchController::class, 'getBranches'])->name('getBranches');
+        Route::get('getBranch/{id}', [BranchController::class, 'getBranch'])->name('getBranch');
+        Route::post('create', [BranchController::class, 'create'])->name('createBranch');
+        Route::post('update/{id}', [BranchController::class, 'update']);
+        Route::get('destroy/{id}', [BranchController::class, 'delete']);
     });
 
 });
