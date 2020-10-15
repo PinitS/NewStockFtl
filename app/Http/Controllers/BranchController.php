@@ -9,6 +9,7 @@ use App\Http\Requests\BranchRequest;
 
 class BranchController extends Controller
 {
+
     public function getBranches()
     {
         return response()->json(['status' => true, 'branch' => StockBranch::all()]);
@@ -53,5 +54,10 @@ class BranchController extends Controller
     {
         StockBranch::find($id)->delete();
         return response()->json(['status' => true]);
+    }
+
+    public function getSessionBranch()
+    {
+        return response()->json(['status' => true, 'func' => 'getsession']);
     }
 }

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\PartController;
+
 
 
 /*
@@ -58,20 +60,28 @@ Route::prefix('manage')->group(function () {
         Route::post('update/{id}', [BranchController::class, 'update']);
         Route::get('destroy/{id}', [BranchController::class, 'delete']);
     });
+});
 
+
+Route::prefix('stock')->group(function () {
+    Route::prefix('parts')->group(function () {
+        Route::get('/', function () {
+            return view('pages.stock.parts.index');
+        });
+        Route::get('getParts', [PartController::class, 'getParts'])->name('getParts');
+        Route::get('getOnePart/{id}', [PartController::class, 'getOnePart']);
+        Route::post('create', [PartController::class, 'create']);
+        Route::post('update/{id}', [PartController::class, 'update']);
+        Route::get('destroy/{id}', [PartController::class, 'delete']);
+    });
 });
 
 
 
 
-
-
-
-
-
-
-
-
+Route::get('/selectBranch', function () {
+    return view('pages.selectBranch.index');
+});
 
 
 
