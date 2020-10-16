@@ -9,7 +9,8 @@ class CategoryController extends Controller
 {
     public function getCategories()
     {
-        return response()->json(['status' => true, 'categories' => StockCategory::all()]);
+        $branch_id = session()->get('branch')[0]['id'];
+        return response()->json(['status' => true, 'categories' => StockCategory::where('stock_branch_id', $branch_id)->get()]);
     }
 
     public function getCategory($id)
@@ -21,6 +22,7 @@ class CategoryController extends Controller
     {
         $item = new StockCategory;
         $item->name = $request->input('name');
+        $item->stock_branch_id = $request->input('stock_branch_id');
         if ($item->save()) {
             return response()->json(['status' => true]);
         } else {

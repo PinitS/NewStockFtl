@@ -3,6 +3,8 @@
 @section('content')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <input type="hidden" id="pnt-input-branch_id"  name="pnt-input-branch_id" runat="server" value="{{ session()->get('branch')[0]['id'] }}"/>
+
     <div class="row">
         <div class="col-12">
             <div class="card bg-white">
@@ -110,6 +112,7 @@
                 type: "get",
                 url: '{{route('getCategories')}}',
                 success: function (data) {
+                    console.log(data);
                     if(data.status)
                     {
                         table.destroy();
@@ -123,7 +126,7 @@
                                 value.name +
                                 "</td><td>"+
                                 "<div class = 'd-flex'>"+
-                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button></button>"+
+                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>"+
                                 "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
                             )
                         });
@@ -145,6 +148,7 @@
                 url: '{{route('createCategory')}}',
                 data: {
                     name : $('.pnt-input-add-name').val(),
+                    stock_branch_id : $('#pnt-input-branch_id').val(),
                     '_token': window.token,
                 },
                 success: function (data) {
@@ -201,7 +205,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "get",
-                        url: "{!! url('manage/categories/destroy') !!}/"+window.id,
+                        url: "{!! url('stock/categories/destroy') !!}/"+window.id,
                         success: function (data) {
                             resetTable();
 
@@ -225,7 +229,7 @@
             window.id = $(e.currentTarget).val();
             $.ajax({
                 type: "get",
-                url: "{!! url('manage/categories/getCategory') !!}/"+window.id,
+                url: "{!! url('stock/categories/getCategory') !!}/"+window.id,
                 success: function (data) {
                     if(data.status)
                     {
@@ -244,7 +248,7 @@
 
             $.ajax({
                 type: "post",
-                url: "{!! url('manage/categories/update') !!}/"+window.id,
+                url: "{!! url('stock/categories/update') !!}/"+window.id,
                 data: {
                     name : $(".pnt-input-name").val(),
                     '_token': window.token,

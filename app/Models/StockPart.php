@@ -11,17 +11,17 @@ class StockPart extends Model
 
     public function category()
     {
-        return $this->belongsTo('App\Models\StockCategory');
+        return $this->belongsTo('App\Models\StockCategory', 'stock_category_id');
     }
 
     public function branch()
     {
-        return $this->belongsTo('App\Models\StockBranch');
+        return $this->belongsTo('App\Models\StockBranch', 'stock_branch_id');
     }
 
     public function histories()
     {
-        return $this->hasMany('App\Models\StockHistory');
+        return $this->hasMany('App\Models\StockPartHistory');
     }
 
 }

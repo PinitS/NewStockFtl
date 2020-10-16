@@ -56,8 +56,4 @@ class BranchController extends Controller
         return response()->json(['status' => true]);
     }
 
-    public function getSessionBranch()
-    {
-        return response()->json(['status' => true, 'func' => 'getsession']);
-    }
 }

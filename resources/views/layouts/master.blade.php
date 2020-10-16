@@ -14,6 +14,7 @@
     <link href="{!! url('/css/style.css') !!}" rel="stylesheet">
     <link href="{!! url('https://cdn.lineicons.com/2.0/LineIcons.css') !!}" rel="stylesheet">
     <link href="{!! url('/vendor/datatables/css/jquery.dataTables.min.css') !!}" rel="stylesheet">
+    <script src="{!! url('moment.min.js') !!}"></script>
 
 {{--    SweetAlert--}}
     <script src="{!! url('sweetalert2.all.min.js') !!}"></script>
@@ -163,7 +164,7 @@ Chat box start
 
         new dezSettings({
             typography: "roboto",
-            version: "dark",
+            version: "light",
             layout: "vertical",
             headerBg: "color_1",
             navheaderBg: "color_3",
@@ -173,6 +174,25 @@ Chat box start
             headerPosition: "fixed",
             containerLayout: "wide",
             direction: direction
+        });
+
+    });
+
+    $(document).off('click', '.pnt-btn-forget-session').on('click', '.pnt-btn-forget-session', (e) =>
+    {
+        $.ajax({
+            type: "get",
+            url: '{{route('removeSessionBranch')}}',
+            success: function (data) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Leave Branch Success fully',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                window.location.href = "{!! url('/selectBranch') !!}";
+            }
         });
 
     });

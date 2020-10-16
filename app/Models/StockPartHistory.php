@@ -11,7 +11,7 @@ class StockPartHistory extends Model
 
     public function part()
     {
-        return $this->belongsTo('App\Models\StockPart');
+        return $this->belongsTo('App\Models\StockPart' , 'stock_part_id');
     }
 
     public function user()

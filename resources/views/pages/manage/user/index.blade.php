@@ -8,12 +8,13 @@
             <div class="card bg-white">
                 <div class="card-header">
                     <h4 class="card-title text-dark">User Information</h4>
-                    <button type="button" class="btn btn-info pnt-bnt-add-user">Add <span class="btn-icon-right"><i class="fa fa-plus color-info"></i></span>
+                    <button type="button" class="btn btn-info pnt-bnt-add-user">Add <span class="btn-icon-right"><i
+                                class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id = "userData" style="min-width: 845px">
+                        <table id="userData" style="min-width: 845px">
                             <thead>
                             <tr>
                                 <th class="text-dark">#</th>
@@ -23,7 +24,7 @@
                                 <th class="text-dark">Manage</th>
                             </tr>
                             </thead>
-                            <tbody class= "data-section">
+                            <tbody class="data-section">
 
                             </tbody>
                         </table>
@@ -34,46 +35,50 @@
 
     </div>
 
-{{--    modal add user--}}
-        <div class="modal fade pnt--modal-add-user" id="exampleModalCenter">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add user</h5>
-                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
+    {{--    modal add user--}}
+    <div class="modal fade pnt--modal-add-user" id="exampleModalCenter">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add user</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
-                        <div class="form-group">
-                            <label class="mb-1"><strong>Username</strong></label>
-                            <input type="text" class="form-control pnt-modal-add-user-username" id="username" name="username" placeholder="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="mb-1"><strong>Email</strong></label>
-                            <input type="email" class="form-control pnt-modal-add-user-email" id="email" name="email" placeholder="hello@example.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="mb-1"><strong>Password</strong></label>
-                            <input type="password" class="form-control pnt-modal-add-user-password" id="password" name="password" value="12345678" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="mb-1"><strong>Confirm Password</strong></label>
-                            <input type="password" class="form-control pnt-modal-add-user-password_confirmation "id="cf_password" name="cf_password" value="12345678" required>
-                        </div>
+                    <div class="form-group">
+                        <label class="mb-1"><strong>Username</strong></label>
+                        <input type="text" class="form-control pnt-modal-add-user-username" id="username"
+                               name="username" placeholder="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-1"><strong>Email</strong></label>
+                        <input type="email" class="form-control pnt-modal-add-user-email" id="email" name="email"
+                               placeholder="hello@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-1"><strong>Password</strong></label>
+                        <input type="password" class="form-control pnt-modal-add-user-password" id="password"
+                               name="password" value="12345678" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="mb-1"><strong>Confirm Password</strong></label>
+                        <input type="password" class="form-control pnt-modal-add-user-password_confirmation "
+                               id="cf_password" name="cf_password" value="12345678" required>
+                    </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary pnt-btn-modal-add-user-save">Register</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary pnt-btn-modal-add-user-save">Register</button>
                 </div>
             </div>
         </div>
+    </div>
 
-{{--    end modal add user--}}
+    {{--    end modal add user--}}
 
-{{--modal update--}}
+    {{--modal update--}}
     <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -84,11 +89,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                            <label class="mb-1"><strong>Status</strong></label>
-                            <select class="form-control pnt-input-status" id="pnt-input-status">
-                                <option value="1">Admin</option>
-                                <option value="0">Member</option>
-                            </select>
+                        <label class="mb-1"><strong>Status</strong></label>
+                        <select class="form-control pnt-input-status" id="pnt-input-status">
+                            <option value="1">Admin</option>
+                            <option value="0">Member</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -109,9 +114,9 @@
             </div>
         </div>
     </div>
-{{--modal update--}}
+    {{--modal update--}}
 
-{{--modal reset password--}}
+    {{--modal reset password--}}
     <div class="modal fade pnt-modal-reset-password " id="exampleModalCenter">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -126,7 +131,8 @@
                             <span class="text-danger">*</span>
                         </label>
                         <div class="col-lg-6">
-                            <input type="password" class="form-control pnt-input-password" id="password" name="password" >
+                            <input type="password" class="form-control pnt-input-password" id="password"
+                                   name="password">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -134,18 +140,20 @@
                                 class="text-danger">*</span>
                         </label>
                         <div class="col-lg-6">
-                            <input type="password" class="form-control pnt-input-password_confirmation" id="password_confirmation" name="password_confirmation">
+                            <input type="password" class="form-control pnt-input-password_confirmation"
+                                   id="password_confirmation" name="password_confirmation">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary pnt-btn-modal-reset-password-save">Save changes</button>
+                    <button type="button" class="btn btn-primary pnt-btn-modal-reset-password-save">Save changes
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-{{--modal reset password--}}
+    {{--modal reset password--}}
 
 @endsection
 
@@ -160,37 +168,35 @@
         var id = 0;
         var table = $('#userData').DataTable();
 
-        function resetTable()
-        {
+        function resetTable() {
             $.ajax({
                 type: "get",
                 url: '{{route('getUsers')}}',
                 success: function (data) {
-                    if(data.status)
-                    {
+                    if (data.status) {
                         table.destroy();
                         $('.data-section').html(null);
-                        $.each(data.userData, function( index, value ) {
+                        $.each(data.userData, function (index, value) {
 
                             var text_status = "";
 
                             (value.status > 0 ? text_status = "<span class='badge badge-pill badge-danger'>Admin</span>" : text_status = "<span class='badge badge-pill badge-primary'>Member</span>")
-                                $('.data-section').append(
-                                    "<tr><td>" +
-                                    (index + 1) +
-                                    "</td><td>" +
-                                    value.name +
-                                    "</td><td>"+
-                                    value.email +
-                                    "</td><td>"+
-                                    text_status +
-                                    "</td><td>"+
-                                    "<div class = 'd-flex'>"+
-                                    "<button  class='btn btn-primary pnt-btn-reset-password shadow btn-xs sharp mr-1' value = '" + value.id + "' >" +
-                                    "<i class='fa fa-key'></i></button>"+
-                                    "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button></button>"+
-                                    "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
-                                )
+                            $('.data-section').append(
+                                "<tr><td>" +
+                                (index + 1) +
+                                "</td><td>" +
+                                value.name +
+                                "</td><td>" +
+                                value.email +
+                                "</td><td>" +
+                                text_status +
+                                "</td><td>" +
+                                "<div class = 'd-flex'>" +
+                                "<button  class='btn btn-primary pnt-btn-reset-password shadow btn-xs sharp mr-1' value = '" + value.id + "' >" +
+                                "<i class='fa fa-key'></i></button>" +
+                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>" +
+                                "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
+                            )
                         });
                         table = $('#userData').DataTable();
                     }
@@ -202,17 +208,17 @@
             resetTable();
         });
 
-    // btn-save-add-user
+        // btn-save-add-user
         $(document).off('click', '.pnt-btn-modal-add-user-save').on('click', '.pnt-btn-modal-add-user-save', e => {
 
             $.ajax({
                 type: "post",
                 url: '{{route('createUser')}}',
                 data: {
-                    name : $('.pnt-modal-add-user-username').val(),
-                    email : $('.pnt-modal-add-user-email').val(),
-                    password : $('.pnt-modal-add-user-password').val(),
-                    password_confirmation : $(".pnt-input-password_confirmation").val(),
+                    name: $('.pnt-modal-add-user-username').val(),
+                    email: $('.pnt-modal-add-user-email').val(),
+                    password: $('.pnt-modal-add-user-password').val(),
+                    password_confirmation: $(".pnt-input-password_confirmation").val(),
                     '_token': window.token,
                 },
                 success: function (data) {
@@ -243,17 +249,17 @@
                 },
             });
         });
-    // end-btn-save-add-user
+        // end-btn-save-add-user
 
 
-    // btn-add-user
+        // btn-add-user
         $(document).off('click', '.pnt-bnt-add-user').on('click', '.pnt-bnt-add-user', (e) => {
             $(".pnt--modal-add-user").modal();
         });
-    // end-save-add-user
+        // end-save-add-user
 
 
-    // btn-delete
+        // btn-delete
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
             window.id = $(e.currentTarget).val();
             console.log($(e.currentTarget).val());
@@ -270,7 +276,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "get",
-                        url: "users/destroy/"+id,
+                        url: "{!! url('manage/users/destroy') !!}/" + window.id,
                         success: function (data) {
                             resetTable();
 
@@ -287,25 +293,25 @@
             })
 
         });
-    // end btn-delete
+        // end btn-delete
 
 
-    // btn-password
+        // btn-password
         $(document).off('click', '.pnt-btn-reset-password').on('click', '.pnt-btn-reset-password', (e) => {
             window.id = $(e.currentTarget).val();
             $(".pnt-modal-reset-password").modal();
         });
-    // end btn-password
+        // end btn-password
 
-    // btn save reset-password modal
+        // btn save reset-password modal
         $(document).off('click', '.pnt-btn-modal-reset-password-save').on('click', '.pnt-btn-modal-reset-password-save', e => {
 
             $.ajax({
                 type: "post",
-                url: "{!! url('manage/users/resetPassword') !!}/"+window.id,
+                url: "{!! url('manage/users/resetPassword') !!}/" + window.id,
                 data: {
-                    password : $(".pnt-input-password").val(),
-                    password_confirmation : $(".pnt-input-password_confirmation").val(),
+                    password: $(".pnt-input-password").val(),
+                    password_confirmation: $(".pnt-input-password_confirmation").val(),
                     '_token': window.token,
                 },
                 success: function (data) {
@@ -335,19 +341,18 @@
                 },
             });
         });
-    // end btn save reset-password modal
+        // end btn save reset-password modal
 
 
-    // btn-edit
+        // btn-edit
         $(document).off('click', '.pnt-btn-edit').on('click', '.pnt-btn-edit', (e) => {
             window.id = $(e.currentTarget).val();
 
             $.ajax({
                 type: "get",
-                url: "{!! url('manage/users/oneUser') !!}/"+window.id,
+                url: "{!! url('manage/users/oneUser') !!}/" + window.id,
                 success: function (data) {
-                    if(data.status)
-                    {
+                    if (data.status) {
                         var status = data.userData.status;
                         console.log(data.userData.status);
                         $(".pnt-input-status").val(data.userData.status).change();
@@ -358,17 +363,17 @@
                 }
             });
         });
-    // end btn-edit
+        // end btn-edit
 
-    // btn save update modal
+        // btn save update modal
         $(document).off('click', '.pnt-btn-modal-save').on('click', '.pnt-btn-modal-save', e => {
             $.ajax({
                 type: "post",
-                url: "{!! url('manage/users/update') !!}/"+window.id,
+                url: "{!! url('manage/users/update') !!}/" + window.id,
                 data: {
-                    name : $(".pnt-input-username").val(),
-                    email : $(".pnt-input-email").val(),
-                    status : $( "#pnt-input-status option:selected" ).val(),
+                    name: $(".pnt-input-username").val(),
+                    email: $(".pnt-input-email").val(),
+                    status: $("#pnt-input-status option:selected").val(),
                     '_token': window.token,
                 },
                 success: function (data) {
@@ -397,7 +402,7 @@
                 },
             });
         });
-    // end btn save update modal
+        // end btn save update modal
 
     </script>
 @endsection

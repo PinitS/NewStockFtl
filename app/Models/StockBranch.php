@@ -13,4 +13,9 @@ class StockBranch extends Model
     {
         return $this->hasMany('App\Models\StockPart');
     }
+
+    public function category()
+    {
+        return $this->hasMany('App\Models\StockCategory');
+    }
 }
