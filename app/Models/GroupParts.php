@@ -9,9 +9,9 @@ class GroupParts extends Model
 {
     use HasFactory;
 
-    public function productPart()
+    public function productParts()
     {
-        return $this->hasOne('App\Models\ProductPart' );
+        return $this->hasMany('App\Models\ProductPart' );
     }
 
     public function stockParts()

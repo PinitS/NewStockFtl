@@ -9,8 +9,8 @@ class Location extends Model
 {
     use HasFactory;
 
-    public function productDetail()
+    public function productLists()
     {
-        return $this->hasMany('App\Models\LocationProductDetail');
+        return $this->hasMany('App\Models\LocationProductList');
     }
 }

@@ -9,18 +9,18 @@ class LocationProduct extends Model
 {
     use HasFactory;
 
-    public function productDetail()
+    public function locationProductLists()
     {
-        return $this->hasMany('App\Models\LocationProductDetail');
+        return $this->hasMany('App\Models\LocationProductList');
     }
 
-    public function productPath()
+    public function productParts()
     {
-        return $this->hasMany('App\Models\ProductPath');
+        return $this->hasMany('App\Models\ProductPart');
     }
 
     public function locationModel()
     {
-        return $this->belongsTo('App\Models\LocationModel', 'model_id');
+        return $this->belongsTo('App\Models\LocationModel');
     }
 }

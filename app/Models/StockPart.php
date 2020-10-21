@@ -24,11 +24,6 @@ class StockPart extends Model
         return $this->hasMany('App\Models\StockPartHistory');
     }
 
-    public function productPart()
-    {
-        return $this->hasOne('App\Models\ProductPart');
-    }
-
     public function groupPart()
     {
         return $this->belongsTo('App\Models\GroupParts' );

@@ -9,13 +9,8 @@ class LocationProductDetail extends Model
 {
     use HasFactory;
 
-    public function location()
+    public function locationProductList()
     {
-        return $this->belongsTo('App\Models\Location');
-    }
-
-    public function locationProduct()
-    {
-        return $this->belongsTo('App\Models\LocationProduct');
+        return $this->belongsTo('App\Models\LocationProductList');
     }
 }

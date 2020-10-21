@@ -11,10 +11,10 @@ class ProductPart extends Model
 
     public function locationProduct()
     {
-        return $this->belongsTo('App\Models\LocationProduct' , 'product_id');
+        return $this->belongsTo('App\Models\LocationProduct');
     }
 
-    public function groupParts()
+    public function groupPart()
     {
         return $this->belongsTo('App\Models\GroupParts' , 'group_part_id');
     }
