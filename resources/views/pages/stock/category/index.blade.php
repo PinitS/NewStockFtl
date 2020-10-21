@@ -220,7 +220,6 @@
                     });
                 }
             })
-
         });
         // end btn-delete
 
@@ -243,9 +242,7 @@
 
         // btn save update modal
         $(document).off('click', '.pnt-btn-modal-save').on('click', '.pnt-btn-modal-save', e => {
-
             console.log(window.id)
-
             $.ajax({
                 type: "post",
                 url: "{!! url('stock/categories/update') !!}/"+window.id,

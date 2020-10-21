@@ -19,14 +19,13 @@
                                 <th class="text-dark">#</th>
                                 <th class="text-dark">Branch</th>
                                 <th class="text-dark">Phone Number</th>
-                                <th class="text-dark">latitude</th>
-                                <th class="text-dark">longtitude</th>
+                                <th class="text-dark">Latitude</th>
+                                <th class="text-dark">Longitude</th>
                                 <th class="text-dark">Address</th>
                                 <th class="text-dark">Manage</th>
                             </tr>
                             </thead>
                             <tbody class= "data-section">
-
                             </tbody>
                         </table>
                     </div>
@@ -56,12 +55,12 @@
                         <input type="phone" class="form-control pnt-modal-add-branch-phone" id="phone" name="phone" >
                     </div>
                     <div class="form-group">
-                        <label class="mb-1"><strong>latitude</strong></label>
+                        <label class="mb-1"><strong>Latitude</strong></label>
                         <input type="text" class="form-control pnt-modal-add-latitude" id="latitude" name="latitude" value="" >
                     </div>
 
                     <div class="form-group">
-                        <label class="mb-1"><strong>longitude</strong></label>
+                        <label class="mb-1"><strong>Longitude</strong></label>
                         <input type="text" class="form-control pnt-modal-add-longitude" id="longitude" name="longitude" value="" >
                     </div>
 
@@ -138,7 +137,6 @@
 
         var token = $('meta[name="csrf-token"]').attr('content');
         var id = 0;
-
         var table = $('#branchInformation').DataTable();
 
         function resetTable()
@@ -153,17 +151,6 @@
                         $('.data-section').html(null);
                         $.each(data.branch , function( index, value ) {
 
-                            var latitude = "-";
-                            var longitude = "-";
-                            if(value.latitude != null)
-                            {
-                                latitude = value.latitude;
-                            }
-                            if(value.longitude != null)
-                            {
-                                longitude = value.longitude;
-                            }
-
                             $('.data-section').append(
                                 "<tr><td>" +
                                 (index + 1) +
@@ -172,9 +159,9 @@
                                 "</td><td>" +
                                 value.phone_number +
                                 "</td><td>" +
-                                latitude +
+                                (value.latitude == null ? "-" : value.latitude) +
                                 "</td><td>" +
-                                longitude +
+                                (value.longitude == null ? "-" : value.longitude) +
                                 "</td><td>" +
                                 value.address +
                                 "</td><td>"+
@@ -193,9 +180,14 @@
             resetTable();
         });
 
+        // btn-add-branch
+        $(document).off('click', '.pnt-bnt-add-branch').on('click', '.pnt-bnt-add-branch', (e) => {
+            $(".pnt-modal-add-branch").modal();
+        });
+        // end-save-add-branch
+
         // btn-save-add-branch
         $(document).off('click', '.pnt-btn-modal-add-branch-save').on('click', '.pnt-btn-modal-add-branch-save', e => {
-
             $.ajax({
                 type: "post",
                 url: '{{route('createBranch')}}',
@@ -234,51 +226,6 @@
             });
         });
         // end-btn-save-add-branch
-
-
-        // btn-add-branch
-        $(document).off('click', '.pnt-bnt-add-branch').on('click', '.pnt-bnt-add-branch', (e) => {
-            $(".pnt-modal-add-branch").modal();
-        });
-        // end-save-add-branch
-
-
-        // btn-delete
-        $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
-            window.id = $(e.currentTarget).val();
-            console.log($(e.currentTarget).val());
-
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type: "get",
-                        url: "{!! url('manage/branches/destroy') !!}/"+window.id,
-                        success: function (data) {
-                            resetTable();
-
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Delete Branch Success fully',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                        }
-                    });
-                }
-            })
-
-        });
-        // end btn-delete
-
 
         // btn-edit
         $(document).off('click', '.pnt-btn-edit').on('click', '.pnt-btn-edit', (e) => {
@@ -345,6 +292,39 @@
             });
         });
         // end btn save update modal
+
+        // btn-delete
+        $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
+            window.id = $(e.currentTarget).val();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "get",
+                        url: "{!! url('manage/branches/destroy') !!}/"+window.id,
+                        success: function (data) {
+                            resetTable();
+
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Delete Branch Success fully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    });
+                }
+            })
+        });
+        // end btn-delete
 
     </script>
 @endsection

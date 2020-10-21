@@ -194,8 +194,34 @@ Chat box start
                 window.location.href = "{!! url('/selectBranch') !!}";
             }
         });
-
     });
+
+    $(document).off('click', '.pnt-btn-logout').on('click', '.pnt-btn-logout', (e) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Logout!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'logout!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('logout') }}",
+                    data :{
+                        _token : $('#pnt-logout-token').val(),
+                    },
+                    success: function (data) {
+                        window.location.href = "{!! url('/') !!}";
+                    }
+                });
+            }
+        })
+    });
+
+
 
 </script>
 
