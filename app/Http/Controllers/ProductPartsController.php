@@ -10,8 +10,8 @@ class ProductPartsController extends Controller
 {
     public function getProductParts($id)
     {
-        $productParts = ProductPart::with(['locationProduct', 'groupParts'])
-            ->where('product_id', $id)->get();
+        $productParts = ProductPart::with(['locationProduct', 'groupPart'])
+            ->where('location_product_id', $id)->get();
         return response()->json(['status' => true, 'productParts' => $productParts]);
     }
 
@@ -26,13 +26,13 @@ class ProductPartsController extends Controller
 
         foreach ($ProductParts as $ProductPart)
         {
-            if($ProductPart->product_id == $request->input('product_id') && $ProductPart->group_part_id == $request->input('group_part_id'))
+            if($ProductPart->location_product_id == $request->input('product_id') && $ProductPart->group_part_id == $request->input('group_part_id'))
             {
                 return response()->json(['status' => false]);
             }
         }
         $item = new ProductPart;
-        $item->product_id = $request->input('product_id');
+        $item->location_product_id = $request->input('product_id');
         $item->group_part_id = $request->input('group_part_id');
         $item->quantity = $request->input('quantity');
         if ($item->save()) {

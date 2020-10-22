@@ -88,7 +88,7 @@
 
                     <div class="form-group">
                         <label class="mb-1"><strong>Quantity</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-parts-quantity" id="quantity"
+                        <input type="number" class="form-control pnt-modal-add-parts-quantity" id="quantity"
                                name="quantity" required>
                     </div>
 
@@ -118,7 +118,7 @@
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <span>Quatity : </span><span id="modal-plus-quantity"></span>
+                    <span>Quantity : </span><span id="modal-plus-quantity"></span>
 
                     <div class="input-group mt-3 input-success-o">
                         <div class="input-group-prepend">
@@ -149,7 +149,7 @@
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <span>Quatity : </span><span id="modal-minus-quantity"></span>
+                    <span>Quantity : </span><span id="modal-minus-quantity"></span>
 
                     <div class="input-group mt-3 input-info-o">
                         <div class="input-group-prepend">
@@ -464,53 +464,63 @@
         // btn-save-add-parts
         $(document).off('click', '.pnt-btn-modal-add-parts-save').on('click', '.pnt-btn-modal-add-parts-save', e => {
             if ($(".pnt-modal-sel-add-parts-category option:selected").val() != 0) {
-                $.ajax({
-                    type: "post",
-                    url: '{{route('createParts')}}',
-                    data: {
-                        stock_category_id: $(".pnt-modal-sel-add-parts-category option:selected").val(),
-                        group_id: $(".pnt-modal-sel-add-group-parts option:selected").val(),
-                        stock_branch_id: $('#pnt-input-branch_id').val(),
-                        name: $('.pnt-modal-add-parts-name').val(),
-                        quantity: $('.pnt-modal-add-parts-quantity').val(),
-                        sku: $('.pnt-modal-add-parts-sku').val(),
-                        '_token': window.token,
-                    },
-                    success: function (data) {
-                        if (data.status) {
-                            $(".pnt-modal-add-parts").modal('hide');
-                            resetTable();
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Add Category Success fully.',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                        }
-                        else
-                        {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'error',
-                                title: 'Duplicate Parts Name.',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                        }
-                    },
-                    error: function (jqXHR, exception) {
-                        if (jqXHR.status !== 200) {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'error',
-                                title: 'Something went wrong',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                        }
-                    },
-                });
+
+                if ($('.pnt-modal-add-parts-quantity').val() == 0) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Plaese Add Quantity.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                } else {
+                    $.ajax({
+                        type: "post",
+                        url: '{{route('createParts')}}',
+                        data: {
+                            stock_category_id: $(".pnt-modal-sel-add-parts-category option:selected").val(),
+                            group_id: $(".pnt-modal-sel-add-group-parts option:selected").val(),
+                            stock_branch_id: $('#pnt-input-branch_id').val(),
+                            name: $('.pnt-modal-add-parts-name').val(),
+                            quantity: $('.pnt-modal-add-parts-quantity').val(),
+                            sku: $('.pnt-modal-add-parts-sku').val(),
+                            '_token': window.token,
+                        },
+                        success: function (data) {
+                            if (data.status) {
+                                $(".pnt-modal-add-parts").modal('hide');
+                                resetTable();
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Add Category Success fully.',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            } else {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    title: 'Duplicate Parts Name.',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        },
+                        error: function (jqXHR, exception) {
+                            if (jqXHR.status !== 200) {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    title: 'Something went wrong',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        },
+                    });
+                }
+
             } else {
                 Swal.fire({
                     position: 'top-end',

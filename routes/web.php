@@ -11,7 +11,8 @@ use App\Http\Controllers\LocationModelController;
 use App\Http\Controllers\LocationProductController;
 use App\Http\Controllers\LocationProductDetailController;
 use App\Http\Controllers\ProductPartsController;
-
+use App\Http\Controllers\CustomerSessionController;
+use App\Http\Controllers\GroupPartsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,9 +55,6 @@ Route::prefix('manage')->group(function () {
         Route::get('destroy/{id}', [BranchController::class, 'delete']);
     });
 
-
-
-
     Route::prefix('product_location')->group(function () {
         Route::prefix('location')->group(function () {
             Route::get('/', function () {
@@ -79,8 +77,18 @@ Route::prefix('manage')->group(function () {
             Route::post('update/{id}', [LocationModelController::class, 'update']);
             Route::get('destroy/{id}', [LocationModelController::class, 'delete']);
         });
-
     });
+
+    Route::prefix('groupParts')->group(function () {
+        Route::get('/', function () {
+            return view('pages.manage.groupParts.index');
+        });
+        Route::get('getGroups', [GroupPartsController::class, 'getGroups']);
+        Route::get('getOneGroup/{id}', [GroupPartsController::class, 'getOneGroup']);
+        Route::post('update/{id}', [GroupPartsController::class, 'update']);
+        Route::get('destroy/{id}', [GroupPartsController::class, 'delete']);
+    });
+
 
 
 });
@@ -110,6 +118,18 @@ Route::prefix('stock')->group(function () {
         Route::post('update/{id}', [CategoryController::class, 'update']);
         Route::get('destroy/{id}', [CategoryController::class, 'delete']);
     });
+});
+
+
+Route::prefix('customer')->group(function () {
+    Route::get('/', function () {
+        return view('pages.customer.productList.index');
+    });
+    Route::get('getCategories', [CategoryController::class, 'getCategories'])->name('getCategories');
+    Route::get('getCategory/{id}', [CategoryController::class, 'getCategory'])->name('getCategory');
+    Route::post('create', [CategoryController::class, 'create'])->name('createCategory');
+    Route::post('update/{id}', [CategoryController::class, 'update']);
+    Route::get('destroy/{id}', [CategoryController::class, 'delete']);
 });
 
 
@@ -157,9 +177,13 @@ Route::post('getSessionBranch', [BranchSessionController::class, 'getSessionBran
 Route::get('removeSessionBranch', [BranchSessionController::class, 'removeSessionBranch'])->name('removeSessionBranch');
 //end Session branch
 
-
-
-
+//Session customer
+Route::get('/selectCustomer', function () {
+    return view('pages.selectCustomer.index');
+});
+Route::post('getSessionCustomer', [CustomerSessionController::class, 'getSessionCustomer'])->name('getSessionCustomer');
+Route::get('removeSessionCustomer', [CustomerSessionController::class, 'removeSessionCustomer'])->name('removeSessionCustomer');
+//end Session customer
 
 
 Route::get('/original', function () {

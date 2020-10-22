@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Location;
 use App\Models\LocationProduct;
 use App\Models\LocationProductDetail;
+use App\Models\LocationProductList;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LocationProductDetailController extends Controller
@@ -19,7 +21,7 @@ class LocationProductDetailController extends Controller
         $dataSet = [
             'location' => Location::all(),
             'product' => LocationProduct::all(),
-            'detail' => LocationProductDetail::with(['location', 'locationProduct'])->get(),
+            'detail' => LocationProductDetail::with(['locationProductList'])->get(),
             'option' => $status_op,
         ];
         return response()->json(['status' => true, 'dataSet' => $dataSet]);
@@ -27,37 +29,49 @@ class LocationProductDetailController extends Controller
 
     function getOneDetail($id)
     {
-        return response()->json(['status' => true, 'product' => LocationProductDetail::find($id)]);
+        return response()->json(['status' => true, 'product' => LocationProductDetail::with('locationProductList')->find($id)]);
     }
 
     function create(Request $request)
     {
-        $item = new LocationProductDetail;
-        $item->location_product_id = $request->input('location_product_id');
-        $item->code = $request->input('code');
-        $item->location_id = $request->input('location_id');
-        $item->latitude = $request->input('latitude');
-        $item->longitude = $request->input('longitude');
-        $item->status = $request->input('status');
-        $item->sku = $request->input('sku');
+        $ssid = session()->get('customer')[0]['id'];
+        $customer = Location::find($ssid);
 
-        if ($item->save()) {
-            return response()->json(['status' => true]);
-        } else {
-            return response()->json(['status' => false]);
+        for ($i = 0; $i < ($request->quantity); $i++) {
+            $time = Carbon::now();
+            $genCode = str_replace('-', '', $time);
+            $genCode = str_replace(' ', '', $genCode);
+            $genCode = str_replace(':', '', $genCode);
+
+            $item_list = new LocationProductList;
+            $item_list->location_id = $customer->id;
+            $item_list->location_product_id = $request->input('location_product_id');
+
+            if ($item_list->save()) {
+                $item = new LocationProductDetail;
+                $item->location_product_list_id = $item_list->id;
+                $item->code = $i.$genCode;
+                $item->latitude = $customer->latitude;
+                $item->longitude = $customer->longitude;
+                $item->status = 2;
+                $item->sku = "#";
+                $item->save();
+            }
         }
+        return response()->json(['status' => true]);
     }
 
     function update(Request $request, $id)
     {
         $item = LocationProductDetail::find($id);
-        $item->location_product_id = $request->input('location_product_id');
-        $item->location_id = $request->input('location_id');
         $item->code = $request->input('code');
         $item->latitude = $request->input('latitude');
         $item->longitude = $request->input('longitude');
         $item->sku = $request->input('sku');
         if ($item->save()) {
+            $item_location_list = LocationProductList::find($id);
+            $item_location_list->location_id = $request->input('location_id');
+            $item_location_list->save();
             return response()->json(['status' => true]);
         } else {
             return response()->json(['status' => false]);
@@ -79,6 +93,7 @@ class LocationProductDetailController extends Controller
     function delete($id)
     {
         LocationProductDetail::find($id)->delete();
+        LocationProductList::find($id)->delete();
         return response()->json(['status' => true]);
     }
     //

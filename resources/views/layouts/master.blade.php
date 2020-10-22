@@ -196,6 +196,26 @@ Chat box start
         });
     });
 
+    $(document).off('click', '.pnt-btn-forget-session-customer').on('click', '.pnt-btn-forget-session-customer', (e) =>
+    {
+        $.ajax({
+            type: "get",
+            url: '{{route('removeSessionCustomer')}}',
+            success: function (data) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Leave Customer Success fully',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                window.location.href = "{!! url('/selectCustomer') !!}";
+            }
+        });
+    });
+
+
+
     $(document).off('click', '.pnt-btn-logout').on('click', '.pnt-btn-logout', (e) => {
         Swal.fire({
             title: 'Are you sure?',

@@ -28,7 +28,7 @@ class LocationProductController extends Controller
     function create(Request $request)
     {
         $item = new LocationProduct;
-        $item->model_id = $request->input('model_id');
+        $item->location_model_id = $request->input('model_id');
         $item->name = $request->input('name');
         $item->description = $request->input('description');
         if ($item->save()) {
@@ -41,7 +41,7 @@ class LocationProductController extends Controller
     function update(Request $request, $id)
     {
         $item = LocationProduct::find($id);
-        $item->model_id = $request->input('model_id');
+        $item->location_model_id = $request->input('model_id');
         $item->name = $request->input('name');
         $item->description = $request->input('description');
         if ($item->save()) {

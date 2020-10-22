@@ -294,12 +294,11 @@
                     window.tablePath.destroy();
                     $('.data-section-productPart').html(null);
                     $.each(data.productParts, function (index, value) {
-                        console.log((value.group_parts == null ? "-" : value.group_parts.name))
                         $('.data-section-productPart').append(
                             "<tr><td>" +
                             (index + 1) +
                             "</td><td>" +
-                            (value.group_parts == null ? "-" : value.group_parts.name) +
+                            (value.group_part === null ? "ไม่มีข้อมูล" : value.group_part.name) +
                             "</td><td>" +
                             value.quantity +
                             "</td><td>" +
@@ -331,7 +330,7 @@
         // btn-save-add-product
         $(document).off('click', '.pnt-btn-modal-add-product-save').on('click', '.pnt-btn-modal-add-product-save', e => {
             var model_id = $(".pnt-modal-sel-add-product-model option:selected").val();
-            if (model_id == 0) {
+            if (model_id === 0) {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
