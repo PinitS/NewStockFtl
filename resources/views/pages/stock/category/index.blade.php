@@ -3,19 +3,21 @@
 @section('content')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <input type="hidden" id="pnt-input-branch_id"  name="pnt-input-branch_id" runat="server" value="{{ session()->get('branch')[0]['id'] }}"/>
+    <input type="hidden" id="pnt-input-branch_id" name="pnt-input-branch_id" runat="server"
+           value="{{ session()->get('branch')[0]['id'] }}"/>
 
     <div class="row">
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
                     <h4 class="card-title text-dark">Category Information</h4>
-                    <button type="button" class="btn btn-info pnt-bnt-add-category">Add <span class="btn-icon-right"><i class="fa fa-plus color-info"></i></span>
+                    <button type="button" class="btn btn-info pnt-bnt-add-category">Add <span class="btn-icon-right"><i
+                                class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id = "categoryInformation" style="min-width: 845px">
+                        <table id="categoryInformation" style="min-width: 845px">
                             <thead>
                             <tr>
                                 <th class="text-dark">#</th>
@@ -23,7 +25,7 @@
                                 <th class="text-dark">Manage</th>
                             </tr>
                             </thead>
-                            <tbody class= "data-section">
+                            <tbody class="data-section">
 
                             </tbody>
                         </table>
@@ -106,27 +108,25 @@
 
         var table = $('#categoryInformation').DataTable();
 
-        function resetTable()
-        {
+        function resetTable() {
             $.ajax({
                 type: "get",
                 url: '{{route('getCategories')}}',
                 success: function (data) {
                     console.log(data);
-                    if(data.status)
-                    {
+                    if (data.status) {
                         table.destroy();
                         $('.data-section').html(null);
-                        $.each(data.categories , function( index, value ) {
+                        $.each(data.categories, function (index, value) {
 
                             $('.data-section').append(
                                 "<tr><td>" +
                                 (index + 1) +
                                 "</td><td>" +
                                 value.name +
-                                "</td><td>"+
-                                "<div class = 'd-flex'>"+
-                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>"+
+                                "</td><td>" +
+                                "<div class = 'd-flex'>" +
+                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>" +
                                 "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
                             )
                         });
@@ -140,18 +140,27 @@
             resetTable();
         });
 
+        // btn-add-category
+        $(document).off('click', '.pnt-bnt-add-category').on('click', '.pnt-bnt-add-category', (e) => {
+
+            $('.pnt-input-add-name').val('');
+            $(".pnt-modal-add-category").modal();
+        });
+        // end-save-add-category
+
         // btn-save-add-category
         $(document).off('click', '.pnt-btn-modal-add-category-save').on('click', '.pnt-btn-modal-add-category-save', e => {
-
+            $(e.currentTarget).prop('disabled', true);
             $.ajax({
                 type: "post",
                 url: '{{route('createCategory')}}',
                 data: {
-                    name : $('.pnt-input-add-name').val(),
-                    stock_branch_id : $('#pnt-input-branch_id').val(),
+                    name: $('.pnt-input-add-name').val(),
+                    stock_branch_id: $('#pnt-input-branch_id').val(),
                     '_token': window.token,
                 },
                 success: function (data) {
+                    $('.pnt-btn-modal-add-category-save').prop('disabled', false);
                     console.log(data)
                     if (data.status) {
                         $(".pnt-modal-add-category").modal('hide');
@@ -166,6 +175,7 @@
                     }
                 },
                 error: function (jqXHR, exception) {
+
                     if (jqXHR.status !== 200) {
                         Swal.fire({
                             position: 'top-end',
@@ -174,18 +184,12 @@
                             showConfirmButton: false,
                             timer: 1500
                         })
+                        $('.pnt-btn-modal-add-category-save').prop('disabled', false);
                     }
                 },
             });
         });
         // end-btn-save-add-category
-
-
-        // btn-add-category
-        $(document).off('click', '.pnt-bnt-add-category').on('click', '.pnt-bnt-add-category', (e) => {
-            $(".pnt-modal-add-category").modal();
-        });
-        // end-save-add-category
 
 
         // btn-delete
@@ -205,7 +209,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "get",
-                        url: "{!! url('stock/categories/destroy') !!}/"+window.id,
+                        url: "{!! url('stock/categories/destroy') !!}/" + window.id,
                         success: function (data) {
                             resetTable();
 
@@ -228,10 +232,9 @@
             window.id = $(e.currentTarget).val();
             $.ajax({
                 type: "get",
-                url: "{!! url('stock/categories/getCategory') !!}/"+window.id,
+                url: "{!! url('stock/categories/getCategory') !!}/" + window.id,
                 success: function (data) {
-                    if(data.status)
-                    {
+                    if (data.status) {
                         $(".pnt-input-name").val(data.category.name);
                         $(".pnt-modal-edit").modal();
                     }
@@ -242,17 +245,19 @@
 
         // btn save update modal
         $(document).off('click', '.pnt-btn-modal-save').on('click', '.pnt-btn-modal-save', e => {
+            $(e.currentTarget).prop('disabled', true);
             console.log(window.id)
             $.ajax({
                 type: "post",
-                url: "{!! url('stock/categories/update') !!}/"+window.id,
+                url: "{!! url('stock/categories/update') !!}/" + window.id,
                 data: {
-                    name : $(".pnt-input-name").val(),
+                    name: $(".pnt-input-name").val(),
                     '_token': window.token,
                 },
                 success: function (data) {
                     if (data.status) {
                         $(".pnt-modal-edit").modal('hide');
+                        $('.pnt-btn-modal-save').prop('disabled', false);
                         resetTable();
                         Swal.fire({
                             position: 'top-end',
@@ -272,6 +277,7 @@
                             showConfirmButton: false,
                             timer: 1500
                         })
+                        $('.pnt-btn-modal-save').prop('disabled', false);
                     }
                 },
             });

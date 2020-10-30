@@ -1,11 +1,10 @@
 <div class="nav-header">
-    <a href="/ class="brand-logo">
-    <div class="mt-3">
-        <img class="logo-abbr" src="{!! '/images/logo.png' !!}" alt="">
-        <img class="logo-compact" src="{!! '/images/logo-text-white.png' !!}" alt="">
-        <img class="brand-title" src="{!! '/images/logo-text-white.png' !!}" alt="">
+{{--    <a href="/" class="brand-logo">--}}
+    <div class="mt-2">
+        <img class="logo-abbr ml-2 mr-3" src="{!! '/images/logo-main-ftl.png' !!}" alt="">
+        <img class="brand-title ml-2" src="{!! '/images/logo-text-white.png' !!}" alt="">
     </div>
-    </a>
+{{--    </a>--}}
 
     {{--        hide and show sidebar--}}
     <div class="nav-control">

@@ -254,6 +254,8 @@
 
         // btn-add-user
         $(document).off('click', '.pnt-bnt-add-user').on('click', '.pnt-bnt-add-user', (e) => {
+            $('.pnt-modal-add-user-username').val('');
+            $('.pnt-modal-add-user-email').val('');
             $(".pnt--modal-add-user").modal();
         });
         // end-save-add-user

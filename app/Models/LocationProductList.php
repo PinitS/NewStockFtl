@@ -21,6 +21,6 @@ class LocationProductList extends Model
 
     public function locationProductDetails()
     {
-        return $this->hasMany('App\Models\LocationProductDetails');
+        return $this->hasMany('App\Models\LocationProductDetail');
     }
 }

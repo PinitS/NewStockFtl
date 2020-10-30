@@ -21,11 +21,9 @@
                                     <th class="text-dark">#</th>
                                     <th class="text-dark">Serial Number</th>
                                     <th class="text-dark">Product</th>
+                                    <th class="text-dark">Model</th>
                                     <th class="text-dark">Status</th>
                                     <th class="text-dark">Sku</th>
-                                    <th class="text-dark">Location</th>
-                                    <th class="text-dark">Latitude</th>
-                                    <th class="text-dark">Longitude</th>
                                     <th class="text-dark">Manage</th>
                                 </tr>
                                 </thead>
@@ -105,14 +103,25 @@
                                placeholder="Name" required>
                     </div>
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Latitude</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-detail-latitude">
-                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="mb-1"><strong>Latitude</strong></label>
+                                <input type="text" class="form-control pnt-modal-edit-latitude" id="latitude" name="latitude" value="" readonly>
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Latitude</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-detail-longitude">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="mb-1"><strong>Longitude</strong></label>
+                                <input type="text" class="form-control pnt-modal-edit-longitude" id="longitude" name="longitude" value="" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a class="btn btn-success btn-block text-white getLatLnt" style="cursor:pointer;">Select Location</a>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -153,7 +162,7 @@
                 type: "get",
                 url: '{!! url('product_location/product_detail/getDetails') !!}',
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     if (data.status) {
                         var product = "<option value=" + 0 + "> <strong>" + "All product" + "</strong></option>";
                         $.each(data.dataSet.product, function (index, value) {
@@ -184,49 +193,46 @@
                 url: '{!! url('product_location/product_detail/getDetails') !!}',
                 success: function (data) {
                     console.log(data)
+                    // console.log(data.dataSet.detail.name)
+                    // console.log(data.dataSet.detail.latitude)
+                    // console.log(data.dataSet.detail.longitude)
+
                     if (data.status) {
                         window.table.destroy();
                         $('.data-section').html(null);
 
-                        $.each(data.dataSet.detail, function (index, value) {
+                        $.each(data.dataSet.detail.product_lists, function (index, value) {
+
                             $('.data-section').append(
                                 "<tr><td>" +
                                 (index + 1) +
                                 "</td><td>" +
-                                value.code +
+                                value.location_product_details[0]['code'] +
                                 "</td><td>" +
-                                // (value.location_product_list == null ? "-" : value.location_product.name) +
-                                value.location_product_list.location_product_id +
+                                value.location_product.name +
                                 "</td><td>" +
-                                "<select class='form-control pnt-modal-sel-change-status-detail-product" + index + "' id='pnt-modal-sel-change-status-detail-product' data-id='" + value.id + "'></select>" +
+                                value.location_product.location_model.name +
                                 "</td><td>" +
-                                value.sku +
+                                "<select class='form-control pnt-modal-sel-change-status-detail-product" + index + "' id='pnt-modal-sel-change-status-detail-product' data-id='" + value.location_product_details[0]['id'] + "'></select>" +
                                 "</td><td>" +
-                                value.location_product_list.location_id +
-                                "</td><td>" +
-                                (value.longitude == null ? "-" : value.longitude) +
-                                "</td><td>" +
-                                (value.longitude == null ? "-" : value.longitude) +
+                                value.location_product_details[0]['sku']+
                                 "</td><td>" +
                                 "<div class = 'd-flex'>" +
-                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + 3 + "'><i class='fa fa-pencil-square-o'></i></button>" +
-                                "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
+                                "<button  class='btn btn-info text-white shadow btn-xs sharp mr-1' onclick='showOnMap(" + value.location_product_details[0]['latitude'] + ", " + value.location_product_details[0]['longitude'] + ")'><i class='fa fa-map-marker'></i></button>"+
+                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.location_product_details[0]['id'] + "' data-id = '" + value.location_product_details[0]['id'] + "'><i class='fa fa-pencil-square-o'></i></button>" +
+                                "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.location_product_details[0]['id'] + "' ><i class= 'fa fa-trash'></i></button>"
                             )
 
                             var status_dropdown = $('.pnt-modal-sel-change-status-detail-product' + index);
-                            var test = $('.pnt-product');
                             var status_option = 0;
 
                             $.each(data.dataSet.option, function (index, option_value) {
                                 var checked = false
-                                parseInt(value.status) === index ? checked = true : false;
+                                parseInt(value.location_product_details[0]['status']) === index ? checked = true : false;
                                 status_option += "<option " + (checked ? 'selected' : '') + " value='" + index + "'> <strong>" + option_value + "</strong></option>"
                             });
                             status_dropdown.append(status_option);
                             status_dropdown.selectpicker('refresh');
-
-                            test.append(status_option);
-                            test.selectpicker('refresh');
 
                         });
                         window.table = $('#detailInformation').DataTable();
@@ -247,7 +253,7 @@
         // end-save-add-detail
 
         // btn-save-add-detail
-        $(document).off('click', '.pnt-btn-modal-add-detail-save').on('click', '.pnt-btn-modal-add-detail-save', e => {
+        $(document).off('click', '.pnt-btn-modal-add-detail-save').one('click', '.pnt-btn-modal-add-detail-save', e => {
             var product_id = $(".pnt-modal-sel-add-detail-product option:selected").val();
 
             console.log(product_id);
@@ -311,8 +317,8 @@
                         // $(".pnt-modal-sel-edit-detail-product").val(data.product.location_product_id).change();
                         $(".pnt-modal-sel-edit-product-location").val(data.product.location_product_list.location_id).change();
                         $('.pnt-modal-edit-detail-code').val(data.product.code);
-                        $('.pnt-modal-edit-detail-latitude').val(data.product.latitude);
-                        $('.pnt-modal-edit-detail-longitude').val(data.product.longitude);
+                        $('.pnt-modal-edit-latitude').val(data.product.latitude);
+                        $('.pnt-modal-edit-longitude').val(data.product.longitude);
                         $('.pnt-modal-edit-detail-sku').val(data.product.sku);
                     }
                 }
@@ -341,8 +347,8 @@
                         // location_product_id: product_id,
                         location_id: location_id,
                         code: $('.pnt-modal-edit-detail-code').val(),
-                        latitude: $('.pnt-modal-edit-detail-latitude').val(),
-                        longitude: $('.pnt-modal-edit-detail-longitude').val(),
+                        latitude: $('.pnt-modal-edit-latitude').val(),
+                        longitude: $('.pnt-modal-edit-longitude').val(),
                         sku: $('.pnt-modal-edit-detail-sku').val(),
                         '_token': window.token,
                     },
@@ -413,7 +419,10 @@
         $(document).off('change', '#pnt-modal-sel-change-status-detail-product').on('change', '#pnt-modal-sel-change-status-detail-product', (e) => {
 
             window.id = $(e.currentTarget).attr('data-id');
+            console.log(window.id)
             var status_id = $(e.currentTarget).find(':selected').val();
+            console.log(status_id)
+
             $.ajax({
                 type: "post",
                 url: '{!! url('product_location/product_detail/changeStatus') !!}/'+ window.id,
@@ -447,6 +456,30 @@
             });
         });
         // end-pnt-modal-sel-change-status-detail-product
+
+        //map-update
+        $(document).off('click', '.getLatLnt').on('click', '.getLatLnt', (e) => {
+            let lat = $('.pnt-modal-edit-latitude').val();
+            let lng = $('.pnt-modal-edit-longitude').val();
+
+            $('.map-section-show-only').hide();
+            $('.map-section-get-only').show();
+            getLatLng(lat, lng);
+        });
+        //end-map-update
+
+        //map-add
+        $(document).off('click', '.getLatLnt-add').on('click', '.getLatLnt-add', (e) => {
+            console.log()
+            let lat = centerLat;
+            let lng = centerLng;
+            console.log(lat , lng)
+
+            $('.map-section-show-only').hide();
+            $('.map-section-get-only').show();
+            getLatLng(lat, lng);
+        });
+        //end-map-add
 
     </script>
 @endsection

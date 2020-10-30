@@ -2,6 +2,13 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\IfAdminLogin;
+use App\Http\Middleware\IfBranchSessionIsNull;
+use App\Http\Middleware\IfCustomerSessionIsNull;
+use App\Http\Middleware\IfHasAuth;
+use App\Http\Middleware\IfHasBranchSession;
+use App\Http\Middleware\IfHasCustomerSession;
+use App\Http\Middleware\IfMemberJoinRouteAdmin;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -62,5 +69,12 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'nullBranchSession' => IfBranchSessionIsNull::class,
+        'nullCustomerSession' => IfCustomerSessionIsNull::class,
+        'hasCustomerSession' => IfHasCustomerSession::class,
+        'hasBranchSession' => IfHasBranchSession::class,
+        'adminRoute' => IfMemberJoinRouteAdmin::class,
+        'ifAdmin' => IfAdminLogin::class,
+        'hasAuth' => IfHasAuth::class,
     ];
 }

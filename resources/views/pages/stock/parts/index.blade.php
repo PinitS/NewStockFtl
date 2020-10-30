@@ -331,6 +331,9 @@
                         $("#modal-minus-quantity").text();
                         $(".pnt-modal-minus").modal('hide');
 
+                        $('.pnt-btn-modal-plus-save').prop('disabled', false);
+                        $('.pnt-btn-modal-minus-save').prop('disabled', false);
+
                         resetTable();
                         Swal.fire({
                             position: 'top-end',
@@ -463,6 +466,8 @@
 
         // btn-save-add-parts
         $(document).off('click', '.pnt-btn-modal-add-parts-save').on('click', '.pnt-btn-modal-add-parts-save', e => {
+            $('e.currentTarget').prop('disabled', true);
+
             if ($(".pnt-modal-sel-add-parts-category option:selected").val() != 0) {
 
                 if ($('.pnt-modal-add-parts-quantity').val() == 0) {
@@ -489,6 +494,7 @@
                         success: function (data) {
                             if (data.status) {
                                 $(".pnt-modal-add-parts").modal('hide');
+                                $('pnt-bnt-add-parts').prop('disabled', false);
                                 resetTable();
                                 Swal.fire({
                                     position: 'top-end',
@@ -516,6 +522,7 @@
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
+                                $('pnt-bnt-add-parts').prop('disabled', false);
                             }
                         },
                     });
@@ -529,6 +536,7 @@
                     showConfirmButton: false,
                     timer: 1500
                 })
+                $('pnt-bnt-add-parts').prop('disabled', false);
             }
             // getOptionDropdown();
         });
@@ -543,7 +551,9 @@
         // end-btn-plus
 
         // pnt-btn-modal-plus-save
-        $(document).one('click', '.pnt-btn-modal-plus-save', (e) => {
+        $(document).off('click', '.pnt-btn-modal-plus-save').on('click', '.pnt-btn-modal-plus-save', (e) => {
+            $(e.currentTarget).prop('disabled', true);
+
             console.log("plus")
             console.log(window.change_id);
             var quantity = $('.pnt-plus-quantity').val();
@@ -574,8 +584,9 @@
 
         // pnt-btn-modal-minus-save
         $(document).off('click', '.pnt-btn-modal-minus-save').on('click', '.pnt-btn-modal-minus-save', (e) => {
-            console.log("minus")
+            $(e.currentTarget).prop('disabled', true);
 
+            console.log("minus")
             var quantity = $('.pnt-minus-quantity').val();
             var description = $('.pnt-minus-detail').val();
             console.log('update', quantity);
@@ -605,7 +616,7 @@
                         $('.data-section-history').html(null);
                         $.each(data.partHistory, function (index, value) {
                             var text = '';
-                            var date = moment(value.create_at).format('L');
+                            var date = moment(value.created_at).format('L');
 
                             (value.type == 0 ? text = 'Imported' : text = 'Withdraw')
                             $('.data-section-history').append(
@@ -644,6 +655,7 @@
 
         // pnt-btn-edit-save
         $(document).off('click', '.pnt-btn-modal-edit-parts-save').on('click', '.pnt-btn-modal-edit-parts-save', (e) => {
+            $(e.currentTarget).prop('disabled', true);
             console.log(window.id);
             if ($(".pnt-modal-sel-edit-parts-category option:selected").val() != 0) {
                 $.ajax({
@@ -660,6 +672,7 @@
                         console.log(data)
                         if (data.status) {
                             $(".pnt-modal-edit").modal('hide');
+                            $('.pnt-btn-modal-edit-parts-save').prop('disabled', false);
                             resetTable();
                             Swal.fire({
                                 position: 'top-end',
@@ -679,6 +692,8 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            $('.pnt-btn-modal-edit-parts-save').prop('disabled', false);
+
                         }
                     },
                 });
@@ -690,6 +705,8 @@
                     showConfirmButton: false,
                     timer: 1500
                 })
+                $('.pnt-btn-modal-edit-parts-save').prop('disabled', false);
+
             }
         });
         // end-pnt-btn-edit-save

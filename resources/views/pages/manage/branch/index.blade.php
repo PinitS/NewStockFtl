@@ -19,8 +19,6 @@
                                 <th class="text-dark">#</th>
                                 <th class="text-dark">Branch</th>
                                 <th class="text-dark">Phone Number</th>
-                                <th class="text-dark">Latitude</th>
-                                <th class="text-dark">Longitude</th>
                                 <th class="text-dark">Address</th>
                                 <th class="text-dark">Manage</th>
                             </tr>
@@ -54,14 +52,25 @@
                         <label class="mb-1"><strong>Phone Number</strong></label>
                         <input type="phone" class="form-control pnt-modal-add-branch-phone" id="phone" name="phone" >
                     </div>
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Latitude</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-latitude" id="latitude" name="latitude" value="" >
-                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="mb-1"><strong>Latitude</strong></label>
+                                <input type="text" class="form-control pnt-modal-add-latitude" id="latitude" name="latitude" value="" readonly>
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Longitude</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-longitude" id="longitude" name="longitude" value="" >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="mb-1"><strong>Longitude</strong></label>
+                                <input type="text" class="form-control pnt-modal-add-longitude" id="longitude" name="longitude" value="" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a class="btn btn-success btn-block text-white getLatLnt-add" style="cursor:pointer;">Select Location</a>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -99,14 +108,25 @@
                         <label class="mb-1"><strong>Phone Number</strong></label>
                         <input type="phone" class="form-control pnt-modal-edit-branch-phone" id="phone" name="phone" >
                     </div>
-                    <div class="form-group">
-                        <label class="mb-1"><strong>latitude</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-branch-latitude" id="latitude" name="latitude" value="" >
-                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="mb-1"><strong>Latitude</strong></label>
+                                <input type="text" class="form-control pnt-modal-edit-latitude" id="latitude" name="latitude" value="" readonly>
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>longitude</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-branch-longitude" id="longitude" name="longitude" value="" >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="mb-1"><strong>Longitude</strong></label>
+                                <input type="text" class="form-control pnt-modal-edit-longitude" id="longitude" name="longitude" value="" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a class="btn btn-success btn-block text-white getLatLnt" style="cursor:pointer;">Select Location</a>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -124,8 +144,6 @@
         </div>
     </div>
     {{--modal update--}}
-
-
 
 @endsection
 
@@ -159,13 +177,10 @@
                                 "</td><td>" +
                                 value.phone_number +
                                 "</td><td>" +
-                                (value.latitude == null ? "-" : value.latitude) +
-                                "</td><td>" +
-                                (value.longitude == null ? "-" : value.longitude) +
-                                "</td><td>" +
                                 value.address +
                                 "</td><td>"+
                                 "<div class = 'd-flex'>"+
+                                "<button  class='btn btn-info text-white shadow btn-xs sharp mr-1' onclick='showOnMap(" + value.latitude + ", " + value.longitude + ")'><i class='fa fa-map-marker'></i></button>"+
                                 "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>"+
                                 "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
                             )
@@ -182,6 +197,11 @@
 
         // btn-add-branch
         $(document).off('click', '.pnt-bnt-add-branch').on('click', '.pnt-bnt-add-branch', (e) => {
+            $('.pnt-modal-add-branch-name').val('');
+            $('.pnt-modal-add-branch-phone').val('');
+            $('.pnt-modal-add-latitude').val('');
+            $('.pnt-modal-add-longitude').val('');
+            $('.pnt-modal-add-address').val('');
             $(".pnt-modal-add-branch").modal();
         });
         // end-save-add-branch
@@ -230,19 +250,17 @@
         // btn-edit
         $(document).off('click', '.pnt-btn-edit').on('click', '.pnt-btn-edit', (e) => {
             window.id = $(e.currentTarget).val();
-
-
             $.ajax({
                 type: "get",
                 url: "{!! url('manage/branches/getBranch') !!}/"+window.id,
                 success: function (data) {
-                    console.log(data);
+                    console.log(data.branch.latitude);
                     if(data.status)
                     {
                         $(".pnt-modal-edit-branch-name").val(data.branch.name);
                         $(".pnt-modal-edit-branch-phone").val(data.branch.phone_number);
-                        $(".pnt-modal-edit-branch-latitude").val(data.branch.latitude);
-                        $(".pnt-modal-edit-branch-longitude").val(data.branch.longitude);
+                        $(".pnt-modal-edit-latitude").val(data.branch.latitude);
+                        $(".pnt-modal-edit-longitude").val(data.branch.longitude);
                         $(".pnt-modal-edit-branch-address").val(data.branch.address);
                         $(".pnt-modal-edit").modal();
                     }
@@ -259,8 +277,8 @@
                 data: {
                     name : $('.pnt-modal-edit-branch-name').val(),
                     phone_number : $('.pnt-modal-edit-branch-phone').val(),
-                    latitude : $('.pnt-modal-edit-branch-latitude').val(),
-                    longitude : $('.pnt-modal-edit-branch-longitude').val(),
+                    latitude : $('.pnt-modal-edit-latitude').val(),
+                    longitude : $('.pnt-modal-edit-longitude').val(),
                     address : $('.pnt-modal-edit-branch-address').val(),
                     '_token': window.token,
                 },
@@ -325,6 +343,30 @@
             })
         });
         // end btn-delete
+
+        //map-update
+        $(document).off('click', '.getLatLnt').on('click', '.getLatLnt', (e) => {
+            let lat = $('.pnt-modal-edit-latitude').val();
+            let lng = $('.pnt-modal-edit-longitude').val();
+
+            $('.map-section-show-only').hide();
+            $('.map-section-get-only').show();
+            getLatLng(lat, lng);
+        });
+        //end-map-update
+
+        //map-add
+        $(document).off('click', '.getLatLnt-add').on('click', '.getLatLnt-add', (e) => {
+            console.log()
+            let lat = centerLat;
+            let lng = centerLng;
+            console.log(lat , lng)
+
+            $('.map-section-show-only').hide();
+            $('.map-section-get-only').show();
+            getLatLng(lat, lng);
+        });
+        //end-map-add
 
     </script>
 @endsection

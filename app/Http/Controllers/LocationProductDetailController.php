@@ -8,6 +8,7 @@ use App\Models\LocationProductDetail;
 use App\Models\LocationProductList;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LocationProductDetailController extends Controller
 {
@@ -21,7 +22,7 @@ class LocationProductDetailController extends Controller
         $dataSet = [
             'location' => Location::all(),
             'product' => LocationProduct::all(),
-            'detail' => LocationProductDetail::with(['locationProductList'])->get(),
+            'detail' => Location::with(['productLists', 'productLists.locationProductDetails' ,'productLists.locationProduct.locationModel'  , 'productLists.locationProduct'])->findOrFail(Session::get('customer')[0]['id']),
             'option' => $status_op,
         ];
         return response()->json(['status' => true, 'dataSet' => $dataSet]);
@@ -30,6 +31,11 @@ class LocationProductDetailController extends Controller
     function getOneDetail($id)
     {
         return response()->json(['status' => true, 'product' => LocationProductDetail::with('locationProductList')->find($id)]);
+    }
+
+    function getAllDetail()
+    {
+        return response()->json(['status' => true, 'product' => LocationProductDetail::all()]);
     }
 
     function create(Request $request)

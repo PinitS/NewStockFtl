@@ -131,6 +131,7 @@
 
         // btn-add-model
         $(document).off('click', '.pnt-bnt-add-model').on('click', '.pnt-bnt-add-model', (e) => {
+            $('.pnt-input-add-name').val('');
             $(".pnt-modal-add-model").modal();
         });
         // end-save-add-category
@@ -179,7 +180,7 @@
             window.id = $(e.currentTarget).val();
             $.ajax({
                 type: "get",
-                url: "{!! url('manage/product_location/model/getOneLocationModel') !!}/"+window.id,
+                url: "{!! url('manage/model/getOneLocationModel') !!}/"+window.id,
                 success: function (data) {
                     if(data.status)
                     {
@@ -198,7 +199,7 @@
 
             $.ajax({
                 type: "post",
-                url: "{!! url('manage/product_location/model/update') !!}/"+window.id,
+                url: "{!! url('manage/model/update') !!}/"+window.id,
                 data: {
                     name : $(".pnt-input-name").val(),
                     '_token': window.token,
@@ -248,7 +249,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "get",
-                        url: "{!! url('manage/product_location/model/destroy') !!}/"+window.id,
+                        url: "{!! url('manage/model/destroy') !!}/"+window.id,
                         success: function (data) {
                             resetTable();
 

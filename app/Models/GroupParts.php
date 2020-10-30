@@ -16,7 +16,7 @@ class GroupParts extends Model
 
     public function stockParts()
     {
-        return $this->hasMany('App\Models\StockPart' );
+        return $this->hasMany('App\Models\StockPart' ,'group_part_id');
     }
 
 }
