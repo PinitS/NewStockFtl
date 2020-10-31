@@ -493,6 +493,10 @@
                         },
                         success: function (data) {
                             if (data.status) {
+                                $(".pnt-modal-sel-add-parts-category option:selected").val(0).change();
+                                $(".pnt-modal-sel-add-group-parts option:selected").val(0).change();
+                                $('.pnt-modal-add-parts-name').val('');
+                                $('.pnt-modal-add-parts-quantity').val('');
                                 $(".pnt-modal-add-parts").modal('hide');
                                 $('pnt-bnt-add-parts').prop('disabled', false);
                                 resetTable();

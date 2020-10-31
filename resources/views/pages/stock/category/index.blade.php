@@ -164,6 +164,7 @@
                     console.log("data")
                     if (data.status) {
                         $(".pnt-modal-add-category").modal('hide');
+                        $('.pnt-input-add-name').val(''),
                         resetTable();
                         Swal.fire({
                             position: 'top-end',

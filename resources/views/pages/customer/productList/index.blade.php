@@ -208,9 +208,9 @@
                                 "</td><td>" +
                                 value.location_product_details[0]['code'] +
                                 "</td><td>" +
-                                value.location_product.name +
+                                (value.location_product == null ? "-" : value.location_product.name) +
                                 "</td><td>" +
-                                value.location_product.location_model.name +
+                                (value.location_product == null ? "-" : value.location_product.location_model.name )  +
                                 "</td><td>" +
                                 "<select class='form-control pnt-modal-sel-change-status-detail-product" + index + "' id='pnt-modal-sel-change-status-detail-product' data-id='" + value.location_product_details[0]['id'] + "'></select>" +
                                 "</td><td>" +
