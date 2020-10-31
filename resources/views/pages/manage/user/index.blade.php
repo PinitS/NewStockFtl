@@ -131,8 +131,7 @@
                             <span class="text-danger">*</span>
                         </label>
                         <div class="col-lg-6">
-                            <input type="password" class="form-control pnt-input-password" id="password"
-                                   name="password">
+                            <input type="password" class="form-control pnt-input-password">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -171,7 +170,7 @@
         function resetTable() {
             $.ajax({
                 type: "get",
-                url: '{{route('getUsers')}}',
+                url: "{!! url('manage/users/getUsers') !!}",
                 success: function (data) {
                     if (data.status) {
                         table.destroy();
@@ -213,7 +212,7 @@
 
             $.ajax({
                 type: "post",
-                url: '{{route('createUser')}}',
+                url: "{!! url('manage/users/create') !!}",
                 data: {
                     name: $('.pnt-modal-add-user-username').val(),
                     email: $('.pnt-modal-add-user-email').val(),
@@ -319,6 +318,8 @@
                 success: function (data) {
                     if (data.status) {
                         $(".pnt-modal-reset-password").modal('hide');
+                        $(".pnt-input-password").val('');
+                        $(".pnt-input-password_confirmation").val('');
                         resetTable();
                         Swal.fire({
 
@@ -344,7 +345,6 @@
             });
         });
         // end btn save reset-password modal
-
 
         // btn-edit
         $(document).off('click', '.pnt-btn-edit').on('click', '.pnt-btn-edit', (e) => {

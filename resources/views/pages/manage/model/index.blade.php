@@ -99,7 +99,7 @@
         {
             $.ajax({
                 type: "get",
-                url: '{{route('getLocationModels')}}',
+                url: "{!! url('manage/model/getLocationModels') !!}",
                 success: function (data) {
                     console.log(data);
                     if(data.status)
@@ -140,7 +140,7 @@
         $(document).off('click', '.pnt-btn-modal-add-model-save').on('click', '.pnt-btn-modal-add-model-save', e => {
             $.ajax({
                 type: "post",
-                url: '{{route('createLocationModel')}}',
+                url: "{!! url('manage/model/create') !!}",
                 data: {
                     name : $('.pnt-input-add-name').val(),
                     '_token': window.token,
@@ -211,7 +211,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Update Category Success fully',
+                            title: 'Update Model Success fully',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -256,7 +256,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Delete Models Success fully',
+                                title: 'Delete Model Success fully',
                                 showConfirmButton: false,
                                 timer: 1500
                             })

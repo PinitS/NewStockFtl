@@ -12,8 +12,8 @@
                 <div class="card-header">
                     <h4 class="card-title text-dark">Parts Information</h4>
 
-                    <button type="button" class="btn btn-info pnt-bnt-add-parts">Add <span class="btn-icon-right"><i
-                                class="fa fa-plus color-info"></i></span>
+                    <button type="button" class="btn btn-danger pnt-bnt-add-parts">Add <span class="btn-icon-right"><i
+                                class="fa fa-plus color-danger"></i></span>
                     </button>
 
                 </div>
@@ -249,7 +249,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-warning pnt-btn-modal-edit-parts-save">Edit Parts</button>
+                    <button type="submit" class="btn btn-warning pnt-btn-modal-edit-parts-save">Save changes</button>
                 </div>
 
             </div>
@@ -470,7 +470,7 @@
 
             if ($(".pnt-modal-sel-add-parts-category option:selected").val() != 0) {
 
-                if ($('.pnt-modal-add-parts-quantity').val() == 0) {
+                if ($('.pnt-modal-add-parts-quantity').val() <= 0) {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
@@ -499,7 +499,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
-                                    title: 'Add Category Success fully.',
+                                    title: 'Add Parts Success fully.',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -546,6 +546,7 @@
         $(document).off('click', '.pnt-btn-plus').on('click', '.pnt-btn-plus', (e) => {
             window.id = $(e.currentTarget).val();
             window.change_id = $(e.currentTarget).attr('data-id');
+            $('.pnt-btn-modal-plus-save').prop('disabled', false);
             getOnePart();
         });
         // end-btn-plus
@@ -563,10 +564,11 @@
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Quantity Wrong',
+                    title: 'Quantity went Wrong',
                     showConfirmButton: false,
                     timer: 1500
                 })
+                $('.pnt-btn-modal-plus-save').prop('disabled', false);
             } else {
                 saveChange(quantity, description);
             }
@@ -578,6 +580,7 @@
             window.id = $(e.currentTarget).val();
             window.change_id = $(e.currentTarget).attr('data-id');
             console.log(window.change_id);
+            $('.pnt-btn-modal-minus-save').prop('disabled', false);
             getOnePart();
         });
         // end-btn-minus
@@ -594,10 +597,12 @@
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Quantity Wrong',
+                    title: 'Quantity went Wrong',
                     showConfirmButton: false,
                     timer: 1500
                 })
+                $('.pnt-btn-modal-minus-save').prop('disabled', false);
+
             } else {
                 saveChange(quantity, description);
             }
@@ -677,7 +682,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Add Category Success fully',
+                                title: 'Update Parts Success fully',
                                 showConfirmButton: false,
                                 timer: 1500
                             })

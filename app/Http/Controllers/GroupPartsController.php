@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\GroupParts;
+use App\Models\ProductPart;
 use App\Models\StockPart;
 use Illuminate\Http\Request;
 
@@ -39,6 +40,7 @@ class GroupPartsController extends Controller
         else
         {
             GroupParts::find($id)->delete();
+            ProductPart::where('group_part_id',$id)->delete();
             return response()->json(['status' => true , 'cnt_part' => $cnt_part]);
         }
     }

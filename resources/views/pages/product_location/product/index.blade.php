@@ -109,7 +109,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-warning pnt-btn-modal-edit-product-save">Edit Product</button>
+                    <button type="submit" class="btn btn-warning pnt-btn-modal-edit-product-save">Save changes</button>
                 </div>
 
             </div>
@@ -330,7 +330,7 @@
         // btn-save-add-product
         $(document).off('click', '.pnt-btn-modal-add-product-save').on('click', '.pnt-btn-modal-add-product-save', e => {
             var model_id = $(".pnt-modal-sel-add-product-model option:selected").val();
-            if (model_id === 0) {
+            if (model_id == 0) {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
@@ -352,6 +352,7 @@
                     success: function (data) {
                         if (data.status) {
                             $(".pnt-modal-add-product").modal('hide');
+                            $(".pnt-modal-sel-add-product-model").val(0).change();
                             resetTable();
                             Swal.fire({
                                 position: 'top-end',
@@ -385,9 +386,10 @@
                 type: "get",
                 url: '{!! url('product_location/product/getOneProduct') !!}/' + window.id,
                 success: function (data) {
+                    console.log(data.product.location_model_id)
                     if (data.status) {
                         console.log(data)
-                        $(".pnt-modal-sel-edit-product-model").val(data.product.model_id).change();
+                        $(".pnt-modal-sel-edit-product-model").val(data.product.location_model_id).change();
                         $('.pnt-modal-edit-product-name').val(data.product.name);
                         $('.pnt-modal-edit-product-description').val(data.product.description);
                     }
@@ -510,50 +512,65 @@
                     timer: 1500
                 })
             } else {
-                $.ajax({
-                    type: "post",
-                    url: '{!! url('product_location/productPart/create') !!}',
-                    data: {
-                        product_id: window.id,
-                        group_part_id: $('.pnt-modal-sel-add-group-part option:selected').val(),
-                        quantity: $('.pnt-modal-sel-add-group-quantity').val(),
-                        '_token': window.token,
-                    },
 
-                    success: function (data) {
-                        console.log(data);
-                        if (data.status) {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Add Parts to Product Success fully',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                        } else {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'error',
-                                title: 'Duplicate Parts',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
+                if($('.pnt-modal-sel-add-group-quantity').val() <= 0)
+                {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Quantity went wrong',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+                else{
+                    $.ajax({
+                        type: "post",
+                        url: '{!! url('product_location/productPart/create') !!}',
+                        data: {
+                            product_id: window.id,
+                            group_part_id: $('.pnt-modal-sel-add-group-part option:selected').val(),
+                            quantity: $('.pnt-modal-sel-add-group-quantity').val(),
+                            '_token': window.token,
+                        },
 
-                        }
-                    },
-                    error: function (jqXHR, exception) {
-                        if (jqXHR.status !== 200) {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'error',
-                                title: 'Something went wrong',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                        }
-                    },
-                });
-                resetProductParts();
+                        success: function (data) {
+                            console.log(data);
+                            if (data.status) {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Add Parts to Product Success fully',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            } else {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    title: 'Duplicate Parts',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+
+                            }
+                        },
+                        error: function (jqXHR, exception) {
+                            if (jqXHR.status !== 200) {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    title: 'Something went wrong',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        },
+                    });
+                    resetProductParts();
+
+                }
+
             }
 
             $('.pnt-modal-sel-add-group-quantity').val('');

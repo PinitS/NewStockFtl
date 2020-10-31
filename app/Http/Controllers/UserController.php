@@ -52,7 +52,11 @@ class UserController extends Controller
 
     public function resetPassword(UseResetPasswordRequest $request, $id)
     {
-        return response()->json(['status' => true, 'userData' => User::find($id)]);
+        $item = User::find($id);
+        $item->password = bcrypt($request->input('password'));
+        if ($item->save()) {
+            return response()->json(['status' => true, 'userData' => User::find($id)]);
+        }
     }
 
     public function delete($id)

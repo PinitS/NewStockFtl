@@ -210,7 +210,7 @@
         $(document).off('click', '.pnt-btn-modal-add-branch-save').on('click', '.pnt-btn-modal-add-branch-save', e => {
             $.ajax({
                 type: "post",
-                url: '{{route('createBranch')}}',
+                url: "{!! url('manage/branches/create') !!}",
                 data: {
                     name : $('.pnt-modal-add-branch-name').val(),
                     phone_number : $('.pnt-modal-add-branch-phone').val(),
@@ -290,7 +290,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Update User Success fully',
+                            title: 'Update Branch Success fully',
                             showConfirmButton: false,
                             timer: 1500
                         })

@@ -101,38 +101,93 @@ Chat box start
                             <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group row">
+                        <div class="modal-body text-center">
 
-                                <label class="col-sm-3 col-form-label pnt-label-username-check">Username</label>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control pnt-modal-edit-this-username "
-                                           value="{{ Auth::user()->name }}">
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Username</label>
+                                <div class="col-sm-9">
+                                    <span style="display: inline-block; margin-top: 7px;"><strong>{{ Auth::user()->name }}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Email</label>
-                                <div class="col-sm-8">
-                                    <input type="email" class="form-control pnt-modal-edit-this-email"
-                                           value="{{ Auth::user()->email }}">
+                                <div class="col-sm-9">
+                                    <span style="display: inline-block; margin-top: 7px;"><strong>{{ Auth::user()->email }}</strong></span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Status</label>
-                                <div class="col-sm-8">
-                                    <input type="email" class="form-control"
-                                           value="{{ Auth::user()->status == 1 ? "Admin" : "Member" }}" disabled>
+                                <div class="col-sm-9">
+                                    <span style="display: inline-block; margin-top: 7px;"><strong>{{ Auth::user()->status == 1 ? "Admin" : "Member" }}</strong></span>
                                 </div>
                             </div>
+
+                            <div class="pnt-edit-this-save-user-toggle" style="display: none" >
+                                <hr>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label pnt-label-username-check">New Username</label>
+                                    <div class="col-sm-8">
+                                        <input type="hidden" class="pnt-modal-edit-this-usid" value="{{ Auth::user()->id }}">
+                                        <input type="hidden" class="pnt-modal-edit-this-status" value="{{ Auth::user()->status }}">
+                                        <input type="email" class="form-control pnt-modal-edit-this-username" value="{{ Auth::user()->name }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label"> New Email</label>
+                                    <div class="col-sm-8">
+                                        <input type="email" class="form-control pnt-modal-edit-this-email" value="{{ Auth::user()->email }}">
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-block btn-success pnt-modal-edit-this-user-save">Save changes</button>
+                            </div>
                         </div>
+
                         <div class="modal-footer">
+                            <button type="button" class="btn btn-warning light pnt-open-toggle-edit-this-username">Edit</button>
                             <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
             {{--    modal-edit-this-user--}}
+
+                {{--modal reset password--}}
+            <div class="modal fade pnt-modal-reset-password-this " id="exampleModalCenter">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Reset Password User</h5>
+                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="password">Password
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control pnt-input-password-this">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="password_confirmation">Confirm Password <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control pnt-input-password_confirmation-this"
+                                        id="password_confirmation" name="password_confirmation">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary pnt-btn-modal-reset-password-save-this">Save changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    {{--modal reset password--}}
 
             @yield('content')
 
@@ -258,7 +313,7 @@ Chat box start
             Swal.fire({
                 position: 'top-end',
                 icon: 'error',
-                title: 'lat || lng is null',
+                title: 'latitude or longitude went wrong',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -385,9 +440,103 @@ Chat box start
         $('.pnt-modal-edit-this-user').modal();
     });
 
-    $(document).off('toggle', '.pnt-modal-edit-disable-username').on('toggle', '.pnt-modal-edit-disable-username', (e) => {
-        $('.pnt-modal-edit-this-username').prop("disabled", false);
+    $(document).off('click', '.pnt-open-toggle-edit-this-username').on('click', '.pnt-open-toggle-edit-this-username', (e) => {
+        $('.pnt-edit-this-save-user-toggle').toggle(150);
     });
+
+        // pnt-modal-edit-this-user-save
+    $(document).off('click', '.pnt-modal-edit-this-user-save').on('click', '.pnt-modal-edit-this-user-save', (e) => {
+            console.log($('.pnt-modal-edit-this-usid').val());
+            console.log($('.pnt-modal-edit-this-status').val());
+            console.log($('.pnt-modal-edit-this-email').val());
+
+            $.ajax({
+                type: "post",
+                url: "{!! url('manage/users/update') !!}/" + $('.pnt-modal-edit-this-usid').val(),
+                data: {
+                    name: $('.pnt-modal-edit-this-username').val(),
+                    email: $('.pnt-modal-edit-this-email').val(),
+                    status: $('.pnt-modal-edit-this-status').val(),
+                    '_token': window.token,
+                },
+                success: function (data) {
+                    if (data.status) {
+                        resetTable();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Update User Success fully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        window.location.reload();
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    if (jqXHR.status !== 200) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Something went wrong',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                },
+            });
+    });
+        // end-pnt-modal-edit-this-user-save
+
+            // btn-password
+        $(document).off('click', '.pnt-btn-reset-password-in-header').on('click', '.pnt-btn-reset-password-in-header', (e) => {
+            $(".pnt-modal-reset-password-this").modal();
+        });
+        // end btn-password
+
+        // btn save reset-password modal
+        $(document).off('click', '.pnt-btn-modal-reset-password-save-this').on('click', '.pnt-btn-modal-reset-password-save-this', e => {
+            console.log('this')
+            $.ajax({
+                type: "post",
+                url: "{!! url('manage/users/resetPassword') !!}/" + $('.pnt-modal-edit-this-usid').val(),
+                data: {
+                    password: $(".pnt-input-password-this").val(),
+                    password_confirmation: $(".pnt-input-password_confirmation-this").val(),
+                    '_token': window.token,
+                },
+                success: function (data) {
+                    if (data.status) {
+                        $(".pnt-modal-reset-password-this").modal('hide');
+                        resetTable();
+                        Swal.fire({
+
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Please Login',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        window.location.reload();
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    if (jqXHR.status !== 200) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Something went wrong',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                },
+            });
+        });
+        // end btn save reset-password modal
+
+
+
+
 </script>
 
 @yield('script')

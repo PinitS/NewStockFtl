@@ -8,8 +8,8 @@
             <div class="card bg-white">
                 <div class="card-header">
                     <h4 class="card-title text-dark">Product List ({{ session()->get('customer')[0]['name'] }})</h4>
-                    <button type="button" class="btn btn-info pnt-bnt-add-detail">Add <span class="btn-icon-right"><i
-                                class="fa fa-plus color-info"></i></span>
+                    <button type="button" class="btn btn-warning text-white pnt-bnt-add-detail">Add <span class="btn-icon-right"><i
+                                class="fa fa-plus color-warning"></i></span>
                     </button>
                 </div>
                 <div class="card-body">
@@ -132,7 +132,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-warning pnt-btn-modal-edit-product-save">Edit Serial</button>
+                    <button type="submit" class="btn btn-warning pnt-btn-modal-edit-product-save">Save changes</button>
                 </div>
 
             </div>
@@ -202,7 +202,6 @@
                         $('.data-section').html(null);
 
                         $.each(data.dataSet.detail.product_lists, function (index, value) {
-
                             $('.data-section').append(
                                 "<tr><td>" +
                                 (index + 1) +
@@ -266,40 +265,54 @@
                     timer: 1500
                 })
             } else {
-                $.ajax({
-                    type: "post",
-                    url: '{{route('createDetail')}}',
-                    data: {
-                        location_product_id: product_id,
-                        quantity: $('.pnt-modal-add-detail-quantity').val(),
-                        '_token': window.token,
-                    },
-                    success: function (data) {
-                        console.log(data)
-                        if (data.status) {
-                            $(".pnt-modal-add-detail").modal('hide');
-                            resetTable();
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Add Serial Success fully',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                        }
-                    },
-                    error: function (jqXHR, exception) {
-                        if (jqXHR.status !== 200) {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'error',
-                                title: 'Something went wrong',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                        }
-                    },
-                });
+                if($('.pnt-modal-add-detail-quantity').val() <= 0)
+                {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Quantity went wrong',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+                else{
+                    $.ajax({
+                        type: "post",
+                        url: '{{route('createDetail')}}',
+                        data: {
+                            location_product_id: product_id,
+                            quantity: $('.pnt-modal-add-detail-quantity').val(),
+                            '_token': window.token,
+                        },
+                        success: function (data) {
+                            console.log(data)
+                            if (data.status) {
+                                $(".pnt-modal-add-detail").modal('hide');
+                                resetTable();
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Add Serial Success fully',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        },
+                        error: function (jqXHR, exception) {
+                            if (jqXHR.status !== 200) {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    title: 'Something went wrong',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                        },
+                    });
+
+                }
+
             }
         });
         // end-btn-save-add-detail

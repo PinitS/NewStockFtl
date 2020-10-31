@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">location Information</h4>
+                    <h4 class="card-title text-dark">Customer Information</h4>
                     <button type="button" class="btn btn-info pnt-bnt-add-location">Add <span class="btn-icon-right"><i class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
@@ -37,7 +37,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add Location</h5>
+                    <h5 class="modal-title">Add Customer</h5>
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                     </button>
                 </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary pnt-btn-modal-add-location-save">Add Location</button>
+                    <button type="submit" class="btn btn-primary pnt-btn-modal-add-location-save">Add Customer</button>
                 </div>
             </div>
         </div>
@@ -158,7 +158,7 @@
         {
             $.ajax({
                 type: "get",
-                url: '{{route('getLocations')}}',
+                url: "{!! url('manage/location/getLocations') !!}",
                 success: function (data) {
                     if(data.status)
                     {
@@ -208,7 +208,7 @@
         $(document).off('click', '.pnt-btn-modal-add-location-save').on('click', '.pnt-btn-modal-add-location-save', e => {
             $.ajax({
                 type: "post",
-                url: '{{route('createLocation')}}',
+                url: "{!! url('manage/location/create') !!}",
                 data: {
                     name : $('.pnt-modal-add-location-name').val(),
                     phone_number : $('.pnt-modal-add-location-phone').val(),
@@ -225,7 +225,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Add Location Success fully',
+                            title: 'Add Customer Success fully',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -268,7 +268,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Delete Location Success fully',
+                                title: 'Delete Customer Success fully',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -324,7 +324,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Update Location Success fully',
+                            title: 'Update Customer Success fully',
                             showConfirmButton: false,
                             timer: 1500
                         })

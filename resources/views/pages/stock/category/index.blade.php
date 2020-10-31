@@ -11,8 +11,8 @@
             <div class="card bg-white">
                 <div class="card-header">
                     <h4 class="card-title text-dark">Category Information</h4>
-                    <button type="button" class="btn btn-info pnt-bnt-add-category">Add <span class="btn-icon-right"><i
-                                class="fa fa-plus color-info"></i></span>
+                    <button type="button" class="btn btn-danger pnt-bnt-add-category">Add <span class="btn-icon-right"><i
+                                class="fa fa-plus color-danger"></i></span>
                     </button>
                 </div>
                 <div class="card-body">
@@ -111,9 +111,9 @@
         function resetTable() {
             $.ajax({
                 type: "get",
-                url: '{{route('getCategories')}}',
+                url: '{!! url('stock/categories/getCategories') !!}',
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     if (data.status) {
                         table.destroy();
                         $('.data-section').html(null);
@@ -143,8 +143,8 @@
         // btn-add-category
         $(document).off('click', '.pnt-bnt-add-category').on('click', '.pnt-bnt-add-category', (e) => {
 
-            $('.pnt-input-add-name').val('');
-            $(".pnt-modal-add-category").modal();
+/*             $('.pnt-input-add-name').val('');
+ */            $(".pnt-modal-add-category").modal();
         });
         // end-save-add-category
 
@@ -153,7 +153,7 @@
             $(e.currentTarget).prop('disabled', true);
             $.ajax({
                 type: "post",
-                url: '{{route('createCategory')}}',
+                url: '{!! url('stock/categories/create') !!}',
                 data: {
                     name: $('.pnt-input-add-name').val(),
                     stock_branch_id: $('#pnt-input-branch_id').val(),
@@ -161,7 +161,7 @@
                 },
                 success: function (data) {
                     $('.pnt-btn-modal-add-category-save').prop('disabled', false);
-                    console.log(data)
+                    console.log("data")
                     if (data.status) {
                         $(".pnt-modal-add-category").modal('hide');
                         resetTable();
