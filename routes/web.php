@@ -35,9 +35,9 @@ Route::middleware(['hasAuth'])->get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
 
-        Route::prefix('manage')->middleware(['adminRoute'])->group(function () {
+        Route::prefix('manage')->group(function () {
             Route::prefix('users')->group(function () {
-                Route::get('/', function () {
+                Route::middleware(['adminRoute'])->get('/', function () {
                     return view('pages.manage.user.index');
                 });
                 Route::get('getUsers', [UserController::class, 'getUsers'])->name('getUsers');
@@ -49,7 +49,7 @@ Route::middleware(['auth'])->group(function () {
             });
 
             Route::prefix('branches')->group(function () {
-                Route::get('/', function () {
+                Route::middleware(['adminRoute'])->get('/', function () {
                     return view('pages.manage.branch.index');
                 });
                 Route::get('getBranches', [BranchController::class, 'getBranches'])->name('getBranches');
@@ -60,7 +60,7 @@ Route::middleware(['auth'])->group(function () {
             });
 
             Route::prefix('location')->group(function () {
-                Route::get('/', function () {
+                Route::middleware(['adminRoute'])->get('/', function () {
                     return view('pages.manage.location.index');
                 });
                 Route::get('getLocations', [LocationController::class, 'getLocations'])->name('getLocations');
@@ -71,7 +71,7 @@ Route::middleware(['auth'])->group(function () {
             });
 
             Route::prefix('model')->group(function () {
-                Route::get('/', function () {
+                Route::middleware(['adminRoute'])->get('/', function () {
                     return view('pages.manage.model.index');
                 });
                 Route::get('getLocationModels', [LocationModelController::class, 'getLocationModels'])->name('getLocationModels');
@@ -82,7 +82,7 @@ Route::middleware(['auth'])->group(function () {
             });
 
             Route::prefix('groupParts')->group(function () {
-                Route::get('/', function () {
+                Route::middleware(['adminRoute'])->get('/', function () {
                     return view('pages.manage.groupParts.index');
                 });
                 Route::get('getGroups', [GroupPartsController::class, 'getGroups']);
@@ -181,7 +181,7 @@ Route::middleware(['auth'])->group(function () {
             });
             Route::get('getDataHistory/{id}', [DashBoardController::class, 'getDataHistory']);
             Route::get('getPartsByBranch/{id}', [DashBoardController::class, 'getPartsByBranch']);
-            Route::get('getTimeline', [DashBoardController::class, 'getTimeline']);
+            Route::get('getDashBoard', [DashBoardController::class, 'getDashBoard']);
 
         });
         Route::prefix('pointerLocation')->group(function () {

@@ -347,7 +347,6 @@ Chat box start
     }
 
     $(document).ready(function () {
-        // callAjax("testLogin", "GET", null).then( (data) => console.log(data) )
         "use strict"
         var direction = getUrlParams('dir');
         if (direction != 'rtl') {
@@ -358,7 +357,7 @@ Chat box start
             version: "light",
             layout: "vertical",
             headerBg: "color_1",
-            navheaderBg: "color_2",
+            navheaderBg: "color_12",
             sidebarBg: "color_1",
             sidebarStyle: "full",
             sidebarPosition: "fixed",
@@ -446,10 +445,6 @@ Chat box start
 
         // pnt-modal-edit-this-user-save
     $(document).off('click', '.pnt-modal-edit-this-user-save').on('click', '.pnt-modal-edit-this-user-save', (e) => {
-            console.log($('.pnt-modal-edit-this-usid').val());
-            console.log($('.pnt-modal-edit-this-status').val());
-            console.log($('.pnt-modal-edit-this-email').val());
-
             $.ajax({
                 type: "post",
                 url: "{!! url('manage/users/update') !!}/" + $('.pnt-modal-edit-this-usid').val(),
@@ -495,7 +490,6 @@ Chat box start
 
         // btn save reset-password modal
         $(document).off('click', '.pnt-btn-modal-reset-password-save-this').on('click', '.pnt-btn-modal-reset-password-save-this', e => {
-            console.log('this')
             $.ajax({
                 type: "post",
                 url: "{!! url('manage/users/resetPassword') !!}/" + $('.pnt-modal-edit-this-usid').val(),

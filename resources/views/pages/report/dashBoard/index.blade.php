@@ -54,234 +54,76 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Products Chart</h4>
+                </div>
+                <div class="card-body">
+                    <div class="chartjs-size-monitor">
+                        <div class="chartjs-size-monitor-expand">
+                            <div class=""></div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink">
+                            <div class=""></div>
+                        </div>
+                    </div>
+                    <canvas id="myChart_doughnut" width="414" height="207" class="chartjs-render-monitor"
+                            style="display: block; width: 414px; height: 207px;"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h4 class="card-title">All product</h4>
+                    <h4 class="card-title">All users</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-responsive-sm mb-0">
+                        <table id="userData">
                             <thead>
                             <tr>
-                                <th style="width:20px;">
-                                    <div class="custom-control custom-checkbox checkbox-primary check-lg mr-3">
-                                        <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                        <label class="custom-control-label" for="checkAll"></label>
-                                    </div>
-                                </th>
-                                <th><strong>STATUS.</strong></th>
-                                <th><strong>NAME</strong></th>
-                                <th><strong>DATE</strong></th>
-                                <th><strong>STATUS</strong></th>
-                                <th style="width:85px;"><strong>EDIT</strong></th>
+                                <th class="text-dark">#</th>
+                                <th class="text-dark">Username</th>
+                                <th class="text-dark">Status</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-checkbox check-lg mr-3">
-                                        <input type="checkbox" class="custom-control-input" id="customCheckBox2"
-                                               required="">
-                                        <label class="custom-control-label" for="customCheckBox2"></label>
-                                    </div>
-                                </td>
-                                <td><b>$542</b></td>
-                                <td>Dr. Jackson</td>
-                                <td>01 August 2020</td>
-                                <td class="recent-stats d-flex align-items-center"><i
-                                        class="fa fa-circle text-success mr-1"></i>Successful
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i
-                                            class="fa fa-pencil"></i></a>
-                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i
-                                            class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-checkbox check-lg mr-3">
-                                        <input type="checkbox" class="custom-control-input" id="customCheckBox3"
-                                               required="">
-                                        <label class="custom-control-label" for="customCheckBox3"></label>
-                                    </div>
-                                </td>
-                                <td><b>$2000</b></td>
-                                <td>Dr. Jackson</td>
-                                <td>01 August 2020</td>
-                                <td class="recent-stats d-flex align-items-center"><i
-                                        class="fa fa-circle text-danger mr-1"></i>Canceled
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i
-                                            class="fa fa-pencil"></i></a>
-                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i
-                                            class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-checkbox check-lg mr-3">
-                                        <input type="checkbox" class="custom-control-input" id="customCheckBox4"
-                                               required="">
-                                        <label class="custom-control-label" for="customCheckBox4"></label>
-                                    </div>
-                                </td>
-                                <td><b>$300</b></td>
-                                <td>Dr. Jackson</td>
-                                <td>01 August 2020</td>
-                                <td class="recent-stats d-flex align-items-center"><i
-                                        class="fa fa-circle text-warning mr-1"></i>Pending
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i
-                                            class="fa fa-pencil"></i></a>
-                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i
-                                            class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-checkbox check-lg mr-3">
-                                        <input type="checkbox" class="custom-control-input" id="customCheckBox5"
-                                               required="">
-                                        <label class="custom-control-label" for="customCheckBox5"></label>
-                                    </div>
-                                </td>
-                                <td><b>$2000</b></td>
-                                <td>Dr. Jackson</td>
-                                <td>01 August 2020</td>
-                                <td class="recent-stats d-flex align-items-center"><i
-                                        class="fa fa-circle text-danger mr-1"></i>Canceled
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i
-                                            class="fa fa-pencil"></i></a>
-                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i
-                                            class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
+                            <tbody class="data-section-users">
+
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h4 class="card-title">All user</h4>
+                    <h4 class="card-title">All Parts</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-responsive-sm mb-0">
+                        <table id="partsData">
                             <thead>
                             <tr>
-                                <th style="width:20px;">
-                                    <div class="custom-control custom-checkbox checkbox-primary check-lg mr-3">
-                                        <input type="checkbox" class="custom-control-input" id="checkAll" required="">
-                                        <label class="custom-control-label" for="checkAll"></label>
-                                    </div>
-                                </th>
-                                <th><strong>STATUS.</strong></th>
+                                <th><strong>#</strong></th>
                                 <th><strong>NAME</strong></th>
-                                <th><strong>DATE</strong></th>
-                                <th><strong>STATUS</strong></th>
-                                <th style="width:85px;"><strong>EDIT</strong></th>
+                                <th><strong>Category</strong></th>
+                                <th><strong>Quantity</strong></th>
+                                <th><strong>Branch</strong></th>
+                                <th><strong>sku</strong></th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-checkbox check-lg mr-3">
-                                        <input type="checkbox" class="custom-control-input" id="customCheckBox2"
-                                               required="">
-                                        <label class="custom-control-label" for="customCheckBox2"></label>
-                                    </div>
-                                </td>
-                                <td><b>$542</b></td>
-                                <td>Dr. Jackson</td>
-                                <td>01 August 2020</td>
-                                <td class="recent-stats d-flex align-items-center"><i
-                                        class="fa fa-circle text-success mr-1"></i>Successful
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i
-                                            class="fa fa-pencil"></i></a>
-                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i
-                                            class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-checkbox check-lg mr-3">
-                                        <input type="checkbox" class="custom-control-input" id="customCheckBox3"
-                                               required="">
-                                        <label class="custom-control-label" for="customCheckBox3"></label>
-                                    </div>
-                                </td>
-                                <td><b>$2000</b></td>
-                                <td>Dr. Jackson</td>
-                                <td>01 August 2020</td>
-                                <td class="recent-stats d-flex align-items-center"><i
-                                        class="fa fa-circle text-danger mr-1"></i>Canceled
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i
-                                            class="fa fa-pencil"></i></a>
-                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i
-                                            class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-checkbox check-lg mr-3">
-                                        <input type="checkbox" class="custom-control-input" id="customCheckBox4"
-                                               required="">
-                                        <label class="custom-control-label" for="customCheckBox4"></label>
-                                    </div>
-                                </td>
-                                <td><b>$300</b></td>
-                                <td>Dr. Jackson</td>
-                                <td>01 August 2020</td>
-                                <td class="recent-stats d-flex align-items-center"><i
-                                        class="fa fa-circle text-warning mr-1"></i>Pending
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i
-                                            class="fa fa-pencil"></i></a>
-                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i
-                                            class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-checkbox check-lg mr-3">
-                                        <input type="checkbox" class="custom-control-input" id="customCheckBox5"
-                                               required="">
-                                        <label class="custom-control-label" for="customCheckBox5"></label>
-                                    </div>
-                                </td>
-                                <td><b>$2000</b></td>
-                                <td>Dr. Jackson</td>
-                                <td>01 August 2020</td>
-                                <td class="recent-stats d-flex align-items-center"><i
-                                        class="fa fa-circle text-danger mr-1"></i>Canceled
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary shadow btn-xs sharp mr-1"><i
-                                            class="fa fa-pencil"></i></a>
-                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i
-                                            class="fa fa-trash"></i></a>
-                                </td>
-                            </tr>
+                            <tbody class="data-section-parts">
+
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -290,6 +132,8 @@
 
 
 @section('script')
+
+
 
     <script>
 
@@ -300,6 +144,19 @@
         var parts_id = 0;
         var parts_name = '';
         var data_line_chart = [];
+
+        var color_set = [];
+        var product_name = [];
+        var data_donut_chart = [];
+
+        var tableUsers = $('#userData').DataTable({
+            "pageLength": 5,
+            "searching": false,
+            "lengthChange": false
+        });
+        var tableParts = $('#partsData').DataTable();
+
+
 
         function getBranch() {
             $.ajax({
@@ -321,10 +178,10 @@
             });
         }
 
-        function getTimelinme() {
+        function getDashBoard() {
             $.ajax({
                 type: "get",
-                url: '{!! url('report/dashBoard/getTimeline') !!}',
+                url: '{!! url('report/dashBoard/getDashBoard') !!}',
 
                 success: function (data) {
                     console.log(data)
@@ -332,16 +189,78 @@
                     var cnt = 0;
                     var date ='';
                     const color = ["primary", "info", "danger", "success", "warning"];
-                    $.each(data.dataTimeline, function (index, value) {
+
+                    //timeline
+                    $.each(data.dataSet.dataTimeline, function (index, value) {
                         if (cnt > color.length - 1) {
                             cnt = 0;
                         }
                         date = moment(value.created_at).fromNow();
                         dataTimeline += "<li><div class='timeline-badge " + color[cnt] + "'></div><a class='timeline-panel text-muted'><span>" + date +"<strong>"+" By "+value.user.name+"</strong>"+ "</span><h6 class='mb-0'>" + value.detail + "</h6></a></li>"
                         cnt++;
-                        console.log(value.created_at)
                     });
                     window.text_card_timeline.append(dataTimeline);
+
+                    //userDash
+                    tableUsers.destroy();
+                    $('.data-section-users').html(null);
+                    $.each(data.dataSet.dataUsers, function (index, value) {
+                        $('.data-section-users').append(
+                                "<tr><td>" +
+                                (index + 1) +
+                                "</td><td>" +
+                                value.name +
+                                "</td><td>" +
+                                (value.status > 0 ? "<span class='badge badge-pill badge-danger'>Admin</span>" : "<span class='badge badge-pill badge-primary'>Member</span>") +
+                                "</td></tr>"
+                            )
+                    });
+                    tableUsers = $('#userData').DataTable({
+                        "pageLength": 5,
+                        "searching": false,
+                        "lengthChange": false
+                    });
+
+
+
+                    //userDash
+                    tableParts.destroy();
+                    $('.data-section-parts').html(null);
+                    $.each(data.dataSet.dataParts, function (index, value) {
+                        $('.data-section-parts').append(
+                                "<tr><td>" +
+                                (index + 1) +
+                                "</td><td>" +
+                                value.name +
+                                "</td><td>" +
+                                (value.category == null ? "-" : value.category.name) +
+                                "</td><td>" +
+                                value.quantity +
+                                "</td><td>" +
+                                (value.branch == null ? "-" : value.branch.name) +
+                                "</td><td>" +
+                                value.sku +
+                                "</td></tr>"
+                            )
+                    });
+                    tableParts = $('#partsData').DataTable();
+
+                    console.log("test");
+                    console.log(data.dataSet.cntProduct);
+                    console.log(data.dataSet.productNameSet);
+                    console.log(data.dataSet.color);
+
+                    window.color_set = data.dataSet.color;
+                    window.product_name = data.dataSet.productNameSet;
+                    window.data_donut_chart = data.dataSet.cntProduct;
+
+
+                    console.log(window.color_set);
+                    console.log(window.product_name);
+                    console.log(window.data_donut_chart);
+
+                    callDoughnutChart(window.product_name,window.color_set,window.data_donut_chart);
+
                 }
             });
         }
@@ -393,7 +312,8 @@
 
         $(document).ready(function () {
             getBranch();
-            getTimelinme();
+            getDashBoard();
+
         });
 
 
@@ -405,9 +325,30 @@
                     labels: ['Jan', 'Fab', 'Mach', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                     datasets: [{
                         label: window.parts_name,
-                        backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(255, 20, 132)',
+                        backgroundColor: 'rgba(75, 192, 192 , 0.2)',
+                        borderColor: 'rgba(75, 192, 192)',
                         data: window.data_line_chart
+                    }]
+                },
+                // Configuration options go here
+                options: {}
+            });
+        }
+
+        function callDoughnutChart (name , color , data) {
+            console.log(name);
+                    console.log(color);
+                    console.log(data);
+
+            var ctx_Dough = document.getElementById('myChart_doughnut').getContext('2d');
+            var chart_DoughnutChart = new Chart(ctx_Dough, {
+                type: 'doughnut',
+                data: {
+                    labels: name,
+                    datasets: [{
+                        label: name,
+                        backgroundColor: color,
+                        data: data
                     }]
                 },
                 // Configuration options go here

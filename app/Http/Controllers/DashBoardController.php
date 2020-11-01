@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LocationProduct;
 use App\Models\StockPart;
 use App\Models\StockPartHistory;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class DashBoardController extends Controller
@@ -36,12 +40,58 @@ class DashBoardController extends Controller
         return response()->json(['status' => true, 'parts' => $parts]);
     }
 
-    public function getTimeline()
+    public function getDashBoard()
     {
         $stockHistoryTimeline = StockPartHistory::with('user')
             ->orderBy('id' , 'DESC')
-            ->take(10)
+            ->take(5)
             ->get();
-        return response()->json(['status' => true, 'dataTimeline' => $stockHistoryTimeline]);
+        $userData = User::get();
+        $parts = StockPart::with(['category', 'branch'])->get();
+
+        $products = LocationProduct::get();
+        $cntSet = [];
+        $productNameSet = [];
+        $colorSet = [];
+        $color = [
+                        'rgba(255, 99, 132)' ,
+                        'rgba(255, 99, 132)',
+                        'rgba(54, 162, 235)',
+                        'rgba(255, 206, 86)',
+                        'rgba(75, 192, 192)',
+                        'rgba(153, 102, 255)'
+                    ];
+        $indexColor = 0;
+        foreach($products as $product)
+        {
+            if($indexColor > 4)
+            {
+                $indexColor = 0;
+            }
+            $indexColor++;
+            $cntProduct = 0;
+            foreach($product->locationProductLists as $productList)
+            {
+                $cntProduct++;
+            }
+            // $data = [
+            //     'product_name' => $product->name,
+            //     'cntProduct' => $cntProduct,
+            // ];
+            array_push($colorSet, $color[$indexColor]);
+            array_push($cntSet, $cntProduct);
+            array_push($productNameSet, $product->name);
+        }
+
+
+            $dataSet = [
+                'dataTimeline' => $stockHistoryTimeline,
+                'dataUsers' => $userData,
+                'dataParts' => $parts,
+                'cntProduct' => $cntSet,
+                'productNameSet' => $productNameSet,
+                'color' => $colorSet
+            ];
+        return response()->json(['status' => true, 'dataSet' => $dataSet]);
     }
 }

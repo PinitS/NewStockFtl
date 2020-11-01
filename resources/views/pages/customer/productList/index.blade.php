@@ -162,7 +162,6 @@
                 type: "get",
                 url: '{!! url('product_location/product_detail/getDetails') !!}',
                 success: function (data) {
-                    // console.log(data);
                     if (data.status) {
                         var product = "<option value=" + 0 + "> <strong>" + "All product" + "</strong></option>";
                         $.each(data.dataSet.product, function (index, value) {
@@ -192,11 +191,6 @@
                 type: "get",
                 url: '{!! url('product_location/product_detail/getDetails') !!}',
                 success: function (data) {
-                    console.log(data)
-                    // console.log(data.dataSet.detail.name)
-                    // console.log(data.dataSet.detail.latitude)
-                    // console.log(data.dataSet.detail.longitude)
-
                     if (data.status) {
                         window.table.destroy();
                         $('.data-section').html(null);
@@ -247,15 +241,18 @@
 
         // btn-add-detail
         $(document).off('click', '.pnt-bnt-add-detail').on('click', '.pnt-bnt-add-detail', (e) => {
+            $('.pnt-btn-modal-add-detail-save').prop('disabled', false);
+            $(".pnt-modal-sel-add-detail-product").val(0).change();
+            $('.pnt-modal-add-detail-quantity').val('');
             $(".pnt-modal-add-detail").modal();
         });
         // end-save-add-detail
 
         // btn-save-add-detail
-        $(document).off('click', '.pnt-btn-modal-add-detail-save').one('click', '.pnt-btn-modal-add-detail-save', e => {
+        $(document).off('click', '.pnt-btn-modal-add-detail-save').on('click', '.pnt-btn-modal-add-detail-save', e => {
             var product_id = $(".pnt-modal-sel-add-detail-product option:selected").val();
+            $('.pnt-btn-modal-add-detail-save').prop('disabled', true);
 
-            console.log(product_id);
             if (product_id == 0) {
                 Swal.fire({
                     position: 'top-end',
@@ -285,7 +282,6 @@
                             '_token': window.token,
                         },
                         success: function (data) {
-                            console.log(data)
                             if (data.status) {
                                 $(".pnt-modal-add-detail").modal('hide');
                                 resetTable();
@@ -312,7 +308,6 @@
                     });
 
                 }
-
             }
         });
         // end-btn-save-add-detail
@@ -320,13 +315,11 @@
         // pnt-btn-edit
         $(document).off('click', '.pnt-btn-edit').on('click', '.pnt-btn-edit', (e) => {
             window.id = $(e.currentTarget).val();
-            console.log(window.id);
             $.ajax({
                 type: "get",
                 url: '{!! url('product_location/product_detail/getOneDetail') !!}/'+ window.id,
                 success: function (data) {
                     if (data.status) {
-                        console.log(data)
                         // $(".pnt-modal-sel-edit-detail-product").val(data.product.location_product_id).change();
                         $(".pnt-modal-sel-edit-product-location").val(data.product.location_product_list.location_id).change();
                         $('.pnt-modal-edit-detail-code').val(data.product.code);
@@ -397,7 +390,6 @@
         // btn-delete
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
             window.id = $(e.currentTarget).val();
-            console.log($(e.currentTarget).val());
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -432,9 +424,7 @@
         $(document).off('change', '#pnt-modal-sel-change-status-detail-product').on('change', '#pnt-modal-sel-change-status-detail-product', (e) => {
 
             window.id = $(e.currentTarget).attr('data-id');
-            console.log(window.id)
             var status_id = $(e.currentTarget).find(':selected').val();
-            console.log(status_id)
 
             $.ajax({
                 type: "post",
@@ -483,10 +473,8 @@
 
         //map-add
         $(document).off('click', '.getLatLnt-add').on('click', '.getLatLnt-add', (e) => {
-            console.log()
             let lat = centerLat;
             let lng = centerLng;
-            console.log(lat , lng)
 
             $('.map-section-show-only').hide();
             $('.map-section-get-only').show();
