@@ -17,7 +17,7 @@ class LoginResponse implements LoginResponseContract
     {
         switch (Auth::user()->status) {
             case 0:
-                return redirect()->intended('/stock/parts');
+                return redirect()->intended('report/dashBoard');
             case 1:
                 return redirect()->intended('/manage/users');
             default:

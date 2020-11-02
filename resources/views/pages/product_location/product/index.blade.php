@@ -85,7 +85,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
                     <div class="input-group mb-3 ">
                         <div class="input-group-prepend w-10">
                             <span class="input-group-text">&nbsp &nbsp Model</span>
@@ -93,7 +92,6 @@
                         <select class="form-control pnt-modal-sel-edit-product-model">
                         </select>
                     </div>
-
                     <div class="form-group">
                         <label class="mb-1"><strong>Name</strong></label>
                         <input type="text" class="form-control pnt-modal-edit-product-name"
@@ -104,7 +102,6 @@
                         <label class="mb-1"><strong>Description</strong></label>
                         <input type="text" class="form-control pnt-modal-edit-product-description">
                     </div>
-
                 </div>
 
                 <div class="modal-footer">
@@ -215,7 +212,6 @@
         var part_id = 0;
         var table = $('#productInformation').DataTable();
         var tablePath = $('#productPartInformation').DataTable();
-
         var addModel = $('.pnt-modal-sel-add-product-model');
         var editModel = $('.pnt-modal-sel-edit-product-model');
         var addGroup = $('.pnt-modal-sel-add-group-part');
@@ -228,14 +224,13 @@
                     window.addModel.empty();
                     window.editModel.empty();
                     window.addGroup.empty();
-                    console.log(data);
                     if (data.status) {
-                        var model = "<option value=" + 0 + "> <strong>" + "All Model" + "</strong></option>";
+                        var model = "<option value=" + 0 + "> <strong>" + "Select Model" + "</strong></option>";
                         $.each(data.dataSet.model, function (index, value) {
                             model += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
 
-                        var group_option = "<option value=" + 0 + "> <strong>" + "All Parts" + "</strong></option>";
+                        var group_option = "<option value=" + 0 + "> <strong>" + "Select Parts" + "</strong></option>";
                         $.each(data.dataSet.group, function (index, value) {
                             group_option += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
@@ -255,10 +250,12 @@
             $.ajax({
                 type: "get",
                 url: '{!! url('product_location/product/getProducts') !!}',
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     window.table.destroy();
                     if (data.status) {
-                        console.log(data);
                         $('.data-section').html(null);
                         $.each(data.dataSet.product, function (index, value) {
                             $('.data-section').append(
@@ -268,8 +265,6 @@
                                 value.name +
                                 "</td><td>" +
                                 (value.location_model == null ? "-" : value.location_model.name) +
-                                // "</td><td>" +
-                                // (value.location == null ? "-" : value.location.name) +
                                 "</td><td>" +
                                 (value.description == null ? "-" : value.description) +
                                 "</td><td>" +
@@ -280,6 +275,7 @@
                             )
                         });
                         window.table = $('#productInformation').DataTable();
+                        $('#pnt-loading').hide();
                     }
                 }
             });
@@ -289,6 +285,9 @@
             $.ajax({
                 type: "get",
                 url: '{!! url('product_location/productPart/getProductParts') !!}/' + window.id,
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     console.log(data);
                     window.tablePath.destroy();
@@ -298,7 +297,7 @@
                             "<tr><td>" +
                             (index + 1) +
                             "</td><td>" +
-                            (value.group_part === null ? "ไม่มีข้อมูล" : value.group_part.name) +
+                            (value.group_part === null ? "-" : value.group_part.name) +
                             "</td><td>" +
                             value.quantity +
                             "</td><td>" +
@@ -308,7 +307,8 @@
                         )
                     });
                     window.tablePath = $('#productPartInformation').DataTable();
-                    $(".pnt-modal-product-parts").modal();
+                    $('.pnt-modal-product-parts').modal();
+                    $('#pnt-loading').hide();
                 }
             });
         }
@@ -329,7 +329,7 @@
 
         // btn-save-add-product
         $(document).off('click', '.pnt-btn-modal-add-product-save').on('click', '.pnt-btn-modal-add-product-save', e => {
-            var model_id = $(".pnt-modal-sel-add-product-model option:selected").val();
+            var model_id = $('.pnt-modal-sel-add-product-model option:selected').val();
             if (model_id == 0) {
                 Swal.fire({
                     position: 'top-end',
@@ -348,11 +348,14 @@
                         description: $('.pnt-modal-add-product-description').val(),
                         '_token': window.token,
                     },
-
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
                     success: function (data) {
                         if (data.status) {
-                            $(".pnt-modal-add-product").modal('hide');
-                            $(".pnt-modal-sel-add-product-model").val(0).change();
+                            $('.pnt-modal-add-product').modal('hide');
+                            $('.pnt-modal-sel-add-product-model').val(0).change();
+                            $('#pnt-loading').hide();
                             resetTable();
                             Swal.fire({
                                 position: 'top-end',
@@ -365,6 +368,7 @@
                     },
                     error: function (jqXHR, exception) {
                         if (jqXHR.status !== 200) {
+                            $('#pnt-loading').hide();
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
@@ -389,19 +393,19 @@
                     console.log(data.product.location_model_id)
                     if (data.status) {
                         console.log(data)
-                        $(".pnt-modal-sel-edit-product-model").val(data.product.location_model_id).change();
+                        $('.pnt-modal-sel-edit-product-model').val(data.product.location_model_id).change();
                         $('.pnt-modal-edit-product-name').val(data.product.name);
                         $('.pnt-modal-edit-product-description').val(data.product.description);
                     }
                 }
             });
-            $(".pnt-modal-edit").modal();
+            $('.pnt-modal-edit').modal();
         });
         // end-pnt-btn-edit
 
         // pnt-btn-edit-save
         $(document).off('click', '.pnt-btn-modal-edit-product-save').on('click', '.pnt-btn-modal-edit-product-save', (e) => {
-            var model_id = $(".pnt-modal-sel-edit-product-model option:selected").val();
+            var model_id = $('.pnt-modal-sel-edit-product-model option:selected').val();
             if (model_id == 0) {
                 Swal.fire({
                     position: 'top-end',
@@ -421,9 +425,14 @@
                         '_token': window.token,
                     },
 
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
                     success: function (data) {
                         if (data.status) {
-                            $(".pnt-modal-edit").modal('hide');
+                            $('.pnt-modal-edit').modal('hide');
+                            $('#pnt-loading').hide();
+
                             resetTable();
                             Swal.fire({
                                 position: 'top-end',
@@ -436,6 +445,7 @@
                     },
                     error: function (jqXHR, exception) {
                         if (jqXHR.status !== 200) {
+                            $('#pnt-loading').hide();
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
@@ -453,8 +463,6 @@
         // btn-delete
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
             window.id = $(e.currentTarget).val();
-            console.log($(e.currentTarget).val());
-
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -468,8 +476,12 @@
                     $.ajax({
                         type: "get",
                         url: '{!! url('product_location/product/destroy') !!}/' + window.id,
+                        beforeSend: function () {
+                            $('#pnt-loading').show();
+                        },
                         success: function (data) {
                             resetTable();
+                            $('#pnt-loading').hide();
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
@@ -488,16 +500,16 @@
         $(document).off('click', '.pnt-btn-parts').on('click', '.pnt-btn-parts', (e) => {
             window.id = $(e.currentTarget).val();
             console.log('product_part', window.id);
-            $(".pnt-add-path-edit-data-toggle").hide();
-            $(".pnt-add-path-data-toggle").hide();
+            $('.pnt-add-path-edit-data-toggle').hide();
+            $('.pnt-add-path-data-toggle').hide();
             resetProductParts();
         });
         // end-pnt-btn-parts
 
         // pnt-btn-parts-toggle
         $(document).off('click', '.pnt-bnt-add-path').on('click', '.pnt-bnt-add-path', (e) => {
-            $(".pnt-add-path-edit-data-toggle").hide(150);
-            $(".pnt-add-path-data-toggle").toggle(150);
+            $('.pnt-add-path-edit-data-toggle').hide(150);
+            $('.pnt-add-path-data-toggle').toggle(150);
         });
         // end-pnt-btn-parts-toggle
 
@@ -512,9 +524,7 @@
                     timer: 1500
                 })
             } else {
-
-                if($('.pnt-modal-sel-add-group-quantity').val() <= 0)
-                {
+                if ($('.pnt-modal-sel-add-group-quantity').val() <= 0) {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
@@ -522,8 +532,7 @@
                         showConfirmButton: false,
                         timer: 1500
                     })
-                }
-                else{
+                } else {
                     $.ajax({
                         type: "post",
                         url: '{!! url('product_location/productPart/create') !!}',
@@ -533,7 +542,9 @@
                             quantity: $('.pnt-modal-sel-add-group-quantity').val(),
                             '_token': window.token,
                         },
-
+                        beforeSend: function () {
+                            $('#pnt-loading').show();
+                        },
                         success: function (data) {
                             console.log(data);
                             if (data.status) {
@@ -552,11 +563,11 @@
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
-
                             }
                         },
                         error: function (jqXHR, exception) {
                             if (jqXHR.status !== 200) {
+                                $('#pnt-loading').hide();
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
@@ -568,9 +579,8 @@
                         },
                     });
                     resetProductParts();
-
+                    $('#pnt-loading').hide();
                 }
-
             }
 
             $('.pnt-modal-sel-add-group-quantity').val('');
@@ -584,6 +594,9 @@
             $.ajax({
                 type: "get",
                 url: '{!! url('product_location/productPart/getOneProductParts') !!}/' + window.part_id,
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     if (data.status) {
                         console.log(data)
@@ -591,8 +604,9 @@
                     }
                 }
             });
-            $(".pnt-add-path-data-toggle").hide(150);
-            $(".pnt-add-path-edit-data-toggle").toggle(150);
+            $('#pnt-loading').hide();
+            $('.pnt-add-path-data-toggle').hide(150);
+            $('.pnt-add-path-edit-data-toggle').toggle(150);
         });
         // end-pnt-btn-parts-toggle
 
@@ -605,8 +619,10 @@
                     quantity: $('.pnt-modal-sel-edit-group-quantity').val(),
                     '_token': window.token,
                 },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
-                    console.log(data);
                     if (data.status) {
                         Swal.fire({
                             position: 'top-end',
@@ -629,7 +645,8 @@
                     }
                 },
             });
-            $(".pnt-add-path-edit-data-toggle").hide(150);
+            $('#pnt-loading').hide();
+            $('.pnt-add-path-edit-data-toggle').hide(150);
             resetProductParts();
         });
         // end-pnt-btn-edit-save
@@ -637,8 +654,6 @@
         // pnt-btn-delete-modal-product-part
         $(document).off('click', '.pnt-btn-delete-modal-product-part').on('click', '.pnt-btn-delete-modal-product-part', (e) => {
             window.part_id = $(e.currentTarget).val();
-            console.log($(e.currentTarget).val());
-
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -652,6 +667,9 @@
                     $.ajax({
                         type: "get",
                         url: '{!! url('product_location/productPart/delete') !!}/' + window.part_id,
+                        beforeSend: function () {
+                            $('#pnt-loading').show();
+                        },
                         success: function (data) {
                             resetTable();
                             Swal.fire({
@@ -664,6 +682,7 @@
                         }
                     });
                     resetProductParts();
+                    $('#pnt-loading').hide();
                 }
             })
         });

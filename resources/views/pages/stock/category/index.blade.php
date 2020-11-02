@@ -11,7 +11,8 @@
             <div class="card bg-white">
                 <div class="card-header">
                     <h4 class="card-title text-dark">Category Information</h4>
-                    <button type="button" class="btn btn-danger pnt-bnt-add-category">Add <span class="btn-icon-right"><i
+                    <button type="button" class="btn btn-danger pnt-bnt-add-category">Add <span
+                            class="btn-icon-right"><i
                                 class="fa fa-plus color-danger"></i></span>
                     </button>
                 </div>
@@ -105,15 +106,16 @@
 
         var token = $('meta[name="csrf-token"]').attr('content');
         var id = 0;
-
         var table = $('#categoryInformation').DataTable();
 
         function resetTable() {
             $.ajax({
                 type: "get",
                 url: '{!! url('stock/categories/getCategories') !!}',
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
-                    // console.log(data);
                     if (data.status) {
                         table.destroy();
                         $('.data-section').html(null);
@@ -131,6 +133,7 @@
                             )
                         });
                         table = $('#categoryInformation').DataTable();
+                        $('#pnt-loading').hide();
                     }
                 }
             });
@@ -142,9 +145,7 @@
 
         // btn-add-category
         $(document).off('click', '.pnt-bnt-add-category').on('click', '.pnt-bnt-add-category', (e) => {
-
-/*             $('.pnt-input-add-name').val('');
- */            $(".pnt-modal-add-category").modal();
+            $('.pnt-modal-add-category').modal();
         });
         // end-save-add-category
 
@@ -159,13 +160,16 @@
                     stock_branch_id: $('#pnt-input-branch_id').val(),
                     '_token': window.token,
                 },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     $('.pnt-btn-modal-add-category-save').prop('disabled', false);
                     console.log("data")
                     if (data.status) {
-                        $(".pnt-modal-add-category").modal('hide');
+                        $('.pnt-modal-add-category').modal('hide');
                         $('.pnt-input-add-name').val(''),
-                        resetTable();
+                            resetTable();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
@@ -173,6 +177,7 @@
                             showConfirmButton: false,
                             timer: 1500
                         })
+                        $('#pnt-loading').hide();
                     }
                 },
                 error: function (jqXHR, exception) {
@@ -186,6 +191,7 @@
                             timer: 1500
                         })
                         $('.pnt-btn-modal-add-category-save').prop('disabled', false);
+                        $('#pnt-loading').hide();
                     }
                 },
             });
@@ -211,6 +217,9 @@
                     $.ajax({
                         type: "get",
                         url: "{!! url('stock/categories/destroy') !!}/" + window.id,
+                        beforeSend: function () {
+                            $('#pnt-loading').show();
+                        },
                         success: function (data) {
                             resetTable();
 
@@ -221,6 +230,7 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            $('#pnt-loading').hide();
                         }
                     });
                 }
@@ -234,11 +244,15 @@
             $.ajax({
                 type: "get",
                 url: "{!! url('stock/categories/getCategory') !!}/" + window.id,
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     if (data.status) {
-                        $(".pnt-input-name").val(data.category.name);
-                        $(".pnt-modal-edit").modal();
+                        $('.pnt-input-name').val(data.category.name);
+                        $('.pnt-modal-edit').modal();
                     }
+                    $('#pnt-loading').hide();
                 }
             });
         });
@@ -247,13 +261,15 @@
         // btn save update modal
         $(document).off('click', '.pnt-btn-modal-save').on('click', '.pnt-btn-modal-save', e => {
             $(e.currentTarget).prop('disabled', true);
-            console.log(window.id)
             $.ajax({
                 type: "post",
                 url: "{!! url('stock/categories/update') !!}/" + window.id,
                 data: {
                     name: $(".pnt-input-name").val(),
                     '_token': window.token,
+                },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
                 },
                 success: function (data) {
                     if (data.status) {
@@ -267,6 +283,7 @@
                             showConfirmButton: false,
                             timer: 1500
                         })
+                        $('#pnt-loading').hide();
                     }
                 },
                 error: function (jqXHR, exception) {
@@ -279,6 +296,7 @@
                             timer: 1500
                         })
                         $('.pnt-btn-modal-save').prop('disabled', false);
+                        $('#pnt-loading').hide();
                     }
                 },
             });

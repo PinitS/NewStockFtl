@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id = "groupInformation" style="min-width: 845px">
+                        <table id="groupInformation" style="min-width: 845px">
                             <thead>
                             <tr>
                                 <th class="text-dark">#</th>
@@ -19,7 +19,7 @@
                                 <th class="text-dark">Manage</th>
                             </tr>
                             </thead>
-                            <tbody class= "data-section">
+                            <tbody class="data-section">
                             </tbody>
                         </table>
                     </div>
@@ -41,7 +41,8 @@
 
                     <div class="form-group">
                         <label class="mb-1"><strong>Groups Name</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-group-name" id="name" name="name" required>
+                        <input type="text" class="form-control pnt-modal-edit-group-name" id="name" name="name"
+                               required>
                     </div>
 
                 </div>
@@ -69,18 +70,19 @@
         var id = 0;
         var table = $('#groupInformation').DataTable();
 
-        function resetTable()
-        {
+        function resetTable() {
             $.ajax({
                 type: "get",
                 url: '{!! url('manage/groupParts/getGroups') !!}',
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     console.log(data)
-                    if(data.status)
-                    {
+                    if (data.status) {
                         table.destroy();
                         $('.data-section').html(null);
-                        $.each(data.groups , function( index, value ) {
+                        $.each(data.groups, function (index, value) {
 
                             $('.data-section').append(
                                 "<tr><td>" +
@@ -88,12 +90,13 @@
                                 "</td><td>" +
                                 value.name +
                                 "</td><td>" +
-                                "<div class = 'd-flex'>"+
-                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>"+
+                                "<div class = 'd-flex'>" +
+                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>" +
                                 "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
                             )
                         });
                         table = $('#groupInformation').DataTable();
+                        $('#pnt-loading').hide();
                     }
                 }
             });
@@ -103,22 +106,17 @@
             resetTable();
         });
 
-
-
-
-
         // btn-edit
         $(document).off('click', '.pnt-btn-edit').on('click', '.pnt-btn-edit', (e) => {
             window.id = $(e.currentTarget).val();
             $.ajax({
-                type: "get",
+                type: 'get',
                 url: '{!! url('manage/groupParts/getOneGroup') !!}/' + window.id,
                 success: function (data) {
                     console.log(data);
-                    if(data.status)
-                    {
-                        $(".pnt-modal-edit-group-name").val(data.group.name);
-                        $(".pnt-modal-edit").modal();
+                    if (data.status) {
+                        $('.pnt-modal-edit-group-name').val(data.group.name);
+                        $('.pnt-modal-edit').modal();
                     }
                 }
             });
@@ -131,13 +129,17 @@
                 type: "post",
                 url: '{!! url('manage/groupParts/update') !!}/' + window.id,
                 data: {
-                    name : $('.pnt-modal-edit-group-name').val(),
+                    name: $('.pnt-modal-edit-group-name').val(),
                     '_token': window.token,
+                },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
                 },
                 success: function (data) {
                     console.log(data)
                     if (data.status) {
-                        $(".pnt-modal-edit").modal('hide');
+                        $('.pnt-modal-edit').modal('hide');
+                        $('#pnt-loading').hide();
                         resetTable();
                         Swal.fire({
                             position: 'top-end',
@@ -150,6 +152,7 @@
                 },
                 error: function (jqXHR, exception) {
                     if (jqXHR.status !== 200) {
+                        $('#pnt-loading').hide();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
@@ -179,9 +182,11 @@
                     $.ajax({
                         type: "get",
                         url: '{!! url('manage/groupParts/destroy') !!}/' + window.id,
+                        beforeSend: function () {
+                            $('#pnt-loading').show();
+                        },
                         success: function (data) {
-                            if(data.status)
-                            {
+                            if (data.status) {
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
@@ -189,9 +194,7 @@
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
-                            }
-                            else
-                            {
+                            } else {
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
@@ -201,6 +204,7 @@
                                 })
                             }
                             resetTable();
+                            $('#pnt-loading').hide();
                         }
                     });
                 }

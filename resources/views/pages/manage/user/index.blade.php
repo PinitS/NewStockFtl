@@ -25,7 +25,6 @@
                             </tr>
                             </thead>
                             <tbody class="data-section">
-
                             </tbody>
                         </table>
                     </div>
@@ -45,7 +44,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
                     <div class="form-group">
                         <label class="mb-1"><strong>Username</strong></label>
                         <input type="text" class="form-control pnt-modal-add-user-username" id="username"
@@ -162,7 +160,6 @@
 @section('script')
 
     <script>
-
         var token = $('meta[name="csrf-token"]').attr('content');
         var id = 0;
         var table = $('#userData').DataTable();
@@ -171,14 +168,15 @@
             $.ajax({
                 type: "get",
                 url: "{!! url('manage/users/getUsers') !!}",
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     if (data.status) {
                         table.destroy();
                         $('.data-section').html(null);
                         $.each(data.userData, function (index, value) {
-
                             var text_status = "";
-
                             (value.status > 0 ? text_status = "<span class='badge badge-pill badge-danger'>Admin</span>" : text_status = "<span class='badge badge-pill badge-primary'>Member</span>")
                             $('.data-section').append(
                                 "<tr><td>" +
@@ -198,6 +196,7 @@
                             )
                         });
                         table = $('#userData').DataTable();
+                        $('#pnt-loading').hide();
                     }
                 }
             });
@@ -209,7 +208,6 @@
 
         // btn-save-add-user
         $(document).off('click', '.pnt-btn-modal-add-user-save').on('click', '.pnt-btn-modal-add-user-save', e => {
-
             $.ajax({
                 type: "post",
                 url: "{!! url('manage/users/create') !!}",
@@ -217,13 +215,17 @@
                     name: $('.pnt-modal-add-user-username').val(),
                     email: $('.pnt-modal-add-user-email').val(),
                     password: $('.pnt-modal-add-user-password').val(),
-                    password_confirmation: $(".pnt-input-password_confirmation").val(),
+                    password_confirmation: $('.pnt-input-password_confirmation').val(),
                     '_token': window.token,
+                },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
                 },
                 success: function (data) {
                     console.log(data)
                     if (data.status) {
-                        $(".pnt--modal-add-user").modal('hide');
+                        $('.pnt--modal-add-user').modal('hide');
+                        $('#pnt-loading').hide();
                         resetTable();
                         Swal.fire({
 
@@ -237,6 +239,7 @@
                 },
                 error: function (jqXHR, exception) {
                     if (jqXHR.status !== 200) {
+                        $('#pnt-loading').hide();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
@@ -255,7 +258,7 @@
         $(document).off('click', '.pnt-bnt-add-user').on('click', '.pnt-bnt-add-user', (e) => {
             $('.pnt-modal-add-user-username').val('');
             $('.pnt-modal-add-user-email').val('');
-            $(".pnt--modal-add-user").modal();
+            $('.pnt--modal-add-user').modal();
         });
         // end-save-add-user
 
@@ -264,7 +267,6 @@
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
             window.id = $(e.currentTarget).val();
             console.log($(e.currentTarget).val());
-
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -278,9 +280,12 @@
                     $.ajax({
                         type: "get",
                         url: "{!! url('manage/users/destroy') !!}/" + window.id,
+                        beforeSend: function () {
+                            $('#pnt-loading').show();
+                        },
                         success: function (data) {
                             resetTable();
-
+                            $('#pnt-loading').hide();
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
@@ -292,7 +297,6 @@
                     });
                 }
             })
-
         });
         // end btn-delete
 
@@ -300,13 +304,12 @@
         // btn-password
         $(document).off('click', '.pnt-btn-reset-password').on('click', '.pnt-btn-reset-password', (e) => {
             window.id = $(e.currentTarget).val();
-            $(".pnt-modal-reset-password").modal();
+            $('.pnt-modal-reset-password').modal();
         });
         // end btn-password
 
         // btn save reset-password modal
         $(document).off('click', '.pnt-btn-modal-reset-password-save').on('click', '.pnt-btn-modal-reset-password-save', e => {
-
             $.ajax({
                 type: "post",
                 url: "{!! url('manage/users/resetPassword') !!}/" + window.id,
@@ -315,12 +318,16 @@
                     password_confirmation: $(".pnt-input-password_confirmation").val(),
                     '_token': window.token,
                 },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     if (data.status) {
-                        $(".pnt-modal-reset-password").modal('hide');
-                        $(".pnt-input-password").val('');
-                        $(".pnt-input-password_confirmation").val('');
+                        $('.pnt-modal-reset-password').modal('hide');
+                        $('.pnt-input-password').val('');
+                        $('.pnt-input-password_confirmation').val('');
                         resetTable();
+                        $('#pnt-loading').hide();
                         Swal.fire({
 
                             position: 'top-end',
@@ -333,6 +340,7 @@
                 },
                 error: function (jqXHR, exception) {
                     if (jqXHR.status !== 200) {
+                        $('#pnt-loading').hide();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
@@ -349,18 +357,21 @@
         // btn-edit
         $(document).off('click', '.pnt-btn-edit').on('click', '.pnt-btn-edit', (e) => {
             window.id = $(e.currentTarget).val();
-
             $.ajax({
                 type: "get",
                 url: "{!! url('manage/users/oneUser') !!}/" + window.id,
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     if (data.status) {
                         var status = data.userData.status;
                         console.log(data.userData.status);
-                        $(".pnt-input-status").val(data.userData.status).change();
-                        $(".pnt-input-username").val(data.userData.name);
-                        $(".pnt-input-email").val(data.userData.email);
-                        $(".pnt-modal-edit").modal();
+                        $('.pnt-input-status').val(data.userData.status).change();
+                        $('.pnt-input-username').val(data.userData.name);
+                        $('.pnt-input-email').val(data.userData.email);
+                        $('#pnt-loading').hide();
+                        $('.pnt-modal-edit').modal();
                     }
                 }
             });
@@ -373,14 +384,18 @@
                 type: "post",
                 url: "{!! url('manage/users/update') !!}/" + window.id,
                 data: {
-                    name: $(".pnt-input-username").val(),
-                    email: $(".pnt-input-email").val(),
-                    status: $("#pnt-input-status option:selected").val(),
+                    name: $('.pnt-input-username').val(),
+                    email: $('.pnt-input-email').val(),
+                    status: $('#pnt-input-status option:selected').val(),
                     '_token': window.token,
+                },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
                 },
                 success: function (data) {
                     if (data.status) {
-                        $(".pnt-modal-edit").modal('hide');
+                        $('.pnt-modal-edit').modal('hide');
+                        $('#pnt-loading').hide();
                         resetTable();
                         Swal.fire({
                             position: 'top-end',
@@ -393,6 +408,7 @@
                 },
                 error: function (jqXHR, exception) {
                     if (jqXHR.status !== 200) {
+                        $('#pnt-loading').hide();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',

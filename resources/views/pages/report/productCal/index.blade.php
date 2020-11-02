@@ -63,25 +63,40 @@
             $.ajax({
                 type: "get",
                 url: '{!! url('report/calculator/getCalProducts') !!}',
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     window.selProduct.empty();
                     console.log(data);
                     if (data.status) {
-                        var product = "<option value=" + 0 + "> <strong>" + "All Product" + "</strong></option>";
+                        var product = "";
+                        var selected = 0;
                         $.each(data.locationProduct, function (index, value) {
+                            if (index === 0) {
+                                selected = value.id;
+                            }
                             product += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
                         window.selProduct.append(product);
                         window.selProduct.selectpicker('refresh');
+                        window.product_id = selected;
+                        $('.pnt-sel-filter-product').val(selected).change();
+                        window.value = $('.pnt-input-cal-value').val();
+                        productPartsTable(window.product_id, window.value);
                     }
+                    $('#pnt-loading').hide();
                 }
             });
         }
 
-        function productPartsTable(product_id , value) {
+        function productPartsTable(product_id, value) {
             $.ajax({
                 type: "get",
-                url: '{!! url('report/calculator/getCalProductParts') !!}/' + product_id +'&'+ value,
+                url: '{!! url('report/calculator/getCalProductParts') !!}/' + product_id + '&' + value,
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     window.table.destroy();
                     if (data.status) {
@@ -104,6 +119,7 @@
                             );
                         });
                         window.table = $('#calculatorInformation').DataTable();
+                        $('#pnt-loading').hide();
                     }
                 }
             });
@@ -118,7 +134,7 @@
         $(document).off('click', '.pnt-sel-filter-product').on('click', '.pnt-sel-filter-product', (e) => {
             window.product_id = $('.pnt-sel-filter-product option:selected').val();
             window.value = $('.pnt-input-cal-value').val();
-            productPartsTable(window.product_id , window.value);
+            productPartsTable(window.product_id, window.value);
         });
         // end-btn-change-product
 
@@ -126,8 +142,7 @@
         $(document).off('change paste keyup', '.pnt-input-cal-value').on('change paste keyup', '.pnt-input-cal-value', (e) => {
             window.product_id = $('.pnt-sel-filter-product option:selected').val();
             window.value = $('.pnt-input-cal-value').val();
-            if(window.product_id == 0)
-            {
+            if (window.product_id == 0) {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
@@ -136,7 +151,7 @@
                     timer: 1500
                 })
             }
-            productPartsTable(window.product_id , window.value);
+            productPartsTable(window.product_id, window.value);
         });
         // end-input-change-value
 

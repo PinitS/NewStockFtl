@@ -8,12 +8,13 @@
             <div class="card bg-white">
                 <div class="card-header">
                     <h4 class="card-title text-dark">Models Information</h4>
-                    <button type="button" class="btn btn-info pnt-bnt-add-model">Add <span class="btn-icon-right"><i class="fa fa-plus color-info"></i></span>
+                    <button type="button" class="btn btn-info pnt-bnt-add-model">Add <span class="btn-icon-right"><i
+                                class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id = "modelInformation" style="min-width: 845px">
+                        <table id="modelInformation" style="min-width: 845px">
                             <thead>
                             <tr>
                                 <th class="text-dark">#</th>
@@ -21,7 +22,7 @@
                                 <th class="text-dark">Manage</th>
                             </tr>
                             </thead>
-                            <tbody class= "data-section">
+                            <tbody class="data-section">
                             </tbody>
                         </table>
                     </div>
@@ -95,31 +96,33 @@
         var id = 0;
         var table = $('#modelInformation').DataTable();
 
-        function resetTable()
-        {
+        function resetTable() {
             $.ajax({
                 type: "get",
                 url: "{!! url('manage/model/getLocationModels') !!}",
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     console.log(data);
-                    if(data.status)
-                    {
+                    if (data.status) {
                         table.destroy();
                         $('.data-section').html(null);
-                        $.each(data.locationModel , function( index, value ) {
+                        $.each(data.locationModel, function (index, value) {
 
                             $('.data-section').append(
                                 "<tr><td>" +
                                 (index + 1) +
                                 "</td><td>" +
                                 value.name +
-                                "</td><td>"+
-                                "<div class = 'd-flex'>"+
-                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>"+
+                                "</td><td>" +
+                                "<div class = 'd-flex'>" +
+                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>" +
                                 "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
                             )
                         });
                         table = $('#modelInformation').DataTable();
+                        $('#pnt-loading').hide();
                     }
                 }
             });
@@ -132,7 +135,7 @@
         // btn-add-model
         $(document).off('click', '.pnt-bnt-add-model').on('click', '.pnt-bnt-add-model', (e) => {
             $('.pnt-input-add-name').val('');
-            $(".pnt-modal-add-model").modal();
+            $('.pnt-modal-add-model').modal();
         });
         // end-save-add-category
 
@@ -142,13 +145,17 @@
                 type: "post",
                 url: "{!! url('manage/model/create') !!}",
                 data: {
-                    name : $('.pnt-input-add-name').val(),
+                    name: $('.pnt-input-add-name').val(),
                     '_token': window.token,
+                },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
                 },
                 success: function (data) {
                     console.log(data)
                     if (data.status) {
-                        $(".pnt-modal-add-model").modal('hide');
+                        $('.pnt-modal-add-model').modal('hide');
+                        $('#pnt-loading').hide();
                         resetTable();
                         Swal.fire({
                             position: 'top-end',
@@ -160,6 +167,7 @@
                     }
                 },
                 error: function (jqXHR, exception) {
+                    $('#pnt-loading').hide();
                     if (jqXHR.status !== 200) {
                         Swal.fire({
                             position: 'top-end',
@@ -180,12 +188,11 @@
             window.id = $(e.currentTarget).val();
             $.ajax({
                 type: "get",
-                url: "{!! url('manage/model/getOneLocationModel') !!}/"+window.id,
+                url: "{!! url('manage/model/getOneLocationModel') !!}/" + window.id,
                 success: function (data) {
-                    if(data.status)
-                    {
-                        $(".pnt-input-name").val(data.locationModel.name);
-                        $(".pnt-modal-edit").modal();
+                    if (data.status) {
+                        $('.pnt-input-name').val(data.locationModel.name);
+                        $('.pnt-modal-edit').modal();
                     }
                 }
             });
@@ -194,19 +201,21 @@
 
         // btn save update modal
         $(document).off('click', '.pnt-btn-modal-save').on('click', '.pnt-btn-modal-save', e => {
-
             console.log(window.id)
-
             $.ajax({
                 type: "post",
-                url: "{!! url('manage/model/update') !!}/"+window.id,
+                url: "{!! url('manage/model/update') !!}/" + window.id,
                 data: {
-                    name : $(".pnt-input-name").val(),
+                    name: $(".pnt-input-name").val(),
                     '_token': window.token,
+                },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
                 },
                 success: function (data) {
                     if (data.status) {
-                        $(".pnt-modal-edit").modal('hide');
+                        $('.pnt-modal-edit').modal('hide');
+                        $('#pnt-loading').hide();
                         resetTable();
                         Swal.fire({
                             position: 'top-end',
@@ -249,10 +258,13 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "get",
-                        url: "{!! url('manage/model/destroy') !!}/"+window.id,
+                        url: "{!! url('manage/model/destroy') !!}/" + window.id,
+                        beforeSend: function () {
+                            $('#pnt-loading').show();
+                        },
                         success: function (data) {
                             resetTable();
-
+                            $('#pnt-loading').hide();
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',

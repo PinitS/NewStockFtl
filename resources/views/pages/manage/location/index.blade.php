@@ -8,12 +8,13 @@
             <div class="card bg-white">
                 <div class="card-header">
                     <h4 class="card-title text-dark">Customer Information</h4>
-                    <button type="button" class="btn btn-info pnt-bnt-add-location">Add <span class="btn-icon-right"><i class="fa fa-plus color-info"></i></span>
+                    <button type="button" class="btn btn-info pnt-bnt-add-location">Add <span class="btn-icon-right"><i
+                                class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id = "locationInformation" style="min-width: 845px">
+                        <table id="locationInformation" style="min-width: 845px">
                             <thead>
                             <tr>
                                 <th class="text-dark">#</th>
@@ -23,7 +24,7 @@
                                 <th class="text-dark">Manage</th>
                             </tr>
                             </thead>
-                            <tbody class= "data-section">
+                            <tbody class="data-section">
                             </tbody>
                         </table>
                     </div>
@@ -45,36 +46,41 @@
 
                     <div class="form-group">
                         <label class="mb-1"><strong>Name</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-location-name" id="name" name="name" required>
+                        <input type="text" class="form-control pnt-modal-add-location-name" id="name" name="name"
+                               required>
                     </div>
                     <div class="form-group">
                         <label class="mb-1"><strong>Phone Number</strong></label>
-                        <input type="phone" class="form-control pnt-modal-add-location-phone" id="phone" name="phone" >
+                        <input type="phone" class="form-control pnt-modal-add-location-phone" id="phone" name="phone">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="mb-1"><strong>Latitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-add-latitude" id="latitude" name="latitude" value="" readonly>
+                                <input type="text" class="form-control pnt-modal-add-latitude" id="latitude"
+                                       name="latitude" value="" readonly>
 
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="mb-1"><strong>Longitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-add-longitude" id="longitude" name="longitude" value="" readonly>
+                                <input type="text" class="form-control pnt-modal-add-longitude" id="longitude"
+                                       name="longitude" value="" readonly>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <a class="btn btn-success btn-block text-white getLatLnt-add" style="cursor:pointer;">Select Location</a>
+                            <a class="btn btn-success btn-block text-white getLatLnt-add" style="cursor:pointer;">Select
+                                Location</a>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="mb-1"><strong>Address</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-location-address" id="address" name="address" value="" required>
+                        <input type="text" class="form-control pnt-modal-add-location-address" id="address"
+                               name="address" value="" required>
                     </div>
 
                 </div>
@@ -100,35 +106,40 @@
 
                     <div class="form-group">
                         <label class="mb-1"><strong>Location</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-location-name" id="name" name="name" required>
+                        <input type="text" class="form-control pnt-modal-edit-location-name" id="name" name="name"
+                               required>
                     </div>
                     <div class="form-group">
                         <label class="mb-1"><strong>Phone Number</strong></label>
-                        <input type="phone" class="form-control pnt-modal-edit-location-phone" id="phone" name="phone" >
+                        <input type="phone" class="form-control pnt-modal-edit-location-phone" id="phone" name="phone">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="mb-1"><strong>Latitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-edit-latitude" id="latitude" name="latitude" value="" readonly>
+                                <input type="text" class="form-control pnt-modal-edit-latitude" id="latitude"
+                                       name="latitude" value="" readonly>
 
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="mb-1"><strong>Longitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-edit-longitude" id="longitude" name="longitude" value="" readonly>
+                                <input type="text" class="form-control pnt-modal-edit-longitude" id="longitude"
+                                       name="longitude" value="" readonly>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <a class="btn btn-success btn-block text-white getLatLnt" style="cursor:pointer;">Select Location</a>
+                            <a class="btn btn-success btn-block text-white getLatLnt" style="cursor:pointer;">Select
+                                Location</a>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="mb-1"><strong>Address</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-location-address" id="address" name="address" value="" required>
+                        <input type="text" class="form-control pnt-modal-edit-location-address" id="address"
+                               name="address" value="" required>
                     </div>
 
                 </div>
@@ -154,18 +165,19 @@
         var id = 0;
         var table = $('#locationInformation').DataTable();
 
-        function resetTable()
-        {
+        function resetTable() {
             $.ajax({
                 type: "get",
                 url: "{!! url('manage/location/getLocations') !!}",
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
-                    if(data.status)
-                    {
+                    if (data.status) {
                         console.log(data);
                         table.destroy();
                         $('.data-section').html(null);
-                        $.each(data.location , function( index, value ) {
+                        $.each(data.location, function (index, value) {
                             $('.data-section').append(
                                 "<tr><td>" +
                                 (index + 1) +
@@ -175,14 +187,15 @@
                                 (value.phone_number == null ? "-" : value.phone_number) +
                                 "</td><td>" +
                                 value.address +
-                                "</td><td>"+
-                                "<div class = 'd-flex'>"+
-                                "<button  class='btn btn-info text-white shadow btn-xs sharp mr-1' onclick='showOnMap(" + value.latitude + ", " + value.longitude + ")'><i class='fa fa-map-marker'></i></button>"+
-                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>"+
+                                "</td><td>" +
+                                "<div class = 'd-flex'>" +
+                                "<button  class='btn btn-info text-white shadow btn-xs sharp mr-1' onclick='showOnMap(" + value.latitude + ", " + value.longitude + ")'><i class='fa fa-map-marker'></i></button>" +
+                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>" +
                                 "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
                             )
                         });
                         table = $('#locationInformation').DataTable();
+                        $('#pnt-loading').hide();
                     }
                 }
             });
@@ -210,17 +223,21 @@
                 type: "post",
                 url: "{!! url('manage/location/create') !!}",
                 data: {
-                    name : $('.pnt-modal-add-location-name').val(),
-                    phone_number : $('.pnt-modal-add-location-phone').val(),
-                    latitude : $('.pnt-modal-add-latitude').val(),
-                    longitude : $('.pnt-modal-add-longitude').val(),
-                    address : $('.pnt-modal-add-location-address').val(),
+                    name: $('.pnt-modal-add-location-name').val(),
+                    phone_number: $('.pnt-modal-add-location-phone').val(),
+                    latitude: $('.pnt-modal-add-latitude').val(),
+                    longitude: $('.pnt-modal-add-longitude').val(),
+                    address: $('.pnt-modal-add-location-address').val(),
                     '_token': window.token,
+                },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
                 },
                 success: function (data) {
                     console.log(data)
                     if (data.status) {
-                        $(".pnt-modal-add-location").modal('hide');
+                        $('.pnt-modal-add-location').modal('hide');
+                        $('#pnt-loading').hide();
                         resetTable();
                         Swal.fire({
                             position: 'top-end',
@@ -233,6 +250,7 @@
                 },
                 error: function (jqXHR, exception) {
                     if (jqXHR.status !== 200) {
+                        $('#pnt-loading').hide();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
@@ -261,10 +279,13 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "get",
-                        url: "{!! url('manage/location/destroy') !!}/"+window.id,
+                        url: "{!! url('manage/location/destroy') !!}/" + window.id,
+                        beforeSend: function () {
+                            $('#pnt-loading').show();
+                        },
                         success: function (data) {
                             resetTable();
-
+                            $('#pnt-loading').hide();
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
@@ -286,11 +307,10 @@
             window.id = $(e.currentTarget).val();
             $.ajax({
                 type: "get",
-                url: "{!! url('manage/location/getOneLocation') !!}/"+window.id,
+                url: "{!! url('manage/location/getOneLocation') !!}/" + window.id,
                 success: function (data) {
                     console.log(data);
-                    if(data.status)
-                    {
+                    if (data.status) {
                         $(".pnt-modal-edit-location-name").val(data.location.name);
                         $(".pnt-modal-edit-location-phone").val(data.location.phone_number);
                         $(".pnt-modal-edit-latitude").val(data.location.latitude);
@@ -307,20 +327,24 @@
         $(document).off('click', '.pnt-btn-modal-save-location').on('click', '.pnt-btn-modal-save-location', e => {
             $.ajax({
                 type: "post",
-                url: "{!! url('manage/location/update') !!}/"+window.id,
+                url: "{!! url('manage/location/update') !!}/" + window.id,
                 data: {
-                    name : $('.pnt-modal-edit-location-name').val(),
-                    phone_number : $('.pnt-modal-edit-location-phone').val(),
-                    latitude : $('.pnt-modal-edit-latitude').val(),
-                    longitude : $('.pnt-modal-edit-longitude').val(),
-                    address : $('.pnt-modal-edit-location-address').val(),
+                    name: $('.pnt-modal-edit-location-name').val(),
+                    phone_number: $('.pnt-modal-edit-location-phone').val(),
+                    latitude: $('.pnt-modal-edit-latitude').val(),
+                    longitude: $('.pnt-modal-edit-longitude').val(),
+                    address: $('.pnt-modal-edit-location-address').val(),
                     '_token': window.token,
+                },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
                 },
                 success: function (data) {
                     console.log(data)
                     if (data.status) {
-                        $(".pnt-modal-location-edit").modal('hide');
+                        $('.pnt-modal-location-edit').modal('hide');
                         resetTable();
+                        $('#pnt-loading').hide();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
@@ -332,6 +356,7 @@
                 },
                 error: function (jqXHR, exception) {
                     if (jqXHR.status !== 200) {
+                        $('#pnt-loading').hide();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
@@ -362,7 +387,7 @@
             console.log()
             let lat = centerLat;
             let lng = centerLng;
-            console.log(lat , lng)
+            console.log(lat, lng)
 
             $('.map-section-show-only').hide();
             $('.map-section-get-only').show();

@@ -28,18 +28,19 @@
     <script>
         var token = $('meta[name="csrf-token"]').attr('content');
         var dropdown_branch = $('.pnt-sel-branch');
-
         $(document).ready(function () {
             getbranch();
         });
-
         function getbranch() {
             $.ajax({
                 type: "get",
                 url: '{{route('getBranches')}}',
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     if (data.status) {
-                        var str = "<option value=" + 0 + "> <strong>" + "All Branch" + "</strong></option>";
+                        var str = "<option value=" + 0 + "> <strong>" + "Select Branch" + "</strong></option>";
                         $.each(data.branch, function (index, value) {
                             console.log(value.id)
                             console.log(value.name)
@@ -47,6 +48,7 @@
                         });
                         window.dropdown_branch.append(str);
                         window.dropdown_branch.selectpicker('refresh');
+                        $('#pnt-loading').hide();
                     }
                 }
             });
@@ -88,8 +90,6 @@
                 });
             }
         });
-
-
         // end-pnt-goto-branch
 
     </script>

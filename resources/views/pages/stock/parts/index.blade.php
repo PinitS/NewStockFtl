@@ -287,6 +287,9 @@
             $.ajax({
                 type: "get",
                 url: "{!! url('stock/parts/getOnePart') !!}/" + window.id,
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     window.checkQuantity = data.part.quantity;
                     if (data.status) {
@@ -307,6 +310,7 @@
                             $('.pnt-modal-edit-parts-sku').val(data.part.sku);
                             $(".pnt-modal-edit").modal();
                         }
+                        $('#pnt-loading').hide();
                     }
                 }
             });
@@ -322,18 +326,17 @@
                     description: description,
                     _token: window.token,
                 },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     if (data.status) {
-
-                        $("#modal-plus-quantity").text();
-                        $(".pnt-modal-plus").modal('hide');
-
-                        $("#modal-minus-quantity").text();
-                        $(".pnt-modal-minus").modal('hide');
-
+                        $('#modal-plus-quantity').text();
+                        $('.pnt-modal-plus').modal('hide');
+                        $('#modal-minus-quantity').text();
+                        $('.pnt-modal-minus').modal('hide');
                         $('.pnt-btn-modal-plus-save').prop('disabled', false);
                         $('.pnt-btn-modal-minus-save').prop('disabled', false);
-
                         resetTable();
                         Swal.fire({
                             position: 'top-end',
@@ -342,6 +345,8 @@
                             showConfirmButton: false,
                             timer: 1500
                         })
+                        $('#pnt-loading').hide();
+
                     } else {
                         Swal.fire({
                             position: 'top-end',
@@ -350,7 +355,7 @@
                             showConfirmButton: false,
                             timer: 1500
                         })
-
+                        $('#pnt-loading').hide();
                     }
                 }
             });
@@ -364,7 +369,6 @@
                     filter_category_id: 0,
                     '_token': window.token,
                 },
-
                 success: function (data) {
                     // console.log(data.dataSet.group);
                     window.editPart.empty();
@@ -372,9 +376,8 @@
                     window.addpart.empty();
                     window.addgroup.empty();
                     window.editgroup.empty();
-
                     if (data.status) {
-                        var str = "<option value=" + 0 + "> <strong>" + "All Categories" + "</strong></option>";
+                        var str = "<option value=" + 0 + "> <strong>" + "Select Categories" + "</strong></option>";
                         $.each(data.dataSet.categories, function (index, value) {
                             str += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
@@ -384,12 +387,10 @@
                         window.filter.selectpicker('refresh');
                         window.addpart.selectpicker('refresh');
                         window.editPart.selectpicker('refresh');
-
                         var group_option = "<option value=" + 0 + "> <strong>" + "New Parts" + "</strong></option>";
                         $.each(data.dataSet.group, function (index, value) {
                             group_option += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
-                        // console.log(group_option);
                         window.addgroup.append(group_option);
                         window.addgroup.selectpicker('refresh');
                         window.editgroup.append(group_option);
@@ -397,7 +398,6 @@
                     }
                 }
             });
-
         }
 
         function resetTable(filter) {
@@ -408,10 +408,11 @@
                     filter_category_id: filter,
                     '_token': window.token,
                 },
-
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     if (data.status) {
-
                         window.table.destroy();
                         $('.data-section').html(null);
                         $.each(data.dataSet.parts, function (index, value) {
@@ -430,7 +431,6 @@
                                 value.quantity +
                                 "</td><td>" +
                                 "<div class = 'd-flex'>" +
-
                                 "<button  class='btn btn-success text-white pnt-btn-plus shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + 0 + "'><i class='fa fa-plus'></i></button>" +
                                 "<button  class='btn btn-info text-white pnt-btn-minus shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + 1 + "'><i class='fa fa-minus'></i></button>" +
                                 "<button  class='btn btn-secondary text-white pnt-btn-history shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-calculator'></i></button>" +
@@ -439,6 +439,7 @@
                             )
                         });
                         window.table = $('#partsInformation').DataTable();
+                        $('#pnt-loading').hide();
                     }
                 }
             });
@@ -447,12 +448,11 @@
 
         $(document).ready(function () {
             resetTable(window.category_filter);
-            //getOptionDropdown();
         });
 
         // btn-filter-parts
         $(document).off('click', '.pnt-sel-filter-category').on('click', '.pnt-sel-filter-category', (e) => {
-            window.category_filter = $(".pnt-sel-filter-category option:selected").val();
+            window.category_filter = $('.pnt-sel-filter-category option:selected').val();
             resetTable(window.category_filter);
         });
         // end-filter-parts
@@ -460,16 +460,14 @@
 
         // btn-add-parts
         $(document).off('click', '.pnt-bnt-add-parts').on('click', '.pnt-bnt-add-parts', (e) => {
-            $(".pnt-modal-add-parts").modal();
+            $('.pnt-modal-add-parts').modal();
         });
         // end-save-add-parts
 
         // btn-save-add-parts
         $(document).off('click', '.pnt-btn-modal-add-parts-save').on('click', '.pnt-btn-modal-add-parts-save', e => {
             $('e.currentTarget').prop('disabled', true);
-
-            if ($(".pnt-modal-sel-add-parts-category option:selected").val() != 0) {
-
+            if ($('.pnt-modal-sel-add-parts-category option:selected').val() != 0) {
                 if ($('.pnt-modal-add-parts-quantity').val() <= 0) {
                     Swal.fire({
                         position: 'top-end',
@@ -483,21 +481,24 @@
                         type: "post",
                         url: '{{route('createParts')}}',
                         data: {
-                            stock_category_id: $(".pnt-modal-sel-add-parts-category option:selected").val(),
-                            group_id: $(".pnt-modal-sel-add-group-parts option:selected").val(),
+                            stock_category_id: $('.pnt-modal-sel-add-parts-category option:selected').val(),
+                            group_id: $('.pnt-modal-sel-add-group-parts option:selected').val(),
                             stock_branch_id: $('#pnt-input-branch_id').val(),
                             name: $('.pnt-modal-add-parts-name').val(),
                             quantity: $('.pnt-modal-add-parts-quantity').val(),
                             sku: $('.pnt-modal-add-parts-sku').val(),
                             '_token': window.token,
                         },
+                        beforeSend: function () {
+                            $('#pnt-loading').show();
+                        },
                         success: function (data) {
                             if (data.status) {
-                                $(".pnt-modal-sel-add-parts-category option:selected").val(0).change();
-                                $(".pnt-modal-sel-add-group-parts option:selected").val(0).change();
+                                $('.pnt-modal-sel-add-parts-category option:selected').val(0).change();
+                                $('.pnt-modal-sel-add-group-parts option:selected').val(0).change();
                                 $('.pnt-modal-add-parts-name').val('');
                                 $('.pnt-modal-add-parts-quantity').val('');
-                                $(".pnt-modal-add-parts").modal('hide');
+                                $('.pnt-modal-add-parts').modal('hide');
                                 $('pnt-bnt-add-parts').prop('disabled', false);
                                 resetTable();
                                 Swal.fire({
@@ -516,6 +517,7 @@
                                     timer: 1500
                                 })
                             }
+                            $('#pnt-loading').hide();
                         },
                         error: function (jqXHR, exception) {
                             if (jqXHR.status !== 200) {
@@ -527,11 +529,11 @@
                                     timer: 1500
                                 })
                                 $('pnt-bnt-add-parts').prop('disabled', false);
+                                $('#pnt-loading').hide();
                             }
                         },
                     });
                 }
-
             } else {
                 Swal.fire({
                     position: 'top-end',
@@ -619,6 +621,9 @@
             $.ajax({
                 type: "get",
                 url: '{!! url('stock/parts/getPartHistory') !!}/' + window.id,
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     if (data.status) {
                         window.table_history.destroy();
@@ -647,7 +652,8 @@
                             )
                         });
                         window.table_history = $('#partsHistory').DataTable();
-                        $(".pnt-modal-history").modal();
+                        $('.pnt-modal-history').modal();
+                        $('#pnt-loading').hide();
                     }
                 }
             });
@@ -665,8 +671,7 @@
         // pnt-btn-edit-save
         $(document).off('click', '.pnt-btn-modal-edit-parts-save').on('click', '.pnt-btn-modal-edit-parts-save', (e) => {
             $(e.currentTarget).prop('disabled', true);
-            console.log(window.id);
-            if ($(".pnt-modal-sel-edit-parts-category option:selected").val() != 0) {
+            if ($('.pnt-modal-sel-edit-parts-category option:selected').val() != 0) {
                 $.ajax({
                     type: "post",
                     url: '{!! url('stock/parts/update') !!}/' + window.id,
@@ -676,6 +681,9 @@
                         sku: $('.pnt-modal-edit-parts-sku').val(),
                         group_id: $('.pnt-modal-sel-edit-group-parts option:selected').val(),
                         '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
                     },
                     success: function (data) {
                         console.log(data)
@@ -690,6 +698,7 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            $('#pnt-loading').hide();
                         }
                     },
                     error: function (jqXHR, exception) {
@@ -702,7 +711,7 @@
                                 timer: 1500
                             })
                             $('.pnt-btn-modal-edit-parts-save').prop('disabled', false);
-
+                            $('#pnt-loading').hide();
                         }
                     },
                 });
@@ -715,7 +724,7 @@
                     timer: 1500
                 })
                 $('.pnt-btn-modal-edit-parts-save').prop('disabled', false);
-
+                $('#pnt-loading').hide();
             }
         });
         // end-pnt-btn-edit-save
@@ -737,9 +746,11 @@
                     $.ajax({
                         type: "get",
                         url: "{!! url('stock/parts/destroy') !!}/" + window.id,
+                        beforeSend: function () {
+                            $('#pnt-loading').show();
+                        },
                         success: function (data) {
                             resetTable();
-
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
@@ -747,11 +758,11 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            $('#pnt-loading').hide();
                         }
                     });
                 }
             })
-
         });
         // end btn-delete
 

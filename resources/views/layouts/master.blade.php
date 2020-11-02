@@ -34,13 +34,13 @@
 <!--*******************
     Preloader start
 ********************-->
-<div id="preloader">
+<!--div id="preloader">
     <div class="sk-three-bounce">
         <div class="sk-child sk-bounce1"></div>
         <div class="sk-child sk-bounce2"></div>
         <div class="sk-child sk-bounce3"></div>
     </div>
-</div>
+</div-->
 <!--*******************
     Preloader end
 ********************-->
@@ -86,10 +86,11 @@ Chat box start
     <!--**********************************
         Content body start
     ***********************************-->
+    <meta name="csrf-token-master" content="{{ csrf_token() }}">
+
     <div class="content-body">
         <!-- row -->
         <div class="container-fluid">
-
 
             {{--    modal-edit-this-user--}}
             <div class="modal fade bd-example-modal-lg pnt-modal-edit-this-user" tabindex="-1" role="dialog"
@@ -104,35 +105,110 @@ Chat box start
                         <div class="modal-body">
                             <div class="form-group row">
 
-                                <label class="col-sm-3 col-form-label pnt-label-username-check">Username</label>
+                                <label class="col-sm-4 col-form-label pnt-label-username-check">Username</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control pnt-modal-edit-this-username "
-                                           value="{{ Auth::user()->name }}">
+                                           value="{{ Auth::user()->name }}" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Email</label>
+                                <label class="col-sm-4 col-form-label">Email</label>
                                 <div class="col-sm-8">
                                     <input type="email" class="form-control pnt-modal-edit-this-email"
-                                           value="{{ Auth::user()->email }}">
+                                           value="{{ Auth::user()->email }}" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Status</label>
+                                <label class="col-sm-4 col-form-label">Status</label>
                                 <div class="col-sm-8">
                                     <input type="email" class="form-control"
                                            value="{{ Auth::user()->status == 1 ? "Admin" : "Member" }}" disabled>
                                 </div>
                             </div>
+
+
+                            <div class="pnt-edit-this-save-user-toggle" style="display: none">
+                                <hr>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label pnt-label-username-check"> <strong
+                                            class="text-danger"> New Username </strong> </label>
+                                    <div class="col-sm-8">
+                                        <input type="hidden" class="pnt-modal-edit-this-new-usid"
+                                               value="{{ Auth::user()->id }}">
+                                        <input type="hidden" class="pnt-modal-edit-this-new-status"
+                                               value="{{ Auth::user()->status }}">
+                                        <input type="email" class="form-control pnt-modal-edit-this-new-username"
+                                               value="{{ Auth::user()->name }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label"> <strong class="text-danger"> New
+                                            Email </strong> </label>
+                                    <div class="col-sm-8">
+                                        <input type="email" class="form-control pnt-modal-edit-this-new-email"
+                                               value="{{ Auth::user()->email }}">
+                                    </div>
+                                </div>
+                                <button type="button"
+                                        class="btn btn-block btn-danger pnt-modal-edit-this-new-user-save">Save changes
+                                </button>
+                            </div>
+
+
                         </div>
+
                         <div class="modal-footer">
+                            <button type="button" class="btn btn-warning light pnt-edit-this-user-new">Edit User
+                            </button>
                             <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
             {{--    modal-edit-this-user--}}
+
+
+
+            {{--    modal-pnt-modal-reset-password-this--}}
+            <div class="modal fade pnt-modal-reset-password-this" id="exampleModalCenter">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Reset Password User</h5>
+                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="password">Password
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control pnt-input-password-this">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-4 col-form-label" for="password_confirmation">Confirm Password
+                                    <span
+                                        class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-6">
+                                    <input type="password" class="form-control pnt-input-password_confirmation-this"
+                                           id="password_confirmation" name="password_confirmation">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary pnt-btn-modal-reset-password-save-this">Save
+                                changes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{--    modal-pnt-modal-reset-password-this--}}
+
 
             @yield('content')
 
@@ -182,13 +258,10 @@ Chat box start
   position: fixed;
   opacity: 0.7;
   background-color: #fff;
-  z-index: 99;
+  z-index: 3500;
   text-align: center;">
-    <img src="{!! url('images/loading.gif') !!}" alt="Loading..." style="position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 100;" />
+    <img src="{!! url('images/loading.gif') !!}" alt="Loading..."
+         style="position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%); z-index: 3501;"/>
 </div>
 
 <!--**********************************
@@ -240,6 +313,8 @@ Chat box start
     let markersShowOnly = [];
     let markersPointerLocation = [];
     let markersGetOnly = [];
+    var token_master = $('meta[name="csrf-token-master"]').attr('content');
+
 
     // let markersGetOnly = null;
 
@@ -259,7 +334,6 @@ Chat box start
         mapGetOnly.addListener("click", (e) => {
             $('input[name="latitude"]').val(e.latLng.lat());
             $('input[name="longitude"]').val(e.latLng.lng());
-
             let lat = $('.pnt-modal-edit-latitude').val();
             let lng = $('.pnt-modal-edit-longitude').val();
             getLatLng(lat, lng);
@@ -272,7 +346,7 @@ Chat box start
             Swal.fire({
                 position: 'top-end',
                 icon: 'error',
-                title: 'lat || lng is null',
+                title: 'latitude or longitude went wrong',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -292,21 +366,22 @@ Chat box start
         for (let i = 0; i < marker.length; i++) {
             marker[i].setMap(null);
         }
-        // marker = [];
     }
 
     function getLatLng(lat, lng) {
         deleteMarkers(markersGetOnly);
+        console.log(lat, lng);
         const marker = new google.maps.Marker({
             position: {lat: parseFloat(lat), lng: parseFloat(lng)},
             map: mapGetOnly,
         });
+        $('input[name="latitude"]').val(lat);
+        $('input[name="longitude"]').val(lng);
         mapGetOnly.setCenter({lat: parseFloat(lat), lng: parseFloat(lng)});
         markersGetOnly.push(marker);
     }
 
     $(document).ready(function () {
-        // callAjax("testLogin", "GET", null).then( (data) => console.log(data) )
         "use strict"
         var direction = getUrlParams('dir');
         if (direction != 'rtl') {
@@ -399,9 +474,102 @@ Chat box start
         $('.pnt-modal-edit-this-user').modal();
     });
 
-    $(document).off('toggle', '.pnt-modal-edit-disable-username').on('toggle', '.pnt-modal-edit-disable-username', (e) => {
-        $('.pnt-modal-edit-this-username').prop("disabled", false);
+    $(document).off('click', '.pnt-edit-this-user-new').on('click', '.pnt-edit-this-user-new', (e) => {
+        $('.pnt-edit-this-save-user-toggle').toggle();
     });
+
+    $(document).off('click', '.pnt-modal-edit-this-new-user-save').on('click', '.pnt-modal-edit-this-new-user-save', (e) => {
+        $.ajax({
+            type: "post",
+            url: "{!! url('manage/users/update') !!}/" + $('.pnt-modal-edit-this-new-usid').val(),
+            data: {
+                name: $('.pnt-modal-edit-this-new-username').val(),
+                email: $('.pnt-modal-edit-this-new-email').val(),
+                status: $('.pnt-modal-edit-this-new-status').val(),
+                '_token': window.token_master,
+            },
+            beforeSend: function () {
+                $('#pnt-loading').show();
+            },
+            success: function (data) {
+                if (data.status) {
+                    // $('.pnt-modal-edit').modal('hide');
+                    // $('#pnt-loading').hide();
+                    // resetTable();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Update User Success fully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    window.location.reload();
+                }
+            },
+            error: function (jqXHR, exception) {
+                if (jqXHR.status !== 200) {
+                    $('#pnt-loading').hide();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Something went wrong',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            },
+        });
+    });
+
+    $(document).off('click', '.pnt-btn-reset-password-in-header').on('click', '.pnt-btn-reset-password-in-header', (e) => {
+        $('.pnt-modal-reset-password-this').modal();
+    });
+
+    $(document).off('click', '.pnt-btn-modal-reset-password-save-this').on('click', '.pnt-btn-modal-reset-password-save-this', (e) => {
+        console.log($('.pnt-input-password-this').val());
+        console.log($('.pnt-input-password_confirmation-this').val());
+        $.ajax({
+            type: "post",
+            url: "{!! url('manage/users/resetPassword') !!}/" + $('.pnt-modal-edit-this-new-usid').val(),
+            data: {
+                password: $('.pnt-input-password-this').val(),
+                password_confirmation: $('.pnt-input-password_confirmation-this').val(),
+                '_token': window.token_master,
+            },
+            beforeSend: function () {
+                $('#pnt-loading').show();
+            },
+            success: function (data) {
+                if (data.status) {
+                    $('.pnt-modal-reset-password-this').modal('hide');
+                    $('#pnt-loading').hide();
+                    Swal.fire({
+
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Please Login',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    window.location.reload();
+                }
+            },
+            error: function (jqXHR, exception) {
+                if (jqXHR.status !== 200) {
+                    $('#pnt-loading').hide();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Something went wrong',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            },
+        });
+    });
+
+
 </script>
 
 @yield('script')

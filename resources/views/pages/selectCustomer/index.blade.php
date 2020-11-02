@@ -37,10 +37,13 @@
             $.ajax({
                 type: "get",
                 url: '{{route('getLocations')}}',
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     console.log(data)
                     if (data.status) {
-                        var str = "<option value=" + 0 + "> <strong>" + "All Customer" + "</strong></option>";
+                        var str = "<option value=" + 0 + "> <strong>" + "Select Customer" + "</strong></option>";
                         $.each(data.location, function (index, value) {
                             console.log(value.id)
                             console.log(value.name)
@@ -48,6 +51,7 @@
                         });
                         window.dropdown_customer.append(str);
                         window.dropdown_customer.selectpicker('refresh');
+                        $('#pnt-loading').hide();
                     }
                 }
             });

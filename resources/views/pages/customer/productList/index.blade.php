@@ -8,7 +8,8 @@
             <div class="card bg-white">
                 <div class="card-header">
                     <h4 class="card-title text-dark">Product List ({{ session()->get('customer')[0]['name'] }})</h4>
-                    <button type="button" class="btn btn-warning text-white pnt-bnt-add-detail">Add <span class="btn-icon-right"><i
+                    <button type="button" class="btn btn-warning text-white pnt-bnt-add-detail">Add <span
+                            class="btn-icon-right"><i
                                 class="fa fa-plus color-warning"></i></span>
                     </button>
                 </div>
@@ -80,15 +81,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
-{{--                    <div class="input-group mb-3 ">--}}
-{{--                        <div class="input-group-prepend w-10">--}}
-{{--                            <span class="input-group-text">&nbsp Product</span>--}}
-{{--                        </div>--}}
-{{--                        <select class="form-control pnt-modal-sel-edit-detail-product">--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
-
                     <div class="input-group mb-3 ">
                         <div class="input-group-prepend w-10">
                             <span class="input-group-text">Customer</span>
@@ -107,20 +99,23 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="mb-1"><strong>Latitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-edit-latitude" id="latitude" name="latitude" value="" readonly>
+                                <input type="text" class="form-control pnt-modal-edit-latitude" id="latitude"
+                                       name="latitude" value="" readonly>
 
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="mb-1"><strong>Longitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-edit-longitude" id="longitude" name="longitude" value="" readonly>
+                                <input type="text" class="form-control pnt-modal-edit-longitude" id="longitude"
+                                       name="longitude" value="" readonly>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <a class="btn btn-success btn-block text-white getLatLnt" style="cursor:pointer;">Select Location</a>
+                            <a class="btn btn-success btn-block text-white getLatLnt" style="cursor:pointer;">Select
+                                Location</a>
                         </div>
                     </div>
 
@@ -163,7 +158,7 @@
                 url: '{!! url('product_location/product_detail/getDetails') !!}',
                 success: function (data) {
                     if (data.status) {
-                        var product = "<option value=" + 0 + "> <strong>" + "All product" + "</strong></option>";
+                        var product = "<option value=" + 0 + "> <strong>" + "Select product" + "</strong></option>";
                         $.each(data.dataSet.product, function (index, value) {
                             product += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
@@ -172,7 +167,7 @@
                         editProduct.append(product);
                         editProduct.selectpicker('refresh');
 
-                        var location = "<option value=" + 0 + "> <strong>" + "All location" + "</strong></option>";
+                        var location = "<option value=" + 0 + "> <strong>" + "Select location" + "</strong></option>";
                         $.each(data.dataSet.location, function (index, value) {
                             location += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
@@ -190,6 +185,9 @@
             $.ajax({
                 type: "get",
                 url: '{!! url('product_location/product_detail/getDetails') !!}',
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     if (data.status) {
                         window.table.destroy();
@@ -204,14 +202,14 @@
                                 "</td><td>" +
                                 (value.location_product == null ? "-" : value.location_product.name) +
                                 "</td><td>" +
-                                (value.location_product == null ? "-" : value.location_product.location_model.name )  +
+                                (value.location_product == null ? "-" : value.location_product.location_model.name) +
                                 "</td><td>" +
                                 "<select class='form-control pnt-modal-sel-change-status-detail-product" + index + "' id='pnt-modal-sel-change-status-detail-product' data-id='" + value.location_product_details[0]['id'] + "'></select>" +
                                 "</td><td>" +
-                                value.location_product_details[0]['sku']+
+                                value.location_product_details[0]['sku'] +
                                 "</td><td>" +
                                 "<div class = 'd-flex'>" +
-                                "<button  class='btn btn-info text-white shadow btn-xs sharp mr-1' onclick='showOnMap(" + value.location_product_details[0]['latitude'] + ", " + value.location_product_details[0]['longitude'] + ")'><i class='fa fa-map-marker'></i></button>"+
+                                "<button  class='btn btn-info text-white shadow btn-xs sharp mr-1' onclick='showOnMap(" + value.location_product_details[0]['latitude'] + ", " + value.location_product_details[0]['longitude'] + ")'><i class='fa fa-map-marker'></i></button>" +
                                 "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.location_product_details[0]['id'] + "' data-id = '" + value.location_product_details[0]['id'] + "'><i class='fa fa-pencil-square-o'></i></button>" +
                                 "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.location_product_details[0]['id'] + "' ><i class= 'fa fa-trash'></i></button>"
                             )
@@ -229,6 +227,7 @@
 
                         });
                         window.table = $('#detailInformation').DataTable();
+                        $('#pnt-loading').hide();
                     }
                 }
             });
@@ -262,8 +261,7 @@
                     timer: 1500
                 })
             } else {
-                if($('.pnt-modal-add-detail-quantity').val() <= 0)
-                {
+                if ($('.pnt-modal-add-detail-quantity').val() <= 0) {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
@@ -271,8 +269,7 @@
                         showConfirmButton: false,
                         timer: 1500
                     })
-                }
-                else{
+                } else {
                     $.ajax({
                         type: "post",
                         url: '{{route('createDetail')}}',
@@ -280,6 +277,9 @@
                             location_product_id: product_id,
                             quantity: $('.pnt-modal-add-detail-quantity').val(),
                             '_token': window.token,
+                        },
+                        beforeSend: function () {
+                            $('#pnt-loading').show();
                         },
                         success: function (data) {
                             if (data.status) {
@@ -293,6 +293,7 @@
                                     timer: 1500
                                 })
                             }
+                            $('#pnt-loading').hide();
                         },
                         error: function (jqXHR, exception) {
                             if (jqXHR.status !== 200) {
@@ -303,6 +304,7 @@
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
+                                $('#pnt-loading').hide();
                             }
                         },
                     });
@@ -317,7 +319,10 @@
             window.id = $(e.currentTarget).val();
             $.ajax({
                 type: "get",
-                url: '{!! url('product_location/product_detail/getOneDetail') !!}/'+ window.id,
+                url: '{!! url('product_location/product_detail/getOneDetail') !!}/' + window.id,
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     if (data.status) {
                         // $(".pnt-modal-sel-edit-detail-product").val(data.product.location_product_id).change();
@@ -327,9 +332,10 @@
                         $('.pnt-modal-edit-longitude').val(data.product.longitude);
                         $('.pnt-modal-edit-detail-sku').val(data.product.sku);
                     }
+                    $('#pnt-loading').hide();
                 }
             });
-            $(".pnt-modal-edit").modal();
+            $('.pnt-modal-edit').modal();
         });
         // end-pnt-btn-edit
 
@@ -348,7 +354,7 @@
             } else {
                 $.ajax({
                     type: "post",
-                    url: '{!! url('product_location/product_detail/update') !!}/'+ window.id,
+                    url: '{!! url('product_location/product_detail/update') !!}/' + window.id,
                     data: {
                         // location_product_id: product_id,
                         location_id: location_id,
@@ -357,6 +363,9 @@
                         longitude: $('.pnt-modal-edit-longitude').val(),
                         sku: $('.pnt-modal-edit-detail-sku').val(),
                         '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
                     },
                     success: function (data) {
                         if (data.status) {
@@ -369,6 +378,7 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            $('#pnt-loading').hide();
                         }
                     },
                     error: function (jqXHR, exception) {
@@ -380,6 +390,7 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            $('#pnt-loading').hide();
                         }
                     },
                 });
@@ -402,10 +413,12 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "get",
-                        url: '{!! url('product_location/product_detail/destroy') !!}/'+ window.id,
+                        url: '{!! url('product_location/product_detail/destroy') !!}/' + window.id,
+                        beforeSend: function () {
+                            $('#pnt-loading').show();
+                        },
                         success: function (data) {
                             resetTable();
-
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
@@ -413,6 +426,7 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            $('#pnt-loading').hide();
                         }
                     });
                 }
@@ -428,10 +442,13 @@
 
             $.ajax({
                 type: "post",
-                url: '{!! url('product_location/product_detail/changeStatus') !!}/'+ window.id,
+                url: '{!! url('product_location/product_detail/changeStatus') !!}/' + window.id,
                 data: {
                     status: status_id,
                     '_token': window.token,
+                },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
                 },
                 success: function (data) {
                     if (data.status) {
@@ -443,6 +460,7 @@
                             showConfirmButton: false,
                             timer: 1500
                         })
+                        $('#pnt-loading').hide();
                     }
                 },
                 error: function (jqXHR, exception) {
@@ -454,6 +472,7 @@
                             showConfirmButton: false,
                             timer: 1500
                         })
+                        $('#pnt-loading').hide();
                     }
                 },
             });
