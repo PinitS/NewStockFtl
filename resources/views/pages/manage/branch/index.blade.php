@@ -162,6 +162,9 @@
             $.ajax({
                 type: "get",
                 url: '{{route('getBranches')}}',
+                beforeSend:function (){
+                    $('#pnt-loading').show();
+                },
                 success: function (data) {
                     if(data.status)
                     {
@@ -169,8 +172,7 @@
                         $('.data-section').html(null);
                         $.each(data.branch , function( index, value ) {
 
-                            $('.data-section').append(
-                                "<tr><td>" +
+                            let localHtml = "<tr><td>" +
                                 (index + 1) +
                                 "</td><td>" +
                                 value.name +
@@ -181,12 +183,16 @@
                                 "</td><td>"+
                                 "<div class = 'd-flex'>"+
                                 "<button  class='btn btn-info text-white shadow btn-xs sharp mr-1' onclick='showOnMap(" + value.latitude + ", " + value.longitude + ")'><i class='fa fa-map-marker'></i></button>"+
-                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>"+
-                                "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
-                            )
+                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>";
+
+                            if (value.delete_active){
+                                localHtml += "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
+                            }
+                            $('.data-section').append(localHtml)
                         });
                         table = $('#branchInformation').DataTable();
                     }
+                    $('#pnt-loading').hide();
                 }
             });
         }

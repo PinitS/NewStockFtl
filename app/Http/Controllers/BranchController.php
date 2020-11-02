@@ -52,8 +52,14 @@ class BranchController extends Controller
 
     public function delete($id)
     {
-        StockBranch::find($id)->delete();
-        return response()->json(['status' => true]);
+        $item = StockBranch::find($id);
+        if (count($item->parts) > 0 || count($item->categories) > 0){
+            return response()->json(['status' => false]);
+        }else{
+            $item->delete();
+            return response()->json(['status' => true]);
+        }
+
     }
 
 }

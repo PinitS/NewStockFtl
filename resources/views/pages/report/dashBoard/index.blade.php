@@ -156,7 +156,11 @@
         });
         var tableParts = $('#partsData').DataTable();
 
+        $(document).ready(function () {
+            getBranch();
+            getDashBoard();
 
+        });
 
         function getBranch() {
             $.ajax({
@@ -168,11 +172,21 @@
                     window.filter_dropdown_branch.empty();
                     if (data.status) {
                         var branch = "<option value=" + 0 + "> <strong>" + "All Branch" + "</strong></option>";
+                        var select_value = 0;
                         $.each(data.branch, function (index, value) {
-                            branch += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
+                            if (index === 0){
+                                select_value = value.id;
+                            }
+                            branch += "<option value='" + value.id + "'> <strong>" + value.name + "</strong></option>"
                         });
                         window.filter_dropdown_branch.append(branch);
                         window.filter_dropdown_branch.selectpicker('refresh');
+                        $('.pnt-sel-filter-branch').val(select_value).change();
+
+                        window.branch_id = select_value;
+                        if (window.branch_id > 0) {
+                            callBranchParts();
+                        }
                     }
                 }
             });
@@ -265,34 +279,47 @@
             });
         }
 
+        function callBranchParts() {
+            $.ajax({
+                type: "get",
+                url: '{!! url('report/dashBoard/getPartsByBranch') !!}/' + window.branch_id,
+
+                success: function (data) {
+                    console.log(data)
+                    window.filter_dropdown_parts.empty();
+                    if (data.status) {
+                        var parts = "<option value=" + 0 + "> <strong>" + "All Parts" + "</strong></option>";
+                        var select_value = 0;
+                        var select_name_value = '';
+                        $.each(data.parts, function (index, value) {
+                            if (index === 0){
+                                select_value = value.id;
+                                select_name_value = value.name;
+                            }
+                            parts += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
+                        });
+                        window.filter_dropdown_parts.append(parts);
+                        window.filter_dropdown_parts.selectpicker('refresh');
+                        $('.pnt-sel-filter-parts').val(select_value).change();
+
+                        window.parts_id = select_value;
+                        window.parts_name = select_name_value;
+
+                        callDataLineChart();
+                    }
+                }
+            });
+        }
+
         $(document).off('click', '.pnt-sel-filter-branch').on('click', '.pnt-sel-filter-branch', (e) => {
             window.branch_id = $(".pnt-sel-filter-branch option:selected").val();
             console.log(branch_id)
             if (window.branch_id > 0) {
-                $.ajax({
-                    type: "get",
-                    url: '{!! url('report/dashBoard/getPartsByBranch') !!}/' + window.branch_id,
-
-                    success: function (data) {
-                        console.log(data)
-                        window.filter_dropdown_parts.empty();
-                        if (data.status) {
-                            var parts = "<option value=" + 0 + "> <strong>" + "All Parts" + "</strong></option>";
-                            $.each(data.parts, function (index, value) {
-                                parts += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
-                            });
-                            window.filter_dropdown_parts.append(parts);
-                            window.filter_dropdown_parts.selectpicker('refresh');
-                        }
-                    }
-                });
+                callBranchParts();
             }
         });
 
-        $(document).off('click', '.pnt-sel-filter-parts').on('click', '.pnt-sel-filter-parts', (e) => {
-            window.parts_id = $('.pnt-sel-filter-parts option:selected').val();
-            window.parts_name = $('.pnt-sel-filter-parts option:selected').text();
-            console.log(parts_id)
+        function callDataLineChart() {
             if (window.parts_id > 0) {
                 $.ajax({
                     type: "get",
@@ -307,13 +334,13 @@
                 window.data_line_chart = [];
                 callLineChart();
             }
-        });
+        }
 
-
-        $(document).ready(function () {
-            getBranch();
-            getDashBoard();
-
+        $(document).off('click', '.pnt-sel-filter-parts').on('click', '.pnt-sel-filter-parts', (e) => {
+            window.parts_id = $('.pnt-sel-filter-parts option:selected').val();
+            window.parts_name = $('.pnt-sel-filter-parts option:selected').text();
+            console.log(parts_id)
+            callDataLineChart();
         });
 
 

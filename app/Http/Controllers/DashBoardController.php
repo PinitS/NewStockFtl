@@ -54,31 +54,33 @@ class DashBoardController extends Controller
         $productNameSet = [];
         $colorSet = [];
         $color = [
-                        'rgba(255, 99, 132)' ,
                         'rgba(255, 99, 132)',
                         'rgba(54, 162, 235)',
                         'rgba(255, 206, 86)',
                         'rgba(75, 192, 192)',
-                        'rgba(153, 102, 255)'
+                        'rgba(153, 102, 255)',
                     ];
         $indexColor = 0;
         foreach($products as $product)
         {
-            if($indexColor > 4)
+            if(!empty($color[$indexColor]))
             {
+                $local_color = $color[$indexColor];
+            }else{
                 $indexColor = 0;
+                $local_color = $color[0];
             }
             $indexColor++;
-            $cntProduct = 0;
-            foreach($product->locationProductLists as $productList)
+            $cntProduct = $product->locationProductLists->count();
+            /*foreach($product->locationProductLists as $productList)
             {
                 $cntProduct++;
-            }
+            }*/
             // $data = [
             //     'product_name' => $product->name,
             //     'cntProduct' => $cntProduct,
             // ];
-            array_push($colorSet, $color[$indexColor]);
+            array_push($colorSet, $local_color);
             array_push($cntSet, $cntProduct);
             array_push($productNameSet, $product->name);
         }
