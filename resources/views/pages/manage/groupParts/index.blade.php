@@ -78,22 +78,22 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
-                    console.log(data)
                     if (data.status) {
                         table.destroy();
                         $('.data-section').html(null);
                         $.each(data.groups, function (index, value) {
-
-                            $('.data-section').append(
-                                "<tr><td>" +
+                            let localHtml = "<tr><td>" +
                                 (index + 1) +
                                 "</td><td>" +
                                 value.name +
                                 "</td><td>" +
                                 "<div class = 'd-flex'>" +
-                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>" +
-                                "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
-                            )
+                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>";
+
+                            if (value.delete_active) {
+                                localHtml += "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>";
+                            }
+                            $('.data-section').append(localHtml);
                         });
                         table = $('#groupInformation').DataTable();
                         $('#pnt-loading').hide();
@@ -113,7 +113,6 @@
                 type: 'get',
                 url: '{!! url('manage/groupParts/getOneGroup') !!}/' + window.id,
                 success: function (data) {
-                    console.log(data);
                     if (data.status) {
                         $('.pnt-modal-edit-group-name').val(data.group.name);
                         $('.pnt-modal-edit').modal();
@@ -136,7 +135,6 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
-                    console.log(data)
                     if (data.status) {
                         $('.pnt-modal-edit').modal('hide');
                         $('#pnt-loading').hide();
@@ -198,7 +196,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
-                                    title: "Can't Delete this Groups",
+                                    title: "Can't Delete this Group",
                                     showConfirmButton: false,
                                     timer: 1500
                                 })

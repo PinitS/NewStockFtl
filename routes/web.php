@@ -189,6 +189,8 @@ Route::middleware(['auth'])->group(function () {
                 return view('pages.report.report.pointerLocation.index');
             });
             Route::get('getAllDetail', [LocationProductDetailController::class, 'getAllDetail']);
+            Route::get('getFilter', [LocationProductDetailController::class, 'getFilter']);
+
         });
     });
 

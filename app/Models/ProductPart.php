@@ -16,6 +16,6 @@ class ProductPart extends Model
 
     public function groupPart()
     {
-        return $this->belongsTo('App\Models\GroupParts' , 'group_part_id');
+        return $this->belongsTo('App\Models\GroupParts' ,'group_part_id');
     }
 }

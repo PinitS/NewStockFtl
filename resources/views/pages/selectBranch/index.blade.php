@@ -14,7 +14,7 @@
                     <select class="form-control pnt-sel-branch">
                     </select>
                 </div>
-                <button class="btn btn-primary btn-card pnt-goto-branch">Go to Branch</button>
+                <button class="btn btn-danger btn-card pnt-goto-branch">Go to Branch</button>
             </div>
         </div>
     </div>
@@ -31,6 +31,7 @@
         $(document).ready(function () {
             getbranch();
         });
+
         function getbranch() {
             $.ajax({
                 type: "get",
@@ -42,8 +43,6 @@
                     if (data.status) {
                         var str = "<option value=" + 0 + "> <strong>" + "Select Branch" + "</strong></option>";
                         $.each(data.branch, function (index, value) {
-                            console.log(value.id)
-                            console.log(value.name)
                             str += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
                         window.dropdown_branch.append(str);
@@ -77,7 +76,6 @@
                         '_token': window.token,
                     },
                     success: function (data) {
-                        console.log(data);
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\GroupParts;
 use App\Models\ProductPart;
 
@@ -24,10 +25,8 @@ class ProductPartsController extends Controller
     {
         $ProductParts = ProductPart::all();
 
-        foreach ($ProductParts as $ProductPart)
-        {
-            if($ProductPart->location_product_id == $request->input('product_id') && $ProductPart->group_part_id == $request->input('group_part_id'))
-            {
+        foreach ($ProductParts as $ProductPart) {
+            if ($ProductPart->location_product_id == $request->input('product_id') && $ProductPart->group_part_id == $request->input('group_part_id')) {
                 return response()->json(['status' => false]);
             }
         }
@@ -42,7 +41,7 @@ class ProductPartsController extends Controller
         }
     }
 
-    public function update(Request $request , $id)
+    public function update(Request $request, $id)
     {
         $item = ProductPart::find($id);
         $item->quantity = $request->input('quantity');
@@ -53,7 +52,7 @@ class ProductPartsController extends Controller
         }
     }
 
-    public function delete(Request $request , $id)
+    public function delete(Request $request, $id)
     {
         ProductPart::find($id)->delete();
         return response()->json(['status' => true]);

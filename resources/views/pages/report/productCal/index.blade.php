@@ -68,7 +68,6 @@
                 },
                 success: function (data) {
                     window.selProduct.empty();
-                    console.log(data);
                     if (data.status) {
                         var product = "";
                         var selected = 0;
@@ -100,7 +99,6 @@
                 success: function (data) {
                     window.table.destroy();
                     if (data.status) {
-                        console.log(data);
                         $('.data-section').html(null);
                         $.each(data.stockParts, function (index, value) {
                             $('.data-section').append(

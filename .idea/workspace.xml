@@ -2,13 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0fde719-c7b0-4ec5-bf8a-93c264a6b79f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/images/marker/iconblue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/marker/iconfirst.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/marker/icongreen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/marker/iconred.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BranchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BranchController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DashBoardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DashBoardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Responses/LoginResponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Responses/LoginResponse.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/loading.gif" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/loading.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GroupPartsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GroupPartsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LocationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LocationModelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocationModelController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LocationProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocationProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LocationProductDetailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocationProductDetailController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductPartsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductPartsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/GroupParts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/GroupParts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Location.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Location.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/LocationModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LocationModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/LocationProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LocationProduct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ProductPart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ProductPart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/StockBranch.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/StockBranch.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/StockCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/StockCategory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/StockPart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/StockPart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/customer/productList/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/customer/productList/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/manage/branch/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/manage/branch/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/manage/groupParts/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/manage/groupParts/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/manage/location/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/manage/location/index.blade.php" afterDir="false" />
@@ -17,10 +33,12 @@
       <change beforePath="$PROJECT_DIR$/resources/views/pages/product_location/product/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/product_location/product/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/report/dashBoard/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/report/dashBoard/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/report/productCal/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/report/productCal/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/report/report/pointerLocation/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/report/report/pointerLocation/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/selectBranch/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/selectBranch/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/selectCustomer/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/selectCustomer/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/stock/category/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/stock/category/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/stock/parts/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/stock/parts/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,19 +200,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\report" />
-      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\dashBroad" />
-      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\productCal" />
-      <recent name="C:\xampp\htdocs\FarmThailand\public\images" />
-      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\manage\groupParts" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\report\pointerLocation" />
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages" />
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\manage" />
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\product_location" />
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\stock" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\report" />
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\dashBroad" />
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\productCal" />
+      <recent name="C:\xampp\htdocs\FarmThailand\public\images" />
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\manage\groupParts" />
     </key>
   </component>
   <component name="RunManager">
@@ -243,7 +261,8 @@
       <workItem from="1604282577966" duration="7939000" />
       <workItem from="1604290714874" duration="4000" />
       <workItem from="1604291789140" duration="14858000" />
-      <workItem from="1604309205766" duration="1281000" />
+      <workItem from="1604309205766" duration="1922000" />
+      <workItem from="1604367642425" duration="25901000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <created>1602576633325</created>
@@ -315,7 +334,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604290544925</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="กำลังเริ่มทำ การป้องกัน delete">
+      <created>1604310520342</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1604310520342</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,21 +358,22 @@
     <MESSAGE value="เหลือ ทำรีพอท กับ เก็บงาน" />
     <MESSAGE value="เตรียมเก็บงาน" />
     <MESSAGE value="ทำหน้า profile" />
-    <option name="LAST_COMMIT_MESSAGE" value="ทำหน้า profile" />
+    <MESSAGE value="กำลังเริ่มทำ การป้องกัน delete" />
+    <option name="LAST_COMMIT_MESSAGE" value="กำลังเริ่มทำ การป้องกัน delete" />
   </component>
   <component name="WindowStateProjectService">
     <state x="391" y="71" key="#Deployment" timestamp="1602574452354">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="391" y="71" key="#Deployment/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1602574452354" />
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1603960676951">
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604370546875">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1603960676951" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1604290542832">
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1604370546875" />
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1604310517227">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1604290542832" />
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1604310517227" />
     <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1603270761296" />
     <state x="652" y="245" key="FileChooserDialogImpl" timestamp="1603269844121">
       <screen x="0" y="0" width="1536" height="824" />
@@ -374,10 +401,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="576" height="446" key="SwitcherDM/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1603096390259" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1604290547559">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1604310524572">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1604290547559" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1604310524572" />
     <state x="2371" y="183" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602574998080" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1603270767716" />
     <state x="611" y="146" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1602574127112">
@@ -401,10 +428,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1603945162874" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1604285698981">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1604396200707">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1603956520909" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1604396200707" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1604285698981" />
   </component>
   <component name="XDebuggerManager">
@@ -412,7 +439,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/layouts/master.blade.php</url>
-          <line>137</line>
+          <line>134</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>

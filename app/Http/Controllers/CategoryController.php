@@ -43,8 +43,14 @@ class CategoryController extends Controller
 
     public function delete($id)
     {
-        StockCategory::find($id)->delete();
-        return response()->json(['status' => true]);
+        $item = StockCategory::find($id);
+        if (count($item->parts) > 0 ){
+            return response()->json(['status' => false]);
+        }else{
+            $item->delete();
+            return response()->json(['status' => true]);
+        }
+
     }
 
 

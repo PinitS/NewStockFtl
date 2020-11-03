@@ -258,7 +258,7 @@
                     if (data.status) {
                         $('.data-section').html(null);
                         $.each(data.dataSet.product, function (index, value) {
-                            $('.data-section').append(
+                            let localHtml =
                                 "<tr><td>" +
                                 (index + 1) +
                                 "</td><td>" +
@@ -270,9 +270,15 @@
                                 "</td><td>" +
                                 "<div class = 'd-flex'>" +
                                 "<button  class='btn btn-secondary text-white pnt-btn-parts shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + value.id + "'><i class='fa fa-file'></i></button>" +
-                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + value.id + "'><i class='fa fa-pencil-square-o'></i></button>" +
-                                "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
-                            )
+                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + value.id + "'><i class='fa fa-pencil-square-o'></i></button>";
+
+                            if(value.delete_active)
+                            {
+                                localHtml += "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>";
+                            }
+
+
+                            $('.data-section').append(localHtml);
                         });
                         window.table = $('#productInformation').DataTable();
                         $('#pnt-loading').hide();
@@ -289,7 +295,6 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
-                    console.log(data);
                     window.tablePath.destroy();
                     $('.data-section-productPart').html(null);
                     $.each(data.productParts, function (index, value) {
@@ -320,7 +325,7 @@
 
         // btn-add-product
         $(document).off('click', '.pnt-bnt-add-product').on('click', '.pnt-bnt-add-product', (e) => {
-            $(".pnt-modal-add-product").modal();
+            $('.pnt-modal-add-product').modal();
             $('.pnt-modal-add-product-name').val('');
             $('.pnt-modal-add-product-description').val('');
 
@@ -390,9 +395,7 @@
                 type: "get",
                 url: '{!! url('product_location/product/getOneProduct') !!}/' + window.id,
                 success: function (data) {
-                    console.log(data.product.location_model_id)
                     if (data.status) {
-                        console.log(data)
                         $('.pnt-modal-sel-edit-product-model').val(data.product.location_model_id).change();
                         $('.pnt-modal-edit-product-name').val(data.product.name);
                         $('.pnt-modal-edit-product-description').val(data.product.description);
@@ -480,15 +483,25 @@
                             $('#pnt-loading').show();
                         },
                         success: function (data) {
+                            if (data.status) {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Delete Product Success fully',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            } else {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    title: "Can't Delete this Product",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
                             resetTable();
                             $('#pnt-loading').hide();
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Delete Product Success fully',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
                         }
                     });
                 }
@@ -499,7 +512,6 @@
         // pnt-btn-parts
         $(document).off('click', '.pnt-btn-parts').on('click', '.pnt-btn-parts', (e) => {
             window.id = $(e.currentTarget).val();
-            console.log('product_part', window.id);
             $('.pnt-add-path-edit-data-toggle').hide();
             $('.pnt-add-path-data-toggle').hide();
             resetProductParts();
@@ -546,7 +558,6 @@
                             $('#pnt-loading').show();
                         },
                         success: function (data) {
-                            console.log(data);
                             if (data.status) {
                                 Swal.fire({
                                     position: 'top-end',
@@ -599,7 +610,6 @@
                 },
                 success: function (data) {
                     if (data.status) {
-                        console.log(data)
                         $('.pnt-modal-sel-edit-group-quantity').val(data.productParts.quantity);
                     }
                 }

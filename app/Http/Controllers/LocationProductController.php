@@ -6,6 +6,7 @@ use App\Models\GroupParts;
 use App\Models\Location;
 use App\Models\LocationModel;
 use App\Models\LocationProduct;
+use App\Models\ProductPart;
 use Illuminate\Http\Request;
 
 class LocationProductController extends Controller
@@ -15,7 +16,7 @@ class LocationProductController extends Controller
         $dataSet = [
             'group' => GroupParts::all(),
             'model' => LocationModel::all(),
-            'product' => LocationProduct::with( 'locationModel')->get(),
+            'product' => LocationProduct::with('locationModel')->get(),
         ];
         return response()->json(['status' => true, 'dataSet' => $dataSet]);
     }
@@ -53,7 +54,13 @@ class LocationProductController extends Controller
 
     function delete($id)
     {
-        LocationProduct::find($id)->delete();
-        return response()->json(['status' => true]);
+        $item = LocationProduct::find($id);
+        if (count($item->locationProductLists) > 0) {
+            return response()->json(['status' => false]);
+        } else {
+            $item->delete();
+            ProductPart::where('location_product_id', $id)->delete();
+            return response()->json(['status' => true]);
+        }
     }
 }

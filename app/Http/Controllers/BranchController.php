@@ -59,7 +59,5 @@ class BranchController extends Controller
             $item->delete();
             return response()->json(['status' => true]);
         }
-
     }
-
 }

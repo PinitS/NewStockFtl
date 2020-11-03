@@ -26,7 +26,7 @@ class StockPart extends Model
 
     public function groupPart()
     {
-        return $this->belongsTo('App\Models\GroupParts' );
+        return $this->belongsTo('App\Models\GroupParts');
     }
 
 }

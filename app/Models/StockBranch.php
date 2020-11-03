@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class StockBranch extends Model
 {
     use HasFactory;
-
     protected $appends = ['delete_active'];
 
     public function parts()
@@ -23,11 +22,10 @@ class StockBranch extends Model
 
     public function getDeleteActiveAttribute()
     {
-        if (count($this->parts) > 0 || count($this->categories) > 0){
+        if (count($this->parts) > 0 || count($this->categories) > 0) {
             return false;
-        }else{
+        } else {
             return true;
         }
-
     }
 }

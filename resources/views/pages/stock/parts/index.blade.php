@@ -370,7 +370,6 @@
                     '_token': window.token,
                 },
                 success: function (data) {
-                    // console.log(data.dataSet.group);
                     window.editPart.empty();
                     window.filter.empty();
                     window.addpart.empty();
@@ -560,12 +559,8 @@
         // pnt-btn-modal-plus-save
         $(document).off('click', '.pnt-btn-modal-plus-save').on('click', '.pnt-btn-modal-plus-save', (e) => {
             $(e.currentTarget).prop('disabled', true);
-
-            console.log("plus")
-            console.log(window.change_id);
             var quantity = $('.pnt-plus-quantity').val();
             var description = $('.pnt-plus-detail').val();
-            console.log(quantity);
             if (quantity == "" || quantity <= 0) {
                 Swal.fire({
                     position: 'top-end',
@@ -585,7 +580,6 @@
         $(document).off('click', '.pnt-btn-minus').on('click', '.pnt-btn-minus', (e) => {
             window.id = $(e.currentTarget).val();
             window.change_id = $(e.currentTarget).attr('data-id');
-            console.log(window.change_id);
             $('.pnt-btn-modal-minus-save').prop('disabled', false);
             getOnePart();
         });
@@ -594,11 +588,8 @@
         // pnt-btn-modal-minus-save
         $(document).off('click', '.pnt-btn-modal-minus-save').on('click', '.pnt-btn-modal-minus-save', (e) => {
             $(e.currentTarget).prop('disabled', true);
-
-            console.log("minus")
             var quantity = $('.pnt-minus-quantity').val();
             var description = $('.pnt-minus-detail').val();
-            console.log('update', quantity);
             if (quantity == "" || quantity <= 0 || quantity > window.checkQuantity) {
                 Swal.fire({
                     position: 'top-end',
@@ -686,7 +677,6 @@
                         $('#pnt-loading').show();
                     },
                     success: function (data) {
-                        console.log(data)
                         if (data.status) {
                             $(".pnt-modal-edit").modal('hide');
                             $('.pnt-btn-modal-edit-parts-save').prop('disabled', false);
@@ -732,7 +722,6 @@
         // btn-delete
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
             window.id = $(e.currentTarget).val();
-            console.log($(e.currentTarget).val());
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

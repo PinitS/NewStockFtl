@@ -49,8 +49,12 @@ class LocationController extends Controller
 
     public function delete($id)
     {
-        Location::find($id)->delete();
-        return response()->json(['status' => true]);
+        $item = Location::find($id);
+        if (count($item->productLists) > 0) {
+            return response()->json(['status' => false]);
+        } else {
+            $item->delete();
+            return response()->json(['status' => true]);
+        }
     }
-    //
 }

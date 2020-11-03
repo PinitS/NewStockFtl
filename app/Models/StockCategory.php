@@ -9,6 +9,8 @@ class StockCategory extends Model
 {
     use HasFactory;
 
+    protected $appends = ['delete_active'];
+
     public function parts()
     {
         return $this->hasMany('App\Models\StockPart');
@@ -17,5 +19,14 @@ class StockCategory extends Model
     public function branch()
     {
         return $this->belongsTo('App\Models\StockBranch');
+    }
+
+    public function getDeleteActiveAttribute()
+    {
+        if (count($this->parts) > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

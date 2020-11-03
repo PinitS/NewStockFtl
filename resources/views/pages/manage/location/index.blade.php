@@ -174,12 +174,10 @@
                 },
                 success: function (data) {
                     if (data.status) {
-                        console.log(data);
                         table.destroy();
                         $('.data-section').html(null);
                         $.each(data.location, function (index, value) {
-                            $('.data-section').append(
-                                "<tr><td>" +
+                            let localHtml = "<tr><td>" +
                                 (index + 1) +
                                 "</td><td>" +
                                 value.name +
@@ -190,9 +188,13 @@
                                 "</td><td>" +
                                 "<div class = 'd-flex'>" +
                                 "<button  class='btn btn-info text-white shadow btn-xs sharp mr-1' onclick='showOnMap(" + value.latitude + ", " + value.longitude + ")'><i class='fa fa-map-marker'></i></button>" +
-                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>" +
-                                "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
-                            )
+                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>";
+
+                            if (value.delete_active) {
+                                localHtml += "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>";
+                            }
+
+                            $('.data-section').append(localHtml)
                         });
                         table = $('#locationInformation').DataTable();
                         $('#pnt-loading').hide();
@@ -234,7 +236,6 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
-                    console.log(data)
                     if (data.status) {
                         $('.pnt-modal-add-location').modal('hide');
                         $('#pnt-loading').hide();
@@ -284,20 +285,29 @@
                             $('#pnt-loading').show();
                         },
                         success: function (data) {
-                            resetTable();
+                            if (data.status) {
+                                resetTable();
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Delete Customer Success fully',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            } else {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    title: "Can't Delete this Customer",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
                             $('#pnt-loading').hide();
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Delete Customer Success fully',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
                         }
                     });
                 }
             })
-
         });
         // end btn-delete
 
@@ -309,7 +319,6 @@
                 type: "get",
                 url: "{!! url('manage/location/getOneLocation') !!}/" + window.id,
                 success: function (data) {
-                    console.log(data);
                     if (data.status) {
                         $(".pnt-modal-edit-location-name").val(data.location.name);
                         $(".pnt-modal-edit-location-phone").val(data.location.phone_number);
@@ -340,7 +349,6 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
-                    console.log(data)
                     if (data.status) {
                         $('.pnt-modal-location-edit').modal('hide');
                         resetTable();
@@ -384,11 +392,8 @@
 
         //map-add
         $(document).off('click', '.getLatLnt-add').on('click', '.getLatLnt-add', (e) => {
-            console.log()
             let lat = centerLat;
             let lng = centerLng;
-            console.log(lat, lng)
-
             $('.map-section-show-only').hide();
             $('.map-section-get-only').show();
             getLatLng(lat, lng);

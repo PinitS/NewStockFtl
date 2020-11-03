@@ -222,7 +222,6 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
-                    console.log(data)
                     if (data.status) {
                         $('.pnt--modal-add-user').modal('hide');
                         $('#pnt-loading').hide();
@@ -266,7 +265,6 @@
         // btn-delete
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
             window.id = $(e.currentTarget).val();
-            console.log($(e.currentTarget).val());
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -366,7 +364,6 @@
                 success: function (data) {
                     if (data.status) {
                         var status = data.userData.status;
-                        console.log(data.userData.status);
                         $('.pnt-input-status').val(data.userData.status).change();
                         $('.pnt-input-username').val(data.userData.name);
                         $('.pnt-input-email').val(data.userData.email);

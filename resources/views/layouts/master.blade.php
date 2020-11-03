@@ -23,10 +23,7 @@
     <script src="{!! url('sweetalert2.all.min.js') !!}"></script>
     <link href="{!! url('sweetalert2.min.css') !!}" rel="stylesheet">
 
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrWrXezL74wcInfHbd0Nfm8BjbdUdHZMw&callback=initMap&libraries=&v=weekly"
-        defer
-    ></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhwxSQw3hnPgiyuGH_0Gj1y-L58luYEvc&callback=initMap&libraries=&v=weekly" defer></script>
 </head>
 
 <body>
@@ -336,6 +333,7 @@ Chat box start
             $('input[name="longitude"]').val(e.latLng.lng());
             let lat = $('.pnt-modal-edit-latitude').val();
             let lng = $('.pnt-modal-edit-longitude').val();
+            console.log(lat)
             getLatLng(lat, lng);
         });
     }
@@ -353,6 +351,7 @@ Chat box start
         }
 
         const markerShow = new google.maps.Marker({
+            icon: '{!! url('images/marker/iconfirst.png') !!}',
             position: {lat: parseFloat(lat), lng: parseFloat(lng)},
         });
         markerShow.setMap(mapShowOnly);
@@ -370,8 +369,9 @@ Chat box start
 
     function getLatLng(lat, lng) {
         deleteMarkers(markersGetOnly);
-        console.log(lat, lng);
+        // console.log(lat, lng);
         const marker = new google.maps.Marker({
+            icon: '{!! url('images/marker/iconfirst.png') !!}',
             position: {lat: parseFloat(lat), lng: parseFloat(lng)},
             map: mapGetOnly,
         });

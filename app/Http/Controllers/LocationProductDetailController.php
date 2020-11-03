@@ -7,6 +7,7 @@ use App\Models\LocationProduct;
 use App\Models\LocationProductDetail;
 use App\Models\LocationProductList;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -22,7 +23,7 @@ class LocationProductDetailController extends Controller
         $dataSet = [
             'location' => Location::all(),
             'product' => LocationProduct::all(),
-            'detail' => Location::with(['productLists', 'productLists.locationProductDetails' ,'productLists.locationProduct.locationModel'  , 'productLists.locationProduct'])->findOrFail(Session::get('customer')[0]['id']),
+            'detail' => Location::with(['productLists', 'productLists.locationProductDetails', 'productLists.locationProduct.locationModel', 'productLists.locationProduct'])->findOrFail(Session::get('customer')[0]['id']),
             'option' => $status_op,
         ];
         return response()->json(['status' => true, 'dataSet' => $dataSet]);
@@ -33,9 +34,64 @@ class LocationProductDetailController extends Controller
         return response()->json(['status' => true, 'product' => LocationProductDetail::with('locationProductList')->find($id)]);
     }
 
-    function getAllDetail()
+    function getFilter()
     {
-        return response()->json(['status' => true, 'product' => LocationProductDetail::all()]);
+        $status_op = [
+            'Working',
+            'maintenance',
+            'Setup',
+        ];
+        $dataSet = [
+            'customer' => Location::all(),
+            'product' => LocationProduct::all(),
+            'status' => $status_op,
+        ];
+        return response()->json(['status' => true, 'dataSet' => $dataSet]);
+    }
+
+    function getAllDetail(Request $request)
+    {
+        $customer_id = (int)$request->input('customer_id');
+        $product_id = (int)$request->input('product_id');
+        $status_id = $request->input('status_id');
+
+        $has_query = false;
+
+        if ($customer_id != '' && $customer_id != 0) {
+            $product_lists = LocationProductList::where('location_id', $customer_id);
+            $has_query = true;
+        }
+
+        if ($product_id != '' && $product_id != 0) {
+            if ($has_query){
+                $product_lists = $product_lists->where('location_product_id', $product_id);
+            }else{
+                $product_lists = LocationProductList::where('location_product_id', $product_id);
+            }
+            $has_query = true;
+        }
+
+        if ($status_id != '' && $status_id != 10) {
+            $status_id = (int)$status_id;
+            if ($has_query){
+                $product_lists = $product_lists->whereHas('locationProductDetails', function (Builder $query) use ($status_id) {
+                    $query->where('status', $status_id);
+                });
+
+            }else{
+                $product_lists = LocationProductList::whereHas('locationProductDetails', function (Builder $query) use ($status_id) {
+                    $query->where('status', $status_id);
+                });
+            }
+            $has_query = true;
+        }
+        if (!$has_query){
+            $product_lists = LocationProductList::with(['locationProductDetails','location' , 'locationProduct'])->get();
+        }else{
+            $product_lists = $product_lists->with(['locationProductDetails','location' ,'locationProduct'])->get();
+        }
+
+        return response()->json(['status' => true, 'product' => $product_lists]);
     }
 
     function create(Request $request)
@@ -56,7 +112,7 @@ class LocationProductDetailController extends Controller
             if ($item_list->save()) {
                 $item = new LocationProductDetail;
                 $item->location_product_list_id = $item_list->id;
-                $item->code = $i.$genCode;
+                $item->code = $i . $genCode;
                 $item->latitude = $customer->latitude;
                 $item->longitude = $customer->longitude;
                 $item->status = 2;

@@ -22,7 +22,6 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">History Parts</h4>
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -35,7 +34,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="card-body">
                     <div class="chartjs-size-monitor">
@@ -77,7 +75,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h4 class="card-title">All users</h4>
+                    <h4 class="card-title">All Customer</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -85,8 +83,10 @@
                             <thead>
                             <tr>
                                 <th class="text-dark">#</th>
-                                <th class="text-dark">Username</th>
-                                <th class="text-dark">Status</th>
+                                <th class="text-dark">Name</th>
+                                <th class="text-dark">Products(Count)</th>
+                                <th class="text-dark">Phone number</th>
+
                             </tr>
                             </thead>
                             <tbody class="data-section-users">
@@ -214,14 +214,16 @@
                     //userDash
                     tableUsers.destroy();
                     $('.data-section-users').html(null);
-                    $.each(data.dataSet.dataUsers, function (index, value) {
+                    $.each(data.dataSet.customer, function (index, value) {
                         $('.data-section-users').append(
                             "<tr><td>" +
                             (index + 1) +
                             "</td><td>" +
                             value.name +
                             "</td><td>" +
-                            (value.status > 0 ? "<span class='badge badge-pill badge-danger'>Admin</span>" : "<span class='badge badge-pill badge-primary'>Member</span>") +
+                            value.cnt +
+                            "</td><td>" +
+                            value.phone_number +
                             "</td></tr>"
                         )
                     });

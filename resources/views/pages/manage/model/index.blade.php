@@ -104,22 +104,21 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
-                    console.log(data);
                     if (data.status) {
                         table.destroy();
                         $('.data-section').html(null);
                         $.each(data.locationModel, function (index, value) {
-
-                            $('.data-section').append(
-                                "<tr><td>" +
+                            let localHtml = "<tr><td>" +
                                 (index + 1) +
                                 "</td><td>" +
                                 value.name +
                                 "</td><td>" +
                                 "<div class = 'd-flex'>" +
-                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>" +
-                                "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
-                            )
+                                "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>";
+                            if (value.delete_active) {
+                                localHtml += "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
+                            }
+                            $('.data-section').append(localHtml);
                         });
                         table = $('#modelInformation').DataTable();
                         $('#pnt-loading').hide();
@@ -152,7 +151,6 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
-                    console.log(data)
                     if (data.status) {
                         $('.pnt-modal-add-model').modal('hide');
                         $('#pnt-loading').hide();
@@ -201,7 +199,6 @@
 
         // btn save update modal
         $(document).off('click', '.pnt-btn-modal-save').on('click', '.pnt-btn-modal-save', e => {
-            console.log(window.id)
             $.ajax({
                 type: "post",
                 url: "{!! url('manage/model/update') !!}/" + window.id,
@@ -244,8 +241,6 @@
         // btn-delete
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
             window.id = $(e.currentTarget).val();
-            console.log($(e.currentTarget).val());
-
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -263,15 +258,25 @@
                             $('#pnt-loading').show();
                         },
                         success: function (data) {
-                            resetTable();
+                            if (data.status) {
+                                resetTable();
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Delete Model Success fully',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            } else {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    title: "Can't Delete this Model",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
                             $('#pnt-loading').hide();
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Delete Model Success fully',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
                         }
                     });
                 }

@@ -276,7 +276,6 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
-                    console.log(data.branch.latitude);
                     if (data.status) {
                         $('.pnt-modal-edit-branch-name').val(data.branch.name);
                         $('.pnt-modal-edit-branch-phone').val(data.branch.phone_number);
@@ -308,7 +307,6 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
-                    console.log(data)
                     if (data.status) {
                         $('.pnt-modal-edit').modal('hide');
                         $('#pnt-loading').hide();
@@ -387,11 +385,8 @@
 
         //map-add
         $(document).off('click', '.getLatLnt-add').on('click', '.getLatLnt-add', (e) => {
-            console.log()
             let lat = centerLat;
             let lng = centerLng;
-            console.log(lat, lng)
-
             $('.map-section-show-only').hide();
             $('.map-section-get-only').show();
 

@@ -14,7 +14,7 @@
                     <select class="form-control pnt-sel-customer">
                     </select>
                 </div>
-                <button class="btn btn-primary btn-card pnt-goto-branch">Go to Customer</button>
+                <button class="btn btn-warning text-white btn-card pnt-goto-branch">Go to Customer</button>
             </div>
         </div>
     </div>
@@ -41,12 +41,9 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
-                    console.log(data)
                     if (data.status) {
                         var str = "<option value=" + 0 + "> <strong>" + "Select Customer" + "</strong></option>";
                         $.each(data.location, function (index, value) {
-                            console.log(value.id)
-                            console.log(value.name)
                             str += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
                         window.dropdown_customer.append(str);
@@ -80,7 +77,6 @@
                         '_token': window.token,
                     },
                     success: function (data) {
-                        console.log(data);
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
