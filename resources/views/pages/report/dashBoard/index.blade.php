@@ -206,7 +206,7 @@
                             cnt = 0;
                         }
                         date = moment(value.created_at).fromNow();
-                        dataTimeline += "<li><div class='timeline-badge " + color[cnt] + "'></div><a class='timeline-panel text-muted'><span>" + date + "<strong>" + " By " + value.user.name + "</strong>" + "</span><h6 class='mb-0'>" + value.detail + "</h6></a></li>"
+                        dataTimeline += "<li><div class='timeline-badge " + color[cnt] + "'></div><a class='timeline-panel text-muted'><span>" + date + "<strong>" + " By " + (value.user == null ? "-" : value.user.name) + "</strong>" + "</span><h6 class='mb-0'>" + value.detail + "</h6></a></li>"
                         cnt++;
                     });
                     window.text_card_timeline.append(dataTimeline);

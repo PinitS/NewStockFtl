@@ -25,7 +25,6 @@ class BranchRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'phone_number' => 'digits:10|numeric',
             'latitude' => 'nullable',
             'longitude' => 'nullable',
             'address' => 'required',

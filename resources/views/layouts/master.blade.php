@@ -10,11 +10,13 @@
     <link rel="icon" type="{!! url('image/png') !!}" sizes="16x16" href="{!! '/images/favicon.png' !!}">
     <link href="{!! url('/vendor/jqvmap/css/jqvmap.min.css') !!}" rel="stylesheet">
     <link rel="stylesheet" href="{!! '/vendor/chartist/css/chartist.min.css' !!}">
+    <link rel="stylesheet" href="{!! url('/vendor/select2/css/select2.min.css') !!}">
     <link href="{!! url('/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') !!}" rel="stylesheet">
     <link href="{!! url('/css/style.css') !!}" rel="stylesheet">
     <link href="{!! url('https://cdn.lineicons.com/2.0/LineIcons.css') !!}" rel="stylesheet">
     <link href="{!! url('/vendor/datatables/css/jquery.dataTables.min.css') !!}" rel="stylesheet">
     <script src="{!! url('moment.min.js') !!}"></script>
+
 
     {{--    chart.js--}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
@@ -300,6 +302,9 @@ Chat box start
 
 <!-- Svganimation scripts -->
 <script src="{!! url('/vendor/svganimation/svg.animation.js') !!}"></script>
+
+<script src="{!! url('/vendor/select2/js/select2.full.min.js') !!}"></script>
+<script src="{!! url('/js/plugins-init/select2-init.js') !!}"></script>
 
 <script>
     let mapShowOnly;

@@ -48,12 +48,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend w-10">
-                            <span class="input-group-text">&nbsp Product</span>
-                        </div>
-                        <select class="form-control pnt-modal-sel-add-detail-product">
-                        </select>
+                    <div class="form-group">
+                        <label class="mb-1"><strong>Products</strong></label>
+                        <select class="form-control pnt-modal-sel-add-detail-product"></select>
                     </div>
 
                     <div class="form-group">
@@ -147,7 +144,7 @@
         var table = $('#detailInformation').DataTable();
 
         function getOptionDropdown() {
-            var addProduct = $('.pnt-modal-sel-add-detail-product');
+            var addProduct = $('.pnt-modal-sel-add-detail-product').select2();
             var editProduct = $('.pnt-modal-sel-edit-detail-product');
 
             var addLocation = $('.pnt-modal-sel-add-product-location');

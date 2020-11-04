@@ -64,18 +64,14 @@
                 </div>
                 <div class="modal-body">
 
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend w-10">
-                            <span class="input-group-text">Category</span>
-                        </div>
+                    <div class="form-group">
+                        <label class="mb-1"><strong>Categories</strong></label>
                         <select class="form-control pnt-modal-sel-add-parts-category">
                         </select>
                     </div>
 
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend w-10">
-                            <span class="input-group-text">&nbsp &nbsp Group &nbsp</span>
-                        </div>
+                    <div class="form-group">
+                        <label class="mb-1"><strong>Group Parts</strong></label>
                         <select class="form-control pnt-modal-sel-add-group-parts">
                         </select>
                     </div>
@@ -124,7 +120,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-plus"></i></span>
                         </div>
-                        <input type="number" class="form-control pnt-plus-quantity" value="">
+                        <input type="number" class="form-control pnt-plus-quantity" value="" autofocus>
                         <input type="text" class="form-control pnt-plus-detail" placeholder="Description...">
                     </div>
 
@@ -220,18 +216,14 @@
                 </div>
                 <div class="modal-body">
 
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend w-10">
-                            <span class="input-group-text">Category</span>
-                        </div>
+                    <div class="form-group">
+                        <label class="mb-1"><strong>Categories</strong></label>
                         <select class="form-control pnt-modal-sel-edit-parts-category">
                         </select>
                     </div>
 
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend w-10">
-                            <span class="input-group-text">&nbsp &nbsp Group &nbsp</span>
-                        </div>
+                    <div class="form-group">
+                        <label class="mb-1"><strong>Group Parts</strong></label>
                         <select class="form-control pnt-modal-sel-edit-group-parts">
                         </select>
                     </div>
@@ -272,15 +264,14 @@
         var change_id = 0;
         var table = $('#partsInformation').DataTable();
         var table_history = $('#partsHistory').DataTable();
-        var filter_dropdown = $('.pnt-sel-filter-category');
         var category_filter = 0;
         var checkQuantity = 0;
 
         var filter = $('.pnt-sel-filter-category');
-        var addpart = $('.pnt-modal-sel-add-parts-category');
-        var addgroup = $('.pnt-modal-sel-add-group-parts');
-        var editPart = $('.pnt-modal-sel-edit-parts-category');
-        var editgroup = $('.pnt-modal-sel-edit-group-parts');
+        var addpart = $('.pnt-modal-sel-add-parts-category').select2();
+        var addgroup = $('.pnt-modal-sel-add-group-parts').select2();
+        var editPart = $('.pnt-modal-sel-edit-parts-category').select2();
+        var editgroup = $('.pnt-modal-sel-edit-group-parts').select2();
 
 
         function getOnePart() {
@@ -371,7 +362,6 @@
                 },
                 success: function (data) {
                     window.editPart.empty();
-                    window.filter.empty();
                     window.addpart.empty();
                     window.addgroup.empty();
                     window.editgroup.empty();
@@ -381,9 +371,7 @@
                             str += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
                         window.editPart.append(str);
-                        window.filter.append(str);
                         window.addpart.append(str);
-                        window.filter.selectpicker('refresh');
                         window.addpart.selectpicker('refresh');
                         window.editPart.selectpicker('refresh');
                         var group_option = "<option value=" + 0 + "> <strong>" + "New Parts" + "</strong></option>";
@@ -394,6 +382,29 @@
                         window.addgroup.selectpicker('refresh');
                         window.editgroup.append(group_option);
                         window.editgroup.selectpicker('refresh');
+                    }
+                }
+            });
+        }
+
+        function getfilterCategory()
+        {
+            $.ajax({
+                type: "post",
+                url: '{!! url('stock/parts/getParts') !!}',
+                data: {
+                    filter_category_id: 0,
+                    '_token': window.token,
+                },
+                success: function (data) {
+                    window.filter.empty();
+                    if (data.status) {
+                        var str = "<option value=" + 0 + "> <strong>" + "All Categories " + "</strong></option>";
+                        $.each(data.dataSet.categories, function (index, value) {
+                            str += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
+                        });
+                        window.filter.append(str);
+                        window.filter.selectpicker('refresh');
                     }
                 }
             });
@@ -446,6 +457,7 @@
         }
 
         $(document).ready(function () {
+            getfilterCategory();
             resetTable(window.category_filter);
         });
 
@@ -499,6 +511,7 @@
                                 $('.pnt-modal-add-parts-quantity').val('');
                                 $('.pnt-modal-add-parts').modal('hide');
                                 $('pnt-bnt-add-parts').prop('disabled', false);
+                                getfilterCategory();
                                 resetTable();
                                 Swal.fire({
                                     position: 'top-end',

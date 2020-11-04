@@ -211,3 +211,8 @@ Route::middleware(['auth'])->group(function () {
     //end Session customer
 
 });
+
+
+Route::get('/testpage', function () {
+    return view('testpage');
+});
