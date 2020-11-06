@@ -81,16 +81,6 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('destroy/{id}', [LocationModelController::class, 'delete']);
             });
 
-            Route::prefix('shop')->group(function () {
-                Route::middleware(['adminRoute'])->get('/', function () {
-                    return view('pages.manage.shop.index');
-                });
-//                Route::get('getGroups', [GroupPartsController::class, 'getGroups']);
-//                Route::get('getOneGroup/{id}', [GroupPartsController::class, 'getOneGroup']);
-//                Route::post('update/{id}', [GroupPartsController::class, 'update']);
-//                Route::get('destroy/{id}', [GroupPartsController::class, 'delete']);
-            });
-
             Route::prefix('groupParts')->group(function () {
                 Route::middleware(['adminRoute'])->get('/', function () {
                     return view('pages.manage.groupParts.index');
@@ -133,11 +123,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', function () {
             return view('pages.customer.productList.index');
         });
-        Route::get('getCategories', [CategoryController::class, 'getCategories'])->name('getCategories');
-        Route::get('getCategory/{id}', [CategoryController::class, 'getCategory'])->name('getCategory');
-        Route::post('create', [CategoryController::class, 'create'])->name('createCategory');
-        Route::post('update/{id}', [CategoryController::class, 'update']);
-        Route::get('destroy/{id}', [CategoryController::class, 'delete']);
+//        Route::get('getCategories', [CategoryController::class, 'getCategories'])->name('getCategories');
+//        Route::get('getCategory/{id}', [CategoryController::class, 'getCategory'])->name('getCategory');
+//        Route::post('create', [CategoryController::class, 'create'])->name('createCategory');
+//        Route::post('update/{id}', [CategoryController::class, 'update']);
+//        Route::get('destroy/{id}', [CategoryController::class, 'delete']);
     });
 
 

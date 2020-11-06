@@ -247,6 +247,7 @@
         // btn-save-add-detail
         $(document).off('click', '.pnt-btn-modal-add-detail-save').on('click', '.pnt-btn-modal-add-detail-save', e => {
             var product_id = $(".pnt-modal-sel-add-detail-product option:selected").val();
+            console.log()
             $('.pnt-btn-modal-add-detail-save').prop('disabled', true);
 
             if (product_id == 0) {
@@ -273,6 +274,7 @@
                         data: {
                             location_product_id: product_id,
                             quantity: $('.pnt-modal-add-detail-quantity').val(),
+                            dealers_id: 0,
                             '_token': window.token,
                         },
                         beforeSend: function () {

@@ -115,6 +115,7 @@ class LocationProductDetailController extends Controller
                 $item->code = $i . $genCode;
                 $item->latitude = $customer->latitude;
                 $item->longitude = $customer->longitude;
+                $item->dealers_id = $request->input('dealers_id');
                 $item->status = 2;
                 $item->sku = "#";
                 $item->save();

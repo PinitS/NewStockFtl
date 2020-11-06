@@ -143,7 +143,7 @@
                             <li><a href="{{ url('manage/users/') }}">User</a></li>
                             <li><a href="{{ url('manage/model/') }}">Model</a></li>
                             <li><a href="{{ url('manage/location/') }}">Customer</a></li>
-                            <li><a href="{{ url('manage/shop/') }}">Shop</a></li>
+                            <li><a href="{{ url('manage/dealer/') }}">Dealer</a></li>
                             <li><a href="{{ url('manage/groupParts/') }}">Group Parts</a></li>
                         </ul>
                     </li>
