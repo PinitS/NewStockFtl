@@ -21,6 +21,7 @@ class LocationController extends Controller
     {
         $item = new Location;
         $item->name = $request->input('name');
+        $item->contact_name = $request->input('contact_name');
         $item->phone_number = $request->input('phone_number');
         $item->latitude = $request->input('latitude');
         $item->longitude = $request->input('longitude');
@@ -36,6 +37,7 @@ class LocationController extends Controller
     {
         $item = Location::find($id);
         $item->name = $request->input('name');
+        $item->contact_name = $request->input('contact_name');
         $item->phone_number = $request->input('phone_number');
         $item->latitude = $request->input('latitude');
         $item->longitude = $request->input('longitude');

@@ -4,13 +4,13 @@
 
 
     <div class="row ">
-        <div class="col-md-5">
+        <div class="col-md-3">
             <div class="card">
                 <div class="card-header border-0 pb-0">
                     <h4 class="card-title">Timeline History</h4>
                 </div>
                 <div class="card-body">
-                    <div id="DZ_W_TimeLine1" class="widget-timeline style-1" style="height:450px;">
+                    <div id="DZ_W_TimeLine1" class="widget-timeline style-1" style="height:250px;">
                         <ul class="timeline text-card-timeline">
                         </ul>
                     </div>
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="col-md-7">
+        <div class="col-md-5">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">History Parts</h4>
@@ -49,11 +49,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
-
-    <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Products Chart</h4>
@@ -67,11 +64,18 @@
                             <div class=""></div>
                         </div>
                     </div>
-                    <canvas id="myChart_doughnut" width="414" height="207" class="chartjs-render-monitor"
-                            style="display: block; width: 414px; height: 207px;"></canvas>
+                    <canvas id="myChart_doughnut" width="250" height="200" class="chartjs-render-monitor"
+                            style="display: block; width: 250px; height: 250px;"></canvas>
                 </div>
             </div>
         </div>
+
+
+    </div>
+
+
+    <div class="row">
+
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header border-0 pb-0">
@@ -84,6 +88,7 @@
                             <tr>
                                 <th class="text-dark">#</th>
                                 <th class="text-dark">Name</th>
+                                <th class="text-dark">Contact Name</th>
                                 <th class="text-dark">Products(Count)</th>
                                 <th class="text-dark">Phone number</th>
 
@@ -97,10 +102,40 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header border-0 pb-0">
+                    <h4 class="card-title">All Dealer</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="dealerData">
+                            <thead>
+                            <tr>
+                                <th class="text-dark">#</th>
+                                <th class="text-dark">Name</th>
+                                <th class="text-dark">Contact Name</th>
+                                <th class="text-dark">Products(Count)</th>
+                                <th class="text-dark">Phone number</th>
+
+                            </tr>
+                            </thead>
+                            <tbody class="data-section-dealer">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
+
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header border-0 pb-0">
                     <h4 class="card-title">All Parts</h4>
@@ -126,6 +161,33 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header border-0 pb-0">
+                    <h4 class="card-title">Parts All Branch</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="all-branch-partsData">
+                            <thead>
+                            <tr>
+                                <th><strong>#</strong></th>
+                                <th><strong>Parts</strong></th>
+                                <th><strong>Quantity</strong></th>
+                            </tr>
+                            </thead>
+                            <tbody class="data-section-all-branch-parts">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
     </div>
 
 @endsection
@@ -154,7 +216,17 @@
             "searching": false,
             "lengthChange": false
         });
+
+        var tableDealer = $('#dealerData').DataTable({
+            "pageLength": 5,
+            "searching": false,
+            "lengthChange": false
+        });
+
+
         var tableParts = $('#partsData').DataTable();
+        var tableAllBranchParts = $('#all-branch-partsData').DataTable();
+
 
         $(document).ready(function () {
             getBranch();
@@ -168,7 +240,7 @@
                 success: function (data) {
                     window.filter_dropdown_branch.empty();
                     if (data.status) {
-                        var branch = "<option value=" + 0 + "> <strong>" + "All Branch" + "</strong></option>";
+                        var branch = "<option value=" + 0 + "> <strong>" + "Select Branch" + "</strong></option>";
                         var select_value = 0;
                         $.each(data.branch, function (index, value) {
                             if (index === 0) {
@@ -197,6 +269,10 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
+
+
+                    console.log(data);
+
                     var dataTimeline = '';
                     var cnt = 0;
                     var date = '';
@@ -221,6 +297,8 @@
                             "</td><td>" +
                             value.name +
                             "</td><td>" +
+                            (value.contact_name == null ? "-" : value.contact_name) +
+                            "</td><td>" +
                             value.cnt +
                             "</td><td>" +
                             value.phone_number +
@@ -234,7 +312,49 @@
                     });
 
 
-                    //userDash
+                    //dealerDash
+                    tableDealer.destroy();
+                    $('.data-section-dealer').html(null);
+                    $.each(data.dataSet.customer, function (index, value) {
+                        $('.data-section-dealer').append(
+                            "<tr><td>" +
+                            (index + 1) +
+                            "</td><td>" +
+                            value.name +
+                            "</td><td>" +
+                            (value.contact_name == null ? "-" : value.contact_name) +
+                            "</td><td>" +
+                            value.cnt +
+                            "</td><td>" +
+                            value.phone_number +
+                            "</td></tr>"
+                        )
+                    });
+                    tableUsers = $('#dealerData').DataTable({
+                        "pageLength": 5,
+                        "searching": false,
+                        "lengthChange": false
+                    });
+                    //ENDdealerDash
+
+                    //partDash
+                    tableAllBranchParts.destroy();
+                    $('.data-section-all-branch-parts').html(null);
+                    $.each(data.dataSet.dataGroup, function (index, value) {
+                        $('.data-section-all-branch-parts').append(
+                            "<tr><td>" +
+                            (index + 1) +
+                            "</td><td>" +
+                            value.name +
+                            "</td><td>" +
+                            value.quantity +
+                            "</td></tr>"
+                        )
+                    });
+                    tableAllBranchParts = $('#all-branch-partsData').DataTable();
+
+
+                    //AllpartDash
                     tableParts.destroy();
                     $('.data-section-parts').html(null);
                     $.each(data.dataSet.dataParts, function (index, value) {
@@ -255,6 +375,10 @@
                         )
                     });
                     tableParts = $('#partsData').DataTable();
+
+
+
+
                     window.color_set = data.dataSet.color;
                     window.product_name = data.dataSet.productNameSet;
                     window.data_donut_chart = data.dataSet.cntProduct;
@@ -274,7 +398,7 @@
                 success: function (data) {
                     window.filter_dropdown_parts.empty();
                     if (data.status) {
-                        var parts = "<option value=" + 0 + "> <strong>" + "All Parts" + "</strong></option>";
+                        var parts = "<option value=" + 0 + "> <strong>" + "Select Parts" + "</strong></option>";
                         var select_value = 0;
                         var select_name_value = '';
                         $.each(data.parts, function (index, value) {

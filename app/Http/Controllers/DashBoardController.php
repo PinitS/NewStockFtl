@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GroupParts;
 use App\Models\Location;
 use App\Models\LocationProduct;
 use App\Models\StockPart;
@@ -45,7 +46,7 @@ class DashBoardController extends Controller
     {
         $stockHistoryTimeline = StockPartHistory::with('user')
             ->orderBy('id', 'DESC')
-            ->take(7)
+            ->take(6)
             ->get();
         $customersData = Location::get();
         $customerSet = [];
@@ -53,6 +54,7 @@ class DashBoardController extends Controller
         foreach ($customersData as $customer) {
             $dataCustomer = [
                 'name' => $customer->name,
+                'contact_name' => $customer->contact_name,
                 'phone_number' => $customer->phone_number,
                 'cnt' => count($customer->productLists),
             ];
@@ -86,11 +88,28 @@ class DashBoardController extends Controller
             array_push($productNameSet, $product->name);
         }
 
+        $dataGroup = [];
+        $groupParts = GroupParts::get();
+        foreach ($groupParts as $part)
+        {
+            $quantity = 0;
+            $data = [];
+            foreach ($part->stockParts as $part)
+            {
+                $quantity += $part->quantity;
+            }
+            $data = [
+                'name' => $part->name,
+                'quantity' => $quantity,
+            ];
+            array_push($dataGroup , $data);
+        }
 
         $dataSet = [
             'dataTimeline' => $stockHistoryTimeline,
             'customer' => $customerSet,
             'dataParts' => $parts,
+            'dataGroup' => $dataGroup,
             'cntProduct' => $cntSet,
             'productNameSet' => $productNameSet,
             'color' => $colorSet
