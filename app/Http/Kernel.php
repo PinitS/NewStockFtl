@@ -8,6 +8,7 @@ use App\Http\Middleware\IfCustomerSessionIsNull;
 use App\Http\Middleware\IfHasAuth;
 use App\Http\Middleware\IfHasBranchSession;
 use App\Http\Middleware\IfHasCustomerSession;
+use App\Http\Middleware\IfHasDealerSession;
 use App\Http\Middleware\IfMemberJoinRouteAdmin;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -73,6 +74,7 @@ class Kernel extends HttpKernel
         'nullCustomerSession' => IfCustomerSessionIsNull::class,
         'hasCustomerSession' => IfHasCustomerSession::class,
         'hasBranchSession' => IfHasBranchSession::class,
+        'hasDealerSession' => IfHasDealerSession::class,
         'adminRoute' => IfMemberJoinRouteAdmin::class,
         'ifAdmin' => IfAdminLogin::class,
         'hasAuth' => IfHasAuth::class,

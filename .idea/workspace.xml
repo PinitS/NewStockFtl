@@ -2,17 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0fde719-c7b0-4ec5-bf8a-93c264a6b79f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/DealerController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Dealer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_11_06_071017_create_dealers_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/ModelSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/DealerSessionController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/IfHasDealerSession.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/pages/selectDealer/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LocationProductDetailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocationProductDetailController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DealerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DealerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Dealer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Dealer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/LocationProductDetail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LocationProductDetail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_16_085815_create_location_product_details_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_16_085815_create_location_product_details_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/customer/productList/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/customer/productList/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/manage/shop/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/manage/dealer/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/manage/dealer/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/manage/dealer/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,25 +172,25 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/pages/manage/shop" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/pages/selectDealer" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\manage\shop" />
-      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\report" />
-      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\dashBroad" />
-      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\productCal" />
-      <recent name="C:\xampp\htdocs\FarmThailand\public\images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\manage" />
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\report\pointerLocation" />
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages" />
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\product_location" />
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\stock" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\selectDealer" />
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages" />
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\manage\shop" />
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\report" />
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\dashBroad" />
     </key>
   </component>
   <component name="RunManager">
@@ -241,7 +244,8 @@
       <workItem from="1604455873677" duration="8453000" />
       <workItem from="1604471696468" duration="346000" />
       <workItem from="1604556419652" duration="43000" />
-      <workItem from="1604633942826" duration="12682000" />
+      <workItem from="1604633942826" duration="12729000" />
+      <workItem from="1604886163387" duration="6712000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <created>1602576633325</created>
@@ -341,7 +345,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604646567451</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="แก้ ส่วนเกิน หน้า web locatrion detail">
+      <created>1604650097719</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1604650097719</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,21 +373,22 @@
     <MESSAGE value="เหลือเทสรอบสุดท้าย" />
     <MESSAGE value="finish 99.258%&#10;wait for setup" />
     <MESSAGE value="เพิ่ม Dealer ในดาต้าเบส ยาวไป&#10;กำลังเพิ่ม" />
-    <option name="LAST_COMMIT_MESSAGE" value="เพิ่ม Dealer ในดาต้าเบส ยาวไป&#10;กำลังเพิ่ม" />
+    <MESSAGE value="แก้ ส่วนเกิน หน้า web locatrion detail" />
+    <option name="LAST_COMMIT_MESSAGE" value="แก้ ส่วนเกิน หน้า web locatrion detail" />
   </component>
   <component name="WindowStateProjectService">
     <state x="391" y="71" key="#Deployment" timestamp="1602574452354">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="391" y="71" key="#Deployment/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1602574452354" />
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604370546875">
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1604889794177">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1604370546875" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1604646562444">
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1604889794177" />
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1604650095060">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1604646562444" />
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1604650095060" />
     <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1603270761296" />
     <state x="2735" y="309" key="FileChooserDialogImpl" timestamp="1604472040901">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -405,10 +417,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="576" height="446" key="SwitcherDM/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1603096390259" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1604463617897">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1604650101068">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1604463617897" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1604650101068" />
     <state x="2371" y="183" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602574998080" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1603270767716" />
     <state x="611" y="146" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1602574127112">
@@ -445,6 +457,31 @@
           <url>file://$PROJECT_DIR$/resources/views/layouts/master.blade.php</url>
           <line>136</line>
           <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/pages/manage/dealer/index.blade.php</url>
+          <line>285</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/pages/manage/dealer/index.blade.php</url>
+          <line>353</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/pages/manage/dealer/index.blade.php</url>
+          <line>401</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/pages/manage/dealer/index.blade.php</url>
+          <line>412</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php</url>
+          <line>21</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -17,7 +17,8 @@ use App\Http\Controllers\CustomerSessionController;
 use App\Http\Controllers\GroupPartsController;
 use App\Http\Controllers\CalProductsController;
 use App\Http\Controllers\DashBoardController;
-
+use App\Http\Controllers\DealerController;
+use App\Http\Controllers\DealerSessionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,6 +58,17 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('create', [BranchController::class, 'create'])->name('createBranch');
                 Route::post('update/{id}', [BranchController::class, 'update']);
                 Route::get('destroy/{id}', [BranchController::class, 'delete']);
+            });
+
+            Route::prefix('dealer')->group(function () {
+                Route::middleware(['adminRoute'])->get('/', function () {
+                    return view('pages.manage.dealer.index');
+                });
+                Route::get('getDealers', [DealerController::class, 'getDealers']);
+                Route::get('getOneDealer/{id}', [DealerController::class, 'getOneDealer']);
+                Route::post('create', [DealerController::class, 'create']);
+                Route::post('update/{id}', [DealerController::class, 'update']);
+                Route::get('destroy/{id}', [DealerController::class, 'delete']);
             });
 
             Route::prefix('location')->group(function () {
@@ -195,7 +207,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     //Session branch
-    Route::middleware(['hasBranchSession' , 'hasCustomerSession'])->get('/selectBranch', function () {
+    Route::middleware(['hasBranchSession' , 'hasCustomerSession' , 'hasDealerSession'])->get('/selectBranch', function () {
         return view('pages.selectBranch.index');
     });
     Route::post('getSessionBranch', [BranchSessionController::class, 'getSessionBranch'])->name('getSessionBranch');
@@ -203,11 +215,18 @@ Route::middleware(['auth'])->group(function () {
     //end Session branch
 
     //Session customer
-    Route::middleware(['hasBranchSession' , 'hasCustomerSession'])->get('/selectCustomer', function () {
+    Route::middleware(['hasBranchSession' , 'hasCustomerSession' , 'hasDealerSession'])->get('/selectCustomer', function () {
         return view('pages.selectCustomer.index');
     });
     Route::post('getSessionCustomer', [CustomerSessionController::class, 'getSessionCustomer'])->name('getSessionCustomer');
     Route::get('removeSessionCustomer', [CustomerSessionController::class, 'removeSessionCustomer'])->name('removeSessionCustomer');
     //end Session customer
+
+    //Session dealer
+    Route::middleware(['hasBranchSession' , 'hasCustomerSession' , 'hasDealerSession'])->get('/selectDealer', function () {
+        return view('pages.selectDealer.index');
+    });
+    Route::post('getSessionDealer', [DealerSessionController::class, 'getSessionDealer'])->name('getSessionDealer');
+    Route::get('removeSessionDealer', [DealerSessionController::class, 'removeSessionDealer'])->name('removeSessionDealer');
 
 });

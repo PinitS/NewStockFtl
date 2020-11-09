@@ -13,4 +13,9 @@ class LocationProductDetail extends Model
     {
         return $this->belongsTo('App\Models\LocationProductList');
     }
+
+    public function dealer()
+    {
+        return $this->belongsTo('App\Models\Dealer');
+    }
 }

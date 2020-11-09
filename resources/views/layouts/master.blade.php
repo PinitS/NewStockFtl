@@ -433,6 +433,24 @@ Chat box start
         });
     });
 
+    $(document).off('click', '.pnt-btn-forget-session-dealer').on('click', '.pnt-btn-forget-session-dealer', (e) => {
+        $.ajax({
+            type: "get",
+            url: '{{route('removeSessionDealer')}}',
+            success: function (data) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Leave Dealer Success fully',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                window.location.href = "{!! url('/selectDealer') !!}";
+            }
+        });
+    });
+
+
     $(document).off('click', '.pnt-btn-forget-session-customer').on('click', '.pnt-btn-forget-session-customer', (e) => {
         $.ajax({
             type: "get",

@@ -7,8 +7,8 @@
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">Customer Information</h4>
-                    <button type="button" class="btn btn-info pnt-bnt-add-location">Add <span class="btn-icon-right"><i
+                    <h4 class="card-title text-dark">Dealer Information</h4>
+                    <button type="button" class="btn btn-info pnt-bnt-add-dealer">Add <span class="btn-icon-right"><i
                                 class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
@@ -34,12 +34,12 @@
         </div>
     </div>
 
-    {{--    modal add location--}}
-    <div class="modal fade pnt-modal-add-location" id="exampleModalCenter">
+    {{--    modal add Dealer--}}
+    <div class="modal fade pnt-modal-add-dealer" id="exampleModalCenter">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add Customer</h5>
+                    <h5 class="modal-title">Add Dealer</h5>
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                     </button>
                 </div>
@@ -93,38 +93,38 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary pnt-btn-modal-add-dealer-save">Add Customer</button>
+                    <button type="submit" class="btn btn-primary pnt-btn-modal-add-dealer-save">Add Dealer</button>
                 </div>
             </div>
         </div>
     </div>
-    {{--    end modal add location--}}
+    {{--    end modal add Dealer--}}
 
     {{--modal update--}}
-    <div class="modal fade pnt-modal-location-edit " id="exampleModalCenter">
+    <div class="modal fade pnt-modal-dealer-edit " id="exampleModalCenter">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Customer</h5>
+                    <h5 class="modal-title">Edit Dealer</h5>
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label class="mb-1"><strong>Customer</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-location-name" id="name" name="name"
+                        <label class="mb-1"><strong>Dealer</strong></label>
+                        <input type="text" class="form-control pnt-modal-edit-dealer-name" id="name" name="name"
                                required>
                     </div>
                     <div class="form-group">
                         <label class="mb-1"><strong>Contact Name</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-location-contact " id="contact"
+                        <input type="text" class="form-control pnt-modal-edit-dealer-contact " id="contact"
                                name="contact"
                                required>
                     </div>
                     <div class="form-group">
                         <label class="mb-1"><strong>Phone Number</strong></label>
-                        <input type="phone" class="form-control pnt-modal-edit-location-phone" id="phone" name="phone">
+                        <input type="phone" class="form-control pnt-modal-edit-dealer-phone" id="phone" name="phone">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -151,14 +151,14 @@
                     </div>
                     <div class="form-group">
                         <label class="mb-1"><strong>Address</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-location-address" id="address"
+                        <input type="text" class="form-control pnt-modal-edit-dealer-address" id="address"
                                name="address" value="" required>
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary pnt-btn-modal-save-location">Save changes</button>
+                    <button type="button" class="btn btn-primary pnt-btn-modal-save-dealer">Save changes</button>
                 </div>
 
             </div>
@@ -181,7 +181,7 @@
         function resetTable() {
             $.ajax({
                 type: "get",
-                url: "{!! url('manage/location/getLocations') !!}",
+                url: "{!! url('manage/dealer/getDealers') !!}",
                 beforeSend: function () {
                     $('#pnt-loading').show();
                 },
@@ -189,7 +189,7 @@
                     if (data.status) {
                         table.destroy();
                         $('.data-section').html(null);
-                        $.each(data.location, function (index, value) {
+                        $.each(data.dealer, function (index, value) {
                             let localHtml = "<tr><td>" +
                                 (index + 1) +
                                 "</td><td>" +
@@ -223,8 +223,8 @@
         });
 
 
-        // btn-add-location
-        $(document).off('click', '.pnt-bnt-add-location').on('click', '.pnt-bnt-add-location', (e) => {
+        // btn-add-Dealer
+        $(document).off('click', '.pnt-bnt-add-dealer').on('click', '.pnt-bnt-add-dealer', (e) => {
             $('.pnt-modal-add-dealer-name').val('');
             $('.pnt-modal-add-dealer-contact').val('');
             $('.pnt-modal-add-dealer-phone').val('');
@@ -233,13 +233,13 @@
             $('.pnt-modal-add-dealer-address').val('');
             $(".pnt-modal-add-dealer").modal();
         });
-        // end-save-add-location
+        // end-save-add-Dealer
 
-        // btn-save-add-location
+        // btn-save-add-Dealer
         $(document).off('click', '.pnt-btn-modal-add-dealer-save').on('click', '.pnt-btn-modal-add-dealer-save', e => {
             $.ajax({
                 type: "post",
-                url: "{!! url('manage/location/create') !!}",
+                url: "{!! url('manage/dealer/create') !!}",
                 data: {
                     name: $('.pnt-modal-add-dealer-name').val(),
                     contact_name: $('.pnt-modal-add-dealer-contact').val(),
@@ -254,13 +254,13 @@
                 },
                 success: function (data) {
                     if (data.status) {
-                        $('.pnt-modal-add-location').modal('hide');
+                        $('.pnt-modal-add-dealer').modal('hide');
                         $('#pnt-loading').hide();
                         resetTable();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Add Customer Success fully',
+                            title: 'Add Dealer Success fully',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -280,7 +280,7 @@
                 },
             });
         });
-        // end-btn-save-add-location
+        // end-btn-save-add-Dealer
 
         // btn-delete
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
@@ -297,7 +297,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "get",
-                        url: "{!! url('manage/location/destroy') !!}/" + window.id,
+                        url: "{!! url('manage/dealer/destroy') !!}/" + window.id,
                         beforeSend: function () {
                             $('#pnt-loading').show();
                         },
@@ -315,7 +315,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
-                                    title: "Can't Delete this Customer",
+                                    title: "Can't Delete this Dealer",
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -334,16 +334,16 @@
             window.id = $(e.currentTarget).val();
             $.ajax({
                 type: "get",
-                url: "{!! url('manage/location/getOneLocation') !!}/" + window.id,
+                url: "{!! url('manage/dealer/getOneDealer') !!}/" + window.id,
                 success: function (data) {
                     if (data.status) {
-                        $(".pnt-modal-edit-location-name").val(data.location.name);
-                        $('.pnt-modal-edit-location-contact').val(data.location.contact_name);
-                        $(".pnt-modal-edit-location-phone").val(data.location.phone_number);
-                        $(".pnt-modal-edit-latitude").val(data.location.latitude);
-                        $(".pnt-modal-edit-longitude").val(data.location.longitude);
-                        $(".pnt-modal-edit-location-address").val(data.location.address);
-                        $(".pnt-modal-location-edit").modal();
+                        $(".pnt-modal-edit-dealer-name").val(data.dealer.name);
+                        $('.pnt-modal-edit-dealer-contact').val(data.dealer.contact_name);
+                        $(".pnt-modal-edit-dealer-phone").val(data.dealer.phone_number);
+                        $(".pnt-modal-edit-latitude").val(data.dealer.latitude);
+                        $(".pnt-modal-edit-longitude").val(data.dealer.longitude);
+                        $(".pnt-modal-edit-dealer-address").val(data.dealer.address);
+                        $(".pnt-modal-dealer-edit").modal();
                     }
                 }
             });
@@ -351,17 +351,17 @@
         // end btn-edit
 
         // btn save edit modal
-        $(document).off('click', '.pnt-btn-modal-save-location').on('click', '.pnt-btn-modal-save-location', e => {
+        $(document).off('click', '.pnt-btn-modal-save-dealer').on('click', '.pnt-btn-modal-save-dealer', e => {
             $.ajax({
                 type: "post",
-                url: "{!! url('manage/location/update') !!}/" + window.id,
+                url: "{!! url('manage/dealer/update') !!}/" + window.id,
                 data: {
-                    name: $('.pnt-modal-edit-location-name').val(),
-                    contact_name: $('.pnt-modal-edit-location-contact').val(),
-                    phone_number: $('.pnt-modal-edit-location-phone').val(),
+                    name: $('.pnt-modal-edit-dealer-name').val(),
+                    contact_name: $('.pnt-modal-edit-dealer-contact').val(),
+                    phone_number: $('.pnt-modal-edit-dealer-phone').val(),
                     latitude: $('.pnt-modal-edit-latitude').val(),
                     longitude: $('.pnt-modal-edit-longitude').val(),
-                    address: $('.pnt-modal-edit-location-address').val(),
+                    address: $('.pnt-modal-edit-dealer-address').val(),
                     '_token': window.token,
                 },
                 beforeSend: function () {
@@ -369,13 +369,13 @@
                 },
                 success: function (data) {
                     if (data.status) {
-                        $('.pnt-modal-location-edit').modal('hide');
+                        $('.pnt-modal-dealer-edit').modal('hide');
                         resetTable();
                         $('#pnt-loading').hide();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Update Customer Success fully',
+                            title: 'Update Dealer Success fully',
                             showConfirmButton: false,
                             timer: 1500
                         })

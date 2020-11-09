@@ -20,7 +20,7 @@ class CreateLocationProductDetailsTable extends Migration
             $table->string('latitude', 100)->nullable();
             $table->string('longitude', 100)->nullable();
             $table->tinyInteger('status');
-            $table->integer('dealers_id');
+            $table->integer('dealer_id');
             $table->string('sku', 50)->nullable();
             $table->timestamps();
         });

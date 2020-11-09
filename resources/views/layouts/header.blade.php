@@ -19,6 +19,14 @@
                                     class="btn-sm ml-3 btn btn-outline-warning pnt-btn-forget-session-customer">Leave
                             </button>
                         @endif
+
+                        @if(session()->has('dealer'))
+                            <span class="text-success">{{ session()->get('dealer')[0]['name'] }}</span>
+                            <button type="button"
+                                    class="btn-sm ml-3 btn btn-outline-success pnt-btn-forget-session-dealer">Leave
+                            </button>
+                        @endif
+
                     </li>
                     <li class="nav-item dropdown header-profile">
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown">
@@ -45,11 +53,12 @@
                             </button>
 
                             <button class="dropdown-item ai-icon pnt-btn-reset-password-in-header">
-                                <svg id="icon-password" xmlns="http://www.w3.org/2000/svg" class="text-warning" width="18"
+                                <svg id="icon-password" xmlns="http://www.w3.org/2000/svg" class="text-warning"
+                                     width="18"
                                      height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                      stroke-linecap="round" stroke-linejoin="round">
-                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                     <circle cx="12" cy="7" r="4"></circle>
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
                                 </svg>
                                 <span class="ml-2">ResetPassword </span>
                             </button>
