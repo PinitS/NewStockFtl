@@ -9,7 +9,22 @@ class DealerController extends Controller
 {
     public function getDealers()
     {
-        return response()->json(['status' => true, 'dealers' => Dealer::all()]);
+        $dealers = Dealer::get();
+        $dealerSet = [];
+        foreach ($dealers as $dealer) {
+            $dealerData = [
+                'name' => $dealer->name,
+                'id' => $dealer->id,
+                'contact_name' => $dealer->contact_name,
+                'phone_number' => $dealer->phone_number,
+                'latitude' => $dealer->latitude,
+                'longitude' => $dealer->longitude,
+                'address' => $dealer->address,
+                'delete_active' => $dealer->delete_active,
+            ];
+            array_push($dealerSet,$dealerData);
+        }
+        return response()->json(['status' => true, 'dealers' => $dealerSet]);
     }
 
     public function getOneDealer($id)
@@ -34,7 +49,7 @@ class DealerController extends Controller
     }
 
 
-    public function update(Request $request , $id)
+    public function update(Request $request, $id)
     {
         $item = Dealer::find($id);
         $item->name = $request->input('name');

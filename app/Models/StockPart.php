@@ -8,25 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class StockPart extends Model
 {
     use HasFactory;
-
-    public function category()
-    {
+    public function category(){
         return $this->belongsTo('App\Models\StockCategory', 'stock_category_id');
     }
 
-    public function branch()
-    {
+    public function branch(){
         return $this->belongsTo('App\Models\StockBranch', 'stock_branch_id');
     }
 
-    public function histories()
-    {
+    public function histories(){
         return $this->hasMany('App\Models\StockPartHistory');
     }
 
-    public function groupPart()
-    {
+    public function groupPart(){
         return $this->belongsTo('App\Models\GroupParts');
     }
-
 }

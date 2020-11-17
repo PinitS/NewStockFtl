@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\IfAdminLogin;
 use App\Http\Middleware\IfBranchSessionIsNull;
 use App\Http\Middleware\IfCustomerSessionIsNull;
+use App\Http\Middleware\IfDealerSessionIsNull;
 use App\Http\Middleware\IfHasAuth;
 use App\Http\Middleware\IfHasBranchSession;
 use App\Http\Middleware\IfHasCustomerSession;
@@ -72,6 +73,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'nullBranchSession' => IfBranchSessionIsNull::class,
         'nullCustomerSession' => IfCustomerSessionIsNull::class,
+        'nullDealerSession' => IfDealerSessionIsNull::class,
         'hasCustomerSession' => IfHasCustomerSession::class,
         'hasBranchSession' => IfHasBranchSession::class,
         'hasDealerSession' => IfHasDealerSession::class,

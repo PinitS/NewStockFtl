@@ -22,12 +22,12 @@ class UserSeeder extends Seeder
                         'status' => 1,
                     ],
 
-//                    [
-//                        'name' => 'member1',
-//                        'email' => 'member1@member.com',
-//                        'password' => Hash::make('12345678'),
-//                        'status' => 0,
-//                    ]
+                    [
+                        'name' => 'IsaraK',
+                        'email' => 'dotsockettest01@gmail.com',
+                        'password' => Hash::make('dotsockettest01'),
+                        'status' => 1,
+                    ]
                 ];
 
         \App\Models\User::insert($data);

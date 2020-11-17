@@ -19,6 +19,9 @@ use App\Http\Controllers\CalProductsController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\DealerController;
 use App\Http\Controllers\DealerSessionController;
+use App\Http\Controllers\DealerProductController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,73 +39,74 @@ Route::middleware(['hasAuth'])->get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
 
-        Route::prefix('manage')->group(function () {
-            Route::prefix('users')->group(function () {
-                Route::middleware(['adminRoute'])->get('/', function () {
-                    return view('pages.manage.user.index');
-                });
-                Route::get('getUsers', [UserController::class, 'getUsers'])->name('getUsers');
-                Route::get('oneUser/{id}', [UserController::class, 'getOneUser'])->name('oneUser');
-                Route::post('update/{id}', [UserController::class, 'update'])->name('update');
-                Route::get('destroy/{id}', [UserController::class, 'delete'])->name('destroy');
-                Route::post('resetPassword/{id}', [UserController::class, 'resetPassword'])->name('resetPassword');
-                Route::post('create', [UserController::class, 'create'])->name('createUser');
+    Route::prefix('manage')->group(function () {
+        Route::prefix('users')->group(function () {
+            Route::middleware(['adminRoute'])->get('/', function () {
+                return view('pages.manage.user.index');
             });
-
-            Route::prefix('branches')->group(function () {
-                Route::middleware(['adminRoute'])->get('/', function () {
-                    return view('pages.manage.branch.index');
-                });
-                Route::get('getBranches', [BranchController::class, 'getBranches'])->name('getBranches');
-                Route::get('getBranch/{id}', [BranchController::class, 'getBranch'])->name('getBranch');
-                Route::post('create', [BranchController::class, 'create'])->name('createBranch');
-                Route::post('update/{id}', [BranchController::class, 'update']);
-                Route::get('destroy/{id}', [BranchController::class, 'delete']);
-            });
-
-            Route::prefix('dealer')->group(function () {
-                Route::middleware(['adminRoute'])->get('/', function () {
-                    return view('pages.manage.dealer.index');
-                });
-                Route::get('getDealers', [DealerController::class, 'getDealers']);
-                Route::get('getOneDealer/{id}', [DealerController::class, 'getOneDealer']);
-                Route::post('create', [DealerController::class, 'create']);
-                Route::post('update/{id}', [DealerController::class, 'update']);
-                Route::get('destroy/{id}', [DealerController::class, 'delete']);
-            });
-
-            Route::prefix('location')->group(function () {
-                Route::middleware(['adminRoute'])->get('/', function () {
-                    return view('pages.manage.location.index');
-                });
-                Route::get('getLocations', [LocationController::class, 'getLocations'])->name('getLocations');
-                Route::get('getOneLocation/{id}', [LocationController::class, 'getOneLocation']);
-                Route::post('create', [LocationController::class, 'create'])->name('createLocation');
-                Route::post('update/{id}', [LocationController::class, 'update']);
-                Route::get('destroy/{id}', [LocationController::class, 'delete']);
-            });
-
-            Route::prefix('model')->group(function () {
-                Route::middleware(['adminRoute'])->get('/', function () {
-                    return view('pages.manage.model.index');
-                });
-                Route::get('getLocationModels', [LocationModelController::class, 'getLocationModels'])->name('getLocationModels');
-                Route::get('getOneLocationModel/{id}', [LocationModelController::class, 'getOneLocationModel']);
-                Route::post('create', [LocationModelController::class, 'create'])->name('createLocationModel');
-                Route::post('update/{id}', [LocationModelController::class, 'update']);
-                Route::get('destroy/{id}', [LocationModelController::class, 'delete']);
-            });
-
-            Route::prefix('groupParts')->group(function () {
-                Route::middleware(['adminRoute'])->get('/', function () {
-                    return view('pages.manage.groupParts.index');
-                });
-                Route::get('getGroups', [GroupPartsController::class, 'getGroups']);
-                Route::get('getOneGroup/{id}', [GroupPartsController::class, 'getOneGroup']);
-                Route::post('update/{id}', [GroupPartsController::class, 'update']);
-                Route::get('destroy/{id}', [GroupPartsController::class, 'delete']);
-            });
+            Route::get('getUsers', [UserController::class, 'getUsers'])->name('getUsers');
+            Route::get('oneUser/{id}', [UserController::class, 'getOneUser'])->name('oneUser');
+            Route::post('update/{id}', [UserController::class, 'update'])->name('update');
+            Route::get('destroy/{id}', [UserController::class, 'delete'])->name('destroy');
+            Route::post('resetPassword/{id}', [UserController::class, 'resetPassword'])->name('resetPassword');
+            Route::post('create', [UserController::class, 'create'])->name('createUser');
         });
+
+        Route::prefix('branches')->group(function () {
+            Route::middleware(['adminRoute'])->get('/', function () {
+                return view('pages.manage.branch.index');
+            });
+            Route::get('getBranches', [BranchController::class, 'getBranches'])->name('getBranches');
+            Route::get('getBranch/{id}', [BranchController::class, 'getBranch'])->name('getBranch');
+            Route::post('create', [BranchController::class, 'create'])->name('createBranch');
+            Route::post('update/{id}', [BranchController::class, 'update']);
+            Route::get('destroy/{id}', [BranchController::class, 'delete']);
+        });
+
+        Route::prefix('dealer')->group(function () {
+            Route::middleware(['adminRoute'])->get('/', function () {
+                return view('pages.manage.dealer.index');
+            });
+            Route::get('getDealers', [DealerController::class, 'getDealers']);
+            Route::get('getOneDealer/{id}', [DealerController::class, 'getOneDealer']);
+            Route::post('create', [DealerController::class, 'create']);
+            Route::post('update/{id}', [DealerController::class, 'update']);
+            Route::get('destroy/{id}', [DealerController::class, 'delete']);
+        });
+
+        Route::prefix('location')->group(function () {
+            Route::middleware(['adminRoute'])->get('/', function () {
+                return view('pages.manage.location.index');
+            });
+            Route::get('getLocations', [LocationController::class, 'getLocations'])->name('getLocations');
+            Route::get('getOneLocation/{id}', [LocationController::class, 'getOneLocation']);
+            Route::post('create', [LocationController::class, 'create'])->name('createLocation');
+            Route::post('update/{id}', [LocationController::class, 'update']);
+            Route::get('destroy/{id}', [LocationController::class, 'delete']);
+        });
+
+        Route::prefix('model')->group(function () {
+            Route::middleware(['adminRoute'])->get('/', function () {
+                return view('pages.manage.model.index');
+            });
+            Route::get('getLocationModels', [LocationModelController::class, 'getLocationModels'])->name('getLocationModels');
+            Route::get('getOneLocationModel/{id}', [LocationModelController::class, 'getOneLocationModel']);
+            Route::post('create', [LocationModelController::class, 'create'])->name('createLocationModel');
+            Route::post('update/{id}', [LocationModelController::class, 'update']);
+            Route::get('destroy/{id}', [LocationModelController::class, 'delete']);
+        });
+
+        Route::prefix('groupParts')->group(function () {
+            Route::middleware(['adminRoute'])->get('/', function () {
+                return view('pages.manage.groupParts.index');
+            });
+            Route::get('getGroups', [GroupPartsController::class, 'getGroups']);
+            Route::get('getOneGroup/{id}', [GroupPartsController::class, 'getOneGroup']);
+            Route::post('create', [GroupPartsController::class, 'create']);
+            Route::post('update/{id}', [GroupPartsController::class, 'update']);
+            Route::get('destroy/{id}', [GroupPartsController::class, 'delete']);
+        });
+    });
 
     Route::prefix('stock')->middleware(['nullBranchSession'])->group(function () {
         Route::prefix('parts')->group(function () {
@@ -116,6 +120,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('getPartHistory/{id}', [PartController::class, 'getPartHistory']);
             Route::post('update/{id}', [PartController::class, 'update']);
             Route::get('destroy/{id}', [PartController::class, 'delete']);
+
+            Route::get('getOneInHistory/{id}', [PartController::class, 'getOneInHistory']);
+            Route::post('updateOneHistory/{id}', [PartController::class, 'updateOneHistory']);
+
+
         });
 
         Route::prefix('categories')->group(function () {
@@ -135,11 +144,37 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', function () {
             return view('pages.customer.productList.index');
         });
-//        Route::get('getCategories', [CategoryController::class, 'getCategories'])->name('getCategories');
-//        Route::get('getCategory/{id}', [CategoryController::class, 'getCategory'])->name('getCategory');
-//        Route::post('create', [CategoryController::class, 'create'])->name('createCategory');
-//        Route::post('update/{id}', [CategoryController::class, 'update']);
-//        Route::get('destroy/{id}', [CategoryController::class, 'delete']);
+    });
+
+    Route::prefix('dealer')->middleware(['nullDealerSession'])->group(function () {
+        Route::get('/', function () {
+            return view('pages.dealer.index');
+        });
+        Route::get('getDealerProductHistory/{id}', [DealerProductController::class, 'getDealerProductHistory']);
+        Route::get('getDealerProductById/{id}', [DealerProductController::class, 'getDealerProductById']);
+        Route::get('getProductInDealer/{id}', [DealerProductController::class, 'getProductInDealer']);
+
+        Route::post('create', [DealerProductController::class, 'create']);
+        Route::post('addQuantity/{id}', [DealerProductController::class, 'addQuantity']);
+        Route::get('destroy/{id}', [DealerProductController::class, 'delete']);
+        Route::prefix('dealerCustomer')->group(function () {
+            Route::get('/', function () {
+                return view('pages.dealer.dealerCustomer.index');
+            });
+        });
+    });
+
+    Route::prefix('dealerSell')->group(function () {
+        Route::get('/', function () {
+            return view('pages.dealerSell.index');
+        });
+        Route::get('getProductInDealer/{id}&{dId}', [DealerProductController::class, 'getProductInDealer']);
+        Route::get('getDropdownSell', [DealerProductController::class, 'getDropdownSell']);
+        Route::get('getDropdownSellProduct/{id}', [DealerProductController::class, 'getDropdownSellProduct']);
+        Route::get('getDropdownSell', [DealerProductController::class, 'getDropdownSell']);
+        Route::post('dealerSold', [DealerProductController::class, 'dealerSold']);
+
+
     });
 
 
@@ -162,19 +197,18 @@ Route::middleware(['auth'])->group(function () {
             Route::post('create', [ProductPartsController::class, 'create'])->name('createProductParts');
             Route::post('update/{id}', [ProductPartsController::class, 'update']);
             Route::get('delete/{id}', [ProductPartsController::class, 'delete']);
-
         });
 
         Route::prefix('product_detail')->group(function () {
-            Route::get('/', function () {
-                return view('pages.product_location.detail.index');
-            });
+
             Route::get('getDetails', [LocationProductDetailController::class, 'getDetails'])->name('getDetails');
             Route::get('getOneDetail/{id}', [LocationProductDetailController::class, 'getOneDetail'])->name('getOneDetail');
             Route::post('create', [LocationProductDetailController::class, 'create'])->name('createDetail');
             Route::post('update/{id}', [LocationProductDetailController::class, 'update']);
             Route::get('destroy/{id}', [LocationProductDetailController::class, 'delete']);
             Route::post('changeStatus/{id}', [LocationProductDetailController::class, 'changeStatus']);
+            Route::get('getDropdown', [LocationProductDetailController::class, 'getDropdown']);
+
         });
     });
 
@@ -207,7 +241,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     //Session branch
-    Route::middleware(['hasBranchSession' , 'hasCustomerSession' , 'hasDealerSession'])->get('/selectBranch', function () {
+    Route::middleware(['hasBranchSession', 'hasCustomerSession', 'hasDealerSession'])->get('/selectBranch', function () {
         return view('pages.selectBranch.index');
     });
     Route::post('getSessionBranch', [BranchSessionController::class, 'getSessionBranch'])->name('getSessionBranch');
@@ -215,7 +249,7 @@ Route::middleware(['auth'])->group(function () {
     //end Session branch
 
     //Session customer
-    Route::middleware(['hasBranchSession' , 'hasCustomerSession' , 'hasDealerSession'])->get('/selectCustomer', function () {
+    Route::middleware(['hasBranchSession', 'hasCustomerSession', 'hasDealerSession'])->get('/selectCustomer', function () {
         return view('pages.selectCustomer.index');
     });
     Route::post('getSessionCustomer', [CustomerSessionController::class, 'getSessionCustomer'])->name('getSessionCustomer');
@@ -223,10 +257,15 @@ Route::middleware(['auth'])->group(function () {
     //end Session customer
 
     //Session dealer
-    Route::middleware(['hasBranchSession' , 'hasCustomerSession' , 'hasDealerSession'])->get('/selectDealer', function () {
+    Route::middleware(['hasBranchSession', 'hasCustomerSession', 'hasDealerSession'])->get('/selectDealer', function () {
         return view('pages.selectDealer.index');
     });
     Route::post('getSessionDealer', [DealerSessionController::class, 'getSessionDealer'])->name('getSessionDealer');
     Route::get('removeSessionDealer', [DealerSessionController::class, 'removeSessionDealer'])->name('removeSessionDealer');
 
+});
+
+
+Route::get('/index', function () {
+    return view('original');
 });

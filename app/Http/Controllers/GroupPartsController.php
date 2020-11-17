@@ -20,6 +20,23 @@ class GroupPartsController extends Controller
         return response()->json(['status' => true, 'group' => GroupParts::find($id)]);
     }
 
+    public function create(Request $request)
+    {
+        $checks = GroupParts::all();
+        foreach ($checks as $check) {
+            if ($check->name == $request->input('name')) {
+                return response()->json(['status' => false]);
+            }
+        }
+        $item = new GroupParts;
+        $item->name = $request->input('name');
+        if ($item->save()) {
+            return response()->json(['status' => true]);
+        } else {
+            return response()->json(['status' => false]);
+        }
+    }
+
     public function update(Request $request, $id)
     {
         $item = GroupParts::find($id);

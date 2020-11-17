@@ -16,7 +16,7 @@ class CreateLocationProductDetailsTable extends Migration
         Schema::create('location_product_details', function (Blueprint $table) {
             $table->id();
             $table->integer('location_product_list_id');
-            $table->string('code')->unique();
+            $table->string('code');
             $table->string('latitude', 100)->nullable();
             $table->string('longitude', 100)->nullable();
             $table->tinyInteger('status');

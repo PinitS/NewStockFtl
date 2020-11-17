@@ -38,60 +38,61 @@
 
 
     {{--    modal add Category--}}
-    <div class="modal fade pnt-modal-add-category" id="pnt-modal-add-category">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Category</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Category Name</span>
-                        </div>
-                        <input type="text" class="form-control pnt-input-add-name">
+    <form id="add-modal-category">
+        <div class="modal fade pnt-modal-add-category" id="pnt-modal-add-category">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Category</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary pnt-btn-modal-add-category-save">Add Category</button>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Category</strong></label>
+                            <input type="text" class="form-control pnt-input-add-name" id="name" name="name"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-category-save">Add Category
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     {{--    end modal add Category--}}
 
 
 
     {{--modal update--}}
-    <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Category</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Category Name</span>
+    <form id="edit-modal-category">
+        <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Category</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Category</strong></label>
+                            <input type="text" class="form-control pnt-input-name" id="name" name="name"
+                                   required>
                         </div>
-                        <input type="text" class="form-control pnt-input-name">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-save">Save changes</button>
                     </div>
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary pnt-btn-modal-save">Save changes</button>
-                </div>
-
             </div>
         </div>
-    </div>
+    </form>
     {{--modal update--}}
 
 
@@ -142,6 +143,33 @@
 
         $(document).ready(function () {
             resetTable();
+            $('#add-modal-category').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    name: {
+                        required: "<span class='text-danger'>Please enter a Category name</span>",
+                    },
+                }
+            });
+            $('#edit-modal-category').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    name: {
+                        required: "<span class='text-danger'>Please enter a Category name</span>",
+                    },
+                }
+            });
+
         });
 
         // btn-add-category
@@ -152,49 +180,51 @@
 
         // btn-save-add-category
         $(document).off('click', '.pnt-btn-modal-add-category-save').on('click', '.pnt-btn-modal-add-category-save', e => {
-            $(e.currentTarget).prop('disabled', true);
-            $.ajax({
-                type: "post",
-                url: '{!! url('stock/categories/create') !!}',
-                data: {
-                    name: $('.pnt-input-add-name').val(),
-                    stock_branch_id: $('#pnt-input-branch_id').val(),
-                    '_token': window.token,
-                },
-                beforeSend: function () {
-                    $('#pnt-loading').show();
-                },
-                success: function (data) {
-                    $('.pnt-btn-modal-add-category-save').prop('disabled', false);
-                    if (data.status) {
-                        $('.pnt-modal-add-category').modal('hide');
-                        $('.pnt-input-add-name').val(''),
-                            resetTable();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Add Category Success fully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        $('#pnt-loading').hide();
-                    }
-                },
-                error: function (jqXHR, exception) {
-
-                    if (jqXHR.status !== 200) {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Something went wrong',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
+            if ($("#add-modal-category").valid()) {
+                $(e.currentTarget).prop('disabled', true);
+                $.ajax({
+                    type: "post",
+                    url: '{!! url('stock/categories/create') !!}',
+                    data: {
+                        name: $('.pnt-input-add-name').val(),
+                        stock_branch_id: $('#pnt-input-branch_id').val(),
+                        '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
+                    success: function (data) {
                         $('.pnt-btn-modal-add-category-save').prop('disabled', false);
-                        $('#pnt-loading').hide();
-                    }
-                },
-            });
+                        if (data.status) {
+                            $('.pnt-modal-add-category').modal('hide');
+                            $('.pnt-input-add-name').val(''),
+                                resetTable();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Add Category Success fully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('#pnt-loading').hide();
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+
+                        if (jqXHR.status !== 200) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Something went wrong',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('.pnt-btn-modal-add-category-save').prop('disabled', false);
+                            $('#pnt-loading').hide();
+                        }
+                    },
+                });
+            }
         });
         // end-btn-save-add-category
 
@@ -267,46 +297,48 @@
 
         // btn save update modal
         $(document).off('click', '.pnt-btn-modal-save').on('click', '.pnt-btn-modal-save', e => {
-            $(e.currentTarget).prop('disabled', true);
-            $.ajax({
-                type: "post",
-                url: "{!! url('stock/categories/update') !!}/" + window.id,
-                data: {
-                    name: $(".pnt-input-name").val(),
-                    '_token': window.token,
-                },
-                beforeSend: function () {
-                    $('#pnt-loading').show();
-                },
-                success: function (data) {
-                    if (data.status) {
-                        $(".pnt-modal-edit").modal('hide');
-                        $('.pnt-btn-modal-save').prop('disabled', false);
-                        resetTable();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Update Category Success fully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        $('#pnt-loading').hide();
-                    }
-                },
-                error: function (jqXHR, exception) {
-                    if (jqXHR.status !== 200) {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Something went wrong',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                        $('.pnt-btn-modal-save').prop('disabled', false);
-                        $('#pnt-loading').hide();
-                    }
-                },
-            });
+            if ($("#edit-modal-category").valid()) {
+                $(e.currentTarget).prop('disabled', true);
+                $.ajax({
+                    type: "post",
+                    url: "{!! url('stock/categories/update') !!}/" + window.id,
+                    data: {
+                        name: $(".pnt-input-name").val(),
+                        '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
+                    success: function (data) {
+                        if (data.status) {
+                            $(".pnt-modal-edit").modal('hide');
+                            $('.pnt-btn-modal-save').prop('disabled', false);
+                            resetTable();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Update Category Success fully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('#pnt-loading').hide();
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        if (jqXHR.status !== 200) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Something went wrong',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('.pnt-btn-modal-save').prop('disabled', false);
+                            $('#pnt-loading').hide();
+                        }
+                    },
+                });
+            }
         });
         // end btn save update modal
 

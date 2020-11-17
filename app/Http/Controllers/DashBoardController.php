@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dealer;
 use App\Models\GroupParts;
 use App\Models\Location;
 use App\Models\LocationProduct;
@@ -38,7 +39,8 @@ class DashBoardController extends Controller
 
     public function getPartsByBranch($id)
     {
-        $parts = StockPart::where('stock_branch_id', $id)->get();
+        $parts = StockPart::with('groupPart')->where('stock_branch_id', $id)->get();
+
         return response()->json(['status' => true, 'parts' => $parts]);
     }
 
@@ -58,10 +60,34 @@ class DashBoardController extends Controller
                 'phone_number' => $customer->phone_number,
                 'cnt' => count($customer->productLists),
             ];
-            array_push($customerSet ,$dataCustomer);
+            array_push($customerSet, $dataCustomer);
         }
 
-        $parts = StockPart::with(['category', 'branch'])->get();
+        $dealersData = Dealer::get();
+        $dealerSet = [];
+        foreach ($dealersData as $dealer) {
+            $dataDealer = [
+                'name' => $dealer->name,
+                'contact_name' => $dealer->contact_name,
+                'phone_number' => $dealer->phone_number,
+                'cnt' => count($dealer->locationProductDetail),
+            ];
+            array_push($dealerSet, $dataDealer);
+        }
+
+        $parts = StockPart::get();
+        $partSet = [];
+        foreach ($parts as $part) {
+            $dataParts = [
+                'name' => $part->groupPart->name,
+                'category' => $part->category->name,
+                'quantity' => $part->quantity,
+                'branch' => $part->branch->name,
+                'sku' => $part->sku,
+            ];
+            array_push($partSet , $dataParts);
+
+        }
         $products = LocationProduct::get();
         $cntSet = [];
         $productNameSet = [];
@@ -90,29 +116,28 @@ class DashBoardController extends Controller
 
         $dataGroup = [];
         $groupParts = GroupParts::get();
-        foreach ($groupParts as $part)
-        {
+        foreach ($groupParts as $part) {
             $quantity = 0;
             $data = [];
-            foreach ($part->stockParts as $part)
-            {
+            foreach ($part->stockParts as $part) {
                 $quantity += $part->quantity;
             }
             $data = [
-                'name' => $part->name,
+                'name' => ($part->groupPart == null ? $part->name : $part->groupPart->name),
                 'quantity' => $quantity,
             ];
-            array_push($dataGroup , $data);
+            array_push($dataGroup, $data);
         }
 
         $dataSet = [
             'dataTimeline' => $stockHistoryTimeline,
             'customer' => $customerSet,
-            'dataParts' => $parts,
+            'dataParts' => $partSet,
             'dataGroup' => $dataGroup,
             'cntProduct' => $cntSet,
             'productNameSet' => $productNameSet,
-            'color' => $colorSet
+            'color' => $colorSet,
+            'dealer' => $dealerSet,
         ];
         return response()->json(['status' => true, 'dataSet' => $dataSet]);
     }

@@ -54,54 +54,56 @@
 
 
     {{--    modal add parts--}}
-    <div class="modal fade pnt-modal-add-parts" id="pnt-modal-add-parts">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Parts</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Categories</strong></label>
-                        <select class="form-control pnt-modal-sel-add-parts-category">
-                        </select>
+    <form id="add-modal-add-parts-valid">
+        <div class="modal fade pnt-modal-add-parts" id="pnt-modal-add-parts">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Parts</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
                     </div>
+                    <div class="modal-body">
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Group Parts</strong></label>
-                        <select class="form-control pnt-modal-sel-add-group-parts">
-                        </select>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Categories</strong></label>
+                            <select class="form-control pnt-modal-sel-add-parts-category">
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Name</strong></label>
+                            <select class="form-control pnt-modal-sel-add-group-parts">
+                            </select>
+                        </div>
+
+                        {{--                        <div class="form-group">--}}
+                        {{--                            <label class="mb-1"><strong>Name</strong></label>--}}
+                        {{--                            <input type="text" class="form-control pnt-modal-add-parts-name" id="name" name="name"--}}
+                        {{--                                   placeholder="Name" required>--}}
+                        {{--                        </div>--}}
+
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Quantity</strong></label>
+                            <input type="number" class="form-control pnt-modal-add-parts-quantity" id="quantity"
+                                   name="quantity" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Sku</strong></label>
+                            <input type="text" class="form-control pnt-modal-add-parts-sku" id="sku" name="sku"
+                                   placeholder="#A382824" value="">
+                        </div>
+
                     </div>
-
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Name</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-parts-name" id="name" name="name"
-                               placeholder="Name" required>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-parts-save">Add Parts</button>
                     </div>
-
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Quantity</strong></label>
-                        <input type="number" class="form-control pnt-modal-add-parts-quantity" id="quantity"
-                               name="quantity" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Sku</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-parts-sku" id="sku" name="sku"
-                               placeholder="#A382824" value="#">
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary pnt-btn-modal-add-parts-save">Add Parts</button>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     {{--    end modal add parts--}}
 
     {{--    modal plus--}}
@@ -180,6 +182,37 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
+                            <form id="history-quantity-form">
+                                <div class="col-xl-6 mx-auto history-quantity-save-edit-card" style="display: none;">
+                                    <div class="card text-center">
+                                        <div class="card-header border-0 pb-0">
+                                            <h5 class="card-title mx-auto text-warning">Edit history quantity</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label class="mb-1"><strong>Quantity</strong></label>
+                                                    <input type="text" class="form-control history-quantity-edit"
+                                                           id="quantity" name="quantity" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer border-0 pt-0">
+                                            <button type="button"
+                                                    class="btn light btn-success history-save-btn-edit-card float-right ml-3">
+                                                Save
+                                            </button>
+                                            <button type="button"
+                                                    class="btn light btn-danger history-close-edit-card float-right">
+                                                close
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-12">
                             <div class="table-responsive">
                                 <table id="partsHistory" style="min-width: 845px">
                                     <thead>
@@ -188,6 +221,7 @@
                                         <th class="text-dark">Part</th>
                                         <th class="text-dark">Type</th>
                                         <th class="text-dark">Quatity</th>
+                                        <th class="text-dark"></th>
                                         <th class="text-dark">Detail</th>
                                         <th class="text-dark">User</th>
                                         <th class="text-dark">date</th>
@@ -206,47 +240,45 @@
     {{--    end modal history--}}
 
     {{--modal update--}}
-    <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit parts</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
+    <form id="edit-modal-add-parts-valid">
+        <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit parts</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Categories</strong></label>
+                            <select class="form-control pnt-modal-sel-edit-parts-category">
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Name</strong></label>
+                            <select class="form-control pnt-modal-sel-edit-group-parts">
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Sku</strong></label>
+                            <input type="text" class="form-control pnt-modal-edit-parts-sku">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-warning pnt-btn-modal-edit-parts-save">Save changes
+                        </button>
+                    </div>
+
                 </div>
-                <div class="modal-body">
-
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Categories</strong></label>
-                        <select class="form-control pnt-modal-sel-edit-parts-category">
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Group Parts</strong></label>
-                        <select class="form-control pnt-modal-sel-edit-group-parts">
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Name</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-parts-name">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Sku</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-parts-sku">
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-warning pnt-btn-modal-edit-parts-save">Save changes</button>
-                </div>
-
             </div>
         </div>
-    </div>
+    </form>
     {{--modal update--}}
 
 
@@ -262,6 +294,7 @@
         var token = $('meta[name="csrf-token"]').attr('content');
         var id = 0;
         var change_id = 0;
+        var part_history_id = 0;
         var table = $('#partsInformation').DataTable();
         var table_history = $('#partsHistory').DataTable();
         var category_filter = 0;
@@ -272,6 +305,7 @@
         var addgroup = $('.pnt-modal-sel-add-group-parts').select2();
         var editPart = $('.pnt-modal-sel-edit-parts-category').select2();
         var editgroup = $('.pnt-modal-sel-edit-group-parts').select2();
+        var detail = '';
 
 
         function getOnePart() {
@@ -282,7 +316,9 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
+                    console.log(data)
                     window.checkQuantity = data.part.quantity;
+                    console.log(window.checkQuantity)
                     if (data.status) {
                         $('.pnt-plus-quantity').val('');
                         $('.pnt-minus-quantity').val('');
@@ -366,7 +402,7 @@
                     window.addgroup.empty();
                     window.editgroup.empty();
                     if (data.status) {
-                        var str = "<option value=" + 0 + "> <strong>" + "Select Categories" + "</strong></option>";
+                        var str = "";
                         $.each(data.dataSet.categories, function (index, value) {
                             str += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
@@ -374,7 +410,7 @@
                         window.addpart.append(str);
                         window.addpart.selectpicker('refresh');
                         window.editPart.selectpicker('refresh');
-                        var group_option = "<option value=" + 0 + "> <strong>" + "New Parts" + "</strong></option>";
+                        var group_option = "";
                         $.each(data.dataSet.group, function (index, value) {
                             group_option += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
@@ -387,8 +423,7 @@
             });
         }
 
-        function getfilterCategory()
-        {
+        function getfilterCategory() {
             $.ajax({
                 type: "post",
                 url: '{!! url('stock/parts/getParts') !!}',
@@ -430,20 +465,20 @@
                                 "<tr><td>" +
                                 (index + 1) +
                                 "</td><td>" +
-                                value.name +
+                                (value.name == null ? "-" : value.name) +
                                 "</td><td>" +
-                                value.sku +
+                                (value.sku == null ? "-" : value.sku) +
                                 "</td><td>" +
-                                (value.category == null ? "-" : value.category.name) +
+                                (value.category == null ? "-" : value.category) +
                                 "</td><td>" +
-                                (value.branch == null ? "-" : value.branch.name) +
+                                (value.branch == null ? "-" : value.branch) +
                                 "</td><td>" +
                                 value.quantity +
                                 "</td><td>" +
                                 "<div class = 'd-flex'>" +
                                 "<button  class='btn btn-success text-white pnt-btn-plus shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + 0 + "'><i class='fa fa-plus'></i></button>" +
                                 "<button  class='btn btn-info text-white pnt-btn-minus shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + 1 + "'><i class='fa fa-minus'></i></button>" +
-                                "<button  class='btn btn-secondary text-white pnt-btn-history shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-calculator'></i></button>" +
+                                "<button  class='btn btn-secondary text-white pnt-btn-history shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-history'></i></button>" +
                                 "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + 3 + "'><i class='fa fa-pencil-square-o'></i></button>" +
                                 "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
                             )
@@ -456,9 +491,70 @@
             getOptionDropdown();
         }
 
+        function resetTableHistory()
+        {
+            $.ajax({
+                type: "get",
+                url: '{!! url('stock/parts/getPartHistory') !!}/' + window.id,
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
+                success: function (data) {
+                    console.log(data)
+                    if (data.status) {
+                        window.table_history.destroy();
+                        $('.data-section-history').html(null);
+                        $.each(data.partHistory, function (index, value) {
+                            var text = '';
+                            var date = moment(value.updated_at).format('DD/MM/YYYY, h:mm:ss a');
+                            ;
+
+                            (value.type == 0 ? text = 'Imported' : text = 'Withdraw')
+                            $('.data-section-history').append(
+                                "<tr><td>" +
+                                (index + 1) +
+                                "</td><td>" +
+                                value.part +
+                                "</td><td>" +
+                                text +
+                                "</td><td>" +
+                                value.quantity +
+                                "</td><td>" +
+                                "<button  class='btn btn-warning text-white pnt-btn-edit-quantity-history shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + 3 + "'><i class='fa fa-pencil-square-o'></i></button>" +
+                                "</td><td>" +
+                                value.detail +
+                                "</td><td>" +
+                                (value.user == null ? "-" : value.user) +
+                                "</td><td>" +
+                                date +
+                                "</td></tr>"
+                            )
+                        });
+                        window.table_history = $('#partsHistory').DataTable();
+                        $('.pnt-modal-history').modal();
+                        $('#pnt-loading').hide();
+                    }
+                }
+            });
+
+        }
+
         $(document).ready(function () {
             getfilterCategory();
             resetTable(window.category_filter);
+            // add-modal-add-parts
+            $('#add-modal-add-parts-valid').validate({
+                rules: {
+                    quantity: {
+                        required: true,
+                        number: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    quantity: "<span class='text-danger' >Please insert quantity</span>",
+                }
+            });
         });
 
         // btn-filter-parts
@@ -477,13 +573,15 @@
 
         // btn-save-add-parts
         $(document).off('click', '.pnt-btn-modal-add-parts-save').on('click', '.pnt-btn-modal-add-parts-save', e => {
-            $('e.currentTarget').prop('disabled', true);
-            if ($('.pnt-modal-sel-add-parts-category option:selected').val() != 0) {
+            // add-modal-add-parts-valid
+            if ($("#add-modal-add-parts-valid").valid()) {
+                $('e.currentTarget').prop('disabled', true);
+
                 if ($('.pnt-modal-add-parts-quantity').val() <= 0) {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
-                        title: 'Plaese Add Quantity.',
+                        title: 'Quantity went wrong',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -495,7 +593,7 @@
                             stock_category_id: $('.pnt-modal-sel-add-parts-category option:selected').val(),
                             group_id: $('.pnt-modal-sel-add-group-parts option:selected').val(),
                             stock_branch_id: $('#pnt-input-branch_id').val(),
-                            name: $('.pnt-modal-add-parts-name').val(),
+                            name: $('.pnt-modal-sel-add-group-parts option:selected').text(),
                             quantity: $('.pnt-modal-add-parts-quantity').val(),
                             sku: $('.pnt-modal-add-parts-sku').val(),
                             '_token': window.token,
@@ -505,12 +603,11 @@
                         },
                         success: function (data) {
                             if (data.status) {
-                                $('.pnt-modal-sel-add-parts-category option:selected').val(0).change();
-                                $('.pnt-modal-sel-add-group-parts option:selected').val(0).change();
                                 $('.pnt-modal-add-parts-name').val('');
                                 $('.pnt-modal-add-parts-quantity').val('');
                                 $('.pnt-modal-add-parts').modal('hide');
-                                $('pnt-bnt-add-parts').prop('disabled', false);
+                                $('.pnt-bnt-add-parts').prop('disabled', false);
+                                $('.pnt-modal-add-parts-sku').val(''),
                                 getfilterCategory();
                                 resetTable();
                                 Swal.fire({
@@ -540,23 +637,13 @@
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
-                                $('pnt-bnt-add-parts').prop('disabled', false);
+                                $('.pnt-bnt-add-parts').prop('disabled', false);
                                 $('#pnt-loading').hide();
                             }
                         },
                     });
                 }
-            } else {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Please Select Category',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                $('pnt-bnt-add-parts').prop('disabled', false);
             }
-            // getOptionDropdown();
         });
         // end-btn-save-add-parts
 
@@ -578,7 +665,7 @@
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Quantity went Wrong',
+                    title: 'Quantity went wrong',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -607,7 +694,7 @@
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Quantity went Wrong',
+                    title: 'Quantity went wrong',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -622,45 +709,7 @@
         // btn-history
         $(document).off('click', '.pnt-btn-history').on('click', '.pnt-btn-history', (e) => {
             window.id = $(e.currentTarget).val();
-            $.ajax({
-                type: "get",
-                url: '{!! url('stock/parts/getPartHistory') !!}/' + window.id,
-                beforeSend: function () {
-                    $('#pnt-loading').show();
-                },
-                success: function (data) {
-                    if (data.status) {
-                        window.table_history.destroy();
-                        $('.data-section-history').html(null);
-                        $.each(data.partHistory, function (index, value) {
-                            var text = '';
-                            var date = moment(value.created_at).format('L');
-
-                            (value.type == 0 ? text = 'Imported' : text = 'Withdraw')
-                            $('.data-section-history').append(
-                                "<tr><td>" +
-                                (index + 1) +
-                                "</td><td>" +
-                                value.part.name +
-                                "</td><td>" +
-                                text +
-                                "</td><td>" +
-                                value.quantity +
-                                "</td><td>" +
-                                value.detail +
-                                "</td><td>" +
-                                value.user.name +
-                                "</td><td>" +
-                                date +
-                                "</td></tr>"
-                            )
-                        });
-                        window.table_history = $('#partsHistory').DataTable();
-                        $('.pnt-modal-history').modal();
-                        $('#pnt-loading').hide();
-                    }
-                }
-            });
+            resetTableHistory();
         });
         // end-btn-history
 
@@ -675,60 +724,60 @@
         // pnt-btn-edit-save
         $(document).off('click', '.pnt-btn-modal-edit-parts-save').on('click', '.pnt-btn-modal-edit-parts-save', (e) => {
             $(e.currentTarget).prop('disabled', true);
-            if ($('.pnt-modal-sel-edit-parts-category option:selected').val() != 0) {
-                $.ajax({
-                    type: "post",
-                    url: '{!! url('stock/parts/update') !!}/' + window.id,
-                    data: {
-                        stock_category_id: $('.pnt-modal-sel-edit-parts-category option:selected').val(),
-                        name: $('.pnt-modal-edit-parts-name').val(),
-                        sku: $('.pnt-modal-edit-parts-sku').val(),
-                        group_id: $('.pnt-modal-sel-edit-group-parts option:selected').val(),
-                        '_token': window.token,
-                    },
-                    beforeSend: function () {
-                        $('#pnt-loading').show();
-                    },
-                    success: function (data) {
-                        if (data.status) {
-                            $(".pnt-modal-edit").modal('hide');
-                            $('.pnt-btn-modal-edit-parts-save').prop('disabled', false);
-                            resetTable();
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Update Parts Success fully',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            $('#pnt-loading').hide();
-                        }
-                    },
-                    error: function (jqXHR, exception) {
-                        if (jqXHR.status !== 200) {
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'error',
-                                title: 'Something went wrong',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            $('.pnt-btn-modal-edit-parts-save').prop('disabled', false);
-                            $('#pnt-loading').hide();
-                        }
-                    },
-                });
-            } else {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Please Select Category',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                $('.pnt-btn-modal-edit-parts-save').prop('disabled', false);
-                $('#pnt-loading').hide();
-            }
+
+            $.ajax({
+                type: "post",
+                url: '{!! url('stock/parts/update') !!}/' + window.id,
+                data: {
+                    stock_category_id: $('.pnt-modal-sel-edit-parts-category option:selected').val(),
+                    stock_branch_id: $('#pnt-input-branch_id').val(),
+                    sku: $('.pnt-modal-edit-parts-sku').val(),
+                    group_id: $('.pnt-modal-sel-edit-group-parts option:selected').val(),
+                    '_token': window.token,
+                },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
+                success: function (data) {
+                    if (data.status) {
+                        $(".pnt-modal-edit").modal('hide');
+                        $('.pnt-btn-modal-edit-parts-save').prop('disabled', false);
+                        resetTable();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Update Parts Success fully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $('#pnt-loading').hide();
+                    }
+                    else{
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Duplicate Parts Name.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    if (jqXHR.status !== 200) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Something went wrong',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $('.pnt-btn-modal-edit-parts-save').prop('disabled', false);
+                        $('#pnt-loading').hide();
+                    }
+                },
+            });
+            $('.pnt-btn-modal-edit-parts-save').prop('disabled', false);
+            $('#pnt-loading').hide();
         });
         // end-pnt-btn-edit-save
 
@@ -767,6 +816,69 @@
             })
         });
         // end btn-delete
+
+        $(document).off('click', '.pnt-btn-edit-quantity-history').on('click', '.pnt-btn-edit-quantity-history', (e) => {
+            window.part_history_id = $(e.currentTarget).val();
+            console.log(window.part_history_id);
+            $.ajax({
+                type: "get",
+                url: "{!! url('stock/parts/getOneInHistory') !!}/" + window.part_history_id,
+                success: function (data) {
+                    console.log(data)
+                    window.detail = data.partsHistory.detail;
+                    $('#pnt-loading').hide();
+                    $('.history-quantity-save-edit-card').show(150);
+                    $('.history-quantity-edit').val(data.partsHistory.quantity)
+                }
+            });
+        });
+
+
+        $(document).off('click', '.history-close-edit-card').on('click', '.history-close-edit-card', (e) => {
+            $('.history-quantity-save-edit-card').hide(150);
+        });
+
+        $(document).off('click', '.history-save-btn-edit-card').on('click', '.history-save-btn-edit-card', (e) => {
+            $.ajax({
+                type: "post",
+                url: "{!! url('stock/parts/updateOneHistory') !!}/" + window.part_history_id,
+                data: {
+                    detail: window.detail,
+                    quantity: $('.history-quantity-edit').val(),
+                    '_token': window.token,
+                },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
+                success: function (data) {
+                    console.log(data)
+                    $('#pnt-loading').hide();
+                    console.log("abc")
+                    $('.history-quantity-save-edit-card').hide(150);
+                    resetTable();
+                    resetTableHistory();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Upadate History Parts Quantity Success fully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                },
+                error: function (jqXHR, exception) {
+                    if (jqXHR.status !== 200) {
+                        $('#pnt-loading').hide();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Something went wrong',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                },
+            });
+        });
 
 
     </script>

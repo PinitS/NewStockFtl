@@ -8,6 +8,9 @@
             <div class="card bg-white">
                 <div class="card-header">
                     <h4 class="card-title text-dark">Group Parts Information</h4>
+                    <button type="button" class="btn btn-info pnt-bnt-add-group">Add <span class="btn-icon-right"><i
+                                class="fa fa-plus color-info"></i></span>
+                    </button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -29,33 +32,62 @@
     </div>
 
     {{--modal update--}}
-    <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Group Parts</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
+    <form id="edit-modal-gp">
+        <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Group Parts</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Groups Name</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-group-name" id="name" name="name"
-                               required>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Groups Name</strong></label>
+                            <input type="text" class="form-control pnt-modal-edit-group-name" id="name" name="name"
+                                   required>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-save">Save changes</button>
                     </div>
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary pnt-btn-modal-save">Save changes</button>
-                </div>
-
             </div>
         </div>
-    </div>
+    </form>
     {{--modal update--}}
 
+    {{--    modal add groups--}}
+    <form id="add-modal-gp">
+        <div class="modal fade pnt-modal-add-group">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Group Parts</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Groups Name</strong></label>
+                            <input type="text" class="form-control pnt-input-add-name-gp" id="name" name="name"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-group-save">Add Group Parts
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    {{--    end modal add groups--}}
 
 
 @endsection
@@ -104,6 +136,34 @@
 
         $(document).ready(function () {
             resetTable();
+
+            $('#add-modal-gp').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    name: {
+                        required: "<span class='text-danger'>Please enter a Group Parts name</span>",
+                    },
+                }
+            });
+            $('#edit-modal-gp').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    name: {
+                        required: "<span class='text-danger'>Please enter a Group Parts name</span>",
+                    },
+                }
+            });
+
         });
 
         // btn-edit
@@ -124,43 +184,48 @@
 
         // btn save update modal
         $(document).off('click', '.pnt-btn-modal-save').on('click', '.pnt-btn-modal-save', e => {
-            $.ajax({
-                type: "post",
-                url: '{!! url('manage/groupParts/update') !!}/' + window.id,
-                data: {
-                    name: $('.pnt-modal-edit-group-name').val(),
-                    '_token': window.token,
-                },
-                beforeSend: function () {
-                    $('#pnt-loading').show();
-                },
-                success: function (data) {
-                    if (data.status) {
-                        $('.pnt-modal-edit').modal('hide');
-                        $('#pnt-loading').hide();
-                        resetTable();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Update Group Success fully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-                error: function (jqXHR, exception) {
-                    if (jqXHR.status !== 200) {
-                        $('#pnt-loading').hide();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Something went wrong',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-            });
+            if ($("#edit-modal-gp").valid()) {
+                $('.pnt-btn-modal-save').prop('disabled', true);
+                $.ajax({
+                    type: "post",
+                    url: '{!! url('manage/groupParts/update') !!}/' + window.id,
+                    data: {
+                        name: $('.pnt-modal-edit-group-name').val(),
+                        '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
+                    success: function (data) {
+                        $('.pnt-btn-modal-save').prop('disabled', false);
+                        if (data.status) {
+                            $('.pnt-modal-edit').modal('hide');
+                            $('#pnt-loading').hide();
+                            resetTable();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Update Group Success fully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        $('.pnt-btn-modal-save').prop('disabled', false);
+                        if (jqXHR.status !== 200) {
+                            $('#pnt-loading').hide();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Something went wrong',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                });
+            }
         });
         // end btn save update modal
 
@@ -209,6 +274,70 @@
             })
         });
         // end btn-delete
+
+
+        $(document).off('click', '.pnt-bnt-add-group').on('click', '.pnt-bnt-add-group', (e) => {
+            $('.pnt-input-add-name-gp').val('');
+            $('.pnt-btn-modal-add-group-save').prop('disabled', false);
+            $('.pnt-modal-add-group').modal('show');
+        });
+        // end btn-delete
+
+
+        $(document).off('click', '.pnt-btn-modal-add-group-save').on('click', '.pnt-btn-modal-add-group-save', (e) => {
+            if ($("#add-modal-gp").valid()) {
+                $('.pnt-btn-modal-add-group-save').prop('disabled', true);
+                $.ajax({
+                    type: "post",
+                    url: '{!! url('manage/groupParts/create') !!}',
+                    data: {
+                        name: $('.pnt-input-add-name-gp').val(),
+                        '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
+                    success: function (data) {
+                        $('.pnt-btn-modal-add-group-save').prop('disabled', false);
+                        $('.pnt-input-add-name-gp').val('');
+                        resetTable();
+                        if (data.status) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Add Group parts Success fully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('.pnt-modal-add-group').modal('hide');
+                            $('#pnt-loading').hide();
+                        } else {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Duplicate GroupParts Name.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        $('.pnt-btn-modal-add-group-save').prop('disabled', false);
+                        if (jqXHR.status !== 200) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Something went wrong',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('#pnt-loading').hide();
+                        }
+                    },
+                });
+            }
+        });
+
 
     </script>
 @endsection

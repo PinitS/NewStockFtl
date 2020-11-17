@@ -40,8 +40,9 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
+                    console.log(data)
                     if (data.status) {
-                        var str = "<option value=" + 0 + "> <strong>" + "Select Branch" + "</strong></option>";
+                        var str = "";
                         $.each(data.branch, function (index, value) {
                             str += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
@@ -58,7 +59,7 @@
             var branch_id = $(".pnt-sel-branch option:selected").val();
             var branch_name = $(".pnt-sel-branch option:selected").text();
 
-            if (branch_id == 0) {
+            if (branch_id == 0 || branch_id == undefined) {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',

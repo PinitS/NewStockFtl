@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
-class IfHasDealerSession
+class IfDealerSessionIsNull
 {
     /**
      * Handle an incoming request.
@@ -18,8 +18,8 @@ class IfHasDealerSession
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Session::has('dealer')){
-            return Redirect::to('dealer');
+        if (!Session::has('dealer')){
+            return Redirect::to('selectDealer');
         }
         return $next($request);
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStockPartsTable extends Migration
+class CreateDealerProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateStockPartsTable extends Migration
      */
     public function up()
     {
-        Schema::create('stock_parts', function (Blueprint $table) {
+        Schema::create('dealer_products', function (Blueprint $table) {
             $table->id();
-            $table->integer('stock_category_id');
-            $table->integer('stock_branch_id');
-            $table->tinyInteger('group_part_id');
+            $table->integer('location_product_id');
+            $table->integer('dealer_id');
             $table->integer('quantity');
-            $table->string('sku', 50)->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateStockPartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stock_parts');
+        Schema::dropIfExists('dealer_products');
     }
 }

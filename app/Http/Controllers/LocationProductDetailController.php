@@ -20,11 +20,43 @@ class LocationProductDetailController extends Controller
             'maintenance',
             'Setup',
         ];
+
+        $data = [];
+
+        $lists = LocationProductList::where('location_id', Session::get('customer')[0]['id'])->get();
+        foreach ($lists as $list) {
+            foreach ($list->locationProductDetails as $detail) {
+                $local_data = [
+                    'id' => $detail->id,
+                    'code' => $detail->code,
+                    'product_name' => $detail->locationProductList ? ($detail->locationProductList->locationProduct ? $detail->locationProductList->locationProduct->name : null) : null,
+                    'model_name' => $detail->locationProductList ? ($detail->locationProductList->locationProduct ? ($detail->locationProductList->locationProduct->locationModel ? $detail->locationProductList->locationProduct->locationModel->name : null) : null) : null,
+                    'latitude' => $detail->latitude,
+                    'longitude' => $detail->longitude,
+                    'status' => $detail->status,
+                    'dealer_name' => $detail->dealer ? $detail->dealer->name : null,
+                    'sku' => $detail->sku
+                ];
+                array_push($data, $local_data);
+            }
+        }
+
+
+        $dataSet = [
+            'detail' => $data,
+
+//            'detail' => Location::with(['productLists', 'productLists.locationProductDetails', 'productLists.locationProduct.locationModel', 'productLists.locationProduct', 'productLists.locationProductDetails.dealer'])->findOrFail(Session::get('customer')[0]['id']),
+            'option' => $status_op,
+        ];
+        return response()->json(['status' => true, 'dataSet' => $dataSet]);
+
+    }
+
+    function getDropdown()
+    {
         $dataSet = [
             'location' => Location::all(),
             'product' => LocationProduct::all(),
-            'detail' => Location::with(['productLists', 'productLists.locationProductDetails', 'productLists.locationProduct.locationModel', 'productLists.locationProduct'])->findOrFail(Session::get('customer')[0]['id']),
-            'option' => $status_op,
         ];
         return response()->json(['status' => true, 'dataSet' => $dataSet]);
     }
@@ -63,9 +95,9 @@ class LocationProductDetailController extends Controller
         }
 
         if ($product_id != '' && $product_id != 0) {
-            if ($has_query){
+            if ($has_query) {
                 $product_lists = $product_lists->where('location_product_id', $product_id);
-            }else{
+            } else {
                 $product_lists = LocationProductList::where('location_product_id', $product_id);
             }
             $has_query = true;
@@ -73,25 +105,42 @@ class LocationProductDetailController extends Controller
 
         if ($status_id != '' && $status_id != 10) {
             $status_id = (int)$status_id;
-            if ($has_query){
+            if ($has_query) {
                 $product_lists = $product_lists->whereHas('locationProductDetails', function (Builder $query) use ($status_id) {
                     $query->where('status', $status_id);
                 });
 
-            }else{
+            } else {
                 $product_lists = LocationProductList::whereHas('locationProductDetails', function (Builder $query) use ($status_id) {
                     $query->where('status', $status_id);
                 });
             }
             $has_query = true;
         }
-        if (!$has_query){
-            $product_lists = LocationProductList::with(['locationProductDetails','location' , 'locationProduct'])->get();
-        }else{
-            $product_lists = $product_lists->with(['locationProductDetails','location' ,'locationProduct'])->get();
+        if (!$has_query) {
+            $product_lists = LocationProductList::with(['locationProductDetails', 'location', 'locationProduct'])->get();
+        } else {
+            $product_lists = $product_lists->with(['locationProductDetails', 'location', 'locationProduct'])->get();
         }
 
-        return response()->json(['status' => true, 'product' => $product_lists]);
+        $listSet = [];
+
+        foreach ($product_lists as $list) {
+            foreach ($list->locationProductDetails as $detail) {
+                $listData = [
+                    'serial' => $detail->code,
+                    'customer' => $list->location->name,
+                    'phone_number' => $list->phone_number,
+                    'product' => $list->locationProduct->name,
+                    'latitude' => $list->location->latitude,
+                    'longitude' => $list->location->longitude,
+                    'status' => $detail->status,
+                ];
+                array_push($listSet, $listData);
+            }
+        }
+
+        return response()->json(['status' => true, 'product' => $listSet]);
     }
 
     function create(Request $request)
@@ -115,7 +164,7 @@ class LocationProductDetailController extends Controller
                 $item->code = $i . $genCode;
                 $item->latitude = $customer->latitude;
                 $item->longitude = $customer->longitude;
-                $item->dealers_id = $request->input('dealers_id');
+                $item->dealer_id = $request->input('dealers_id');
                 $item->status = 2;
                 $item->sku = "#";
                 $item->save();

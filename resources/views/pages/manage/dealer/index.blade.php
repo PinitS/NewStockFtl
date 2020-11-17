@@ -3,6 +3,7 @@
 @section('content')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <div class="row">
         <div class="col-12">
             <div class="card bg-white">
@@ -35,135 +36,141 @@
     </div>
 
     {{--    modal add Dealer--}}
-    <div class="modal fade pnt-modal-add-dealer" id="exampleModalCenter">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Dealer</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
+    <form id="add-modal-dealer-valid">
+        <div class="modal fade pnt-modal-add-dealer" id="exampleModalCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Dealer</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Name</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-dealer-name" id="name" name="name"
-                               required>
-                    </div>
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Contact Name</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-dealer-contact " id="contact"
-                               name="contact"
-                               required>
-                    </div>
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Phone Number</strong></label>
-                        <input type="phone" class="form-control pnt-modal-add-dealer-phone" id="phone" name="phone">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="mb-1"><strong>Latitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-add-latitude" id="latitude"
-                                       name="latitude" value="" readonly>
-
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Name</strong></label>
+                            <input type="text" class="form-control pnt-modal-add-dealer-name" id="name" name="name"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Contact Name</strong></label>
+                            <input type="text" class="form-control pnt-modal-add-dealer-contact " id="contact"
+                                   name="contact">
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Phone Number</strong></label>
+                            <input type="text" class="form-control pnt-modal-add-dealer-phone" id="phoneNumber"
+                                   name="phoneNumber"
+                                   required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3 mt-1">
+                                <a class="btn btn-success btn-block text-white getLatLnt-add" style="cursor:pointer;">Select
+                                    Location</a>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="mb-1"><strong>Longitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-add-longitude" id="longitude"
-                                       name="longitude" value="" readonly>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="mb-1"><strong>Latitude</strong></label>
+                                    <input type="text" class="form-control pnt-modal-add-latitude" id="latitude"
+                                           name="latitude" value="" readonly>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="mb-1"><strong>Longitude</strong></label>
+                                    <input type="text" class="form-control pnt-modal-add-longitude" id="longitude"
+                                           name="longitude" value="" readonly>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a class="btn btn-success btn-block text-white getLatLnt-add" style="cursor:pointer;">Select
-                                Location</a>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Address</strong></label>
+                            <input type="text" class="form-control pnt-modal-add-dealer-address" id="address"
+                                   name="address" value="" required>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Address</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-dealer-address" id="address"
-                               name="address" value="" required>
                     </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary pnt-btn-modal-add-dealer-save">Add Dealer</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-dealer-save">Add Dealer</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     {{--    end modal add Dealer--}}
 
     {{--modal update--}}
-    <div class="modal fade pnt-modal-dealer-edit " id="exampleModalCenter">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Dealer</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
+    <form id="edit-modal-dealer-valid">
+        <div class="modal fade pnt-modal-dealer-edit " id="exampleModalCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Dealer</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Dealer</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-dealer-name" id="name" name="name"
-                               required>
-                    </div>
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Contact Name</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-dealer-contact " id="contact"
-                               name="contact"
-                               required>
-                    </div>
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Phone Number</strong></label>
-                        <input type="phone" class="form-control pnt-modal-edit-dealer-phone" id="phone" name="phone">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="mb-1"><strong>Latitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-edit-latitude" id="latitude"
-                                       name="latitude" value="" readonly>
-
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Dealer</strong></label>
+                            <input type="text" class="form-control pnt-modal-edit-dealer-name" id="name" name="name"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Contact Name</strong></label>
+                            <input type="text" class="form-control pnt-modal-edit-dealer-contact " id="contact"
+                                   name="contact">
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Phone Number</strong></label>
+                            <input type="text" class="form-control pnt-modal-edit-dealer-phone" id="phoneNumber"
+                                   name="phoneNumber"
+                                   required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mt-1 mb-3">
+                                <a class="btn btn-success btn-block text-white getLatLnt" style="cursor:pointer;">Select
+                                    Location</a>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="mb-1"><strong>Longitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-edit-longitude" id="longitude"
-                                       name="longitude" value="" readonly>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="mb-1"><strong>Latitude</strong></label>
+                                    <input type="text" class="form-control pnt-modal-edit-latitude" id="latitude"
+                                           name="latitude" value="" readonly>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="mb-1"><strong>Longitude</strong></label>
+                                    <input type="text" class="form-control pnt-modal-edit-longitude" id="longitude"
+                                           name="longitude" value="" readonly>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a class="btn btn-success btn-block text-white getLatLnt" style="cursor:pointer;">Select
-                                Location</a>
+
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Address</strong></label>
+                            <input type="text" class="form-control pnt-modal-edit-dealer-address" id="address"
+                                   name="address" value="" required>
                         </div>
+
                     </div>
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Address</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-dealer-address" id="address"
-                               name="address" value="" required>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-save-dealer">Save changes</button>
                     </div>
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary pnt-btn-modal-save-dealer">Save changes</button>
-                </div>
-
             </div>
         </div>
-    </div>
+    </form>
     {{--modal update--}}
 
 @endsection
@@ -186,10 +193,11 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
+                    console.log(data)
                     if (data.status) {
                         table.destroy();
                         $('.data-section').html(null);
-                        $.each(data.dealer, function (index, value) {
+                        $.each(data.dealers, function (index, value) {
                             let localHtml = "<tr><td>" +
                                 (index + 1) +
                                 "</td><td>" +
@@ -220,11 +228,65 @@
 
         $(document).ready(function () {
             resetTable();
+
+            $('#add-modal-dealer-valid').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                    phoneNumber: {
+                        required: true,
+                        number: true,
+                        minlength: 9,
+                        maxlength: 10,
+                    },
+                    address: {
+                        required: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    name: {
+                        required: "<span class='text-danger'>Please enter a dealer name</span>",
+                    },
+                    phoneNumber: "<span class='text-danger'>This field is required.</span>",
+                    address: {
+                        required: "<span class='text-danger'>Please enter an address</span>",
+                    },
+                }
+            });
+            $('#edit-modal-dealer-valid').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                    phone: {
+                        required: true,
+                        number: true,
+                        minlength: 10,
+                        maxlength: 10,
+                    },
+                    address: {
+                        required: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    name: {
+                        required: "<span class='text-danger'>Please enter a dealer name</span>",
+                    },
+                    phone: "Please enter your phone number",
+                    address: {
+                        required: "<span class='text-danger'>Please enter address</span>",
+                    },
+                }
+            });
         });
 
 
         // btn-add-Dealer
         $(document).off('click', '.pnt-bnt-add-dealer').on('click', '.pnt-bnt-add-dealer', (e) => {
+            $('.map-section-show-only').hide();
             $('.pnt-modal-add-dealer-name').val('');
             $('.pnt-modal-add-dealer-contact').val('');
             $('.pnt-modal-add-dealer-phone').val('');
@@ -237,53 +299,56 @@
 
         // btn-save-add-Dealer
         $(document).off('click', '.pnt-btn-modal-add-dealer-save').on('click', '.pnt-btn-modal-add-dealer-save', e => {
-            $.ajax({
-                type: "post",
-                url: "{!! url('manage/dealer/create') !!}",
-                data: {
-                    name: $('.pnt-modal-add-dealer-name').val(),
-                    contact_name: $('.pnt-modal-add-dealer-contact').val(),
-                    phone_number: $('.pnt-modal-add-dealer-phone').val(),
-                    latitude: $('.pnt-modal-add-latitude').val(),
-                    longitude: $('.pnt-modal-add-longitude').val(),
-                    address: $('.pnt-modal-add-dealer-address').val(),
-                    '_token': window.token,
-                },
-                beforeSend: function () {
-                    $('#pnt-loading').show();
-                },
-                success: function (data) {
-                    if (data.status) {
-                        $('.pnt-modal-add-dealer').modal('hide');
-                        $('#pnt-loading').hide();
-                        resetTable();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Add Dealer Success fully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-                error: function (jqXHR, exception) {
-                    if (jqXHR.status !== 200) {
-                        $('#pnt-loading').hide();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Something went wrong',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-            });
+            if ($("#add-modal-dealer-valid").valid()) {
+                $.ajax({
+                    type: "post",
+                    url: "{!! url('manage/dealer/create') !!}",
+                    data: {
+                        name: $('.pnt-modal-add-dealer-name').val(),
+                        contact_name: $('.pnt-modal-add-dealer-contact').val(),
+                        phone_number: $('.pnt-modal-add-dealer-phone').val(),
+                        latitude: $('.pnt-modal-add-latitude').val(),
+                        longitude: $('.pnt-modal-add-longitude').val(),
+                        address: $('.pnt-modal-add-dealer-address').val(),
+                        '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
+                    success: function (data) {
+                        if (data.status) {
+                            $('.pnt-modal-add-dealer').modal('hide');
+                            $('#pnt-loading').hide();
+                            resetTable();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Add Dealer Success fully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        if (jqXHR.status !== 200) {
+                            $('#pnt-loading').hide();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Something went wrong',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                });
+            }
         });
         // end-btn-save-add-Dealer
 
         // btn-delete
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
+            $('.map-section-show-only').hide();
             window.id = $(e.currentTarget).val();
             Swal.fire({
                 title: 'Are you sure?',
@@ -332,6 +397,8 @@
         // btn-edit
         $(document).off('click', '.pnt-btn-edit').on('click', '.pnt-btn-edit', (e) => {
             window.id = $(e.currentTarget).val();
+            $('.map-section-show-only').hide();
+
             $.ajax({
                 type: "get",
                 url: "{!! url('manage/dealer/getOneDealer') !!}/" + window.id,
@@ -352,48 +419,50 @@
 
         // btn save edit modal
         $(document).off('click', '.pnt-btn-modal-save-dealer').on('click', '.pnt-btn-modal-save-dealer', e => {
-            $.ajax({
-                type: "post",
-                url: "{!! url('manage/dealer/update') !!}/" + window.id,
-                data: {
-                    name: $('.pnt-modal-edit-dealer-name').val(),
-                    contact_name: $('.pnt-modal-edit-dealer-contact').val(),
-                    phone_number: $('.pnt-modal-edit-dealer-phone').val(),
-                    latitude: $('.pnt-modal-edit-latitude').val(),
-                    longitude: $('.pnt-modal-edit-longitude').val(),
-                    address: $('.pnt-modal-edit-dealer-address').val(),
-                    '_token': window.token,
-                },
-                beforeSend: function () {
-                    $('#pnt-loading').show();
-                },
-                success: function (data) {
-                    if (data.status) {
-                        $('.pnt-modal-dealer-edit').modal('hide');
-                        resetTable();
-                        $('#pnt-loading').hide();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Update Dealer Success fully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-                error: function (jqXHR, exception) {
-                    if (jqXHR.status !== 200) {
-                        $('#pnt-loading').hide();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Something went wrong',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-            });
+            if ($("#edit-modal-dealer-valid").valid()) {
+                $.ajax({
+                    type: "post",
+                    url: "{!! url('manage/dealer/update') !!}/" + window.id,
+                    data: {
+                        name: $('.pnt-modal-edit-dealer-name').val(),
+                        contact_name: $('.pnt-modal-edit-dealer-contact').val(),
+                        phone_number: $('.pnt-modal-edit-dealer-phone').val(),
+                        latitude: $('.pnt-modal-edit-latitude').val(),
+                        longitude: $('.pnt-modal-edit-longitude').val(),
+                        address: $('.pnt-modal-edit-dealer-address').val(),
+                        '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
+                    success: function (data) {
+                        if (data.status) {
+                            $('.pnt-modal-dealer-edit').modal('hide');
+                            resetTable();
+                            $('#pnt-loading').hide();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Update Dealer Success fully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        if (jqXHR.status !== 200) {
+                            $('#pnt-loading').hide();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Something went wrong',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                });
+            }
         });
         // end btn save edit modal
 

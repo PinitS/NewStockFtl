@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DealerProductHistory;
+use App\Models\StockPartHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
@@ -13,7 +15,7 @@ class UserController extends Controller
 {
     public function getUsers()
     {
-        $userData = User::where('id' , '!=' , Auth::user()->id)->get();
+        $userData = User::where('id', '!=', Auth::user()->id)->get();
         return response()->json(['status' => true, 'userData' => $userData]);
     }
 
@@ -28,7 +30,7 @@ class UserController extends Controller
         $item->name = $request->input('name');
         $item->email = $request->input('email');
         $item->password = bcrypt($request->input('password'));
-        $item->status = 0;
+        $item->status = $request->input('status');
 
         if ($item->save()) {
             return response()->json(['status' => true]);
@@ -61,6 +63,10 @@ class UserController extends Controller
 
     public function delete($id)
     {
+        $item_parts_history = StockPartHistory::where('user_id', $id)
+            ->update(['user_id' => 0]);
+        $item_dealer_history = DealerProductHistory::where('user_id', $id)
+            ->update(['user_id' => 0]);
         User::find($id)->delete();
         return response()->json(['status' => true]);
     }

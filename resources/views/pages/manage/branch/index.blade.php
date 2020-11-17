@@ -35,125 +35,131 @@
 
 
     {{--    modal add Branch--}}
-    <div class="modal fade pnt-modal-add-branch" id="exampleModalCenter">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Branch</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Branch Name</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-branch-name" id="name" name="name"
-                               required>
+    <form id="add-modal-branch-valid">
+        <div class="modal fade pnt-modal-add-branch" id="exampleModalCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Branch</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Phone Number</strong></label>
-                        <input type="phone" class="form-control pnt-modal-add-branch-phone" id="phone" name="phone">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="mb-1"><strong>Latitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-add-latitude" id="latitude"
-                                       name="latitude" value="" readonly>
+                    <div class="modal-body">
 
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Branch Name</strong></label>
+                            <input type="text" class="form-control pnt-modal-add-branch-name" id="name" name="name"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Phone Number</strong></label>
+                            <input type="text" class="form-control pnt-modal-add-branch-phone" id="phoneNumber"
+                                   name="phoneNumber">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3 mt-1">
+                                <a class="btn btn-success btn-block text-white getLatLnt-add" style="cursor:pointer;">Select
+                                    Location</a>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="mb-1"><strong>Longitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-add-longitude" id="longitude"
-                                       name="longitude" value="" readonly>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="mb-1"><strong>Latitude</strong></label>
+                                    <input type="text" class="form-control pnt-modal-add-latitude" id="latitude"
+                                           name="latitude" value="" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="mb-1"><strong>Longitude</strong></label>
+                                    <input type="text" class="form-control pnt-modal-add-longitude" id="longitude"
+                                           name="longitude" value="" readonly>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a class="btn btn-success btn-block text-white getLatLnt-add" style="cursor:pointer;">Select
-                                Location</a>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Address</strong></label>
+                            <input type="text" class="form-control pnt-modal-add-address" id="address" name="address"
+                                   value="" required>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Address</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-address" id="address" name="address"
-                               value="" required>
                     </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary pnt-btn-modal-add-branch-save">Add Branch</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-branch-save">Add Branch</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     {{--    end modal add Branch--}}
 
 
     {{--modal update--}}
-    <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Branch</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Branch Name</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-branch-name" id="name" name="name"
-                               required>
+    <form id="edit-modal-branch-valid">
+        <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Branch</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Phone Number</strong></label>
-                        <input type="phone" class="form-control pnt-modal-edit-branch-phone" id="phone" name="phone">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="mb-1"><strong>Latitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-edit-latitude" id="latitude"
-                                       name="latitude" value="" readonly>
+                    <div class="modal-body">
 
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Branch Name</strong></label>
+                            <input type="text" class="form-control pnt-modal-edit-branch-name" id="name" name="name"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Phone Number</strong></label>
+                            <input type="text" class="form-control pnt-modal-edit-branch-phone" id="phoneNumber"
+                                   name="phoneNumber">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mb-3 mt-1">
+                                <a class="btn btn-success btn-block text-white getLatLnt" style="cursor:pointer;">Select
+                                    Location</a>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="mb-1"><strong>Longitude</strong></label>
-                                <input type="text" class="form-control pnt-modal-edit-longitude" id="longitude"
-                                       name="longitude" value="" readonly>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="mb-1"><strong>Latitude</strong></label>
+                                    <input type="text" class="form-control pnt-modal-edit-latitude" id="latitude"
+                                           name="latitude" value="" readonly>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="mb-1"><strong>Longitude</strong></label>
+                                    <input type="text" class="form-control pnt-modal-edit-longitude" id="longitude"
+                                           name="longitude" value="" readonly>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <a class="btn btn-success btn-block text-white getLatLnt" style="cursor:pointer;">Select
-                                Location</a>
+
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Address</strong></label>
+                            <input type="text" class="form-control pnt-modal-edit-branch-address" id="address"
+                                   name="address" value="" required>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Address</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-branch-address" id="address"
-                               name="address" value="" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-save">Save changes</button>
                     </div>
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary pnt-btn-modal-save">Save changes</button>
-                </div>
-
             </div>
         </div>
-    </div>
+    </form>
     {{--modal update--}}
 
 @endsection
@@ -185,7 +191,7 @@
                                 "</td><td>" +
                                 value.name +
                                 "</td><td>" +
-                                value.phone_number +
+                                (value.phone_number == null ? "-" : value.phone_number) +
                                 "</td><td>" +
                                 value.address +
                                 "</td><td>" +
@@ -207,10 +213,61 @@
 
         $(document).ready(function () {
             resetTable();
+            $('#add-modal-branch-valid').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                    phoneNumber: {
+                        number: true,
+                        minlength: 9,
+                        maxlength: 10,
+                    },
+                    address: {
+                        required: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    name: {
+                        required: "<span class='text-danger'>Please enter a branch name</span>",
+                    },
+                    phoneNumber: "<span class='text-danger' >Enter phone number</span>",
+                    address: {
+                        required: "<span class='text-danger'>Please enter an address</span>",
+                    },
+                }
+            });
+            $('#edit-modal-branch-valid').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                    phoneNumber: {
+                        number: true,
+                        minlength: 9,
+                        maxlength: 10,
+                    },
+                    address: {
+                        required: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    name: {
+                        required: "<span class='text-danger'>Please enter a branch name</span>",
+                    },
+                    phoneNumber: "<span class='text-danger' >Enter phone number</span>",
+                    address: {
+                        required: "<span class='text-danger'>Please enter an address</span>",
+                    },
+                }
+            });
         });
 
         // btn-add-branch
         $(document).off('click', '.pnt-bnt-add-branch').on('click', '.pnt-bnt-add-branch', (e) => {
+            $('.map-section-show-only').hide();
             $('.pnt-modal-add-branch-name').val('');
             $('.pnt-modal-add-branch-phone').val('');
             $('.pnt-modal-add-latitude').val('');
@@ -222,53 +279,56 @@
 
         // btn-save-add-branch
         $(document).off('click', '.pnt-btn-modal-add-branch-save').on('click', '.pnt-btn-modal-add-branch-save', e => {
-            $.ajax({
-                type: "post",
-                url: "{!! url('manage/branches/create') !!}",
-                data: {
-                    name: $('.pnt-modal-add-branch-name').val(),
-                    phone_number: $('.pnt-modal-add-branch-phone').val(),
-                    latitude: $('.pnt-modal-add-latitude').val(),
-                    longitude: $('.pnt-modal-add-longitude').val(),
-                    address: $('.pnt-modal-add-address').val(),
-                    '_token': window.token,
-                },
-                beforeSend: function () {
-                    $('#pnt-loading').show();
-                },
-                success: function (data) {
-                    if (data.status) {
-                        $('.pnt-modal-add-branch').modal('hide');
+            if ($("#add-modal-branch-valid").valid()) {
+                $.ajax({
+                    type: "post",
+                    url: "{!! url('manage/branches/create') !!}",
+                    data: {
+                        name: $('.pnt-modal-add-branch-name').val(),
+                        phone_number: $('.pnt-modal-add-branch-phone').val(),
+                        latitude: $('.pnt-modal-add-latitude').val(),
+                        longitude: $('.pnt-modal-add-longitude').val(),
+                        address: $('.pnt-modal-add-address').val(),
+                        '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
+                    success: function (data) {
+                        if (data.status) {
+                            $('.pnt-modal-add-branch').modal('hide');
+                            $('#pnt-loading').hide();
+                            resetTable();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Add Branch Success fully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                    error: function (jqXHR, exception) {
                         $('#pnt-loading').hide();
-                        resetTable();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Add Branch Success fully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-                error: function (jqXHR, exception) {
-                    $('#pnt-loading').hide();
-                    if (jqXHR.status !== 200) {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Something went wrong',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-            });
+                        if (jqXHR.status !== 200) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Something went wrong',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                });
+            }
         });
         // end-btn-save-add-branch
 
         // btn-edit
         $(document).off('click', '.pnt-btn-edit').on('click', '.pnt-btn-edit', (e) => {
             window.id = $(e.currentTarget).val();
+            $('.map-section-show-only').hide();
             $.ajax({
                 type: "get",
                 url: "{!! url('manage/branches/getBranch') !!}/" + window.id,
@@ -292,52 +352,55 @@
 
         // btn save update modal
         $(document).off('click', '.pnt-btn-modal-save').on('click', '.pnt-btn-modal-save', e => {
-            $.ajax({
-                type: "post",
-                url: "{!! url('manage/branches/update') !!}/" + window.id,
-                data: {
-                    name: $('.pnt-modal-edit-branch-name').val(),
-                    phone_number: $('.pnt-modal-edit-branch-phone').val(),
-                    latitude: $('.pnt-modal-edit-latitude').val(),
-                    longitude: $('.pnt-modal-edit-longitude').val(),
-                    address: $('.pnt-modal-edit-branch-address').val(),
-                    '_token': window.token,
-                },
-                beforeSend: function () {
-                    $('#pnt-loading').show();
-                },
-                success: function (data) {
-                    if (data.status) {
-                        $('.pnt-modal-edit').modal('hide');
-                        $('#pnt-loading').hide();
-                        resetTable();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Update Branch Success fully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-                error: function (jqXHR, exception) {
-                    if (jqXHR.status !== 200) {
-                        $('#pnt-loading').hide();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Something went wrong',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-            });
+            if ($("#edit-modal-branch-valid").valid()) {
+                $.ajax({
+                    type: "post",
+                    url: "{!! url('manage/branches/update') !!}/" + window.id,
+                    data: {
+                        name: $('.pnt-modal-edit-branch-name').val(),
+                        phone_number: $('.pnt-modal-edit-branch-phone').val(),
+                        latitude: $('.pnt-modal-edit-latitude').val(),
+                        longitude: $('.pnt-modal-edit-longitude').val(),
+                        address: $('.pnt-modal-edit-branch-address').val(),
+                        '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
+                    success: function (data) {
+                        if (data.status) {
+                            $('.pnt-modal-edit').modal('hide');
+                            $('#pnt-loading').hide();
+                            resetTable();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Update Branch Success fully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        if (jqXHR.status !== 200) {
+                            $('#pnt-loading').hide();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Something went wrong',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                });
+            }
         });
         // end btn save update modal
 
         // btn-delete
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
+            $('.map-section-show-only').hide();
             window.id = $(e.currentTarget).val();
             Swal.fire({
                 title: 'Are you sure?',

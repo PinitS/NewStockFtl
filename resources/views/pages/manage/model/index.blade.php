@@ -32,56 +32,59 @@
     </div>
 
     {{--    modal add model--}}
-    <div class="modal fade pnt-modal-add-model" id="pnt-modal-add-model">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Model</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Model</span>
-                        </div>
-                        <input type="text" class="form-control pnt-input-add-name">
+    <form id="add-modal-model">
+        <div class="modal fade pnt-modal-add-model" id="pnt-modal-add-model">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Model</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary pnt-btn-modal-add-model-save">Add Model</button>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Model</strong></label>
+                            <input type="text" class="form-control pnt-input-add-name" id="name" name="name"
+                                   required>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-model-save">Add Model</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     {{--    end modal add model--}}
 
     {{--modal update--}}
-    <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Model</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">Model</span>
-                        </div>
-                        <input type="text" class="form-control pnt-input-name">
+    <form id="edit-modal-model">
+        <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Model</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
                     </div>
-                </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Model</strong></label>
+                            <input type="text" class="form-control pnt-input-name" id="name" name="name"
+                                   required>
+                        </div>
+                    </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary pnt-btn-modal-save">Save changes</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-save">Save changes</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     {{--modal update--}}
 
 @endsection
@@ -129,6 +132,32 @@
 
         $(document).ready(function () {
             resetTable();
+            $('#add-modal-model').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    name: {
+                        required: "<span class='text-danger'>Please enter a Model name</span>",
+                    },
+                }
+            });
+            $('#edit-modal-model').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    name: {
+                        required: "<span class='text-danger'>Please enter a Model name</span>",
+                    },
+                }
+            });
         });
 
         // btn-add-model
@@ -140,43 +169,45 @@
 
         // btn-save-add-model
         $(document).off('click', '.pnt-btn-modal-add-model-save').on('click', '.pnt-btn-modal-add-model-save', e => {
-            $.ajax({
-                type: "post",
-                url: "{!! url('manage/model/create') !!}",
-                data: {
-                    name: $('.pnt-input-add-name').val(),
-                    '_token': window.token,
-                },
-                beforeSend: function () {
-                    $('#pnt-loading').show();
-                },
-                success: function (data) {
-                    if (data.status) {
-                        $('.pnt-modal-add-model').modal('hide');
+            if ($("#add-modal-model").valid()) {
+                $.ajax({
+                    type: "post",
+                    url: "{!! url('manage/model/create') !!}",
+                    data: {
+                        name: $('.pnt-input-add-name').val(),
+                        '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
+                    success: function (data) {
+                        if (data.status) {
+                            $('.pnt-modal-add-model').modal('hide');
+                            $('#pnt-loading').hide();
+                            resetTable();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Add Model Success fully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                    error: function (jqXHR, exception) {
                         $('#pnt-loading').hide();
-                        resetTable();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Add Model Success fully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-                error: function (jqXHR, exception) {
-                    $('#pnt-loading').hide();
-                    if (jqXHR.status !== 200) {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Something went wrong',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-            });
+                        if (jqXHR.status !== 200) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Something went wrong',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                });
+            }
         });
         // end-btn-save-add-model
 
@@ -199,42 +230,44 @@
 
         // btn save update modal
         $(document).off('click', '.pnt-btn-modal-save').on('click', '.pnt-btn-modal-save', e => {
-            $.ajax({
-                type: "post",
-                url: "{!! url('manage/model/update') !!}/" + window.id,
-                data: {
-                    name: $(".pnt-input-name").val(),
-                    '_token': window.token,
-                },
-                beforeSend: function () {
-                    $('#pnt-loading').show();
-                },
-                success: function (data) {
-                    if (data.status) {
-                        $('.pnt-modal-edit').modal('hide');
-                        $('#pnt-loading').hide();
-                        resetTable();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Update Model Success fully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-                error: function (jqXHR, exception) {
-                    if (jqXHR.status !== 200) {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Something went wrong',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-            });
+            if ($("#edit-modal-model").valid()) {
+                $.ajax({
+                    type: "post",
+                    url: "{!! url('manage/model/update') !!}/" + window.id,
+                    data: {
+                        name: $(".pnt-input-name").val(),
+                        '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
+                    success: function (data) {
+                        if (data.status) {
+                            $('.pnt-modal-edit').modal('hide');
+                            $('#pnt-loading').hide();
+                            resetTable();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Update Model Success fully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        if (jqXHR.status !== 200) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Something went wrong',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                });
+            }
         });
         // end btn save update modal
 

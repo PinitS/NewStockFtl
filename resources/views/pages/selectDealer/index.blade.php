@@ -41,8 +41,9 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
+                    console.log(data)
                     if (data.status) {
-                        var str = "<option value=" + 0 + "> <strong>" + "Select Dealer" + "</strong></option>";
+                        var str = "";
                         $.each(data.dealers, function (index, value) {
                             str += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
@@ -56,10 +57,13 @@
 
         // pnt-goto-dealer
         $(document).off('click', '.pnt-goto-dealer').on('click', '.pnt-goto-dealer', (e) => {
+            $('.pnt-goto-dealer').prop('disabled' , true);
             var dealer_id = $(".pnt-sel-dealer option:selected").val();
             var dealer_name = $(".pnt-sel-dealer option:selected").text();
 
-            if (dealer_id == 0) {
+
+
+            if (dealer_id == 0 || dealer_id == undefined) {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
@@ -67,6 +71,7 @@
                     showConfirmButton: false,
                     timer: 1500
                 });
+                $('.pnt-goto-dealer').prop('disabled' , false);
             } else {
                 $.ajax({
                     type: "post",
@@ -84,7 +89,8 @@
                             showConfirmButton: false,
                             timer: 2000
                         });
-                        window.location.href = "{!! url('customer/') !!}";
+                        $('.pnt-goto-dealer').prop('disabled' , false);
+                        window.location.href = "{!! url('dealer') !!}";
                     }
                 });
             }

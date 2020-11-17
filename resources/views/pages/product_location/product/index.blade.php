@@ -36,82 +36,88 @@
     </div>
 
     {{--    modal add Product--}}
-    <div class="modal fade pnt-modal-add-product" id="pnt-modal-add-product">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add Product</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
+    <form id="add-product-modal">
+        <div class="modal fade pnt-modal-add-product" id="pnt-modal-add-product">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add Product</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend w-10">
-                            <span class="input-group-text">&nbsp &nbsp Model</span>
+                        <div class="input-group mb-3 ">
+                            <div class="input-group-prepend w-10">
+                                <span class="input-group-text">&nbsp &nbsp Model</span>
+                            </div>
+                            <select class="form-control pnt-modal-sel-add-product-model">
+                            </select>
                         </div>
-                        <select class="form-control pnt-modal-sel-add-product-model">
-                        </select>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Name</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-product-name"
-                               placeholder="Name" required>
-                    </div>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Name</strong></label>
+                            <input type="text" class="form-control pnt-modal-add-product-name"
+                                   name="name" id="name" placeholder="Name" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Description</strong></label>
-                        <input type="text" class="form-control pnt-modal-add-product-description">
-                    </div>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Description</strong></label>
+                            <input type="text" class="form-control pnt-modal-add-product-description">
+                        </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary pnt-btn-modal-add-product-save">Add Product</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-product-save">Add Product
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     {{--    end modal add product--}}
 
     {{--modal update--}}
-    <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Product</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend w-10">
-                            <span class="input-group-text">&nbsp &nbsp Model</span>
+    <form id="edit-product-modal">
+        <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Product</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3 ">
+                            <div class="input-group-prepend w-10">
+                                <span class="input-group-text">&nbsp &nbsp Model</span>
+                            </div>
+                            <select class="form-control pnt-modal-sel-edit-product-model">
+                            </select>
                         </div>
-                        <select class="form-control pnt-modal-sel-edit-product-model">
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Name</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-product-name"
-                               placeholder="Name" required>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Name</strong></label>
+                            <input type="text" class="form-control pnt-modal-edit-product-name"
+                                   name="name" id="name" placeholder="Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-1"><strong>Description</strong></label>
+                            <input type="text" class="form-control pnt-modal-edit-product-description">
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="mb-1"><strong>Description</strong></label>
-                        <input type="text" class="form-control pnt-modal-edit-product-description">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-warning pnt-btn-modal-edit-product-save">Save changes
+                        </button>
                     </div>
+
                 </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-warning pnt-btn-modal-edit-product-save">Save changes</button>
-                </div>
-
             </div>
         </div>
-    </div>
+    </form>
     {{--modal update--}}
 
     {{--    pnt-modal-product-parts--}}
@@ -119,59 +125,60 @@
         <div class="modal-dialog modal-xl " role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add Parts</h5>
-                    <button type="button" class="btn btn-secondary pnt-bnt-add-path">Add to Product <span
+                    <h5 class="modal-title">Parts to product</h5>
+                    <button type="button" class="btn btn-secondary pnt-bnt-add-path">Add parts<span
                             class="btn-icon-right"><i
                                 class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
                 <div class="modal-body">
-
-                    <div class="pnt-add-path-data-toggle text-center " style="display:none;">
-                        <div class="col-md-6 mx-auto">
-                            <ul class="list-group">
-                                <li class="list-group-item disabled"><strong>Add Parts to Product</strong></li>
-                                <li class="list-group-item">
-                                    <select class="form-control pnt-modal-sel-add-group-part">
-                                    </select>
-                                </li>
-                                <li class="list-group-item">
-                                    {{--                                    <label>Quatity :</label>--}}
-                                    <input type="text" class="form-control pnt-modal-sel-add-group-quantity"
-                                           placeholder="Quatity">
-                                </li>
-                                <li class="list-group-item">
-                                    <button type="button"
-                                            class="btn btn-secondary btn-block mb-3 pnt-bnt-add-group-save">Add <i
-                                            class="ml-2 fa fa-plus color-info"></i>
-                                    </button>
-                                </li>
-                            </ul>
+                    <form id="add-part-modal">
+                        <div class="pnt-add-path-data-toggle text-center " style="display:none;">
+                            <div class="col-md-6 mx-auto">
+                                <ul class="list-group">
+                                    <li class="list-group-item disabled"><strong>Parts to product</strong></li>
+                                    <li class="list-group-item">
+                                        <select class="form-control pnt-modal-sel-add-group-part">
+                                        </select>
+                                    </li>
+                                    <li class="list-group-item">
+                                        {{--                                    <label>Quatity :</label>--}}
+                                        <input type="text" class="form-control pnt-modal-sel-add-group-quantity"
+                                               name="quantity" id="quantity" placeholder="Quatity" required>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <button type="button"
+                                                class="btn btn-secondary btn-block mb-3 pnt-bnt-add-group-save">Add <i
+                                                class="ml-2 fa fa-plus color-info"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr>
                         </div>
-                        <hr>
-                    </div>
+                    </form>
 
+                    <form id="edit-part-modal">
+                        <div class="pnt-add-path-edit-data-toggle text-center " style="display:none;">
+                            <div class="col-md-6 mx-auto">
+                                <ul class="list-group">
+                                    <li class="list-group-item active"><strong>Edit Quantity Parts</strong></li>
+                                    <li class="list-group-item">
+                                        <input type="text" class="form-control pnt-modal-sel-edit-group-quantity"
+                                               name="quantity" id="quantity" placeholder="Quatity" required>
 
-                    <div class="pnt-add-path-edit-data-toggle text-center " style="display:none;">
-                        <div class="col-md-6 mx-auto">
-                            <ul class="list-group">
-                                <li class="list-group-item active"><strong>Edit Quantity Parts</strong></li>
-                                <li class="list-group-item">
-                                    <input type="text" class="form-control pnt-modal-sel-edit-group-quantity"
-                                           placeholder="Quatity">
-
-                                </li>
-                                <li class="list-group-item">
-                                    <button type="button"
-                                            class="btn btn-primary btn-block mb-3 pnt-bnt-edit-group-save">Edit
-                                        <i class="ml-2 fa fa-save color-info"></i>
-                                    </button>
-                                </li>
-                            </ul>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <button type="button"
+                                                class="btn btn-primary btn-block mb-3 pnt-bnt-edit-group-save">Edit
+                                            <i class="ml-2 fa fa-save color-info"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr>
                         </div>
-                        <hr>
-                    </div>
-
+                    </form>
 
                     <div class="div">
                         <div class="table-responsive">
@@ -225,12 +232,12 @@
                     window.editModel.empty();
                     window.addGroup.empty();
                     if (data.status) {
-                        var model = "<option value=" + 0 + "> <strong>" + "Select Model" + "</strong></option>";
+                        var model = "";
                         $.each(data.dataSet.model, function (index, value) {
                             model += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
 
-                        var group_option = "<option value=" + 0 + "> <strong>" + "Select Parts" + "</strong></option>";
+                        var group_option = "";
                         $.each(data.dataSet.group, function (index, value) {
                             group_option += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
@@ -272,8 +279,7 @@
                                 "<button  class='btn btn-secondary text-white pnt-btn-parts shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + value.id + "'><i class='fa fa-file'></i></button>" +
                                 "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + value.id + "'><i class='fa fa-pencil-square-o'></i></button>";
 
-                            if(value.delete_active)
-                            {
+                            if (value.delete_active) {
                                 localHtml += "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>";
                             }
 
@@ -321,6 +327,56 @@
         $(document).ready(function () {
             resetTable();
             getOptionDropdown();
+            $('#add-product-modal').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    name: {
+                        required: "<span class='text-danger'>Please enter a Product name</span>",
+                    },
+                }
+            });
+            $('#edit-product-modal').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    name: {
+                        required: "<span class='text-danger'>Please enter a Product name</span>",
+                    },
+                }
+            });
+            $('#add-part-modal').validate({
+                rules: {
+                    quantity: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    quantity: {
+                        required: "<span class='text-danger'>Please insert quantity</span>",
+                    },
+                }
+            });
+            $('#edit-part-modal').validate({
+                rules: {
+                    quantity: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    quantity: {
+                        required: "<span class='text-danger'>Please insert quantity</span>",
+                    },
+                }
+            });
         });
 
         // btn-add-product
@@ -335,15 +391,7 @@
         // btn-save-add-product
         $(document).off('click', '.pnt-btn-modal-add-product-save').on('click', '.pnt-btn-modal-add-product-save', e => {
             var model_id = $('.pnt-modal-sel-add-product-model option:selected').val();
-            if (model_id == 0) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Please Select Model',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            } else {
+            if ($("#add-product-modal").valid()) {
                 $.ajax({
                     type: "post",
                     url: '{{route('createProduct')}}',
@@ -359,7 +407,6 @@
                     success: function (data) {
                         if (data.status) {
                             $('.pnt-modal-add-product').modal('hide');
-                            $('.pnt-modal-sel-add-product-model').val(0).change();
                             $('#pnt-loading').hide();
                             resetTable();
                             Swal.fire({
@@ -409,15 +456,7 @@
         // pnt-btn-edit-save
         $(document).off('click', '.pnt-btn-modal-edit-product-save').on('click', '.pnt-btn-modal-edit-product-save', (e) => {
             var model_id = $('.pnt-modal-sel-edit-product-model option:selected').val();
-            if (model_id == 0) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Please Select Model',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            } else {
+            if ($("#edit-product-modal").valid()) {
                 $.ajax({
                     type: "post",
                     url: '{!! url('product_location/product/update') !!}/' + window.id,
@@ -527,75 +566,55 @@
 
         // pnt-bnt-add-group-save
         $(document).off('click', '.pnt-bnt-add-group-save').on('click', '.pnt-bnt-add-group-save', (e) => {
-            if ($('.pnt-modal-sel-add-group-part option:selected').val() == 0) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Please Selected Parts',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            } else {
-                if ($('.pnt-modal-sel-add-group-quantity').val() <= 0) {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: 'Quantity went wrong',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                } else {
-                    $.ajax({
-                        type: "post",
-                        url: '{!! url('product_location/productPart/create') !!}',
-                        data: {
-                            product_id: window.id,
-                            group_part_id: $('.pnt-modal-sel-add-group-part option:selected').val(),
-                            quantity: $('.pnt-modal-sel-add-group-quantity').val(),
-                            '_token': window.token,
-                        },
-                        beforeSend: function () {
-                            $('#pnt-loading').show();
-                        },
-                        success: function (data) {
-                            if (data.status) {
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'success',
-                                    title: 'Add Parts to Product Success fully',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                })
-                            } else {
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'error',
-                                    title: 'Duplicate Parts',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                })
-                            }
-                        },
-                        error: function (jqXHR, exception) {
-                            if (jqXHR.status !== 200) {
-                                $('#pnt-loading').hide();
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'error',
-                                    title: 'Something went wrong',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                })
-                            }
-                        },
-                    });
-                    resetProductParts();
-                    $('#pnt-loading').hide();
-                }
+            if ($("#add-part-modal").valid()) {
+                $.ajax({
+                    type: "post",
+                    url: '{!! url('product_location/productPart/create') !!}',
+                    data: {
+                        product_id: window.id,
+                        group_part_id: $('.pnt-modal-sel-add-group-part option:selected').val(),
+                        quantity: $('.pnt-modal-sel-add-group-quantity').val(),
+                        '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
+                    success: function (data) {
+                        if (data.status) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Add Parts to Product Success fully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        } else {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Duplicate Parts',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                        resetProductParts();
+                        $('#pnt-loading').hide();
+                    },
+                    error: function (jqXHR, exception) {
+                        if (jqXHR.status !== 200) {
+                            $('#pnt-loading').hide();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Something went wrong',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                });
+                $('.pnt-modal-sel-add-group-quantity').val('');
             }
-
-            $('.pnt-modal-sel-add-group-quantity').val('');
-            $('.pnt-modal-sel-add-group-part').val(0).change();
         });
         // end-pnt-bnt-add-group-save
 
@@ -622,42 +641,44 @@
 
         // pnt-btn-edit-save
         $(document).off('click', '.pnt-bnt-edit-group-save').on('click', '.pnt-bnt-edit-group-save', (e) => {
-            $.ajax({
-                type: "post",
-                url: '{!! url('product_location/productPart/update') !!}/' + window.part_id,
-                data: {
-                    quantity: $('.pnt-modal-sel-edit-group-quantity').val(),
-                    '_token': window.token,
-                },
-                beforeSend: function () {
-                    $('#pnt-loading').show();
-                },
-                success: function (data) {
-                    if (data.status) {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Update Quantity Parts to Product Success fully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-                error: function (jqXHR, exception) {
-                    if (jqXHR.status !== 200) {
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title: 'Something went wrong',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                },
-            });
-            $('#pnt-loading').hide();
-            $('.pnt-add-path-edit-data-toggle').hide(150);
-            resetProductParts();
+            if ($("#edit-part-modal").valid()) {
+                $.ajax({
+                    type: "post",
+                    url: '{!! url('product_location/productPart/update') !!}/' + window.part_id,
+                    data: {
+                        quantity: $('.pnt-modal-sel-edit-group-quantity').val(),
+                        '_token': window.token,
+                    },
+                    beforeSend: function () {
+                        $('#pnt-loading').show();
+                    },
+                    success: function (data) {
+                        if (data.status) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Update Quantity Parts to Product Success fully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                    error: function (jqXHR, exception) {
+                        if (jqXHR.status !== 200) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'Something went wrong',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    },
+                });
+                $('#pnt-loading').hide();
+                $('.pnt-add-path-edit-data-toggle').hide(150);
+                resetProductParts();
+            }
         });
         // end-pnt-btn-edit-save
 
@@ -689,10 +710,10 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            resetProductParts();
+                            $('#pnt-loading').hide();
                         }
                     });
-                    resetProductParts();
-                    $('#pnt-loading').hide();
                 }
             })
         });

@@ -25,7 +25,9 @@
     <script src="{!! url('sweetalert2.all.min.js') !!}"></script>
     <link href="{!! url('sweetalert2.min.css') !!}" rel="stylesheet">
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhwxSQw3hnPgiyuGH_0Gj1y-L58luYEvc&callback=initMap&libraries=&v=weekly" defer></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhwxSQw3hnPgiyuGH_0Gj1y-L58luYEvc&callback=initMap&libraries=&v=weekly"
+        defer></script>
 </head>
 
 <body>
@@ -169,43 +171,47 @@ Chat box start
 
 
             {{--    modal-pnt-modal-reset-password-this--}}
-            <div class="modal fade pnt-modal-reset-password-this" id="exampleModalCenter">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Reset Password User</h5>
-                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group row">
-                                <label class="col-lg-4 col-form-label" for="password">Password
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <div class="col-lg-6">
-                                    <input type="password" class="form-control pnt-input-password-this">
+            <form id="this-reset-pass-modal-user-valid">
+                <div class="modal fade pnt-modal-reset-password-this" id="exampleModalCenter">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Reset Password User</h5>
+                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="password">Password
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="password" class="form-control pnt-input-password-this"
+                                               id="this_reset_password" name="this_reset_password">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-4 col-form-label" for="password_confirmation">Confirm Password
+                                        <span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="password" class="form-control pnt-input-password_confirmation-this"
+                                               id="this_reset_confirm_password" name="this_reset_confirm_password">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-lg-4 col-form-label" for="password_confirmation">Confirm Password
-                                    <span
-                                        class="text-danger">*</span>
-                                </label>
-                                <div class="col-lg-6">
-                                    <input type="password" class="form-control pnt-input-password_confirmation-this"
-                                           id="password_confirmation" name="password_confirmation">
-                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary pnt-btn-modal-reset-password-save-this">
+                                    Save
+                                    changes
+                                </button>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary pnt-btn-modal-reset-password-save-this">Save
-                                changes
-                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             {{--    modal-pnt-modal-reset-password-this--}}
 
 
@@ -293,18 +299,22 @@ Chat box start
 
 <!-- Required vendors -->
 
-<script src="{!! url('/js/deznav-init.js') !!}"></script>
+{{--<script src="{!! url('/js/deznav-init.js') !!}"></script>--}}
 <!-- Apex Chart -->
 
 <!-- Datatable -->
 <script src="{!! url('/vendor/datatables/js/jquery.dataTables.min.js') !!}"></script>
 <script src="{!! url('/js/plugins-init/datatables.init.js') !!}"></script>
 
-<!-- Svganimation scripts -->
-<script src="{!! url('/vendor/svganimation/svg.animation.js') !!}"></script>
 
 <script src="{!! url('/vendor/select2/js/select2.full.min.js') !!}"></script>
 <script src="{!! url('/js/plugins-init/select2-init.js') !!}"></script>
+
+<!-- Jquery Validation -->
+<script src="{!! url('/vendor/jquery-validation/jquery.validate.min.js') !!}"></script>
+<!-- Form validate init -->
+<script src="{!! url('/js/plugins-init/jquery.validate-init.js') !!}"></script>
+
 
 <script>
     let mapShowOnly;
@@ -388,10 +398,11 @@ Chat box start
 
     $(document).ready(function () {
         "use strict"
-        var direction = getUrlParams('dir');
-        if (direction != 'rtl') {
-            direction = 'ltr';
-        }
+
+        var direction =  getUrlParams('dir');
+        if(direction != 'rtl')
+        {direction = 'ltr'; }
+
         new dezSettings({
             typography: "roboto",
             version: "light",
@@ -404,6 +415,32 @@ Chat box start
             headerPosition: "fixed",
             containerLayout: "wide",
             direction: direction
+        });
+
+
+        $('#this-reset-pass-modal-user-valid').validate({
+            rules: {
+                this_reset_password: {
+                    required: true,
+                    minlength: 8
+                },
+                this_reset_confirm_password: {
+                    required: true,
+                    minlength: 8,
+                    equalTo: "#this_reset_password"
+                },
+            },
+            messages: {
+                this_reset_password: {
+                    required: "<span class='text-danger'>Please provide a password</span>",
+                    minlength: "<span class='text-danger'>Your password must be at least 8 characters long</span>"
+                },
+                this_reset_confirm_password: {
+                    required: "<span class='text-danger'>Please provide a confirm password</span>",
+                    minlength: "<span class='text-danger'>Your password must be at least 8 characters long</span>",
+                    equalTo: "<span class='text-danger'>Please enter the same password as above</span>"
+                },
+            }
         });
 
     });
@@ -512,7 +549,7 @@ Chat box start
                 '_token': window.token_master,
             },
             beforeSend: function () {
-                $('#pnt-loading').show();
+                // $('#pnt-loading').show();
             },
             success: function (data) {
                 if (data.status) {
@@ -551,45 +588,47 @@ Chat box start
     $(document).off('click', '.pnt-btn-modal-reset-password-save-this').on('click', '.pnt-btn-modal-reset-password-save-this', (e) => {
         console.log($('.pnt-input-password-this').val());
         console.log($('.pnt-input-password_confirmation-this').val());
-        $.ajax({
-            type: "post",
-            url: "{!! url('manage/users/resetPassword') !!}/" + $('.pnt-modal-edit-this-new-usid').val(),
-            data: {
-                password: $('.pnt-input-password-this').val(),
-                password_confirmation: $('.pnt-input-password_confirmation-this').val(),
-                '_token': window.token_master,
-            },
-            beforeSend: function () {
-                $('#pnt-loading').show();
-            },
-            success: function (data) {
-                if (data.status) {
-                    $('.pnt-modal-reset-password-this').modal('hide');
-                    $('#pnt-loading').hide();
-                    Swal.fire({
+        if ($("#this-reset-pass-modal-user-valid").valid()) {
+            $.ajax({
+                type: "post",
+                url: "{!! url('manage/users/resetPassword') !!}/" + $('.pnt-modal-edit-this-new-usid').val(),
+                data: {
+                    password: $('.pnt-input-password-this').val(),
+                    password_confirmation: $('.pnt-input-password_confirmation-this').val(),
+                    '_token': window.token_master,
+                },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
+                success: function (data) {
+                    if (data.status) {
+                        $('.pnt-modal-reset-password-this').modal('hide');
+                        $('#pnt-loading').hide();
+                        Swal.fire({
 
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Please Login',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    window.location.reload();
-                }
-            },
-            error: function (jqXHR, exception) {
-                if (jqXHR.status !== 200) {
-                    $('#pnt-loading').hide();
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title: 'Something went wrong',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-            },
-        });
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Please Login',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        window.location.reload();
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    if (jqXHR.status !== 200) {
+                        $('#pnt-loading').hide();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Something went wrong',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                },
+            });
+        }
     });
 
 

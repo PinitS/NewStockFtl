@@ -42,7 +42,7 @@
                 },
                 success: function (data) {
                     if (data.status) {
-                        var str = "<option value=" + 0 + "> <strong>" + "Select Customer" + "</strong></option>";
+                        var str = "";
                         $.each(data.location, function (index, value) {
                             str += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
                         });
@@ -59,7 +59,7 @@
             var customer_id = $(".pnt-sel-customer option:selected").val();
             var customer_name = $(".pnt-sel-customer option:selected").text();
 
-            if (customer_id == 0) {
+            if (customer_id == 0 || customer_id == undefined) {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',

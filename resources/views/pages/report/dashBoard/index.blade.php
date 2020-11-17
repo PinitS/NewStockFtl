@@ -10,7 +10,7 @@
                     <h4 class="card-title">Timeline History</h4>
                 </div>
                 <div class="card-body">
-                    <div id="DZ_W_TimeLine1" class="widget-timeline style-1" style="height:250px;">
+                    <div id="DZ_W_TimeLine1" class="widget-timeline dz-scroll style-1" style="height:250px;">
                         <ul class="timeline text-card-timeline">
                         </ul>
                     </div>
@@ -210,6 +210,9 @@
         var color_set = [];
         var product_name = [];
         var data_donut_chart = [];
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, '');
+
 
         var tableUsers = $('#userData').DataTable({
             "pageLength": 5,
@@ -315,7 +318,7 @@
                     //dealerDash
                     tableDealer.destroy();
                     $('.data-section-dealer').html(null);
-                    $.each(data.dataSet.customer, function (index, value) {
+                    $.each(data.dataSet.dealer, function (index, value) {
                         $('.data-section-dealer').append(
                             "<tr><td>" +
                             (index + 1) +
@@ -364,21 +367,17 @@
                             "</td><td>" +
                             value.name +
                             "</td><td>" +
-                            (value.category == null ? "-" : value.category.name) +
+                            (value.category == null ? "-" : value.category) +
                             "</td><td>" +
                             value.quantity +
                             "</td><td>" +
-                            (value.branch == null ? "-" : value.branch.name) +
+                            (value.branch == null ? "-" : value.branch) +
                             "</td><td>" +
-                            value.sku +
+                            (value.sku == null ? "-" : value.sku) +
                             "</td></tr>"
                         )
                     });
                     tableParts = $('#partsData').DataTable();
-
-
-
-
                     window.color_set = data.dataSet.color;
                     window.product_name = data.dataSet.productNameSet;
                     window.data_donut_chart = data.dataSet.cntProduct;
@@ -396,17 +395,19 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
+                    console.log("===================");
+                    console.log(data);
                     window.filter_dropdown_parts.empty();
                     if (data.status) {
-                        var parts = "<option value=" + 0 + "> <strong>" + "Select Parts" + "</strong></option>";
+                        var parts = "";
                         var select_value = 0;
                         var select_name_value = '';
                         $.each(data.parts, function (index, value) {
                             if (index === 0) {
                                 select_value = value.id;
-                                select_name_value = value.name;
+                                select_name_value = value.group_part.name ;
                             }
-                            parts += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
+                            parts += "<option value=" + value.id + "> <strong>" + value.group_part.name + "</strong></option>"
                         });
                         window.filter_dropdown_parts.append(parts);
                         window.filter_dropdown_parts.selectpicker('refresh');
@@ -428,19 +429,16 @@
         });
 
         function callDataLineChart() {
-            if (window.parts_id > 0) {
-                $.ajax({
-                    type: "get",
-                    url: '{!! url('report/dashBoard/getDataHistory') !!}/' + window.parts_id,
-                    success: function (data) {
-                        window.data_line_chart = data.data;
-                        callLineChart();
-                    }
-                });
-            } else {
-                window.data_line_chart = [];
-                callLineChart();
-            }
+            window.data_line_chart = [];
+            console.log(window.data_line_chart)
+            $.ajax({
+                type: "get",
+                url: '{!! url('report/dashBoard/getDataHistory') !!}/' + window.parts_id,
+                success: function (data) {
+                    window.data_line_chart = data.data;
+                    callLineChart();
+                }
+            });
         }
 
         $(document).off('click', '.pnt-sel-filter-parts').on('click', '.pnt-sel-filter-parts', (e) => {
@@ -451,8 +449,8 @@
 
 
         function callLineChart() {
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var chart = new Chart(ctx, {
+            chart.destroy();
+            chart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: ['Jan', 'Fab', 'Mach', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -466,6 +464,7 @@
                 // Configuration options go here
                 options: {}
             });
+
         }
 
         function callDoughnutChart(name, color, data) {

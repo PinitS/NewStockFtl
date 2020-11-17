@@ -23,7 +23,7 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
 
-                                    <x-jet-validation-errors class="mb-4" />
+                                    <x-jet-validation-errors class="text-danger mb-4" />
 
                                     @if (session('status'))
                                         <div class="mb-4 font-medium text-sm text-danger">

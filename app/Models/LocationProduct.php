@@ -11,6 +11,10 @@ class LocationProduct extends Model
 
     protected $appends = ['delete_active'];
 
+    public function dealerProduct()
+    {
+        return $this->hasMany('App\Models\DealerProduct');
+    }
 
     public function locationProductLists()
     {
@@ -29,7 +33,7 @@ class LocationProduct extends Model
 
     public function getDeleteActiveAttribute()
     {
-        if (count($this->locationProductLists) > 0) {
+        if (count($this->locationProductLists) > 0 || count($this->dealerProduct)) {
             return false;
         } else {
             return true;

@@ -17,6 +17,11 @@ class Dealer extends Model
         return $this->hasMany('App\Models\LocationProductDetail');
     }
 
+    public function dealerProduct()
+    {
+        return $this->hasMany('App\Models\DealerProduct');
+    }
+
     public function getDeleteActiveAttribute()
     {
         if (count($this->locationProductDetail) > 0) {

@@ -120,43 +120,42 @@
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
+                    console.log(data)
 
                     for (let i = 0; i < localMarkers.length; i++) {
                         localMarkers[i].setMap(null);
                     }
                     let makerIcon = ['{!! url('images/marker/icongreen.png') !!}', '{!! url('images/marker/iconred.png') !!}', '{!! url('images/marker/iconblue.png') !!}']
                     $.each(data.product, function (index, list) {
-                        $.each(list.location_product_details, function (index, detail) {
-                            const localMarker = new google.maps.Marker({
-                                // label: detail.code,
-                                icon: makerIcon[detail.status],
-                                position: {lat: parseFloat(detail.latitude), lng: parseFloat(detail.longitude)},
-                            });
-                            const contentString =
-                                '<div id="content">' +
-                                '<div id="siteNotice">' +
-                                "</div>" +
-                                '<h5 id="firstHeading" class="firstHeading">Serial : ' + detail.code + '</h5>' +
-                                '<div id="bodyContent">' +
-                                '<h6><b class="text-danger">Customer : </b>' + list.location.name + '</h6>' +
-                                '<h6><b class="text-success">Phone number : </b>' + list.location.phone_number + '</h6>' +
-                                '<h6><b class="text-warning">Product : </b>' + list.location_product.name + '</h6>' +
-                                '</div>' +
-                                '</div>';
-
-                            const infowindow = new google.maps.InfoWindow({
-                                content: contentString,
-                            });
-
-                            localMarker.addListener("click", () => {
-                                infowindow.open(localMap, localMarker);
-                            });
-                            localMarker.setMap(localMap);
-                            localMarkers.push(localMarker);
-                            // if (index === 0) {
-                            //     localMap.panTo(localMarker.getPosition());
-                            // }
+                        const localMarker = new google.maps.Marker({
+                            // label: detail.code,
+                            icon: makerIcon[list.status],
+                            position: {lat: parseFloat(list.latitude), lng: parseFloat(list.longitude)},
                         });
+                        const contentString =
+                            '<div id="content">' +
+                            '<div id="siteNotice">' +
+                            "</div>" +
+                            '<h5 id="firstHeading" class="firstHeading">Serial : ' + list.serial + '</h5>' +
+                            '<div id="bodyContent">' +
+                            '<h6><b class="text-danger">Customer : </b>' + list.customer + '</h6>' +
+                            '<h6><b class="text-success">Phone number : </b>' + (list.phone_number == null ? "-" : list.phone_number) + '</h6>' +
+                            '<h6><b class="text-warning">Product : </b>' + list.product + '</h6>' +
+                            '</div>' +
+                            '</div>';
+
+                        const infowindow = new google.maps.InfoWindow({
+                            content: contentString,
+                        });
+
+                        localMarker.addListener("click", () => {
+                            infowindow.open(localMap, localMarker);
+                        });
+                        localMarker.setMap(localMap);
+                        localMarkers.push(localMarker);
+                        // if (index === 0) {
+                        //     localMap.panTo(localMarker.getPosition());
+                        // }
                     });
                     $('#pnt-loading').hide();
                 }
