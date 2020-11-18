@@ -61,6 +61,14 @@
                             <input type="text" class="form-control pnt-modal-add-location-phone" id="phoneNumber"
                                    name="phoneNumber">
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mt-1 mb-3">
+                                <a class="btn btn-success btn-block text-white getLatLnt-add" style="cursor:pointer;">Select
+                                    Location</a>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -76,12 +84,6 @@
                                     <input type="text" class="form-control pnt-modal-add-longitude" id="longitude"
                                            name="longitude" value="" readonly>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <a class="btn btn-success btn-block text-white getLatLnt-add" style="cursor:pointer;">Select
-                                    Location</a>
                             </div>
                         </div>
 
@@ -231,6 +233,7 @@
                         required: true,
                     },
                     phoneNumber: {
+                        required: true,
                         number: true,
                         minlength: 9,
                         maxlength: 10,
@@ -256,6 +259,7 @@
                         required: true,
                     },
                     phoneNumber: {
+                        required: true,
                         number: true,
                         minlength: 9,
                         maxlength: 10,

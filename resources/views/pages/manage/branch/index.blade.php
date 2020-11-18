@@ -219,6 +219,7 @@
                         required: true,
                     },
                     phoneNumber: {
+                        required: true,
                         number: true,
                         minlength: 9,
                         maxlength: 10,
@@ -244,6 +245,7 @@
                         required: true,
                     },
                     phoneNumber: {
+                        required: true,
                         number: true,
                         minlength: 9,
                         maxlength: 10,

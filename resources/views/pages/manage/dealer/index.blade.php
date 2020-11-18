@@ -249,7 +249,7 @@
                     name: {
                         required: "<span class='text-danger'>Please enter a dealer name</span>",
                     },
-                    phoneNumber: "<span class='text-danger'>This field is required.</span>",
+                    phoneNumber: "<span class='text-danger' >Enter phone number</span>",
                     address: {
                         required: "<span class='text-danger'>Please enter an address</span>",
                     },
@@ -260,7 +260,7 @@
                     name: {
                         required: true,
                     },
-                    phone: {
+                    phoneNumber: {
                         required: true,
                         number: true,
                         minlength: 10,
@@ -275,7 +275,7 @@
                     name: {
                         required: "<span class='text-danger'>Please enter a dealer name</span>",
                     },
-                    phone: "Please enter your phone number",
+                    phoneNumber: "<span class='text-danger' >Enter phone number</span>",
                     address: {
                         required: "<span class='text-danger'>Please enter address</span>",
                     },

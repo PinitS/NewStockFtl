@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function () {
             Route::get('destroy/{id}', [UserController::class, 'delete'])->name('destroy');
             Route::post('resetPassword/{id}', [UserController::class, 'resetPassword'])->name('resetPassword');
             Route::post('create', [UserController::class, 'create'])->name('createUser');
+            Route::post('changeActive/{id}', [UserController::class, 'changeActive']);
+
         });
 
         Route::prefix('branches')->group(function () {

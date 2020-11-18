@@ -21,6 +21,7 @@
                                 <th class="text-dark">Username</th>
                                 <th class="text-dark">Email</th>
                                 <th class="text-dark">Role</th>
+                                <th class="text-dark">Status</th>
                                 <th class="text-dark">Manage</th>
                             </tr>
                             </thead>
@@ -186,7 +187,9 @@
                         $('.data-section').html(null);
                         $.each(data.userData, function (index, value) {
                             var text_status = "";
+                            var setColor = "";
                             (value.status > 0 ? text_status = "<span class='badge badge-pill badge-danger'>Admin</span>" : text_status = "<span class='badge badge-pill badge-primary'>Member</span>")
+                            if(value.active == 0 ? setColor = 'bgl-danger' : setColor = 'bgl-success');
                             $('.data-section').append(
                                 "<tr><td>" +
                                 (index + 1) +
@@ -197,13 +200,32 @@
                                 "</td><td>" +
                                 text_status +
                                 "</td><td>" +
+                                "<select class='form-control setColor pnt-modal-sel-change-active-user" + index + "' id='pnt-modal-sel-change-active-user' data-id='" + value.id + "' ></select>" +
+                                "</td><td>" +
                                 "<div class = 'd-flex'>" +
                                 "<button  class='btn btn-primary pnt-btn-reset-password shadow btn-xs sharp mr-1' value = '" + value.id + "' >" +
                                 "<i class='fa fa-key'></i></button>" +
                                 "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>" +
                                 "<button  class='btn btn-danger pnt-btn-delete shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class= 'fa fa-trash'></i></button>"
                             )
+                            var status_dropdown = $('.pnt-modal-sel-change-active-user' + index);
+                            var status_option = 0;
+                            var option =['No Active' , 'Active'];
+
+                            // $.each(option, function (index, option_value) {
+                            for (var i = 0 ; i< option.length ; i++)
+                            {
+                                var checked = false
+                                parseInt(value.active) === i ? checked = true : false;
+                                console.log(option[i])
+                                status_option += "<option " + (checked ? 'selected' : '') + " value='" + i + "'> <strong>" + option[i] + "</strong></option>";
+                            }
+
+                            status_dropdown.append(status_option);
+                            status_dropdown.selectpicker('refresh');
                         });
+
+
                         table = $('#userData').DataTable();
                         $('#pnt-loading').hide();
                     }
@@ -522,6 +544,50 @@
             }
         });
         // end btn save update modal
+
+        $(document).off('change', '#pnt-modal-sel-change-active-user').on('change', '#pnt-modal-sel-change-active-user', (e) => {
+
+            window.id = $(e.currentTarget).attr('data-id');
+            var active_val = $(e.currentTarget).find(':selected').val();
+
+            $.ajax({
+                type: "post",
+                url: '{!! url('manage/users/changeActive') !!}/' + window.id,
+                data: {
+                    active: active_val,
+                    '_token': window.token,
+                },
+                beforeSend: function () {
+                    $('#pnt-loading').show();
+                },
+                success: function (data) {
+                    if (data.status) {
+                        resetTable();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Update Active Success fully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $('#pnt-loading').hide();
+                    }
+                },
+                error: function (jqXHR, exception) {
+                    if (jqXHR.status !== 200) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: 'Something went wrong',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $('#pnt-loading').hide();
+                    }
+                },
+            });
+        });
+
 
     </script>
 @endsection

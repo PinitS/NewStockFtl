@@ -472,7 +472,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Update Status fully',
+                            title: 'Update Status Success fully',
                             showConfirmButton: false,
                             timer: 1500
                         })

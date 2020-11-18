@@ -31,6 +31,7 @@ class UserController extends Controller
         $item->email = $request->input('email');
         $item->password = bcrypt($request->input('password'));
         $item->status = $request->input('status');
+        $item->active = 1;
 
         if ($item->save()) {
             return response()->json(['status' => true]);
@@ -70,6 +71,19 @@ class UserController extends Controller
         User::find($id)->delete();
         return response()->json(['status' => true]);
     }
+
+    function changeActive(Request $request, $id)
+    {
+        $item = User::find($id);
+        $item->active = $request->input('active');
+
+        if ($item->save()) {
+            return response()->json(['status' => true]);
+        } else {
+            return response()->json(['status' => false]);
+        }
+    }
+
 
 
     //
