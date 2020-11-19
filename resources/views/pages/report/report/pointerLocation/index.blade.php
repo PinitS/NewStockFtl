@@ -9,13 +9,13 @@
                     <div class="welcome-text">
                         <div class="row">
                             <div class="col-md-4 col-sm-12"><img src="{!! url('images/marker/icongreen.png') !!}"
-                                                                 alt=""> <strong>is
+                                                                 alt=""> <strong>
                                     Working</strong></div>
                             <div class="col-md-4 col-sm-12"><img src="{!! url('images/marker/iconred.png') !!}" alt="">
-                                <strong>is
+                                <strong>
                                     maintenance</strong></div>
                             <div class="col-md-4 col-sm-12"><img src="{!! url('images/marker/iconblue.png') !!}" alt="">
-                                <strong>is
+                                <strong>
                                     setup</strong></div>
                         </div>
 

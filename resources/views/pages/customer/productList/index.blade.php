@@ -194,7 +194,7 @@
                     if (data.status) {
                         window.table.destroy();
                         $('.data-section').html(null);
-
+                        var setColor = ['bgl-success' , 'bgl-danger' ,'bgl-info'];
                         $.each(data.dataSet.detail, function (index, value) {
                             $('.data-section').append(
                                 "<tr><td>" +
@@ -208,7 +208,7 @@
                                 "</td><td>" +
                                 (value.model_name == null ? "-" : value.model_name) +
                                 "</td><td>" +
-                                "<select class='form-control pnt-modal-sel-change-status-detail-product" + index + "' id='pnt-modal-sel-change-status-detail-product' data-id='" + value.id + "'></select>" +
+                                "<select class='form-control "+setColor[value.status] +" pnt-modal-sel-change-status-detail-product" + index + "' id='pnt-modal-sel-change-status-detail-product' data-id='" + value.id + "'></select>" +
                                 "</td><td>" +
                                 value.sku+
                                 "</td><td>" +

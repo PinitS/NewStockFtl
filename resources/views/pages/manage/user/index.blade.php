@@ -187,9 +187,8 @@
                         $('.data-section').html(null);
                         $.each(data.userData, function (index, value) {
                             var text_status = "";
-                            var setColor = "";
+                            var setColor = ['bgl-danger' , 'bgl-success'];
                             (value.status > 0 ? text_status = "<span class='badge badge-pill badge-danger'>Admin</span>" : text_status = "<span class='badge badge-pill badge-primary'>Member</span>")
-                            if(value.active == 0 ? setColor = 'bgl-danger' : setColor = 'bgl-success');
                             $('.data-section').append(
                                 "<tr><td>" +
                                 (index + 1) +
@@ -200,7 +199,7 @@
                                 "</td><td>" +
                                 text_status +
                                 "</td><td>" +
-                                "<select class='form-control setColor pnt-modal-sel-change-active-user" + index + "' id='pnt-modal-sel-change-active-user' data-id='" + value.id + "' ></select>" +
+                                "<select class='form-control text-red " + setColor[value.active] + " pnt-modal-sel-change-active-user" + index + "' id='pnt-modal-sel-change-active-user' data-id='" + value.id + "' ></select>" +
                                 "</td><td>" +
                                 "<div class = 'd-flex'>" +
                                 "<button  class='btn btn-primary pnt-btn-reset-password shadow btn-xs sharp mr-1' value = '" + value.id + "' >" +
@@ -211,7 +210,7 @@
                             var status_dropdown = $('.pnt-modal-sel-change-active-user' + index);
                             var status_option = 0;
                             var option =['No Active' , 'Active'];
-
+                            console.log("<select class='form-control text-danger " + setColor[value.active] + " pnt-modal-sel-change-active-user" + index + "' id='pnt-modal-sel-change-active-user' data-id='" + value.id + "' ></select>");
                             // $.each(option, function (index, option_value) {
                             for (var i = 0 ; i< option.length ; i++)
                             {
