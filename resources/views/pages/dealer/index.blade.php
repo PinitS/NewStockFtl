@@ -11,8 +11,8 @@
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">Dealer Product</h4>
-                    <button type="button" class="btn btn-success pnt-bnt-add-product">Add <span
+                    <h4 class="card-title text-dark">@lang('Dealer Products')</h4>
+                    <button type="button" class="btn btn-success pnt-bnt-add-product">@lang('Add') <span
                             class="btn-icon-right"><i
                                 class="fa fa-plus color-danger"></i></span>
                     </button>
@@ -24,9 +24,9 @@
                                 <thead>
                                 <tr>
                                     <th class="text-dark">#</th>
-                                    <th class="text-dark">Product</th>
-                                    <th class="text-dark">Quantity</th>
-                                    <th class="text-dark">Manage</th>
+                                    <th class="text-dark">@lang('Product')</th>
+                                    <th class="text-dark">@lang('Quantity')</th>
+                                    <th class="text-dark">@lang('Manage')</th>
                                 </tr>
                                 </thead>
                                 <tbody class="data-section_product_dealer">
@@ -46,28 +46,28 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Product Dealer</h5>
+                        <h5 class="modal-title">@lang('Add Product Dealer')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Products</strong></label>
+                            <label class="mb-1"><strong>@lang('Product')</strong></label>
                             <select class="form-control pnt-modal-sel-add-product">
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Quantity</strong></label>
+                            <label class="mb-1"><strong>@lang('Quantity')</strong></label>
                             <input type="number" class="form-control pnt-modal-add-product-quantity" id="quantity"
                                    name="quantity" required>
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success pnt-btn-modal-add-product-save">Add Product
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-success pnt-btn-modal-add-product-save">@lang('Add Product')
                         </button>
                     </div>
                 </div>
@@ -81,12 +81,12 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Increment Quantity</h5>
+                    <h5 class="modal-title">@lang('Increment Products')</h5>
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <span>Quantity : </span><span id="modal-plus-quantity"></span>
+                    <span>@lang('Quantity') : </span><span id="modal-plus-quantity"></span>
 
                     <div class="input-group mt-3 input-success-o">
                         <div class="input-group-prepend">
@@ -98,8 +98,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success pnt-btn-modal-plus-save">Save changes</button>
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                    <button type="button" class="btn btn-success pnt-btn-modal-plus-save">@lang('Save changes')</button>
                 </div>
 
             </div>
@@ -113,7 +113,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Dealer Product</h5>
+                    <h5 class="modal-title">{!! __('Dealer Products Detail') !!}</h5>
                     <button type="button" class="close pnt-data-history-close" data-dismiss="modal"><span>&times;</span>
                     </button>
                 </div>
@@ -125,11 +125,11 @@
                                     <thead>
                                     <tr>
                                         <th class="text-dark">#</th>
-                                        <th class="text-dark">Type</th>
-                                        <th class="text-dark">Quatity</th>
-                                        <th class="text-dark">Detail</th>
-                                        <th class="text-dark">User</th>
-                                        <th class="text-dark">date</th>
+                                        <th class="text-dark">@lang('Type')</th>
+                                        <th class="text-dark">@lang('Quantity')</th>
+                                        <th class="text-dark">@lang('Detail')</th>
+                                        <th class="text-dark">@lang('Users')</th>
+                                        <th class="text-dark">@lang('date')</th>
                                     </tr>
                                     </thead>
                                     <tbody class="data-section-history">
@@ -235,7 +235,7 @@
                 },
                 messages: {
                     quantity: {
-                        required: "<span class='text-danger'>Please insert quantity</span>",
+                        required: "<span class='text-danger'>{!! __('Please insert quantity') !!}</span>",
                     },
                 }
             });
@@ -277,7 +277,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
-                                    title: 'Add Dealer Product Success fully.',
+                                    title: '{!! __('Add Dealer Product Success fully.') !!}',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -285,7 +285,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
-                                    title: 'Duplicate Product',
+                                    title: '{!! __('Duplicate Product') !!}',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -300,7 +300,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
-                                    title: 'Something went wrong',
+                                    title: '{!! __('Something went wrong') !!}',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -313,7 +313,7 @@
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
-                        title: 'Quantity went wrong',
+                        title: '{!! __('Quantity went wrong') !!}',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -328,12 +328,13 @@
             window.id = $(e.currentTarget).val();
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                text: "{!! __('You will not be able to revert this!') !!}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{!! __('Yes, delete it!') !!}',
+                cancelButtonText: '{!! __('Close') !!}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -347,7 +348,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Delete Dealer Product Success fully',
+                                title: '{!! __('Delete Dealer Product Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -378,7 +379,7 @@
                             var text = '';
                             var date = moment(value.created_at).format('DD/MM/YYYY, h:mm:ss a');
 
-                            (value.type == 0 ? text = 'Imported' : text = 'Withdraw')
+                            (value.type == 0 ? text = '{!! __('Imported') !!}' : text = '{!! __('Withdraw') !!}')
                             $('.data-section-history').append(
                                 "<tr><td>" +
                                 (index + 1) +
@@ -440,7 +441,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Import Quantity Success fully',
+                            title: '{!! __('Import Quantity Success fully') !!}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -456,7 +457,7 @@
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Quantity went wrong',
+                    title: '{!! __('Quantity went wrong') !!}',
                     showConfirmButton: false,
                     timer: 1500
                 })

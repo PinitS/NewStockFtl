@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">Product List ({{ session()->get('customer')[0]['name'] }})</h4>
+                    <h4 class="card-title text-dark">@lang('Product List') ({{ session()->get('customer')[0]['name'] }})</h4>
 {{--                    <button type="button" class="btn btn-warning text-white pnt-bnt-add-detail">Add <span--}}
 {{--                            class="btn-icon-right"><i--}}
 {{--                                class="fa fa-plus color-warning"></i></span>--}}
@@ -20,13 +20,13 @@
                                 <thead>
                                 <tr>
                                     <th class="text-dark">#</th>
-                                    <th class="text-dark">Serial Number</th>
-                                    <th class="text-dark">Product</th>
-                                    <th class="text-dark">Dealer</th>
-                                    <th class="text-dark">Model</th>
-                                    <th class="text-dark">Status</th>
-                                    <th class="text-dark">Sku</th>
-                                    <th class="text-dark">Manage</th>
+                                    <th class="text-dark">@lang('Serial Number')</th>
+                                    <th class="text-dark">@lang('Product')</th>
+                                    <th class="text-dark">@lang('Dealer')</th>
+                                    <th class="text-dark">@lang('Model')</th>
+                                    <th class="text-dark">@lang('Status')</th>
+                                    <th class="text-dark">@lang('Sku')</th>
+                                    <th class="text-dark">@lang('Manage')</th>
                                 </tr>
                                 </thead>
                                 <tbody class="data-section">
@@ -78,29 +78,35 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Serial</h5>
+                        <h5 class="modal-title">@lang('Edit Serial')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="input-group mb-3 ">
                             <div class="input-group-prepend w-10">
-                                <span class="input-group-text">Customer</span>
+                                <span class="input-group-text">@lang('Customer')</span>
                             </div>
                             <select class="form-control pnt-modal-sel-edit-product-location">
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Serial</strong></label>
+                            <label class="mb-1"><strong>@lang('Serial')</strong></label>
                             <input type="text" class="form-control pnt-modal-edit-detail-code"
                                    placeholder="Name" name="name" id="name" required>
                         </div>
 
                         <div class="row">
+                            <div class="col-md-12">
+                                <a class="btn btn-success btn-block text-white getLatLnt mb-3 mt-1" style="cursor:pointer;">@lang('Select Location')</a>
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="mb-1"><strong>Latitude</strong></label>
+                                    <label class="mb-1"><strong>@lang('Latitude')</strong></label>
                                     <input type="text" class="form-control pnt-modal-edit-latitude" id="latitude"
                                            name="latitude" value="" readonly>
 
@@ -108,28 +114,23 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="mb-1"><strong>Longitude</strong></label>
+                                    <label class="mb-1"><strong>@lang('Longitude')</strong></label>
                                     <input type="text" class="form-control pnt-modal-edit-longitude" id="longitude"
                                            name="longitude" value="" readonly>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <a class="btn btn-success btn-block text-white getLatLnt" style="cursor:pointer;">Select
-                                    Location</a>
-                            </div>
-                        </div>
+
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Sku</strong></label>
+                            <label class="mb-1"><strong>@lang('Sku')</strong></label>
                             <input type="text" class="form-control pnt-modal-edit-detail-sku">
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-warning pnt-btn-modal-edit-product-save">Save changes
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-warning pnt-btn-modal-edit-product-save">@lang('Save changes')
                         </button>
                     </div>
 
@@ -210,7 +211,7 @@
                                 "</td><td>" +
                                 "<select class='form-control "+setColor[value.status] +" pnt-modal-sel-change-status-detail-product" + index + "' id='pnt-modal-sel-change-status-detail-product' data-id='" + value.id + "'></select>" +
                                 "</td><td>" +
-                                value.sku+
+                                (value.sku == null ? "-" : value.sku)+
                                 "</td><td>" +
                                 "<div class = 'd-flex'>" +
                                 "<button  class='btn btn-info text-white shadow btn-xs sharp mr-1' onclick='showOnMap(" + value.latitude + ", " + value.longitude + ")'><i class='fa fa-map-marker'></i></button>" +
@@ -248,7 +249,7 @@
                     },
                 },
                 messages: {
-                    quantity: "<span class='text-danger' >Please insert quantity</span>",
+                    quantity: "<span class='text-danger' >{!! __('Please insert quantity') !!}</span>",
                 }
             });
 
@@ -259,7 +260,7 @@
                     },
                 },
                 messages: {
-                    name: "<span class='text-danger' >Please enter a Serial</span>",
+                    name: "<span class='text-danger' >{!! __('Please enter a Serial') !!}</span>",
                 }
             });
         });
@@ -298,7 +299,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
-                                    title: 'Add Serial Success fully',
+                                    title: '{!! __('Add Serial Success fully') !!}',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -311,7 +312,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
-                                    title: 'Something went wrong',
+                                    title: '{!! __('Something went wrong') !!}',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -325,7 +326,7 @@
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
-                        title: 'Quantity went wrong',
+                        title: '{!! __('Quantity went wrong') !!}',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -388,7 +389,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Update Serial Success fully',
+                                title: '{!! __('Update Serial Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -400,7 +401,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -418,13 +419,14 @@
             $('.map-section-show-only').hide();
             window.id = $(e.currentTarget).val();
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: '{!! __('Are you sure?') !!}',
+                text: "{!! __('You will not be able to revert this!') !!}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{!! __('Yes, delete it!') !!}',
+                cancelButtonText:'{!! __('Close') !!}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -438,7 +440,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Delete Serial Success fully',
+                                title: '{!! __('Delete Serial Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -472,7 +474,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Update Status Success fully',
+                            title: '{!! __('Update Status Success fully') !!}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -484,7 +486,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
-                            title: 'Something went wrong',
+                            title: '{!! __('Something went wrong') !!}',
                             showConfirmButton: false,
                             timer: 1500
                         })

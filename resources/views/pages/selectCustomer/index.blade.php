@@ -6,15 +6,15 @@
     <div class="col-md-6  mx-auto">
         <div class="card text-center bg-white">
             <div class="card-header">
-                <h5 class="card-title text-dark">Please Selected Customer</h5>
+                <h5 class="card-title text-dark">@lang('Please Selected Customer')</h5>
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label> <strong>Customer</strong> </label>
+                    <label> <strong>@lang('Customer')</strong> </label>
                     <select class="form-control pnt-sel-customer">
                     </select>
                 </div>
-                <button class="btn btn-warning text-white btn-card pnt-goto-branch">Go to Customer</button>
+                <button class="btn btn-warning text-white btn-card pnt-goto-branch">@lang('Go to Customer')</button>
             </div>
         </div>
     </div>
@@ -63,7 +63,7 @@
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Please Select Customer',
+                    title: '{!! __('Please Select Customer') !!}',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -80,7 +80,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Select Customer success fully',
+                            title: '{!! __('Select Customer success fully') !!}',
                             showConfirmButton: false,
                             timer: 2000
                         });

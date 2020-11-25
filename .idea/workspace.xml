@@ -2,16 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0fde719-c7b0-4ec5-bf8a-93c264a6b79f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/languageController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/LanguageSwitcher.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/th.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Responses/LoginResponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Responses/LoginResponse.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/customer/productList/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/customer/productList/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/dealer/dealerCustomer/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/dealer/dealerCustomer/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/dealer/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/dealer/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/dealerSell/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/dealerSell/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/manage/branch/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/manage/branch/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/manage/dealer/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/manage/dealer/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/manage/groupParts/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/manage/groupParts/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/manage/location/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/manage/location/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/manage/model/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/manage/model/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/manage/user/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/manage/user/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/product_location/product/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/product_location/product/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/report/dashBoard/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/report/dashBoard/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/report/productCal/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/report/productCal/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/report/report/pointerLocation/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/report/report/pointerLocation/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/selectBranch/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/selectBranch/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/selectCustomer/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/selectCustomer/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/selectDealer/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/selectDealer/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/stock/category/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/stock/category/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/stock/parts/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/stock/parts/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -174,19 +193,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\lang" />
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\manage" />
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\report\pointerLocation" />
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages" />
+      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\product_location" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\dealer\dealerCustomer" />
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\dealer" />
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\selectDealer" />
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages" />
       <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\manage\shop" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\manage" />
-      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\report\report\pointerLocation" />
-      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages" />
-      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\product_location" />
-      <recent name="C:\xampp\htdocs\FarmThailand\resources\views\pages\stock" />
     </key>
   </component>
   <component name="RunManager">
@@ -250,6 +269,10 @@
       <workItem from="1605500564361" duration="14259000" />
       <workItem from="1605578697654" duration="24592000" />
       <workItem from="1605664682043" duration="11901000" />
+      <workItem from="1605688800256" duration="56000" />
+      <workItem from="1606097147001" duration="24393000" />
+      <workItem from="1606189647495" duration="16283000" />
+      <workItem from="1606269282528" duration="1515000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <created>1602576633325</created>
@@ -370,7 +393,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605607109662</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="edit color dropdown">
+      <created>1605688833311</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1605688833311</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -394,22 +424,23 @@
     <MESSAGE value="แก้ ส่วนเกิน หน้า web locatrion detail" />
     <MESSAGE value="แก้ไข side bar ui" />
     <MESSAGE value="test bug and edit 35%" />
-    <option name="LAST_COMMIT_MESSAGE" value="test bug and edit 35%" />
+    <MESSAGE value="edit color dropdown" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit color dropdown" />
   </component>
   <component name="WindowStateProjectService">
     <state x="391" y="71" key="#Deployment" timestamp="1602574452354">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="391" y="71" key="#Deployment/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1602574452354" />
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605680825086">
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606195972384">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605680825086" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1605607100652">
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1606195972384" />
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1605688826458">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605607100652" />
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1603270761296" />
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1605688826458" />
     <state x="2735" y="309" key="FileChooserDialogImpl" timestamp="1604472040901">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -441,20 +472,20 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="576" height="446" key="SwitcherDM/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1603096390259" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605607114676">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1605688837012">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605607114676" />
     <state x="2371" y="183" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602574998080" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1603270767716" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605688837012" />
     <state x="611" y="146" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1602574127112">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="611" y="146" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1602574127112" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604290646037">
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606097213023">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1604290646037" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1606097213023" />
     <state x="0" y="0" width="1192" height="621" key="dock-window-1" timestamp="1604284712584">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -468,33 +499,28 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1603945162874" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1605673888680">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1606195953289">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1605673888680" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1606195953289" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1604285698981" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/resources/views/layouts/master.blade.php</url>
-          <line>638</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/pages/dealer/index.blade.php</url>
-          <line>448</line>
+          <line>449</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/pages/customer/productList/index.blade.php</url>
-          <line>337</line>
+          <line>338</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/pages/customer/productList/index.blade.php</url>
-          <line>363</line>
+          <line>364</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>

@@ -8,35 +8,35 @@
         <div class="card text-center bg-white">
 
             <div class="card-header">
-                <h5 class="card-title text-dark">Please Selected</h5>
+                <h5 class="card-title text-dark">@lang('Please Selected')</h5>
             </div>
 
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label> <strong>Product</strong> </label>
+                            <label> <strong>@lang('Product')</strong> </label>
                             <select class="form-control pnt-sel-product">
                             </select>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label> <strong>Customer</strong> </label>
+                            <label> <strong>@lang('Customer')</strong> </label>
                             <select class="form-control pnt-sel-customer">
                             </select>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label><strong>Quantity</strong></label>
+                            <label><strong>@lang('Quantity')</strong></label>
                             <input type="text" class="form-control pnt-add-quantity" required>
                             <span class="text-danger" id="quantityMax"></span>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <label><strong></strong></label>
-                        <button class="mt-2 btn btn-success btn-block pnt-submit">Submit</button>
+                        <button class="mt-2 btn btn-success btn-block pnt-submit">@lang('Submit')</button>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
     <div class="col-12">
         <div class="card bg-white">
             <div class="card-header">
-                <h4 class="card-title text-dark">Dealer Product Information</h4>
+                <h4 class="card-title text-dark">@lang('Dealer Product Information')</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -54,8 +54,8 @@
                         <thead>
                         <tr>
                             <th class="text-dark">#</th>
-                            <th class="text-dark">Product</th>
-                            <th class="text-dark">Max quantity</th>
+                            <th class="text-dark">@lang('Product')</th>
+                            <th class="text-dark">@lang('Max Quantity')</th>
                         </tr>
                         </thead>
                         <tbody class="data-section-dealer">
@@ -177,7 +177,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Sold Product Success fully',
+                                title: '{!! __('Sold Product Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -185,7 +185,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: data.msg,
+                                title: '{!! __('Quantity to much') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -196,7 +196,7 @@
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Quantity went wrong',
+                    title: '{!! __('Quantity went wrong') !!}',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -238,7 +238,7 @@
                 success: function (data) {
                     console.log(data)
                     if (data.product != null) {
-                        $("#quantityMax").text("Max Quantity : " + data.product.quantity);
+                        $("#quantityMax").text("{!! __('Max Quantity') !!} : " + data.product.quantity);
                         window.maxQuantity = data.product.quantity;
                     }
                 }
@@ -250,6 +250,11 @@
             updateMaxQuantity();
         });
 
+        $(document).off('keyup', '.pnt-add-quantity').on('keyup', '.pnt-add-quantity', (e) => {
+            if ($('.pnt-add-quantity').val() > window.maxQuantity) {
+                $('.pnt-add-quantity').val(window.maxQuantity);
+            }
+        });
 
 
     </script>

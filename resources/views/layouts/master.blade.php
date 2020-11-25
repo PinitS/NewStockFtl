@@ -99,28 +99,28 @@ Chat box start
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">User Infomation</h5>
+                            <h5 class="modal-title">{{__('User Information')}}</h5>
                             <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div class="form-group row">
 
-                                <label class="col-sm-4 col-form-label pnt-label-username-check">Username</label>
+                                <label class="col-sm-4 col-form-label pnt-label-username-check">@lang('Username')</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control pnt-modal-edit-this-username "
                                            value="{{ Auth::user()->name }}" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Email</label>
+                                <label class="col-sm-4 col-form-label">@lang('Email')</label>
                                 <div class="col-sm-8">
                                     <input type="email" class="form-control pnt-modal-edit-this-email"
                                            value="{{ Auth::user()->email }}" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Status</label>
+                                <label class="col-sm-4 col-form-label">@lang('Role')</label>
                                 <div class="col-sm-8">
                                     <input type="email" class="form-control"
                                            value="{{ Auth::user()->status == 1 ? "Admin" : "Member" }}" disabled>
@@ -132,7 +132,7 @@ Chat box start
                                 <hr>
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label pnt-label-username-check"> <strong
-                                            class="text-danger"> New Username </strong> </label>
+                                            class="text-danger"> @lang('New Username') </strong> </label>
                                     <div class="col-sm-8">
                                         <input type="hidden" class="pnt-modal-edit-this-new-usid"
                                                value="{{ Auth::user()->id }}">
@@ -143,15 +143,14 @@ Chat box start
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-4 col-form-label"> <strong class="text-danger"> New
-                                            Email </strong> </label>
+                                    <label class="col-sm-4 col-form-label"> <strong class="text-danger"> @lang('New Email') </strong> </label>
                                     <div class="col-sm-8">
                                         <input type="email" class="form-control pnt-modal-edit-this-new-email"
                                                value="{{ Auth::user()->email }}">
                                     </div>
                                 </div>
                                 <button type="button"
-                                        class="btn btn-block btn-danger pnt-modal-edit-this-new-user-save">Save changes
+                                        class="btn btn-block btn-danger pnt-modal-edit-this-new-user-save">@lang('Save changes')
                                 </button>
                             </div>
 
@@ -159,9 +158,9 @@ Chat box start
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-warning light pnt-edit-this-user-new">Edit User
+                            <button type="button" class="btn btn-warning light pnt-edit-this-user-new">@lang('Edit User')
                             </button>
-                            <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
                         </div>
                     </div>
                 </div>
@@ -176,13 +175,13 @@ Chat box start
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Reset Password User</h5>
+                                <h5 class="modal-title">@lang('Reset Password User')</h5>
                                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="password">Password
+                                    <label class="col-lg-4 col-form-label" for="password">@lang('Password')
                                         <span class="text-danger">*</span>
                                     </label>
                                     <div class="col-lg-6">
@@ -191,7 +190,7 @@ Chat box start
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-4 col-form-label" for="password_confirmation">Confirm Password
+                                    <label class="col-lg-4 col-form-label" for="password_confirmation">@lang('Confirm Password')
                                         <span
                                             class="text-danger">*</span>
                                     </label>
@@ -202,10 +201,9 @@ Chat box start
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
                                 <button type="button" class="btn btn-primary pnt-btn-modal-reset-password-save-this">
-                                    Save
-                                    changes
+                                    @lang('Save changes')
                                 </button>
                             </div>
                         </div>
@@ -432,13 +430,13 @@ Chat box start
             },
             messages: {
                 this_reset_password: {
-                    required: "<span class='text-danger'>Please provide a password</span>",
-                    minlength: "<span class='text-danger'>Your password must be at least 8 characters long</span>"
+                    required: "<span class='text-danger'>{!! __('Please provide a password') !!}</span>",
+                    minlength: "<span class='text-danger'>{!! __('Your password must be at least 8 characters long') !!}</span>"
                 },
                 this_reset_confirm_password: {
-                    required: "<span class='text-danger'>Please provide a confirm password</span>",
-                    minlength: "<span class='text-danger'>Your password must be at least 8 characters long</span>",
-                    equalTo: "<span class='text-danger'>Please enter the same password as above</span>"
+                    required: "<span class='text-danger'>{!! __('Please provide a confirm password') !!}</span>",
+                    minlength: "<span class='text-danger'>{!! __('Your password must be at least 8 characters long') !!}</span>",
+                    equalTo: "<span class='text-danger'>{!! __('Please enter the same password as above') !!}</span>"
                 },
             }
         });
@@ -461,7 +459,7 @@ Chat box start
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Leave Branch Success fully',
+                    title: '{!! __('Leave Branch Success fully') !!}',
                     showConfirmButton: false,
                     timer: 2000
                 });
@@ -478,7 +476,7 @@ Chat box start
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Leave Dealer Success fully',
+                    title: '{!! __('Leave Dealer Success fully') !!}',
                     showConfirmButton: false,
                     timer: 2000
                 });
@@ -496,7 +494,7 @@ Chat box start
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Leave Customer Success fully',
+                    title: '{!! __('Leave Customer Success fully') !!}',
                     showConfirmButton: false,
                     timer: 2000
                 });
@@ -507,13 +505,14 @@ Chat box start
 
     $(document).off('click', '.pnt-btn-logout').on('click', '.pnt-btn-logout', (e) => {
         Swal.fire({
-            title: 'Are you sure?',
-            text: "Logout!",
+            title: '{!! __('Are you sure?') !!}',
+            text: "{!! __('Logout') !!}!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'logout!'
+            confirmButtonText: '{!! __('Logout') !!}!',
+            cancelButtonText: '{!! __('Close') !!}!'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
@@ -559,7 +558,7 @@ Chat box start
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Update User Success fully',
+                        title: '{!! __('Update User Success fully') !!}',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -572,7 +571,7 @@ Chat box start
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
-                        title: 'Something went wrong',
+                        title: '{!! __('Something went wrong') !!}',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -608,7 +607,7 @@ Chat box start
 
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Please Login',
+                            title: '{!! __('Please Login') !!}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -621,7 +620,7 @@ Chat box start
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
-                            title: 'Something went wrong',
+                            title: '{!! __('Something went wrong') !!}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -630,6 +629,24 @@ Chat box start
             });
         }
     });
+
+    function setLocale(locale) {
+        console.log(locale)
+        $.ajax({
+            type: "get",
+            url: '{!! url('setLocale') !!}/' + locale,
+            success: function (data) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '{!! __('Change Language Success fully') !!}',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                window.location.reload();
+            }
+        });
+    }
 
 
 </script>

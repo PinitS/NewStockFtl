@@ -10,8 +10,8 @@
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">Category Information</h4>
-                    <button type="button" class="btn btn-danger pnt-bnt-add-category">Add <span
+                    <h4 class="card-title text-dark">@lang('Category Information')</h4>
+                    <button type="button" class="btn btn-danger pnt-bnt-add-category">@lang('Add') <span
                             class="btn-icon-right"><i
                                 class="fa fa-plus color-danger"></i></span>
                     </button>
@@ -22,8 +22,8 @@
                             <thead>
                             <tr>
                                 <th class="text-dark">#</th>
-                                <th class="text-dark">Category</th>
-                                <th class="text-dark">Manage</th>
+                                <th class="text-dark">@lang('Category')</th>
+                                <th class="text-dark">@lang('Manage')</th>
                             </tr>
                             </thead>
                             <tbody class="data-section">
@@ -43,20 +43,20 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Category</h5>
+                        <h5 class="modal-title">@lang('Add Category')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="mb-1"><strong>Category</strong></label>
+                            <label class="mb-1"><strong>@lang('Category')</strong></label>
                             <input type="text" class="form-control pnt-input-add-name" id="name" name="name"
                                    required>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary pnt-btn-modal-add-category-save">Add Category
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-category-save">@lang('Add Category')
                         </button>
                     </div>
                 </div>
@@ -73,20 +73,20 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Category</h5>
+                        <h5 class="modal-title">@lang('Edit Category')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="mb-1"><strong>Category</strong></label>
+                            <label class="mb-1"><strong>@lang('Category')</strong></label>
                             <input type="text" class="form-control pnt-input-name" id="name" name="name"
                                    required>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary pnt-btn-modal-save">Save changes</button>
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-save">@lang('Save changes')</button>
                     </div>
 
                 </div>
@@ -152,7 +152,7 @@
                 // <span class='text-danger'></span>
                 messages: {
                     name: {
-                        required: "<span class='text-danger'>Please enter a Category name</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter a Category name') !!}</span>",
                     },
                 }
             });
@@ -165,7 +165,7 @@
                 // <span class='text-danger'></span>
                 messages: {
                     name: {
-                        required: "<span class='text-danger'>Please enter a Category name</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter a Category name') !!}</span>",
                     },
                 }
             });
@@ -202,7 +202,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Add Category Success fully',
+                                title: '{!! __('Add Category Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -215,7 +215,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -233,13 +233,14 @@
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
             window.id = $(e.currentTarget).val();
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: '{!! __('Are you sure?') !!}',
+                text: "{!! __('You will not be able to revert this!') !!}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{!! __('Yes, delete it!') !!}',
+                cancelButtonText: '{!! __('Close') !!}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -254,7 +255,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
-                                    title: 'Delete Category Success fully',
+                                    title: '{!! __('Delete Category Success fully') !!}',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -262,7 +263,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
-                                    title: "Can't Delete this Category",
+                                    title: "{!! __('Can not Delete this Category') !!}",
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -317,7 +318,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Update Category Success fully',
+                                title: '{!! __('Update Category Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -329,7 +330,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })

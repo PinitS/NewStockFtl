@@ -7,8 +7,8 @@
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">Product Information</h4>
-                    <button type="button" class="btn btn-info pnt-bnt-add-product">Add <span class="btn-icon-right"><i
+                    <h4 class="card-title text-dark">@lang('Product Information')</h4>
+                    <button type="button" class="btn btn-info pnt-bnt-add-product">@lang('Add') <span class="btn-icon-right"><i
                                 class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
@@ -19,10 +19,10 @@
                                 <thead>
                                 <tr>
                                     <th class="text-dark">#</th>
-                                    <th class="text-dark">Name</th>
-                                    <th class="text-dark">Model</th>
-                                    <th class="text-dark">Description</th>
-                                    <th class="text-dark">Manage</th>
+                                    <th class="text-dark">@lang('Name')</th>
+                                    <th class="text-dark">@lang('Model')</th>
+                                    <th class="text-dark">@lang('Description')</th>
+                                    <th class="text-dark">@lang('Manage')</th>
                                 </tr>
                                 </thead>
                                 <tbody class="data-section">
@@ -41,7 +41,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Product</h5>
+                        <h5 class="modal-title">@lang('Add Product')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
@@ -49,27 +49,27 @@
 
                         <div class="input-group mb-3 ">
                             <div class="input-group-prepend w-10">
-                                <span class="input-group-text">&nbsp &nbsp Model</span>
+                                <span class="input-group-text">&nbsp &nbsp @lang('Model')</span>
                             </div>
                             <select class="form-control pnt-modal-sel-add-product-model">
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Name</strong></label>
+                            <label class="mb-1"><strong>@lang('Name')</strong></label>
                             <input type="text" class="form-control pnt-modal-add-product-name"
                                    name="name" id="name" placeholder="Name" required>
                         </div>
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Description</strong></label>
+                            <label class="mb-1"><strong>@lang('Description')</strong></label>
                             <input type="text" class="form-control pnt-modal-add-product-description">
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary pnt-btn-modal-add-product-save">Add Product
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-product-save">@lang('Add Product')
                         </button>
                     </div>
                 </div>
@@ -84,33 +84,33 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Product</h5>
+                        <h5 class="modal-title">@lang('Edit Product')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="input-group mb-3 ">
                             <div class="input-group-prepend w-10">
-                                <span class="input-group-text">&nbsp &nbsp Model</span>
+                                <span class="input-group-text">&nbsp &nbsp @lang('Model')</span>
                             </div>
                             <select class="form-control pnt-modal-sel-edit-product-model">
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="mb-1"><strong>Name</strong></label>
+                            <label class="mb-1"><strong>@lang('Name')</strong></label>
                             <input type="text" class="form-control pnt-modal-edit-product-name"
                                    name="name" id="name" placeholder="Name" required>
                         </div>
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Description</strong></label>
+                            <label class="mb-1"><strong>@lang('Description')</strong></label>
                             <input type="text" class="form-control pnt-modal-edit-product-description">
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-warning pnt-btn-modal-edit-product-save">Save changes
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-warning pnt-btn-modal-edit-product-save">@lang('Save changes')
                         </button>
                     </div>
 
@@ -125,8 +125,8 @@
         <div class="modal-dialog modal-xl " role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Parts to product</h5>
-                    <button type="button" class="btn btn-secondary pnt-bnt-add-path">Add parts<span
+                    <h5 class="modal-title">@lang('Parts to product')</h5>
+                    <button type="button" class="btn btn-secondary pnt-bnt-add-path">@lang('Add Parts')<span
                             class="btn-icon-right"><i
                                 class="fa fa-plus color-info"></i></span>
                     </button>
@@ -136,7 +136,7 @@
                         <div class="pnt-add-path-data-toggle text-center " style="display:none;">
                             <div class="col-md-6 mx-auto">
                                 <ul class="list-group">
-                                    <li class="list-group-item disabled"><strong>Parts to product</strong></li>
+                                    <li class="list-group-item disabled"><strong>@lang('Parts to product')</strong></li>
                                     <li class="list-group-item">
                                         <select class="form-control pnt-modal-sel-add-group-part">
                                         </select>
@@ -144,11 +144,11 @@
                                     <li class="list-group-item">
                                         {{--                                    <label>Quatity :</label>--}}
                                         <input type="text" class="form-control pnt-modal-sel-add-group-quantity"
-                                               name="quantity" id="quantity" placeholder="Quatity" required>
+                                               name="quantity" id="quantity" placeholder="@lang('Quantity')" required>
                                     </li>
                                     <li class="list-group-item">
                                         <button type="button"
-                                                class="btn btn-secondary btn-block mb-3 pnt-bnt-add-group-save">Add <i
+                                                class="btn btn-secondary btn-block mb-3 pnt-bnt-add-group-save">@lang('Add') <i
                                                 class="ml-2 fa fa-plus color-info"></i>
                                         </button>
                                     </li>
@@ -162,7 +162,7 @@
                         <div class="pnt-add-path-edit-data-toggle text-center " style="display:none;">
                             <div class="col-md-6 mx-auto">
                                 <ul class="list-group">
-                                    <li class="list-group-item active"><strong>Edit Quantity Parts</strong></li>
+                                    <li class="list-group-item active"><strong>@lang('Edit Quantity Parts')</strong></li>
                                     <li class="list-group-item">
                                         <input type="text" class="form-control pnt-modal-sel-edit-group-quantity"
                                                name="quantity" id="quantity" placeholder="Quatity" required>
@@ -170,7 +170,7 @@
                                     </li>
                                     <li class="list-group-item">
                                         <button type="button"
-                                                class="btn btn-primary btn-block mb-3 pnt-bnt-edit-group-save">Edit
+                                                class="btn btn-primary btn-block mb-3 pnt-bnt-edit-group-save">@lang('Save changes')
                                             <i class="ml-2 fa fa-save color-info"></i>
                                         </button>
                                     </li>
@@ -186,9 +186,9 @@
                                 <thead>
                                 <tr>
                                     <th class="text-dark">#</th>
-                                    <th class="text-dark">Parts</th>
-                                    <th class="text-dark">Quantity</th>
-                                    <th class="text-dark">Manage</th>
+                                    <th class="text-dark">@lang('Parts')</th>
+                                    <th class="text-dark">@lang('Quantity')</th>
+                                    <th class="text-dark">@lang('Manage')</th>
                                 </tr>
                                 </thead>
                                 <tbody class="data-section-productPart">
@@ -199,7 +199,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
                 </div>
             </div>
         </div>
@@ -336,7 +336,7 @@
                 // <span class='text-danger'></span>
                 messages: {
                     name: {
-                        required: "<span class='text-danger'>Please enter a Product name</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter a Product name') !!}</span>",
                     },
                 }
             });
@@ -349,7 +349,7 @@
                 // <span class='text-danger'></span>
                 messages: {
                     name: {
-                        required: "<span class='text-danger'>Please enter a Product name</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter a Product name') !!}</span>",
                     },
                 }
             });
@@ -361,7 +361,7 @@
                 },
                 messages: {
                     quantity: {
-                        required: "<span class='text-danger'>Please insert quantity</span>",
+                        required: "<span class='text-danger'>{!! __('Please insert quantity') !!}</span>",
                     },
                 }
             });
@@ -373,7 +373,7 @@
                 },
                 messages: {
                     quantity: {
-                        required: "<span class='text-danger'>Please insert quantity</span>",
+                        required: "<span class='text-danger'>{!! __('Please insert quantity') !!}</span>",
                     },
                 }
             });
@@ -412,7 +412,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Add Product Success fully',
+                                title: '{!! __('Add Product Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -424,7 +424,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -479,7 +479,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Update Product Success fully',
+                                title: '{!! __('Update Product Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -491,7 +491,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -506,13 +506,15 @@
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
             window.id = $(e.currentTarget).val();
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: '{!! __('Are you sure?') !!}',
+                text: "{!! __('You will not be able to revert this!') !!}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{!! __('Yes, delete it!') !!}',
+                cancelButtonText: '{!! __('Close') !!}'
+
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -526,7 +528,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
-                                    title: 'Delete Product Success fully',
+                                    title: '{!! __('Delete Product Success fully') !!}',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -534,7 +536,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
-                                    title: "Can't Delete this Product",
+                                    title: "{!! __('Can not Delete this Product') !!}",
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -584,7 +586,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Add Parts to Product Success fully',
+                                title: '{!! __('Add Parts to Product Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -592,7 +594,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Duplicate Parts',
+                                title: '{!! __('Duplicate Parts') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -606,7 +608,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -657,7 +659,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Update Quantity Parts to Product Success fully',
+                                title: '{!! __('Update Quantity Parts to Product Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -668,7 +670,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -686,13 +688,14 @@
         $(document).off('click', '.pnt-btn-delete-modal-product-part').on('click', '.pnt-btn-delete-modal-product-part', (e) => {
             window.part_id = $(e.currentTarget).val();
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: '{!! __('Are you sure?') !!}',
+                text: "{!! __('You will not be able to revert this!') !!}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{!! __('Yes, delete it!') !!}',
+                cancelButtonText: '{!! __('Close') !!}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -706,7 +709,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Delete Success fully',
+                                title: '{!! __('Delete Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })

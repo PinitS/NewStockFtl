@@ -8,8 +8,8 @@
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">Dealer Information</h4>
-                    <button type="button" class="btn btn-info pnt-bnt-add-dealer">Add <span class="btn-icon-right"><i
+                    <h4 class="card-title text-dark">@lang('Dealer Information')</h4>
+                    <button type="button" class="btn btn-info pnt-bnt-add-dealer">@lang('Add') <span class="btn-icon-right"><i
                                 class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
@@ -19,11 +19,11 @@
                             <thead>
                             <tr>
                                 <th class="text-dark">#</th>
-                                <th class="text-dark">Name</th>
-                                <th class="text-dark">Contact Name</th>
-                                <th class="text-dark">Phone Number</th>
-                                <th class="text-dark">Address</th>
-                                <th class="text-dark">Manage</th>
+                                <th class="text-dark">@lang('Name')</th>
+                                <th class="text-dark">@lang('Contact Name')</th>
+                                <th class="text-dark">@lang('Phone Number')</th>
+                                <th class="text-dark">@lang('Address')</th>
+                                <th class="text-dark">@lang('Manage')</th>
                             </tr>
                             </thead>
                             <tbody class="data-section">
@@ -41,38 +41,37 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Dealer</h5>
+                        <h5 class="modal-title">@lang('Add Dealer')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Name</strong></label>
+                            <label class="mb-1"><strong>@lang('Name')</strong></label>
                             <input type="text" class="form-control pnt-modal-add-dealer-name" id="name" name="name"
                                    required>
                         </div>
                         <div class="form-group">
-                            <label class="mb-1"><strong>Contact Name</strong></label>
+                            <label class="mb-1"><strong>@lang('Contact Name')</strong></label>
                             <input type="text" class="form-control pnt-modal-add-dealer-contact " id="contact"
                                    name="contact">
                         </div>
                         <div class="form-group">
-                            <label class="mb-1"><strong>Phone Number</strong></label>
+                            <label class="mb-1"><strong>@lang('Phone Number')</strong></label>
                             <input type="text" class="form-control pnt-modal-add-dealer-phone" id="phoneNumber"
                                    name="phoneNumber"
                                    required>
                         </div>
                         <div class="row">
                             <div class="col-md-12 mb-3 mt-1">
-                                <a class="btn btn-success btn-block text-white getLatLnt-add" style="cursor:pointer;">Select
-                                    Location</a>
+                                <a class="btn btn-success btn-block text-white getLatLnt-add" style="cursor:pointer;">@lang('Select Location')</a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="mb-1"><strong>Latitude</strong></label>
+                                    <label class="mb-1"><strong>@lang('Latitude')</strong></label>
                                     <input type="text" class="form-control pnt-modal-add-latitude" id="latitude"
                                            name="latitude" value="" readonly>
 
@@ -80,22 +79,22 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="mb-1"><strong>Longitude</strong></label>
+                                    <label class="mb-1"><strong>@lang('Longitude')</strong></label>
                                     <input type="text" class="form-control pnt-modal-add-longitude" id="longitude"
                                            name="longitude" value="" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="mb-1"><strong>Address</strong></label>
+                            <label class="mb-1"><strong>@lang('Address')</strong></label>
                             <input type="text" class="form-control pnt-modal-add-dealer-address" id="address"
                                    name="address" value="" required>
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary pnt-btn-modal-add-dealer-save">Add Dealer</button>
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-dealer-save">@lang('Add Dealer')</button>
                     </div>
                 </div>
             </div>
@@ -109,38 +108,37 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Dealer</h5>
+                        <h5 class="modal-title">@lang('Edit Dealer')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Dealer</strong></label>
+                            <label class="mb-1"><strong>@lang('Dealer')</strong></label>
                             <input type="text" class="form-control pnt-modal-edit-dealer-name" id="name" name="name"
                                    required>
                         </div>
                         <div class="form-group">
-                            <label class="mb-1"><strong>Contact Name</strong></label>
+                            <label class="mb-1"><strong>@lang('Contact Name')</strong></label>
                             <input type="text" class="form-control pnt-modal-edit-dealer-contact " id="contact"
                                    name="contact">
                         </div>
                         <div class="form-group">
-                            <label class="mb-1"><strong>Phone Number</strong></label>
+                            <label class="mb-1"><strong>@lang('Phone Number')</strong></label>
                             <input type="text" class="form-control pnt-modal-edit-dealer-phone" id="phoneNumber"
                                    name="phoneNumber"
                                    required>
                         </div>
                         <div class="row">
                             <div class="col-md-12 mt-1 mb-3">
-                                <a class="btn btn-success btn-block text-white getLatLnt" style="cursor:pointer;">Select
-                                    Location</a>
+                                <a class="btn btn-success btn-block text-white getLatLnt" style="cursor:pointer;">@lang('Select Location')</a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="mb-1"><strong>Latitude</strong></label>
+                                    <label class="mb-1"><strong>@lang('Latitude')</strong></label>
                                     <input type="text" class="form-control pnt-modal-edit-latitude" id="latitude"
                                            name="latitude" value="" readonly>
 
@@ -148,7 +146,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="mb-1"><strong>Longitude</strong></label>
+                                    <label class="mb-1"><strong>@lang('Longitude')</strong></label>
                                     <input type="text" class="form-control pnt-modal-edit-longitude" id="longitude"
                                            name="longitude" value="" readonly>
                                 </div>
@@ -156,15 +154,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Address</strong></label>
+                            <label class="mb-1"><strong>@lang('Address')</strong></label>
                             <input type="text" class="form-control pnt-modal-edit-dealer-address" id="address"
                                    name="address" value="" required>
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary pnt-btn-modal-save-dealer">Save changes</button>
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-save-dealer">@lang('Save changes')</button>
                     </div>
 
                 </div>
@@ -237,7 +235,7 @@
                     phoneNumber: {
                         required: true,
                         number: true,
-                        minlength: 9,
+                        minlength: 10,
                         maxlength: 10,
                     },
                     address: {
@@ -247,11 +245,16 @@
                 // <span class='text-danger'></span>
                 messages: {
                     name: {
-                        required: "<span class='text-danger'>Please enter a dealer name</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter a dealer name') !!}</span>",
                     },
-                    phoneNumber: "<span class='text-danger' >Enter phone number</span>",
+                    phoneNumber: {
+                        required: "<span class='text-danger'>{!! __('Please enter a Phone number') !!}</span>",
+                        number: "<span class='text-danger'>{!! __('Number Only') !!}</span>",
+                        minlength: "<span class='text-danger'>{!! __('Your Phone Number must be at least 10 characters long') !!}</span>",
+                        maxlength: "<span class='text-danger'>{!! __('Your Phone Number must be at least 10 characters long') !!}</span>",
+                    },
                     address: {
-                        required: "<span class='text-danger'>Please enter an address</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter an address') !!}</span>",
                     },
                 }
             });
@@ -273,11 +276,16 @@
                 // <span class='text-danger'></span>
                 messages: {
                     name: {
-                        required: "<span class='text-danger'>Please enter a dealer name</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter a dealer name') !!}</span>",
                     },
-                    phoneNumber: "<span class='text-danger' >Enter phone number</span>",
+                    phoneNumber: {
+                        required: "<span class='text-danger'>{!! __('Please enter a Phone number') !!}</span>",
+                        number: "<span class='text-danger'>{!! __('Number Only') !!}</span>",
+                        minlength: "<span class='text-danger'>{!! __('Your Phone Number must be at least 10 characters long') !!}</span>",
+                        maxlength: "<span class='text-danger'>{!! __('Your Phone Number must be at least 10 characters long') !!}</span>",
+                    },
                     address: {
-                        required: "<span class='text-danger'>Please enter address</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter address') !!}</span>",
                     },
                 }
             });
@@ -323,7 +331,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Add Dealer Success fully',
+                                title: '{!! __('Add Dealer Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -335,7 +343,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -351,13 +359,14 @@
             $('.map-section-show-only').hide();
             window.id = $(e.currentTarget).val();
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: '{!! __('Are you sure?') !!}',
+                text: "{!! __('You will not be able to revert this!') !!}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{!! __('Yes, delete it!') !!}',
+                cancelButtonText: '{!! __('Close') !!}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -372,7 +381,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
-                                    title: 'Delete Customer Success fully',
+                                    title: '{!! __('Delete Customer Success fully') !!}',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -380,7 +389,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
-                                    title: "Can't Delete this Dealer",
+                                    title: "{!! __('Can not Delete this Dealer') !!}",
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -443,7 +452,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Update Dealer Success fully',
+                                title: '{!! __('Update Dealer Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -455,7 +464,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })

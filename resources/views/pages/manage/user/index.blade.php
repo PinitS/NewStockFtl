@@ -7,8 +7,8 @@
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">User Information</h4>
-                    <button type="button" class="btn btn-info pnt-bnt-add-user">Add <span class="btn-icon-right"><i
+                    <h4 class="card-title text-dark">@lang('User Information')</h4>
+                    <button type="button" class="btn btn-info pnt-bnt-add-user">@lang('Add') <span class="btn-icon-right"><i
                                 class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
@@ -18,11 +18,11 @@
                             <thead>
                             <tr>
                                 <th class="text-dark">#</th>
-                                <th class="text-dark">Username</th>
-                                <th class="text-dark">Email</th>
-                                <th class="text-dark">Role</th>
-                                <th class="text-dark">Status</th>
-                                <th class="text-dark">Manage</th>
+                                <th class="text-dark">@lang('Username')</th>
+                                <th class="text-dark">@lang('Email')</th>
+                                <th class="text-dark">@lang('Role')</th>
+                                <th class="text-dark">@lang('Status')</th>
+                                <th class="text-dark">@lang('Manage')</th>
                             </tr>
                             </thead>
                             <tbody class="data-section">
@@ -42,43 +42,43 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add user</h5>
+                        <h5 class="modal-title">@lang('Add User')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="mb-1"><strong>Role</strong></label>
+                            <label class="mb-1"><strong>@lang('Role')</strong></label>
                             <select class="form-control pnt-input-status-add" id="pnt-input-status-add">
                                 <option value="1">Admin</option>
                                 <option value="0">Member</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="mb-1"><strong>Username</strong></label>
+                            <label class="mb-1"><strong>@lang('Username')</strong></label>
                             <input type="text" class="form-control pnt-modal-add-user-username" id="username"
                                    name="username" placeholder="username" required>
                         </div>
                         <div class="form-group">
-                            <label class="mb-1"><strong>Email</strong></label>
+                            <label class="mb-1"><strong>@lang('Email')</strong></label>
                             <input type="email" class="form-control pnt-modal-add-user-email" id="email" name="email"
                                    placeholder="hello@example.com" required>
                         </div>
                         <div class="form-group">
-                            <label class="mb-1"><strong>Password</strong></label>
+                            <label class="mb-1"><strong>@lang('Password')</strong></label>
                             <input type="password" class="form-control pnt-modal-add-user-password" id="password"
                                    name="password" value="" required>
                         </div>
                         <div class="form-group">
-                            <label class="mb-1"><strong>Confirm Password</strong></label>
+                            <label class="mb-1"><strong>@lang('Confirm Password')</strong></label>
                             <input type="password" class="form-control pnt-modal-add-user-password_confirmation "
                                    id="confirm_password" name="confirm_password" value="" required>
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary pnt-btn-modal-add-user-save">Register</button>
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-user-save">@lang('Register')</button>
                     </div>
                 </div>
             </div>
@@ -93,13 +93,13 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit User</h5>
+                        <h5 class="modal-title">@lang('Edit User')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="mb-1"><strong>Role</strong></label>
+                            <label class="mb-1"><strong>@lang('Role')</strong></label>
                             <select class="form-control pnt-input-status" id="pnt-input-status">
                                 <option value="1">Admin</option>
                                 <option value="0">Member</option>
@@ -107,18 +107,18 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Username</strong></label>
+                            <label class="mb-1"><strong>@lang('Username')</strong></label>
                             <input type="text" class="form-control pnt-input-username" value="" name="username">
                         </div>
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Email</strong></label>
+                            <label class="mb-1"><strong>@lang('Email')</strong></label>
                             <input type="email" class="form-control pnt-input-email" value="" name="email">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary pnt-btn-modal-save">Save changes</button>
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-save">@lang('Save changes')</button>
                     </div>
 
                 </div>
@@ -133,27 +133,27 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Reset Password User</h5>
+                        <h5 class="modal-title">@lang('Reset Password User')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Password</strong></label>
+                            <label class="mb-1"><strong>@lang('Password')</strong></label>
                             <input type="password" class="form-control pnt-input-password" id="reset_password"
                                    name="reset_password" value="" required>
                         </div>
                         <div class="form-group">
-                            <label class="mb-1"><strong>Confirm Password</strong></label>
+                            <label class="mb-1"><strong>@lang('Confirm Password')</strong></label>
                             <input type="password" class="form-control pnt-input-password_confirmation"
                                    id="reset_confirm_password" name="reset_confirm_password" value="" required>
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary pnt-btn-modal-reset-password-save">Save changes
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-reset-password-save">@lang('Save changes')
                         </button>
                     </div>
                 </div>
@@ -257,20 +257,20 @@
                 // <span class='text-danger'></span>
                 messages: {
                     username: {
-                        required: "<span class='text-danger'>Please enter a username</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter a username') !!}</span>",
                     },
                     password: {
-                        required: "<span class='text-danger'>Please provide a password</span>",
-                        minlength: "<span class='text-danger'>Your password must be at least 8 characters long</span>"
+                        required: "<span class='text-danger'>{!! __('Please provide a password') !!}</span>",
+                        minlength: "<span class='text-danger'>{!! __('Your password must be at least 8 characters long') !!}</span>"
                     },
                     confirm_password: {
-                        required: "<span class='text-danger'>Please provide a confirm password</span>",
-                        minlength: "<span class='text-danger'>Your password must be at least 8 characters long</span>",
-                        equalTo: "<span class='text-danger'>Please enter the same password as above</span>"
+                        required: "<span class='text-danger'>{!! __('Please provide a confirm password') !!}</span>",
+                        minlength: "<span class='text-danger'>{!! __('Your password must be at least 8 characters long') !!}</span>",
+                        equalTo: "<span class='text-danger'>{!! __('Please enter the same password as above') !!}</span>"
                     },
                     email: {
-                        required: "<span class='text-danger'>Please enter a email</span>",
-                        email: "<span class='text-danger'>Invalid email</span>"
+                        required: "<span class='text-danger'>{!! __('Please enter a email') !!}</span>",
+                        email: "<span class='text-danger'>{!! __('Invalid email') !!}</span>"
                     },
                 }
             });
@@ -287,11 +287,11 @@
                 // <span class='text-danger'></span>
                 messages: {
                     username: {
-                        required: "<span class='text-danger'>Please enter a username</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter a username') !!}</span>",
                     },
                     email: {
-                        required: "<span class='text-danger'>Please enter a email</span>",
-                        email: "<span class='text-danger'>Invalid email</span>"
+                        required: "<span class='text-danger'>{!! __('Please enter a email') !!}</span>",
+                        email: "<span class='text-danger'>{!! __('Invalid email') !!}</span>"
                     },
                 }
             });
@@ -309,13 +309,13 @@
                 },
                 messages: {
                     reset_password: {
-                        required: "<span class='text-danger'>Please provide a password</span>",
-                        minlength: "<span class='text-danger'>Your password must be at least 8 characters long</span>"
+                        required: "<span class='text-danger'>{!! __('Please provide a password') !!}</span>",
+                        minlength: "<span class='text-danger'>{!! __('Your password must be at least 8 characters long') !!}</span>"
                     },
                     reset_confirm_password: {
-                        required: "<span class='text-danger'>Please provide a confirm password</span>",
-                        minlength: "<span class='text-danger'>Your password must be at least 8 characters long</span>",
-                        equalTo: "<span class='text-danger'>Please enter the same password as above</span>"
+                        required: "<span class='text-danger'>{!! __('Please provide a confirm password') !!}</span>",
+                        minlength: "<span class='text-danger'>{!! __('Your password must be at least 8 characters long') !!}</span>",
+                        equalTo: "<span class='text-danger'>{!! __('Please enter the same password as above') !!}</span>"
                     },
                 }
             });
@@ -347,7 +347,7 @@
 
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Add User Success fully',
+                                title: '{!! __('Add User Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -359,7 +359,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -386,13 +386,14 @@
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
             window.id = $(e.currentTarget).val();
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: '{!! __('Are you sure?') !!}',
+                text: "{!! __('You will not be able to revert this!') !!}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{!! __('Yes, delete it!') !!}',
+                cancelButtonText: '{!! __('Close') !!}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -408,7 +409,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Delete User Success fully',
+                                title: '{!! __('Delete User Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -452,7 +453,7 @@
 
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Update User Success fully',
+                                title: '{!! __('Update User Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -464,7 +465,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -521,7 +522,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Update User Success fully',
+                                title: '{!! __('Update User Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -533,7 +534,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -565,7 +566,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Update Active Success fully',
+                            title: '{!! __('Update Active Success fully') !!}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -577,7 +578,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
-                            title: 'Something went wrong',
+                            title: '{!! __('Something went wrong') !!}',
                             showConfirmButton: false,
                             timer: 1500
                         })

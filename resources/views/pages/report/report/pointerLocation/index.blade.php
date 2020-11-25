@@ -10,13 +10,13 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-12"><img src="{!! url('images/marker/icongreen.png') !!}"
                                                                  alt=""> <strong>
-                                    Working</strong></div>
+                                    @lang('Working')</strong></div>
                             <div class="col-md-4 col-sm-12"><img src="{!! url('images/marker/iconred.png') !!}" alt="">
                                 <strong>
-                                    maintenance</strong></div>
+                                    @lang('maintenance')</strong></div>
                             <div class="col-md-4 col-sm-12"><img src="{!! url('images/marker/iconblue.png') !!}" alt="">
                                 <strong>
-                                    setup</strong></div>
+                                    @lang('setup')</strong></div>
                         </div>
 
                     </div>

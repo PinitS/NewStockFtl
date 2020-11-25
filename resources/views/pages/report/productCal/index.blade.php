@@ -7,7 +7,7 @@
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">Calculator Information</h4>
+                    <h4 class="card-title text-dark">@lang('Calculator Information')</h4>
 
                     <div class="row pull-right text-center ">
                         <div class="form-group  pull-right justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -26,11 +26,11 @@
                                 <thead>
                                 <tr>
                                     <th class="text-dark">#</th>
-                                    <th class="text-dark">Parts</th>
-                                    <th class="text-dark">UseQuantity/Unit</th>
-                                    <th class="text-dark">UseQuantity</th>
-                                    <th class="text-dark">StockQuantity</th>
-                                    <th class="text-dark">Requirement</th>
+                                    <th class="text-dark">@lang('Parts')</th>
+                                    <th class="text-dark">@lang('UseQuantity/Unit')</th>
+                                    <th class="text-dark">@lang('UseQuantity')</th>
+                                    <th class="text-dark">@lang('StockQuantity')</th>
+                                    <th class="text-dark">@lang('Requirement')</th>
                                 </tr>
                                 </thead>
                                 <tbody class="data-section">

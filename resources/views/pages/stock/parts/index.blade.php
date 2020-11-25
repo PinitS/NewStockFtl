@@ -10,9 +10,9 @@
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">Parts Information</h4>
+                    <h4 class="card-title text-dark">@lang('Parts Information')</h4>
 
-                    <button type="button" class="btn btn-danger pnt-bnt-add-parts">Add <span class="btn-icon-right"><i
+                    <button type="button" class="btn btn-danger pnt-bnt-add-parts">@lang('Add') <span class="btn-icon-right"><i
                                 class="fa fa-plus color-danger"></i></span>
                     </button>
 
@@ -34,12 +34,12 @@
                                 <thead>
                                 <tr>
                                     <th class="text-dark">#</th>
-                                    <th class="text-dark">Name</th>
-                                    <th class="text-dark">Sku</th>
-                                    <th class="text-dark">Category</th>
-                                    <th class="text-dark">Branch</th>
-                                    <th class="text-dark">Quantity</th>
-                                    <th class="text-dark">Manage</th>
+                                    <th class="text-dark">@lang('Name')</th>
+                                    <th class="text-dark">@lang('Sku')</th>
+                                    <th class="text-dark">@lang('Category')</th>
+                                    <th class="text-dark">@lang('Branch')</th>
+                                    <th class="text-dark">@lang('Quantity')</th>
+                                    <th class="text-dark">@lang('Manage')</th>
                                 </tr>
                                 </thead>
                                 <tbody class="data-section">
@@ -59,20 +59,20 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Parts</h5>
+                        <h5 class="modal-title">@lang('Add Parts')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Categories</strong></label>
+                            <label class="mb-1"><strong>@lang('Categories')</strong></label>
                             <select class="form-control pnt-modal-sel-add-parts-category">
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Name</strong></label>
+                            <label class="mb-1"><strong>@lang('Name')</strong></label>
                             <select class="form-control pnt-modal-sel-add-group-parts">
                             </select>
                         </div>
@@ -84,21 +84,21 @@
                         {{--                        </div>--}}
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Quantity</strong></label>
+                            <label class="mb-1"><strong>@lang('Quantity')</strong></label>
                             <input type="number" class="form-control pnt-modal-add-parts-quantity" id="quantity"
                                    name="quantity" required>
                         </div>
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Sku</strong></label>
+                            <label class="mb-1"><strong>@lang('Sku')</strong></label>
                             <input type="text" class="form-control pnt-modal-add-parts-sku" id="sku" name="sku"
                                    placeholder="#A382824" value="">
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary pnt-btn-modal-add-parts-save">Add Parts</button>
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-parts-save">@lang('Add Parts')</button>
                     </div>
                 </div>
             </div>
@@ -111,12 +111,12 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Increment Part</h5>
+                    <h5 class="modal-title">@lang('Increment Part')</h5>
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <span>Quantity : </span><span id="modal-plus-quantity"></span>
+                    <span>@lang('Quantity') : </span><span id="modal-plus-quantity"></span>
 
                     <div class="input-group mt-3 input-success-o">
                         <div class="input-group-prepend">
@@ -128,8 +128,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success pnt-btn-modal-plus-save">Save changes</button>
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                    <button type="button" class="btn btn-success pnt-btn-modal-plus-save">@lang('Save changes')</button>
                 </div>
 
             </div>
@@ -142,12 +142,12 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Decrement Part</h5>
+                    <h5 class="modal-title">@lang('Decrement Part')</h5>
                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <span>Quantity : </span><span id="modal-minus-quantity"></span>
+                    <span>@lang('Quantity') : </span><span id="modal-minus-quantity"></span>
 
                     <div class="input-group mt-3 input-info-o">
                         <div class="input-group-prepend">
@@ -161,8 +161,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-info pnt-btn-modal-minus-save">Save changes</button>
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                    <button type="button" class="btn btn-info pnt-btn-modal-minus-save">@lang('Save changes')</button>
                 </div>
 
             </div>
@@ -175,7 +175,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Parts History</h5>
+                    <h5 class="modal-title">@lang('Parts History')</h5>
                     <button type="button" class="close pnt-data-history-close" data-dismiss="modal"><span>&times;</span>
                     </button>
                 </div>
@@ -186,12 +186,12 @@
                                 <div class="col-xl-6 mx-auto history-quantity-save-edit-card" style="display: none;">
                                     <div class="card text-center">
                                         <div class="card-header border-0 pb-0">
-                                            <h5 class="card-title mx-auto text-warning">Edit history quantity</h5>
+                                            <h5 class="card-title mx-auto text-warning">@lang('Edit history quantity')</h5>
                                         </div>
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <label class="mb-1"><strong>Quantity</strong></label>
+                                                    <label class="mb-1"><strong>@lang('Quantity')</strong></label>
                                                     <input type="text" class="form-control history-quantity-edit"
                                                            id="quantity" name="quantity" required>
                                                 </div>
@@ -200,11 +200,11 @@
                                         <div class="card-footer border-0 pt-0">
                                             <button type="button"
                                                     class="btn light btn-success history-save-btn-edit-card float-right ml-3">
-                                                Save
+                                                @lang('Save changes')
                                             </button>
                                             <button type="button"
                                                     class="btn light btn-danger history-close-edit-card float-right">
-                                                close
+                                                @lang('Close')
                                             </button>
                                         </div>
                                     </div>
@@ -218,13 +218,13 @@
                                     <thead>
                                     <tr>
                                         <th class="text-dark">#</th>
-                                        <th class="text-dark">Part</th>
-                                        <th class="text-dark">Type</th>
-                                        <th class="text-dark">Quatity</th>
+                                        <th class="text-dark">@lang('Parts')</th>
+                                        <th class="text-dark">@lang('Type')</th>
+                                        <th class="text-dark">@lang('Quantity')</th>
                                         <th class="text-dark"></th>
-                                        <th class="text-dark">Detail</th>
-                                        <th class="text-dark">User</th>
-                                        <th class="text-dark">date</th>
+                                        <th class="text-dark">@lang('Detail')</th>
+                                        <th class="text-dark">@lang('Users')</th>
+                                        <th class="text-dark">@lang('date')</th>
                                     </tr>
                                     </thead>
                                     <tbody class="data-section-history">
@@ -245,33 +245,33 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit parts</h5>
+                        <h5 class="modal-title">@lang('Edit parts')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Categories</strong></label>
+                            <label class="mb-1"><strong>@lang('Categories')</strong></label>
                             <select class="form-control pnt-modal-sel-edit-parts-category">
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Name</strong></label>
+                            <label class="mb-1"><strong>@lang('Name')</strong></label>
                             <select class="form-control pnt-modal-sel-edit-group-parts">
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>Sku</strong></label>
+                            <label class="mb-1"><strong>@lang('Sku')</strong></label>
                             <input type="text" class="form-control pnt-modal-edit-parts-sku">
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-warning pnt-btn-modal-edit-parts-save">Save changes
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-warning pnt-btn-modal-edit-parts-save">@lang('Save changes')
                         </button>
                     </div>
 
@@ -368,7 +368,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Update Quantity Success fully',
+                            title: '{!! __('Update Quantity Success fully') !!}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -378,7 +378,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
-                            title: 'Something went wrong',
+                            title: '{!! __('Something went wrong') !!}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -552,7 +552,7 @@
                 },
                 // <span class='text-danger'></span>
                 messages: {
-                    quantity: "<span class='text-danger' >Please insert quantity</span>",
+                    quantity: "<span class='text-danger' >{!! __('Please insert quantity') !!}</span>",
                 }
             });
         });
@@ -581,7 +581,7 @@
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
-                        title: 'Quantity went wrong',
+                        title: '{!! __('Quantity went wrong') !!}',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -613,7 +613,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
-                                    title: 'Add Parts Success fully.',
+                                    title: '{!! __('Add Parts Success fully.') !!}',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -621,7 +621,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
-                                    title: 'Duplicate Parts Name.',
+                                    title: '{!! __('Duplicate Parts Name.') !!}',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -633,7 +633,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
-                                    title: 'Something went wrong',
+                                    title: '{!! __('Something went wrong') !!}',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -665,7 +665,7 @@
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Quantity went wrong',
+                    title: '{!! __('Quantity went wrong') !!}',
                     showConfirmButton: false,
                     timer: 1500
                 })
@@ -746,7 +746,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Update Parts Success fully',
+                            title: '{!! __('Update Parts Success fully') !!}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -756,7 +756,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
-                            title: 'Duplicate Parts Name.',
+                            title: '{!! __('Duplicate Parts Name.') !!}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -767,7 +767,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
-                            title: 'Something went wrong',
+                            title: '{!! __('Something went wrong') !!}',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -785,13 +785,14 @@
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
             window.id = $(e.currentTarget).val();
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: '{!! __('Are you sure?') !!}',
+                text: "{!! __('You will not be able to revert this!') !!}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{!! __('Yes, delete it!') !!}',
+                cancelButtonText: '{!! __('Close') !!}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -805,7 +806,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Delete Part Success fully',
+                                title: '{!! __('Delete Part Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -860,7 +861,7 @@
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Upadate History Parts Quantity Success fully',
+                        title: '{!! __('Update History Parts Quantity Success fully') !!}',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -871,7 +872,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'error',
-                            title: 'Something went wrong',
+                            title: '{!! __('Something went wrong') !!}',
                             showConfirmButton: false,
                             timer: 1500
                         })

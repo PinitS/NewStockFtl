@@ -7,8 +7,8 @@
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">Models Information</h4>
-                    <button type="button" class="btn btn-info pnt-bnt-add-model">Add <span class="btn-icon-right"><i
+                    <h4 class="card-title text-dark">@lang('Models Information')</h4>
+                    <button type="button" class="btn btn-info pnt-bnt-add-model">@lang('Add') <span class="btn-icon-right"><i
                                 class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
@@ -18,8 +18,8 @@
                             <thead>
                             <tr>
                                 <th class="text-dark">#</th>
-                                <th class="text-dark">Model</th>
-                                <th class="text-dark">Manage</th>
+                                <th class="text-dark">@lang('Model')</th>
+                                <th class="text-dark">@lang('Manage')</th>
                             </tr>
                             </thead>
                             <tbody class="data-section">
@@ -37,21 +37,21 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Model</h5>
+                        <h5 class="modal-title">@lang('Add Model')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="mb-1"><strong>Model</strong></label>
+                            <label class="mb-1"><strong>@lang('Model')</strong></label>
                             <input type="text" class="form-control pnt-input-add-name" id="name" name="name"
                                    required>
                         </div>
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary pnt-btn-modal-add-model-save">Add Model</button>
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-model-save">@lang('Add Model')</button>
                     </div>
                 </div>
             </div>
@@ -65,21 +65,21 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Model</h5>
+                        <h5 class="modal-title">@lang('Edit Model')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="mb-1"><strong>Model</strong></label>
+                            <label class="mb-1"><strong>@lang('Model')</strong></label>
                             <input type="text" class="form-control pnt-input-name" id="name" name="name"
                                    required>
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary pnt-btn-modal-save">Save changes</button>
+                        <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
+                        <button type="button" class="btn btn-primary pnt-btn-modal-save">@lang('Save changes')</button>
                     </div>
                 </div>
             </div>
@@ -141,7 +141,7 @@
                 // <span class='text-danger'></span>
                 messages: {
                     name: {
-                        required: "<span class='text-danger'>Please enter a Model name</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter a Model name') !!}</span>",
                     },
                 }
             });
@@ -154,7 +154,7 @@
                 // <span class='text-danger'></span>
                 messages: {
                     name: {
-                        required: "<span class='text-danger'>Please enter a Model name</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter a Model name') !!}</span>",
                     },
                 }
             });
@@ -188,7 +188,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Add Model Success fully',
+                                title: '{!! __('Add Model Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -200,7 +200,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -249,7 +249,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Update Model Success fully',
+                                title: '{!! __('Update Model Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -260,7 +260,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: 'Something went wrong',
+                                title: '{!! __('Something went wrong') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -275,13 +275,14 @@
         $(document).off('click', '.pnt-btn-delete').on('click', '.pnt-btn-delete', (e) => {
             window.id = $(e.currentTarget).val();
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: '{!! __('Are you sure?') !!}',
+                text: "{!! __('You will not be able to revert this!') !!}",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: '{!! __('Yes, delete it!') !!}',
+                cancelButtonText: '{!! __('Close') !!}'
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
@@ -296,7 +297,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
-                                    title: 'Delete Model Success fully',
+                                    title: '{!! __('Delete Model Success fully') !!}',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -304,7 +305,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
-                                    title: "Can't Delete this Model",
+                                    title: "{!! __('Can not Delete this Model') !!}",
                                     showConfirmButton: false,
                                     timer: 1500
                                 });

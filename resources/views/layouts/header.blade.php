@@ -3,27 +3,31 @@
         <nav class="navbar navbar-expand">
             <div class="collapse navbar-collapse justify-content-between">
                 <div class="header-left">
+{{--                    <a class='btn btn-xxs btn-secondary mr-3 ml-4' href="{{ URL::to('setLocale/th') }}">TH</a>--}}
+{{--                    <a class='btn btn-xxs btn-success' href="{{ URL::to('setLocale/en') }}">EN</a>--}}
+                    <button class="btn btn-xxs btn-secondary mr-3 ml-4" onclick="setLocale('th')">TH</button>
+                    <button class="btn btn-xxs btn-success " onclick="setLocale('en')">EN</button>
                 </div>
                 <ul class="navbar-nav header-right">
                     <li class="nav-item dropdown notification_dropdown">
                         @if(session()->has('branch'))
                             <span class="text-danger">{{ session()->get('branch')[0]['name'] }}</span>
                             <button type="button" class="btn-sm ml-3 btn btn-outline-danger pnt-btn-forget-session">
-                                Leave
+                                @lang('Leave')
                             </button>
                         @endif
 
                         @if(session()->has('customer'))
                             <span class="text-warning">{{ session()->get('customer')[0]['name'] }}</span>
                             <button type="button"
-                                    class="btn-sm ml-3 btn btn-outline-warning pnt-btn-forget-session-customer">Leave
+                                    class="btn-sm ml-3 btn btn-outline-warning pnt-btn-forget-session-customer">@lang('Leave')
                             </button>
                         @endif
 
                         @if(session()->has('dealer'))
                             <span class="text-success">{{ session()->get('dealer')[0]['name'] }}</span>
                             <button type="button"
-                                    class="btn-sm ml-3 btn btn-outline-success pnt-btn-forget-session-dealer">Leave
+                                    class="btn-sm ml-3 btn btn-outline-success pnt-btn-forget-session-dealer">@lang('Leave')
                             </button>
                         @endif
 
@@ -49,7 +53,7 @@
                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="12" cy="7" r="4"></circle>
                                 </svg>
-                                <span class="ml-2">Profile </span>
+                                <span class="ml-2">@lang('Profile') </span>
                             </button>
 
                             <button class="dropdown-item ai-icon pnt-btn-reset-password-in-header">
@@ -60,7 +64,7 @@
                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="12" cy="7" r="4"></circle>
                                 </svg>
-                                <span class="ml-2">Reset Password </span>
+                                <span class="ml-2">@lang('Reset Password') </span>
                             </button>
 
 
@@ -73,7 +77,7 @@
                                     <polyline points="16 17 21 12 16 7"></polyline>
                                     <line x1="21" y1="12" x2="9" y2="12"></line>
                                 </svg>
-                                <span class="ml-2">Logout </span>
+                                <span class="ml-2">@lang('Logout') </span>
                             </button>
                         </div>
                     </li>

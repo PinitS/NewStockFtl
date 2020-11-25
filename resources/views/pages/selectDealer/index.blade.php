@@ -6,15 +6,15 @@
     <div class="col-md-6  mx-auto">
         <div class="card text-center bg-white">
             <div class="card-header">
-                <h5 class="card-title text-dark">Please Selected Dealer</h5>
+                <h5 class="card-title text-dark">@lang('Please Selected Dealer')</h5>
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label> <strong>Dealer</strong> </label>
+                    <label> <strong>@lang('Dealer')</strong> </label>
                     <select class="form-control pnt-sel-dealer">
                     </select>
                 </div>
-                <button class="btn btn-success text-white btn-card pnt-goto-dealer">Go to Dealer</button>
+                <button class="btn btn-success text-white btn-card pnt-goto-dealer">@lang('Go to Dealer')</button>
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Please Select Dealer',
+                    title: '{!! __('Please Select Dealer') !!}',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -85,7 +85,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Select Dealer success fully',
+                            title: '{!! __('Select Dealer success fully') !!}',
                             showConfirmButton: false,
                             timer: 2000
                         });

@@ -11,6 +11,7 @@ use App\Http\Middleware\IfHasBranchSession;
 use App\Http\Middleware\IfHasCustomerSession;
 use App\Http\Middleware\IfHasDealerSession;
 use App\Http\Middleware\IfMemberJoinRouteAdmin;
+use App\Http\Middleware\language;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -80,5 +81,6 @@ class Kernel extends HttpKernel
         'adminRoute' => IfMemberJoinRouteAdmin::class,
         'ifAdmin' => IfAdminLogin::class,
         'hasAuth' => IfHasAuth::class,
+        'language' => \App\Http\Middleware\LanguageSwitcher::class,
     ];
 }

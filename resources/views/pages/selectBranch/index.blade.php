@@ -6,15 +6,15 @@
     <div class="col-md-6  mx-auto">
         <div class="card text-center bg-white">
             <div class="card-header">
-                <h5 class="card-title text-dark">Please Selected Branch</h5>
+                <h5 class="card-title text-dark">@lang('Please Selected Branch')</h5>
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label> <strong>Branch</strong> </label>
+                    <label> <strong>@lang('Branch')</strong> </label>
                     <select class="form-control pnt-sel-branch">
                     </select>
                 </div>
-                <button class="btn btn-danger btn-card pnt-goto-branch">Go to Branch</button>
+                <button class="btn btn-danger btn-card pnt-goto-branch">@lang('Go to Branch')</button>
             </div>
         </div>
     </div>
@@ -63,7 +63,7 @@
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Please Select Branch',
+                    title: '{{__('Please Select Branch')}}',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -80,7 +80,7 @@
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Select Branch success fully',
+                            title: '{{ __('Select Branch success fully')}}',
                             showConfirmButton: false,
                             timer: 2000
                         });

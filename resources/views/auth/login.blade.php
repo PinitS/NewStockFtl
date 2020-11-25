@@ -23,28 +23,37 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
 
-                                    <x-jet-validation-errors class="text-danger mb-4" />
+{{--                                    <x-jet-validation-errors class="text-danger mb-4" />--}}
+                                    @if( session('errors') )
+                                        <div class="mb-2 font-medium text-sm text-danger">
+                                            {!! __('Whoops! Something went wrong.') !!}
+                                        </div>
+                                        <div class="mb-4 font-medium text-sm text-danger">
+                                            {!! __('auth.failed') !!}
+                                        </div>
+
+                                    @endif
 
                                     @if (session('status'))
                                         <div class="mb-4 font-medium text-sm text-danger">
-                                            {{ session('status') }}
+                                            {!! __('The user is not active!!') !!}
                                         </div>
                                     @endif
 
-                                    <h4 class="text-center mb-4">FarmThailand account</h4>
+                                    <h4 class="text-center mb-4">{{__('FarmThailand account')}}</h4>
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
 
                                         <div class="form-group">
-                                            <label class="mb-1"><strong>Email</strong></label>
+                                            <label class="mb-1"><strong>{{__('Email')}}</strong></label>
                                             <input type="email" class="form-control" id="email" name="email" :value="old('email')" required autofocus>
                                         </div>
                                         <div class="form-group">
-                                            <label class="mb-1"><strong>Password</strong></label>
+                                            <label class="mb-1"><strong>{{__('Password')}}</strong></label>
                                             <input type="password" class="form-control" id="password" type="password" name="password" required autocomplete="current-password">
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Sign Me In</button>
+                                            <button type="submit" class="btn btn-primary btn-block">{{__('Sign Me In')}}</button>
                                         </div>
                                     </form>
                                 </div>

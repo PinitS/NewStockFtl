@@ -7,7 +7,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h4 class="card-title">Timeline History</h4>
+                    <h4 class="card-title">@lang('Timeline History')</h4>
                 </div>
                 <div class="card-body">
                     <div id="DZ_W_TimeLine1" class="widget-timeline dz-scroll style-1" style="height:250px;">
@@ -21,7 +21,7 @@
         <div class="col-md-5">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">History Parts</h4>
+                    <h4 class="card-title">@lang('History Parts')</h4>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -53,7 +53,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Products Chart</h4>
+                    <h4 class="card-title">@lang('Products Chart')</h4>
                 </div>
                 <div class="card-body">
                     <div class="chartjs-size-monitor">
@@ -79,7 +79,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h4 class="card-title">All Customer</h4>
+                    <h4 class="card-title">@lang('All Customer')</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -87,10 +87,10 @@
                             <thead>
                             <tr>
                                 <th class="text-dark">#</th>
-                                <th class="text-dark">Name</th>
-                                <th class="text-dark">Contact Name</th>
-                                <th class="text-dark">Products(Count)</th>
-                                <th class="text-dark">Phone number</th>
+                                <th class="text-dark">@lang('Name')</th>
+                                <th class="text-dark">@lang('Contact Name')</th>
+                                <th class="text-dark">@lang('Products(Count)')</th>
+                                <th class="text-dark">@lang('Phone Number')</th>
 
                             </tr>
                             </thead>
@@ -107,7 +107,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h4 class="card-title">All Dealer</h4>
+                    <h4 class="card-title">@lang('All Dealer')</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -115,10 +115,10 @@
                             <thead>
                             <tr>
                                 <th class="text-dark">#</th>
-                                <th class="text-dark">Name</th>
-                                <th class="text-dark">Contact Name</th>
-                                <th class="text-dark">Products(Count)</th>
-                                <th class="text-dark">Phone number</th>
+                                <th class="text-dark">@lang('Name')</th>
+                                <th class="text-dark">@lang('Contact Name')</th>
+                                <th class="text-dark">@lang('Products(Count)')</th>
+                                <th class="text-dark">@lang('Phone Number')</th>
 
                             </tr>
                             </thead>
@@ -138,7 +138,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h4 class="card-title">All Parts</h4>
+                    <h4 class="card-title">@lang('All Parts')</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -146,11 +146,11 @@
                             <thead>
                             <tr>
                                 <th><strong>#</strong></th>
-                                <th><strong>NAME</strong></th>
-                                <th><strong>Category</strong></th>
-                                <th><strong>Quantity</strong></th>
-                                <th><strong>Branch</strong></th>
-                                <th><strong>sku</strong></th>
+                                <th><strong>@lang('Name')</strong></th>
+                                <th><strong>@lang('Category')</strong></th>
+                                <th><strong>@lang('Quantity')</strong></th>
+                                <th><strong>@lang('Branch')</strong></th>
+                                <th><strong>@lang('Sku')</strong></th>
                             </tr>
                             </thead>
                             <tbody class="data-section-parts">
@@ -164,7 +164,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header border-0 pb-0">
-                    <h4 class="card-title">Parts All Branch</h4>
+                    <h4 class="card-title">@lang('Parts All Branch')</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -172,8 +172,8 @@
                             <thead>
                             <tr>
                                 <th><strong>#</strong></th>
-                                <th><strong>Parts</strong></th>
-                                <th><strong>Quantity</strong></th>
+                                <th><strong>@lang('Parts')</strong></th>
+                                <th><strong>@lang('Quantity')</strong></th>
                             </tr>
                             </thead>
                             <tbody class="data-section-all-branch-parts">

@@ -5,7 +5,7 @@
                 {{--                <li class="nav-label">FARM THAILAND</li>--}}
                 <li><a href="{{ url('report/dashBoard') }}" aria-expanded="false">
                         <i class="fa fa-line-chart"></i>
-                        <span class="nav-text">DashBoard</span>
+                        <span class="nav-text">@lang('DashBoard')</span>
                     </a>
                 </li>
                 <p class="pnt-side-border"></p>
@@ -27,7 +27,7 @@
                                         fill="#000000" opacity="0.3"></path>
                                 </g>
                             </svg>
-                            <span class="nav-text">Stock</span>
+                            <span class="nav-text">@lang('Stock')</span>
                         </a>
                     </li>
                     <p class="pnt-side-border"></p>
@@ -45,12 +45,12 @@
                                         fill="#000000" opacity="0.3"></path>
                                 </g>
                             </svg>
-                            <span class="nav-text">Stock</span>
+                            <span class="nav-text">@lang('Stock')</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ url('stock/parts/') }}">Parts</a></li>
-                            <li><a href="{{ url('stock/categories/') }}">Category</a></li>
-                            <li><a href="{{ url('manage/groupParts/') }}">Group Parts</a></li>
+                            <li><a href="{{ url('stock/parts/') }}">@lang('Parts')</a></li>
+                            <li><a href="{{ url('stock/categories/') }}">@lang('Category')</a></li>
+                            <li><a href="{{ url('manage/groupParts/') }}">@lang('Group Parts')</a></li>
                         </ul>
                     </li>
                 @endif
@@ -63,17 +63,17 @@
 
                     <li><a href="{{ url('selectCustomer') }}" aria-expanded="false">
                             <i class="fa fa-shopping-cart"></i>
-                            <span class="nav-text">Customer Product</span>
+                            <span class="nav-text">@lang('Customer Product')</span>
                         </a>
                     </li>
                     <p class="pnt-side-border"></p>
                 @else
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-shopping-cart"></i>
-                            <span class="nav-text">Customer Product</span>
+                            <span class="nav-text">@lang('Customer Product')</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ url('customer/') }}">Product (list)</a></li>
+                            <li><a href="{{ url('customer/') }}">@lang('Product List')</a></li>
                         </ul>
                     </li>
                 @endif
@@ -84,18 +84,18 @@
                 @if(!session()->has('dealer'))
                     <li><a href="{{ url('selectDealer') }}" aria-expanded="false">
                             <i class="fa fa-user"></i>
-                            <span class="nav-text">Dealer</span>
+                            <span class="nav-text">@lang('Dealer')</span>
                         </a>
                     </li>
                     <p class="pnt-side-border"></p>
                 @else
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-user"></i>
-                            <span class="nav-text">Dealer</span>
+                            <span class="nav-text">@lang('Dealer')</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ url('dealer/') }}">Dealer Product</a></li>
-                            <li><a href="{{ url('dealer/dealerCustomer/') }}">Dealer Customer</a></li>
+                            <li><a href="{{ url('dealer/') }}">@lang('Dealer Product')</a></li>
+                            <li><a href="{{ url('dealer/dealerCustomer/') }}">@lang('Dealer Customer')</a></li>
                         </ul>
                     </li>
                 @endif
@@ -106,7 +106,7 @@
                 {{--                <li class="nav-label">Product</li>--}}
                 <li><a href="{{ url('product_location/product/') }}" aria-expanded="false">
                         <i class="fa fa-archive"></i>
-                        <span class="nav-text">Product</span>
+                        <span class="nav-text">@lang('Product')</span>
                     </a>
                 </li>
                 </li>
@@ -116,14 +116,14 @@
                     {{--                    <li class="nav-label">Manage</li>--}}
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                             <i class="fa fa-cog"></i>
-                            <span class="nav-text">Manage</span>
+                            <span class="nav-text">@lang('Manage')</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="{{ url('manage/branches/') }}">Branch</a></li>
-                            <li><a href="{{ url('manage/users/') }}">User</a></li>
-                            <li><a href="{{ url('manage/model/') }}">Model</a></li>
-                            <li><a href="{{ url('manage/location/') }}">Customer</a></li>
-                            <li><a href="{{ url('manage/dealer/') }}">Dealer</a></li>
+                            <li><a href="{{ url('manage/branches/') }}">@lang('Branch')</a></li>
+                            <li><a href="{{ url('manage/users/') }}">@lang('User')</a></li>
+                            <li><a href="{{ url('manage/model/') }}">@lang('Model')</a></li>
+                            <li><a href="{{ url('manage/location/') }}">@lang('Customer')</a></li>
+                            <li><a href="{{ url('manage/dealer/') }}">@lang('Dealer')</a></li>
 {{--                            <li><a href="{{ url('manage/groupParts/') }}">Group Parts</a></li>--}}
                         </ul>
                     </li>
@@ -133,14 +133,14 @@
                 {{--                <li class="nav-label">Report</li>--}}
                 <li><a href="{{ url('report/calculator') }}" aria-expanded="false">
                         <i class="fa fa-tv"></i>
-                        <span class="nav-text">Calculator</span>
+                        <span class="nav-text">@lang('Calculator')</span>
                     </a>
                 </li>
                 <p class="pnt-side-border"></p>
 
                 <li><a href="{{ url('report/pointerLocation/') }}" aria-expanded="false">
                         <i class="fa fa-flag"></i>
-                        <span class="nav-text">Pointer location</span>
+                        <span class="nav-text">@lang('Location Product')</span>
                     </a>
                 </li>
                 <p class="pnt-side-border"></p>
@@ -148,7 +148,7 @@
                 {{--                <li class="nav-label">Dealer Sell</li>--}}
                 <li><a href="{{ url('dealerSell/') }}" aria-expanded="false">
                         <i class="fa fa-truck"></i>
-                        <span class="nav-text">Dealer Sell</span>
+                        <span class="nav-text">@lang('Dealer Sell')</span>
                     </a>
                 </li>
                 </li>
