@@ -61,7 +61,7 @@
                         <tr>
                             <th class="text-dark">#</th>
                             <th class="text-dark">@lang('Product')</th>
-                            <th class="text-dark">@lang('Max quantity')</th>
+                            <th class="text-dark">@lang('Max Quantity')</th>
                         </tr>
                         </thead>
                         <tbody class="data-section-dealer">

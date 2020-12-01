@@ -115,7 +115,7 @@
     "Reset Password": "เปลี่ยนรหัสผ่าน",
     "Logout": "ออกจากระบบ",
     "Profile": "ข้อมูลส่วนตัว",
-    "Dealer Sell": "ตัวแทนจำหน่าย/ขาย",
+    "Dealer Sell": "ตัวแทนจำหน่าย - ขาย",
     "Calculator": "คำนวณการสั่งซื้อ",
     "Location Product": "ตำแหน่งของอุปกรณ์",
     "New Username": "ชื่อผู้ใช้ใหม่",
@@ -183,7 +183,7 @@
     "Please enter a branch name": "กรุณากรอกชื่อสาขา",
 
     "Please enter a Phone number": "กรุณากรอกหมายเลขโทรศัพท์",
-    "Your Phone Number must be at least 10 characters long" : "หมายเลขโทรศัพท์ต้องมีต้องมี 10 ตัว",
+    "Your Phone Number must be at least 10 characters long" : "หมายเลขโทรศัพท์ต้องมี 10 ตัว",
     "Number Only" : "กรอกตัวเลขเท่านั้น",
 
     "Please enter an address": "กรุณากรอกที่อยู่",
