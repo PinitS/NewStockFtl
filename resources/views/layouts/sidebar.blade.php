@@ -50,7 +50,7 @@
                         <ul aria-expanded="false">
                             <li><a href="{{ url('stock/parts/') }}">@lang('Parts')</a></li>
                             <li><a href="{{ url('stock/categories/') }}">@lang('Category')</a></li>
-                            <li><a href="{{ url('manage/groupParts/') }}">@lang('Group Parts')</a></li>
+                            <!-- <li><a href="{{ url('manage/groupParts/') }}">@lang('Group Parts')</a></li> -->
                         </ul>
                     </li>
                 @endif
@@ -124,7 +124,7 @@
                             <li><a href="{{ url('manage/model/') }}">@lang('Model')</a></li>
                             <li><a href="{{ url('manage/location/') }}">@lang('Customer')</a></li>
                             <li><a href="{{ url('manage/dealer/') }}">@lang('Dealer')</a></li>
-{{--                            <li><a href="{{ url('manage/groupParts/') }}">Group Parts</a></li>--}}
+                            <li><a href="{{ url('manage/groupParts/') }}">@lang('Group Parts')</a></li>
                         </ul>
                     </li>
                     <p class="pnt-side-border"></p>
