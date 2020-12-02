@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0fde719-c7b0-4ec5-bf8a-93c264a6b79f" name="Default Changelist" comment="" />
+    <list default="true" id="c0fde719-c7b0-4ec5-bf8a-93c264a6b79f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -156,7 +159,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../newpos" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -246,6 +249,7 @@
       <workItem from="1606790337425" duration="476000" />
       <workItem from="1606791940538" duration="12000" />
       <workItem from="1606886164684" duration="616000" />
+      <workItem from="1606897179634" duration="200000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <created>1602576633325</created>
@@ -461,11 +465,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="576" height="446" key="SwitcherDM/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1603096390259" />
-    <state x="2371" y="183" key="Vcs.Push.Dialog.v2" timestamp="1606886171505">
+    <state x="2371" y="183" key="Vcs.Push.Dialog.v2" timestamp="1606897378662">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1606790740794" />
-    <state x="2371" y="183" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606886171505" />
+    <state x="2371" y="183" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1606897378662" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605688837012" />
     <state x="611" y="146" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1602574127112">
       <screen x="0" y="0" width="1536" height="824" />
