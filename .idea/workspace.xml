@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c0fde719-c7b0-4ec5-bf8a-93c264a6b79f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/th.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/th.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/dealerSell/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/dealerSell/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,7 +245,8 @@
       <workItem from="1606189647495" duration="16283000" />
       <workItem from="1606269282528" duration="5353000" />
       <workItem from="1606464018364" duration="7000" />
-      <workItem from="1606790337425" duration="368000" />
+      <workItem from="1606790337425" duration="476000" />
+      <workItem from="1606791940538" duration="12000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <created>1602576633325</created>
@@ -384,7 +381,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606271694333</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="finish wait for deploy">
+      <created>1606790736827</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1606790736827</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,7 +414,8 @@
     <MESSAGE value="test bug and edit 35%" />
     <MESSAGE value="edit color dropdown" />
     <MESSAGE value="test 95% รอบที่ 85 5555+" />
-    <option name="LAST_COMMIT_MESSAGE" value="test 95% รอบที่ 85 5555+" />
+    <MESSAGE value="finish wait for deploy" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish wait for deploy" />
   </component>
   <component name="WindowStateProjectService">
     <state x="391" y="71" key="#Deployment" timestamp="1602574452354">
@@ -421,10 +426,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1606195972384" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1606271687532">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1606790733963">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1606271687531" />
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1606790733963" />
     <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1605688826458" />
     <state x="2735" y="309" key="FileChooserDialogImpl" timestamp="1604472040901">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -457,10 +462,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="576" height="446" key="SwitcherDM/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1603096390259" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606271701596">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1606790740794">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1606271701596" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1606790740794" />
     <state x="2371" y="183" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602574998080" />
     <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1605688837012" />
     <state x="611" y="146" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1602574127112">
