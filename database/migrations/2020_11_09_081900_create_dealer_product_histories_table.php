@@ -16,7 +16,7 @@ class CreateDealerProductHistoriesTable extends Migration
         Schema::create('dealer_product_histories', function (Blueprint $table) {
             $table->id();
             $table->integer('dealer_product_id');
-            $table->tinyInteger('type');
+            $table->integer('type');
             $table->integer('quantity');
             $table->text('detail');
             $table->integer('user_id');

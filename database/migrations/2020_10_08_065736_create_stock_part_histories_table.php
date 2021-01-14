@@ -16,7 +16,7 @@ class CreateStockPartHistoriesTable extends Migration
         Schema::create('stock_part_histories', function (Blueprint $table) {
             $table->id();
             $table->integer('stock_part_id');
-            $table->tinyInteger('type');
+            $table->integer('type');
             $table->integer('quantity');
             $table->text('detail');
             $table->integer('user_id');

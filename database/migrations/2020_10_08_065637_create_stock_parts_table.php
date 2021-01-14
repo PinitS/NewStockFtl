@@ -17,7 +17,7 @@ class CreateStockPartsTable extends Migration
             $table->id();
             $table->integer('stock_category_id');
             $table->integer('stock_branch_id');
-            $table->tinyInteger('group_part_id');
+            $table->integer('group_part_id');
             $table->integer('quantity');
             $table->string('sku', 50)->nullable();
             $table->timestamps();
