@@ -215,5 +215,16 @@
     "Serial" : "รหัสสินค้า",
     "Dealer Products" : "รายการสินค้า",
     "Dealer Products Detail" : "รายละเอียดรายการสินค้า",
-    "Edit Branch" : "แก้ไขข้อมูลสาขา"
+    "Edit Branch" : "แก้ไขข้อมูลสาขา",
+    "Unit" : "หน่วย",
+    "Unit Parts Information": "ข้อมูลหน่วยอุปกรณ์",
+    "Add Unit Parts": "เพิ่มหน่วย",
+    "Unit Name": "หน่วย",
+    "Please enter a Unit Parts name": "กรุณากรอกชื่อหน่วยอุปกรณ์",
+    "Add Unit parts Success fully" : "เพิ่มหน่วยสำเร็จ",
+    "Duplicate Unit Name": "ชื่อหน่วยนี้มีอยู่แล้ว",
+    "Can not Delete this Unit" : "ไม่สามารถลบหน่วยนี้ได้",
+    "Delete Unit Success fully" : "ลบหน่วยนี้สำเร็จ",
+    "Update Unit Success fully":"แก้ไขหน่วยสำเร็จ"
+
 }

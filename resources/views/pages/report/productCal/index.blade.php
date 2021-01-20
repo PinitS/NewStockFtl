@@ -29,6 +29,7 @@
                                     <th class="text-dark">@lang('Parts')</th>
                                     <th class="text-dark">@lang('UseQuantity/Unit')</th>
                                     <th class="text-dark">@lang('UseQuantity')</th>
+                                    <th class="text-dark">@lang('Unit')</th>
                                     <th class="text-dark">@lang('StockQuantity')</th>
                                     <th class="text-dark">@lang('Requirement')</th>
                                 </tr>
@@ -68,6 +69,7 @@
                 },
                 success: function (data) {
                     window.selProduct.empty();
+                    console.log(data)
                     if (data.status) {
                         var product = "";
                         var selected = 0;
@@ -112,6 +114,8 @@
                                 value.use_quantity +
                                 "</td><td>" +
                                 value.stock_quantity +
+                                "</td><td>" +
+                                value.unit +
                                 "</td><td>" +
                                 value.sum
                             );

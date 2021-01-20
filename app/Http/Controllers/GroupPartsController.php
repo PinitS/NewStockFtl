@@ -12,12 +12,30 @@ class GroupPartsController extends Controller
 {
     public function getGroups()
     {
-        return response()->json(['status' => true, 'groups' => GroupParts::all()]);
+        $items = GroupParts::all();
+        $dataSet = [];
+        foreach ($items as $item) {
+            $data = [
+                'id' => $item->id,
+                'name' => $item->name,
+                'unit' => $item->unitPart->name,
+                'delete_active' => $item->delete_active,
+            ];
+            array_push($dataSet, $data);
+        }
+        return response()->json(['status' => true, 'groups' => $dataSet]);
     }
 
     public function getOneGroup($id)
     {
-        return response()->json(['status' => true, 'group' => GroupParts::find($id)]);
+        $item = GroupParts::find($id);
+        $dataSet = [
+            'id' => $item->id,
+            'name' => $item->name,
+            'unit_id' => $item->unit_parts_id,
+            'unit' => $item->unitPart->name
+        ];
+        return response()->json(['status' => true, 'group' => $dataSet]);
     }
 
     public function create(Request $request)
@@ -30,6 +48,8 @@ class GroupPartsController extends Controller
         }
         $item = new GroupParts;
         $item->name = $request->input('name');
+        $item->unit_parts_id = $request->input('unit');
+
         if ($item->save()) {
             return response()->json(['status' => true]);
         } else {
@@ -41,6 +61,7 @@ class GroupPartsController extends Controller
     {
         $item = GroupParts::find($id);
         $item->name = $request->input('name');
+        $item->unit_parts_id = $request->input('unit');
         if ($item->save()) {
             return response()->json(['status' => true]);
         } else {

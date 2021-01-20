@@ -125,6 +125,8 @@
                             <li><a href="{{ url('manage/location/') }}">@lang('Customer')</a></li>
                             <li><a href="{{ url('manage/dealer/') }}">@lang('Dealer')</a></li>
                             <li><a href="{{ url('manage/groupParts/') }}">@lang('Group Parts')</a></li>
+                            <li><a href="{{ url('manage/unitParts/') }}">@lang('Unit')</a></li>
+
                         </ul>
                     </li>
                     <p class="pnt-side-border"></p>

@@ -20,6 +20,10 @@ class GroupParts extends Model
         return $this->hasMany('App\Models\StockPart' , 'group_part_id');
     }
 
+    public function unitPart(){
+        return $this->belongsTo('App\Models\UnitParts', 'unit_parts_id');
+    }
+
     public function getDeleteActiveAttribute()
     {
         if (count($this->productParts) > 0 || count($this->stockParts) > 0) {

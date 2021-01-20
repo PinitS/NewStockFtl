@@ -39,6 +39,7 @@
                                     <th class="text-dark">@lang('Category')</th>
                                     <th class="text-dark">@lang('Branch')</th>
                                     <th class="text-dark">@lang('Quantity')</th>
+                                    <th class="text-dark">@lang('Unit')</th>
                                     <th class="text-dark">@lang('Manage')</th>
                                 </tr>
                                 </thead>
@@ -221,6 +222,7 @@
                                         <th class="text-dark">@lang('Parts')</th>
                                         <th class="text-dark">@lang('Type')</th>
                                         <th class="text-dark">@lang('Quantity')</th>
+                                        <th class="text-dark">@lang('Unit')</th>
                                         <th class="text-dark"></th>
                                         <th class="text-dark">@lang('Detail')</th>
                                         <th class="text-dark">@lang('Users')</th>
@@ -475,6 +477,8 @@
                                 "</td><td>" +
                                 value.quantity +
                                 "</td><td>" +
+                                value.unit +
+                                "</td><td>" +
                                 "<div class = 'd-flex'>" +
                                 "<button  class='btn btn-success text-white pnt-btn-plus shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + 0 + "'><i class='fa fa-plus'></i></button>" +
                                 "<button  class='btn btn-info text-white pnt-btn-minus shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + 1 + "'><i class='fa fa-minus'></i></button>" +
@@ -519,6 +523,8 @@
                                 text +
                                 "</td><td>" +
                                 value.quantity +
+                                "</td><td>" +
+                                value.unit +
                                 "</td><td>" +
                                 "<button  class='btn btn-warning text-white pnt-btn-edit-quantity-history shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + 3 + "'><i class='fa fa-pencil-square-o'></i></button>" +
                                 "</td><td>" +

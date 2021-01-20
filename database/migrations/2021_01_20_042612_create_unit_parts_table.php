@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGroupPartsTable extends Migration
+class CreateUnitPartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateGroupPartsTable extends Migration
      */
     public function up()
     {
-        Schema::create('group_parts', function (Blueprint $table) {
+        Schema::create('unit_parts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('unit_parts_id');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateGroupPartsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group_parts');
+        Schema::dropIfExists('unit_parts');
     }
 }

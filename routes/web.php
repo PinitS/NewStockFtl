@@ -21,6 +21,9 @@ use App\Http\Controllers\DealerController;
 use App\Http\Controllers\DealerSessionController;
 use App\Http\Controllers\DealerProductController;
 use App\Http\Controllers\languageController;
+use App\Http\Controllers\UnitPartsController;
+
+
 use Illuminate\Support\Facades\App;
 
 
@@ -118,6 +121,18 @@ Route::middleware(['auth'])->group(function () {
                 Route::post('update/{id}', [GroupPartsController::class, 'update']);
                 Route::get('destroy/{id}', [GroupPartsController::class, 'delete']);
             });
+
+            Route::prefix('unitParts')->group(function () {
+                Route::middleware(['adminRoute'])->get('/', function () {
+                    return view('pages.manage.unitParts.index');
+                });
+                Route::get('getUnits', [UnitPartsController::class, 'getUnits']);
+                Route::get('getOneUnit/{id}', [UnitPartsController::class, 'getOneUnit']);
+                Route::post('create', [UnitPartsController::class, 'create']);
+                Route::post('update/{id}', [UnitPartsController::class, 'update']);
+                Route::get('destroy/{id}', [UnitPartsController::class, 'delete']);
+            });
+
         });
 
         Route::prefix('stock')->middleware(['nullBranchSession'])->group(function () {

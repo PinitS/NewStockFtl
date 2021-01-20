@@ -188,6 +188,7 @@
                                     <th class="text-dark">#</th>
                                     <th class="text-dark">@lang('Parts')</th>
                                     <th class="text-dark">@lang('Quantity')</th>
+                                    <th class="text-dark">@lang('Unit')</th>
                                     <th class="text-dark">@lang('Manage')</th>
                                 </tr>
                                 </thead>
@@ -308,9 +309,11 @@
                             "<tr><td>" +
                             (index + 1) +
                             "</td><td>" +
-                            (value.group_part === null ? "-" : value.group_part.name) +
+                            (value.group_part) +
                             "</td><td>" +
                             value.quantity +
+                            "</td><td>" +
+                            (value.unit) +
                             "</td><td>" +
                             "<div class = 'd-flex'>" +
                             "<button  class='btn btn-warning text-white pnt-btn-edit-modal-product-part shadow btn-xs sharp mr-1' value = '" + value.id + "' data-id = '" + value.id + "'><i class='fa fa-pencil-square-o'></i></button>" +

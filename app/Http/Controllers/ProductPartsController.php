@@ -11,9 +11,22 @@ class ProductPartsController extends Controller
 {
     public function getProductParts($id)
     {
-        $productParts = ProductPart::with(['locationProduct', 'groupPart'])
-            ->where('location_product_id', $id)->get();
-        return response()->json(['status' => true, 'productParts' => $productParts]);
+
+//        $productParts = ProductPart::with(['locationProduct', 'groupPart'])
+//            ->where('location_product_id', $id)->get();
+//        return response()->json(['status' => true, 'productParts' => $productParts]);
+        $items = ProductPart::where('location_product_id', $id)->get();
+        $dataSet = [];
+        foreach ($items as $item) {
+            $data = [
+                'group_part' => ($item->groupPart == null ? '-' : $item->groupPart->name),
+                'quantity' => $item->quantity,
+                'unit' => (($item->groupPart == null ? '-' : ($item->groupPart->unitPart == null ? '-' : $item->groupPart->unitPart->name)))
+            ];
+            array_push($dataSet, $data);
+        }
+        return response()->json(['status' => true, 'productParts' => $dataSet]);
+
     }
 
     public function getOneProductParts($id)

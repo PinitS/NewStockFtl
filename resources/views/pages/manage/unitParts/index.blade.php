@@ -7,20 +7,18 @@
         <div class="col-12">
             <div class="card bg-white">
                 <div class="card-header">
-                    <h4 class="card-title text-dark">@lang('Group Parts Information')</h4>
-                    <button type="button" class="btn btn-info pnt-bnt-add-group">@lang('Add') <span
-                            class="btn-icon-right"><i
+                    <h4 class="card-title text-dark">@lang('Unit Parts Information')</h4>
+                    <button type="button" class="btn btn-info pnt-bnt-add-unit">@lang('Add') <span class="btn-icon-right"><i
                                 class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="groupInformation" style="min-width: 845px">
+                        <table id="unitInformation" style="min-width: 845px">
                             <thead>
                             <tr>
                                 <th class="text-dark">#</th>
                                 <th class="text-dark">@lang('Name')</th>
-                                <th class="text-dark">@lang('Unit')</th>
                                 <th class="text-dark">@lang('Manage')</th>
                             </tr>
                             </thead>
@@ -34,26 +32,21 @@
     </div>
 
     {{--modal update--}}
-    <form id="edit-modal-gp">
+    <form id="edit-modal-unit">
         <div class="modal fade pnt-modal-edit " id="exampleModalCenter">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">@lang('Edit Group Parts')</h5>
+                        <h5 class="modal-title">@lang('Edit Unit Parts')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label class="mb-1"><strong>@lang('Groups Name')</strong></label>
-                            <input type="text" class="form-control pnt-modal-edit-group-name" id="name" name="name"
+                            <label class="mb-1"><strong>@lang('Unit Name')</strong></label>
+                            <input type="text" class="form-control pnt-modal-edit-unit-name" id="name" name="name"
                                    required>
-                        </div>
-                        <div class="form-group">
-                            <label class="mb-1"><strong>@lang('Unit')</strong></label>
-                            <select class="form-control pnt-modal-sel-edit-unit">
-                            </select>
                         </div>
 
                     </div>
@@ -69,31 +62,26 @@
     {{--modal update--}}
 
     {{--    modal add groups--}}
-    <form id="add-modal-gp">
-        <div class="modal fade pnt-modal-add-group">
+    <form id="add-modal-unit">
+        <div class="modal fade pnt-modal-add-unit">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">@lang('Add Group Parts')</h5>
+                        <h5 class="modal-title">@lang('Add Unit Parts')</h5>
                         <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="mb-1"><strong>@lang('Groups Name')</strong></label>
-                            <input type="text" class="form-control pnt-input-add-name-gp" id="name" name="name"
+                            <label class="mb-1"><strong>@lang('Unit Name')</strong></label>
+                            <input type="text" class="form-control pnt-input-add-name-unit" id="name" name="name"
                                    required>
                         </div>
-                        <div class="form-group">
-                            <label class="mb-1"><strong>@lang('Unit')</strong></label>
-                            <select class="form-control pnt-modal-sel-add-unit">
-                            </select>
-                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
-                        <button type="button"
-                                class="btn btn-primary pnt-btn-modal-add-group-save">@lang('Add Group Parts')
+                        <button type="button" class="btn btn-primary pnt-btn-modal-add-unit-save">@lang('Add Unit Parts')
                         </button>
                     </div>
                 </div>
@@ -113,29 +101,25 @@
 
         var token = $('meta[name="csrf-token"]').attr('content');
         var id = 0;
-        var table = $('#groupInformation').DataTable();
-        var addUnit = $('.pnt-modal-sel-add-unit').select2();
-        var editUnit = $('.pnt-modal-sel-edit-unit').select2();
+        var table = $('#unitInformation').DataTable();
 
         function resetTable() {
             $.ajax({
                 type: "get",
-                url: '{!! url('manage/groupParts/getGroups') !!}',
+                url: '{!! url('manage/unitParts/getUnits') !!}',
                 beforeSend: function () {
                     $('#pnt-loading').show();
                 },
                 success: function (data) {
-                    console.log(data)
                     if (data.status) {
                         table.destroy();
                         $('.data-section').html(null);
-                        $.each(data.groups, function (index, value) {
+                        $.each(data.units, function (index, value) {
+                            console.log(value)
                             let localHtml = "<tr><td>" +
                                 (index + 1) +
                                 "</td><td>" +
                                 value.name +
-                                "</td><td>" +
-                                value.unit +
                                 "</td><td>" +
                                 "<div class = 'd-flex'>" +
                                 "<button  class='btn btn-warning text-white pnt-btn-edit shadow btn-xs sharp mr-1' value = '" + value.id + "' ><i class='fa fa-pencil-square-o'></i></button>";
@@ -145,30 +129,8 @@
                             }
                             $('.data-section').append(localHtml);
                         });
-                        table = $('#groupInformation').DataTable();
+                        table = $('#unitInformation').DataTable();
                         $('#pnt-loading').hide();
-                    }
-                }
-            });
-            getOptionDropdown();
-        }
-
-        function getOptionDropdown() {
-            $.ajax({
-                type: "get",
-                url: '{!! url('manage/unitParts/getUnits') !!}',
-                success: function (data) {
-                    window.addUnit.empty();
-                    window.editUnit.empty();
-                    if (data.status) {
-                        var str = "";
-                        $.each(data.units, function (index, value) {
-                            str += "<option value=" + value.id + "> <strong>" + value.name + "</strong></option>"
-                        });
-                        window.addUnit.append(str);
-                        window.editUnit.append(str);
-                        window.addUnit.selectpicker('refresh');
-                        window.editUnit.selectpicker('refresh');
                     }
                 }
             });
@@ -177,7 +139,7 @@
         $(document).ready(function () {
             resetTable();
 
-            $('#add-modal-gp').validate({
+            $('#add-modal-unit').validate({
                 rules: {
                     name: {
                         required: true,
@@ -186,11 +148,11 @@
                 // <span class='text-danger'></span>
                 messages: {
                     name: {
-                        required: "<span class='text-danger'>{!! __('Please enter a Group Parts name') !!}</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter a Unit Parts name') !!}</span>",
                     },
                 }
             });
-            $('#edit-modal-gp').validate({
+            $('#edit-modal-unit').validate({
                 rules: {
                     name: {
                         required: true,
@@ -199,10 +161,11 @@
                 // <span class='text-danger'></span>
                 messages: {
                     name: {
-                        required: "<span class='text-danger'>{!! __('Please enter a Group Parts name') !!}</span>",
+                        required: "<span class='text-danger'>{!! __('Please enter a Unit Parts name') !!}</span>",
                     },
                 }
             });
+
         });
 
         // btn-edit
@@ -210,12 +173,10 @@
             window.id = $(e.currentTarget).val();
             $.ajax({
                 type: 'get',
-                url: '{!! url('manage/groupParts/getOneGroup') !!}/' + window.id,
+                url: '{!! url('manage/unitParts/getOneUnit') !!}/' + window.id,
                 success: function (data) {
-                    console.log(data)
                     if (data.status) {
-                        $('.pnt-modal-edit-group-name').val(data.group.name);
-                        $('.pnt-modal-sel-edit-unit').val(data.group.unit_id).change();
+                        $('.pnt-modal-edit-unit-name').val(data.unit.name);
                         $('.pnt-modal-edit').modal();
                     }
                 }
@@ -225,14 +186,13 @@
 
         // btn save update modal
         $(document).off('click', '.pnt-btn-modal-save').on('click', '.pnt-btn-modal-save', e => {
-            if ($("#edit-modal-gp").valid()) {
+            if ($("#edit-modal-unit").valid()) {
                 $('.pnt-btn-modal-save').prop('disabled', true);
                 $.ajax({
                     type: "post",
-                    url: '{!! url('manage/groupParts/update') !!}/' + window.id,
+                    url: '{!! url('manage/unitParts/update') !!}/' + window.id,
                     data: {
-                        name: $('.pnt-modal-edit-group-name').val(),
-                        unit: $('.pnt-modal-sel-edit-unit option:selected').val(),
+                        name: $('.pnt-modal-edit-unit-name').val(),
                         '_token': window.token,
                     },
                     beforeSend: function () {
@@ -247,7 +207,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: '{!! __('Update Group Success fully') !!}',
+                                title: '{!! __('Update Unit Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -287,7 +247,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "get",
-                        url: '{!! url('manage/groupParts/destroy') !!}/' + window.id,
+                        url: '{!! url('manage/unitParts/destroy') !!}/' + window.id,
                         beforeSend: function () {
                             $('#pnt-loading').show();
                         },
@@ -296,7 +256,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'success',
-                                    title: '{!! __('Delete Group Success fully') !!}',
+                                    title: '{!! __('Delete Unit Success fully') !!}',
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -304,7 +264,7 @@
                                 Swal.fire({
                                     position: 'top-end',
                                     icon: 'error',
-                                    title: "{!! __('Can not Delete this Group') !!}",
+                                    title: "{!! __('Can not Delete this Unit') !!}",
                                     showConfirmButton: false,
                                     timer: 1500
                                 })
@@ -319,54 +279,55 @@
         // end btn-delete
 
 
-        $(document).off('click', '.pnt-bnt-add-group').on('click', '.pnt-bnt-add-group', (e) => {
-            $('.pnt-input-add-name-gp').val('');
-            $('.pnt-btn-modal-add-group-save').prop('disabled', false);
-            $('.pnt-modal-add-group').modal('show');
+        $(document).off('click', '.pnt-bnt-add-unit').on('click', '.pnt-bnt-add-unit', (e) => {
+            $('.pnt-input-add-name-unit').val('');
+            $('.pnt-btn-modal-add-unit-save').prop('disabled', false);
+            $('.pnt-modal-add-unit').modal('show');
         });
         // end btn-delete
 
 
-        $(document).off('click', '.pnt-btn-modal-add-group-save').on('click', '.pnt-btn-modal-add-group-save', (e) => {
-            if ($("#add-modal-gp").valid()) {
-                $('.pnt-btn-modal-add-group-save').prop('disabled', true);
+        $(document).off('click', '.pnt-btn-modal-add-unit-save').on('click', '.pnt-btn-modal-add-unit-save', (e) => {
+            if ($("#add-modal-un" +
+                "" +
+                "it").valid()) {
+                $('.pnt-btn-modal-add-unit-save').prop('disabled', true);
                 $.ajax({
                     type: "post",
-                    url: '{!! url('manage/groupParts/create') !!}',
+                    url: '{!! url('manage/unitParts/create') !!}',
                     data: {
-                        name: $('.pnt-input-add-name-gp').val(),
-                        unit: $('.pnt-modal-sel-add-unit option:selected').val(),
+                        name: $('.pnt-input-add-name-unit').val(),
                         '_token': window.token,
                     },
                     beforeSend: function () {
                         $('#pnt-loading').show();
                     },
                     success: function (data) {
-                        $('.pnt-btn-modal-add-group-save').prop('disabled', false);
-                        $('.pnt-input-add-name-gp').val('');
+                        $('.pnt-btn-modal-add-unit-save').prop('disabled', false);
+                        $('.pnt-input-add-name-unit').val('');
                         resetTable();
                         if (data.status) {
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: '{!! __('Add Group parts Success fully') !!}',
+                                title: '{!! __('Add Unit parts Success fully') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
-                            $('.pnt-modal-add-group').modal('hide');
+                            $('.pnt-modal-add-unit').modal('hide');
                             $('#pnt-loading').hide();
                         } else {
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'error',
-                                title: '{!! __('Duplicate GroupParts Name.') !!}',
+                                title: '{!! __('Duplicate Unit Name.') !!}',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
                         }
                     },
                     error: function (jqXHR, exception) {
-                        $('.pnt-btn-modal-add-group-save').prop('disabled', false);
+                        $('.pnt-btn-modal-add-unit-save').prop('disabled', false);
                         if (jqXHR.status !== 200) {
                             Swal.fire({
                                 position: 'top-end',

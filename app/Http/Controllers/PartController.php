@@ -32,6 +32,7 @@ class PartController extends Controller
                 'sku' => $part->sku,
                 'branch' => ($part->branch == null ? null : $part->branch->name),
                 'quantity' => $part->quantity,
+                'unit' => ($part->groupPart == null ? null : $part->groupPart->unitPart->name),
             ];
             array_push($partSet, $partData);
         }
@@ -150,6 +151,7 @@ class PartController extends Controller
                 'user' => ($history->user == null ? null : $history->user->name),
                 'updated_at' => $history->updated_at,
                 'quantity' => $history->quantity,
+                'unit' => ($history->part == null ? null : $history->part->groupPart->unitPart->name),
                 'detail' => $history->detail,
             ];
             array_push($historySet,$historyData);

@@ -13,8 +13,16 @@ class CalProductsController extends Controller
 {
     public function getCalProducts()
     {
-        $locationProduct = LocationProduct::all();
-        return response()->json(['status' => true, 'locationProduct' => $locationProduct]);
+        $items = LocationProduct::all();
+        $dataSet = [];
+        foreach ($items as $item) {
+            $data = [
+                'id' => $item->id,
+                'name' => $item->name,
+            ];
+            array_push($dataSet, $data);
+        }
+        return response()->json(['status' => true, 'locationProduct' => $dataSet]);
     }
 
     public function getCalProductParts($id, $value)
@@ -35,13 +43,12 @@ class CalProductsController extends Controller
                 'part_name' => $part->name,
                 'use_quantity_unit' => $use_quantity_unit,
                 'use_quantity' => $use_quantity,
+                'unit' => $stockPart->groupPart->unitPart->name,
                 'stock_quantity' => $partQuantity,
                 'sum' => $sum > 0 ? $sum : 0,
             ];
             array_push($stockParts, $data);
         }
-
-//        return response()->json($stockParts);
         return response()->json(['status' => true, 'stockParts' => $stockParts]);
     }
 }
