@@ -48,12 +48,11 @@ class UnitPartsController extends Controller
     public function delete($id)
     {
         $item = UnitParts::find($id);
-        return response()->json(['status' => false , 'msg' => $item]);
-        // if (count($item->stockParts) > 0 || count($item->productParts) > 0) {
-        //     return response()->json(['status' => false]);
-        // } else {
-        //     $item->delete();
-        //     return response()->json(['status' => true]);
-        // }
+         if (count($item->groupParts) > 0 ) {
+             return response()->json(['status' => false]);
+         } else {
+             $item->delete();
+             return response()->json(['status' => true]);
+         }
     }
 }

@@ -244,6 +244,7 @@
                 confirmButtonText: '{!! __('Yes, delete it!') !!}',
                 cancelButtonText: '{!! __('Close') !!}'
             }).then((result) => {
+                console.log(window.id)
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "get",
