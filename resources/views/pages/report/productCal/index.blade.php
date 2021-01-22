@@ -113,9 +113,9 @@
                                 "</td><td>" +
                                 value.use_quantity +
                                 "</td><td>" +
-                                value.stock_quantity +
-                                "</td><td>" +
                                 value.unit +
+                                "</td><td>" +
+                                value.stock_quantity +
                                 "</td><td>" +
                                 value.sum
                             );

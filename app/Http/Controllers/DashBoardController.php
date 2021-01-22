@@ -80,6 +80,7 @@ class DashBoardController extends Controller
         foreach ($parts as $part) {
             $dataParts = [
                 'name' => $part->groupPart->name,
+                'unit' => ($part->groupPart == null ? '-' : ($part->groupPart->unitPart == null ? '-' : $part->groupPart->unitPart->name)),
                 'category' => $part->category->name,
                 'quantity' => $part->quantity,
                 'branch' => $part->branch->name,
@@ -124,6 +125,7 @@ class DashBoardController extends Controller
             }
             $data = [
                 'name' => ($part->groupPart == null ? $part->name : $part->groupPart->name),
+                'unit' => ($part->groupPart == null ? '-' : ($part->groupPart->unitPart == null ? '-' : $part->groupPart->unitPart->name)),
                 'quantity' => $quantity,
             ];
             array_push($dataGroup, $data);

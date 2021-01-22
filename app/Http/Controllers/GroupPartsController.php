@@ -18,7 +18,7 @@ class GroupPartsController extends Controller
             $data = [
                 'id' => $item->id,
                 'name' => $item->name,
-                'unit' => $item->unitPart->name,
+                'unit' => ($item->unitPart == null ? '-' : $item->unitPart->name),
                 'delete_active' => $item->delete_active,
             ];
             array_push($dataSet, $data);
@@ -33,7 +33,7 @@ class GroupPartsController extends Controller
             'id' => $item->id,
             'name' => $item->name,
             'unit_id' => $item->unit_parts_id,
-            'unit' => $item->unitPart->name
+            'unit' => ($item->unitPart == null ? '-' : $item->unitPart->name),
         ];
         return response()->json(['status' => true, 'group' => $dataSet]);
     }

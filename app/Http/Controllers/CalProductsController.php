@@ -43,7 +43,7 @@ class CalProductsController extends Controller
                 'part_name' => $part->name,
                 'use_quantity_unit' => $use_quantity_unit,
                 'use_quantity' => $use_quantity,
-                'unit' => $stockPart->groupPart->unitPart->name,
+                'unit' => ($stockPart->groupPart->unitPart == null ? '-' : $stockPart->groupPart->unitPart->name),
                 'stock_quantity' => $partQuantity,
                 'sum' => $sum > 0 ? $sum : 0,
             ];

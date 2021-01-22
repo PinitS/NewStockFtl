@@ -2,25 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0fde719-c7b0-4ec5-bf8a-93c264a6b79f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/UnitPartsController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/UnitParts.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_20_042612_create_unit_parts_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/pages/manage/unitParts/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CalProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CalProductsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DashBoardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DashBoardController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GroupPartsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GroupPartsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PartController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductPartsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductPartsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/GroupParts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/GroupParts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_20_080733_create_group_parts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_20_080733_create_group_parts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/th.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/th.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/manage/groupParts/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/manage/groupParts/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/product_location/product/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/product_location/product/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/pages/report/dashBoard/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/report/dashBoard/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/report/productCal/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/report/productCal/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/stock/parts/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/stock/parts/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +164,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/pages/manage/unitParts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -269,6 +257,9 @@
       <workItem from="1606897179634" duration="1041000" />
       <workItem from="1611116376562" duration="1321000" />
       <workItem from="1611118328620" duration="12129000" />
+      <workItem from="1611206807244" duration="1808000" />
+      <workItem from="1611211440557" duration="36000" />
+      <workItem from="1611281905174" duration="2591000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <created>1602576633325</created>
@@ -547,6 +538,16 @@
           <url>file://$PROJECT_DIR$/resources/views/pages/stock/parts/index.blade.php</url>
           <line>725</line>
           <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/pages/report/dashBoard/index.blade.php</url>
+          <line>377</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/pages/report/dashBoard/index.blade.php</url>
+          <line>356</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

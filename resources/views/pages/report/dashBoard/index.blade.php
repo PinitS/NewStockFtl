@@ -149,6 +149,7 @@
                                 <th><strong>@lang('Name')</strong></th>
                                 <th><strong>@lang('Category')</strong></th>
                                 <th><strong>@lang('Quantity')</strong></th>
+                                <th><strong>@lang('Unit')</strong></th>
                                 <th><strong>@lang('Branch')</strong></th>
                                 <th><strong>@lang('Sku')</strong></th>
                             </tr>
@@ -174,6 +175,7 @@
                                 <th><strong>#</strong></th>
                                 <th><strong>@lang('Parts')</strong></th>
                                 <th><strong>@lang('Quantity')</strong></th>
+                                <th><strong>@lang('Unit')</strong></th>
                             </tr>
                             </thead>
                             <tbody class="data-section-all-branch-parts">
@@ -351,6 +353,8 @@
                             value.name +
                             "</td><td>" +
                             value.quantity +
+                            "</td><td>" +
+                            value.unit +
                             "</td></tr>"
                         )
                     });
@@ -370,6 +374,8 @@
                             (value.category == null ? "-" : value.category) +
                             "</td><td>" +
                             value.quantity +
+                            "</td><td>" +
+                            value.unit +
                             "</td><td>" +
                             (value.branch == null ? "-" : value.branch) +
                             "</td><td>" +
