@@ -50,7 +50,7 @@
                         <ul aria-expanded="false">
                             <li><a href="{{ url('stock/parts/') }}">@lang('Parts')</a></li>
                             <li><a href="{{ url('stock/categories/') }}">@lang('Category')</a></li>
-                            <!-- <li><a href="{{ url('manage/groupParts/') }}">@lang('Group Parts')</a></li> -->
+                        <!-- <li><a href="{{ url('manage/groupParts/') }}">@lang('Group Parts')</a></li> -->
                         </ul>
                     </li>
                 @endif
@@ -130,15 +130,23 @@
                         </ul>
                     </li>
                     <p class="pnt-side-border"></p>
+
+                    {{--                <li class="nav-label">Report</li>--}}
+                    <li><a href="{{ url('report/calculator') }}" aria-expanded="false">
+                            <i class="fa fa-tv"></i>
+                            <span class="nav-text">@lang('Calculator')</span>
+                        </a>
+                    </li>
+                    <p class="pnt-side-border"></p>
                 @endif
 
-                {{--                <li class="nav-label">Report</li>--}}
-                <li><a href="{{ url('report/calculator') }}" aria-expanded="false">
-                        <i class="fa fa-tv"></i>
-                        <span class="nav-text">@lang('Calculator')</span>
-                    </a>
-                </li>
-                <p class="pnt-side-border"></p>
+{{--                --}}{{--                <li class="nav-label">Report</li>--}}
+{{--                <li><a href="{{ url('report/calculator') }}" aria-expanded="false">--}}
+{{--                        <i class="fa fa-tv"></i>--}}
+{{--                        <span class="nav-text">@lang('Calculator')</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <p class="pnt-side-border"></p>--}}
 
                 <li><a href="{{ url('report/pointerLocation/') }}" aria-expanded="false">
                         <i class="fa fa-flag"></i>

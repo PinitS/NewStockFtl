@@ -240,7 +240,7 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::prefix('report')->group(function () {
-            Route::prefix('calculator')->group(function () {
+            Route::middleware(['adminRoute'])->prefix('calculator')->group(function () {
                 Route::get('/', function () {
                     return view('pages.report.productCal.index');
                 });

@@ -3,6 +3,8 @@
 @section('content')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="user_status" content="{{ Auth::user()->status }}">
+
     <div class="row">
         <div class="col-12">
             <div class="card bg-white">
@@ -23,7 +25,9 @@
                                     <th class="text-dark">@lang('Name')</th>
                                     <th class="text-dark">@lang('Model')</th>
                                     <th class="text-dark">@lang('IMG')</th>
-                                    <th class="text-dark">@lang('Cost')</th>
+                                    @if (Auth::user()->status == 1)
+                                        <th class="text-dark">@lang('Cost')</th>
+                                    @endif
                                     <th class="text-dark">@lang('Price')</th>
                                     <th class="text-dark">@lang('Description')</th>
                                     <th class="text-dark">@lang('Manage')</th>
@@ -275,6 +279,7 @@
         var editModel = $('.pnt-modal-sel-edit-product-model');
         var addGroup = $('.pnt-modal-sel-add-group-part');
         {{--console.log("test url" , "{!! url('/') !!}/"+ )--}}
+        var user_status = $('meta[name="user_status]').attr('content');
 
         $('.pnt-modal-add-product-img').change(function () {
             var preview = $('#imagePreview-add');
@@ -349,8 +354,8 @@
                                 (value.location_model == null ? "-" : value.location_model.name) +
                                 "</td><td>" +
                                 (value.img_path == null ? "<img src='https://via.placeholder.com/150'>" : "<img src='{!! url("/") !!}/" + value.img_path + "' width='150' >") +
-                                "</td><td>" +
-                                value.sum_cost +
+                                (user_status == 1 ? "</td><td>" : "") +
+                                (user_status == 1 ? value.sum_cost : "") +
                                 "</td><td>" +
                                 value.price +
                                 "</td><td>" +
@@ -535,10 +540,16 @@
                 url: '{!! url('product_location/product/getOneProduct') !!}/' + window.id,
                 success: function (data) {
                     if (data.status) {
+                        var img = '';
+                        if(data.product.img_path == null){
+                            img = "https://via.placeholder.com/150"
+                        }else{
+                            img = "{!! url('/') !!}/" + data.product.img_path;
+                        }
                         $('.pnt-modal-sel-edit-product-model').val(data.product.location_model_id).change();
                         $('.pnt-modal-edit-product-name').val(data.product.name);
                         $('.pnt-modal-edit-product-price').val(data.product.price);
-                        $('#imagePreview-edit').show().attr('src', "{!! url('/') !!}/" + data.product.img_path);
+                        $('#imagePreview-edit').show().attr('src', img);
                         $('.pnt-modal-edit-product-description').val(data.product.description);
                     }
                 }

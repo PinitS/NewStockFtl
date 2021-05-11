@@ -32,7 +32,8 @@ class LocationProductController extends Controller
     {
 
         $file = $request->file('img_path');
-        if($file != 'undefined'){
+
+        if($file != null){
             $filename = $file->hashName('uploads/');
             $file->move('uploads', $filename);
             $img = Image::make($filename);
@@ -64,7 +65,7 @@ class LocationProductController extends Controller
         $item = LocationProduct::find($id);
         $file = $request->file('img_path');
 
-        if($file != 'undefined'){
+        if($file != null){
             File::delete($item->img_path);
             $filename = $file->hashName('uploads/');
             $file->move('uploads', $filename);
