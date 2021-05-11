@@ -8,7 +8,8 @@
             <div class="card bg-white">
                 <div class="card-header">
                     <h4 class="card-title text-dark">@lang('Product Information')</h4>
-                    <button type="button" class="btn btn-info pnt-bnt-add-product">@lang('Add') <span class="btn-icon-right"><i
+                    <button type="button" class="btn btn-info pnt-bnt-add-product">@lang('Add') <span
+                            class="btn-icon-right"><i
                                 class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
@@ -21,6 +22,7 @@
                                     <th class="text-dark">#</th>
                                     <th class="text-dark">@lang('Name')</th>
                                     <th class="text-dark">@lang('Model')</th>
+                                    <th class="text-dark">@lang('IMG')</th>
                                     <th class="text-dark">@lang('Cost')</th>
                                     <th class="text-dark">@lang('Price')</th>
                                     <th class="text-dark">@lang('Description')</th>
@@ -73,11 +75,27 @@
                             <label class="mb-1"><strong>@lang('Description')</strong></label>
                             <input type="text" class="form-control pnt-modal-add-product-description">
                         </div>
+                        <div class="basic-form custom_file_input">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input pnt-modal-add-product-img">
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="img_preview_wrap text-center">
+                            <img src="" id="imagePreview-add" alt="Preview Image" width="150px" style="display: none"/>
+                        </div>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
-                        <button type="button" class="btn btn-primary pnt-btn-modal-add-product-save">@lang('Add Product')
+                        <button type="button"
+                                class="btn btn-primary pnt-btn-modal-add-product-save">@lang('Add Product')
                         </button>
                     </div>
                 </div>
@@ -120,11 +138,28 @@
                             <label class="mb-1"><strong>@lang('Description')</strong></label>
                             <input type="text" class="form-control pnt-modal-edit-product-description">
                         </div>
+
+                        <div class="basic-form custom_file_input">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input pnt-modal-edit-product-img">
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="img_preview_wrap text-center">
+                            <img src="" id="imagePreview-edit" alt="Preview Image" width="150px" style="display: none"/>
+                        </div>
                     </div>
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger light" data-dismiss="modal">@lang('Close')</button>
-                        <button type="button" class="btn btn-warning pnt-btn-modal-edit-product-save">@lang('Save changes')
+                        <button type="button"
+                                class="btn btn-warning pnt-btn-modal-edit-product-save">@lang('Save changes')
                         </button>
                     </div>
 
@@ -162,7 +197,8 @@
                                     </li>
                                     <li class="list-group-item">
                                         <button type="button"
-                                                class="btn btn-secondary btn-block mb-3 pnt-bnt-add-group-save">@lang('Add') <i
+                                                class="btn btn-secondary btn-block mb-3 pnt-bnt-add-group-save">@lang('Add')
+                                            <i
                                                 class="ml-2 fa fa-plus color-info"></i>
                                         </button>
                                     </li>
@@ -176,7 +212,8 @@
                         <div class="pnt-add-path-edit-data-toggle text-center " style="display:none;">
                             <div class="col-md-6 mx-auto">
                                 <ul class="list-group">
-                                    <li class="list-group-item active"><strong>@lang('Edit Quantity Parts')</strong></li>
+                                    <li class="list-group-item active"><strong>@lang('Edit Quantity Parts')</strong>
+                                    </li>
                                     <li class="list-group-item">
                                         <input type="text" class="form-control pnt-modal-sel-edit-group-quantity"
                                                name="quantity" id="quantity" placeholder="Quatity" required>
@@ -237,6 +274,28 @@
         var addModel = $('.pnt-modal-sel-add-product-model');
         var editModel = $('.pnt-modal-sel-edit-product-model');
         var addGroup = $('.pnt-modal-sel-add-group-part');
+        {{--console.log("test url" , "{!! url('/') !!}/"+ )--}}
+
+        $('.pnt-modal-add-product-img').change(function () {
+            var preview = $('#imagePreview-add');
+            readImgUrlAndPreview(this, preview);
+        });
+
+        $('.pnt-modal-edit-product-img').change(function () {
+            var preview = $('#imagePreview-edit');
+            readImgUrlAndPreview(this, preview);
+        });
+
+        function readImgUrlAndPreview(input, preview) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.show().attr('src', e.target.result);
+                }
+            }
+            ;
+            reader.readAsDataURL(input.files[0]);
+        }
 
         function getOptionDropdown() {
             $.ajax({
@@ -288,6 +347,8 @@
                                 value.name +
                                 "</td><td>" +
                                 (value.location_model == null ? "-" : value.location_model.name) +
+                                "</td><td>" +
+                                (value.img_path == null ? "<img src='https://via.placeholder.com/150'>" : "<img src='{!! url("/") !!}/" + value.img_path + "' width='150' >") +
                                 "</td><td>" +
                                 value.sum_cost +
                                 "</td><td>" +
@@ -404,8 +465,10 @@
         // btn-add-product
         $(document).off('click', '.pnt-bnt-add-product').on('click', '.pnt-bnt-add-product', (e) => {
             $('.pnt-modal-add-product').modal();
+            $('.pnt-modal-add-product-img').val('');
             $('.pnt-modal-add-product-name').val('');
             $('.pnt-modal-add-product-price').val('');
+            $('#imagePreview-add').hide().attr('src', '');
             $('.pnt-modal-add-product-description').val('');
 
         });
@@ -416,6 +479,7 @@
             var model_id = $('.pnt-modal-sel-add-product-model option:selected').val();
             var formData = new FormData();
             formData.append("name", $('.pnt-modal-add-product-name').val());
+            formData.append("img_path", $('.pnt-modal-add-product-img')[0].files[0]);
             formData.append("price", $('.pnt-modal-add-product-price').val());
             formData.append("model_id", model_id);
             formData.append("description", $('.pnt-modal-add-product-description').val());
@@ -432,6 +496,7 @@
                         $('#pnt-loading').show();
                     },
                     success: function (data) {
+                        console.log(data)
                         if (data.status) {
                             $('.pnt-modal-add-product').modal('hide');
                             $('#pnt-loading').hide();
@@ -473,6 +538,7 @@
                         $('.pnt-modal-sel-edit-product-model').val(data.product.location_model_id).change();
                         $('.pnt-modal-edit-product-name').val(data.product.name);
                         $('.pnt-modal-edit-product-price').val(data.product.price);
+                        $('#imagePreview-edit').show().attr('src', "{!! url('/') !!}/" + data.product.img_path);
                         $('.pnt-modal-edit-product-description').val(data.product.description);
                     }
                 }
@@ -484,24 +550,28 @@
         // pnt-btn-edit-save
         $(document).off('click', '.pnt-btn-modal-edit-product-save').on('click', '.pnt-btn-modal-edit-product-save', (e) => {
             var model_id = $('.pnt-modal-sel-edit-product-model option:selected').val();
-            var formData = new FormData();
-            formData.append("name", $('.pnt-modal-edit-product-name').val());
-            formData.append("price", $('.pnt-modal-edit-product-price').val());
-            formData.append("model_id", model_id);
-            formData.append("description", $('.pnt-modal-edit-product-description').val());
-            formData.append("_token", window.token);
+            var formData_e = new FormData();
+            formData_e.append("name", $('.pnt-modal-edit-product-name').val());
+            formData_e.append("price", $('.pnt-modal-edit-product-price').val());
+            formData_e.append("model_id", model_id);
+            formData_e.append("img_path", $('.pnt-modal-edit-product-img')[0].files[0]);
+            formData_e.append("description", $('.pnt-modal-edit-product-description').val());
+            formData_e.append("_token", window.token);
+
+            console.log($('.pnt-modal-edit-product-img')[0].files[0])
 
             if ($("#edit-product-modal").valid()) {
                 $.ajax({
                     type: "post",
                     url: '{!! url('product_location/product/update') !!}/' + window.id,
-                    data: formData,
+                    data: formData_e,
                     contentType: false,
                     processData: false,
                     beforeSend: function () {
                         $('#pnt-loading').show();
                     },
                     success: function (data) {
+                        console.log(data)
                         if (data.status) {
                             $('.pnt-modal-edit').modal('hide');
                             $('#pnt-loading').hide();

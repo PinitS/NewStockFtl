@@ -2,20 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0fde719-c7b0-4ec5-bf8a-93c264a6b79f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/seeders/GroupPartsSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeders/UnitSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FarmThailand.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FarmThailand.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CalProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CalProductsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GroupPartsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GroupPartsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LocationProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocationProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductPartsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductPartsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LocationProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LocationProduct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_16_085806_create_location_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_16_085806_create_location_products_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_20_080733_create_group_parts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_20_080733_create_group_parts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/manage/groupParts/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/manage/groupParts/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/pages/product_location/product/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/product_location/product/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/report/productCal/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/report/productCal/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -151,6 +146,7 @@
       <path value="$PROJECT_DIR$/vendor/pragmarx/google2fa" />
       <path value="$PROJECT_DIR$/vendor/laravel/sanctum" />
       <path value="$PROJECT_DIR$/vendor/livewire/livewire" />
+      <path value="$PROJECT_DIR$/vendor/intervention/image" />
     </include_path>
   </component>
   <component name="ProblemsViewState">
@@ -172,7 +168,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/backup/storagefile" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -270,7 +266,7 @@
       <workItem from="1611281905174" duration="2907000" />
       <workItem from="1611284838397" duration="9000" />
       <workItem from="1611303908882" duration="487000" />
-      <workItem from="1620706172750" duration="7342000" />
+      <workItem from="1620706172750" duration="14892000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <created>1602576633325</created>
@@ -426,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611284525474</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="ทำปุ่มอัพโหลดรูป และเพิ่มฟิลดาต้าเบส">
+      <created>1620714139822</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1620714139822</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -454,13 +457,22 @@
     <MESSAGE value="test 95% รอบที่ 85 5555+" />
     <MESSAGE value="finish wait for deploy" />
     <MESSAGE value="กันบัคถ้าไม่มีหน่วย" />
-    <option name="LAST_COMMIT_MESSAGE" value="กันบัคถ้าไม่มีหน่วย" />
+    <MESSAGE value="ทำปุ่มอัพโหลดรูป และเพิ่มฟิลดาต้าเบส" />
+    <option name="LAST_COMMIT_MESSAGE" value="ทำปุ่มอัพโหลดรูป และเพิ่มฟิลดาต้าเบส" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1620707317764">
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1620715446798">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1620707317764" />
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1620715446798" />
+    <state x="386" y="0" key="CommitChangelistDialog2" timestamp="1620714137083">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="386" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1620714137083" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1620714536594">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1620714536594" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -494,6 +506,11 @@
           <url>file://$PROJECT_DIR$/resources/views/pages/report/dashBoard/index.blade.php</url>
           <line>356</line>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/pages/product_location/product/index.blade.php</url>
+          <line>299</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

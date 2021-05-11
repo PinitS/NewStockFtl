@@ -8,6 +8,8 @@ use App\Models\LocationModel;
 use App\Models\LocationProduct;
 use App\Models\ProductPart;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 class LocationProductController extends Controller
 {
@@ -28,8 +30,25 @@ class LocationProductController extends Controller
 
     function create(Request $request)
     {
+
+        $file = $request->file('img_path');
+        if($file != 'undefined'){
+            $filename = $file->hashName('uploads/');
+            $file->move('uploads', $filename);
+            $img = Image::make($filename);
+            $img->resize(640, 480, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save();
+        }else{
+            $filename = null;
+        }
+        $path = $filename;
+
+
         $item = new LocationProduct;
         $item->location_model_id = $request->input('model_id');
+        $item->img_path = $path;
         $item->name = $request->input('name');
         $item->price = $request->input('price');
         $item->description = $request->input('description');
@@ -43,8 +62,24 @@ class LocationProductController extends Controller
     function update(Request $request, $id)
     {
         $item = LocationProduct::find($id);
+        $file = $request->file('img_path');
+
+        if($file != 'undefined'){
+            File::delete($item->img_path);
+            $filename = $file->hashName('uploads/');
+            $file->move('uploads', $filename);
+            $img = Image::make($filename);
+            $img->resize(640, 480, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save();
+        }else{
+            $filename = $item->img_path;
+        }
+        $path = $filename;
         $item->location_model_id = $request->input('model_id');
         $item->name = $request->input('name');
+        $item->img_path = $path;
         $item->price = $request->input('price');
         $item->description = $request->input('description');
         if ($item->save()) {
@@ -57,6 +92,7 @@ class LocationProductController extends Controller
     function delete($id)
     {
         $item = LocationProduct::find($id);
+        File::delete($item->img_path);
         if (count($item->locationProductLists) > 0) {
             return response()->json(['status' => false]);
         } else {
