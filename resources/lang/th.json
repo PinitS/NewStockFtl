@@ -225,6 +225,10 @@
     "Duplicate Unit Name": "ชื่อหน่วยนี้มีอยู่แล้ว",
     "Can not Delete this Unit" : "ไม่สามารถลบหน่วยนี้ได้",
     "Delete Unit Success fully" : "ลบหน่วยนี้สำเร็จ",
-    "Update Unit Success fully":"แก้ไขหน่วยสำเร็จ"
+    "Update Unit Success fully":"แก้ไขหน่วยสำเร็จ",
+    "Cost":"ต้นทุน",
+    "Price":"ราคาขาย",
+    "Please enter a Cost" : "กรุณากรอกต้นทุน",
+    "Please enter a Price" : "กรุณากรอกราคาขาย"
 
 }

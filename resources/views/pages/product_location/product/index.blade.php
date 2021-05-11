@@ -413,6 +413,7 @@
         }
 
         $(document).ready(function () {
+
             resetTable();
             getOptionDropdown();
             $('#add-product-modal').validate({
@@ -420,11 +421,17 @@
                     name: {
                         required: true,
                     },
+                    price: {
+                        required: true,
+                    },
                 },
                 // <span class='text-danger'></span>
                 messages: {
                     name: {
                         required: "<span class='text-danger'>{!! __('Please enter a Product name') !!}</span>",
+                    },
+                    price: {
+                        required: "<span class='text-danger'>{!! __('Please enter a Price') !!}</span>",
                     },
                 }
             });
@@ -433,11 +440,17 @@
                     name: {
                         required: true,
                     },
+                    price: {
+                        required: true,
+                    },
                 },
                 // <span class='text-danger'></span>
                 messages: {
                     name: {
                         required: "<span class='text-danger'>{!! __('Please enter a Product name') !!}</span>",
+                    },
+                    price: {
+                        required: "<span class='text-danger'>{!! __('Please enter a Price') !!}</span>",
                     },
                 }
             });
