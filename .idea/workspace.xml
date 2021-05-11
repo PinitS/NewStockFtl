@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0fde719-c7b0-4ec5-bf8a-93c264a6b79f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/uploads/a52lOEaD1aB2ImqekxrZcFkHUJe7nLh8Qdn4HwhC.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/tE4KJL88zoq1WjiN3rmgwazgmUBOhsP9Rb0AQcZc.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/uploads/xJdSLsuffeTxF66W190yBBwpYXeAzIX3J7T2i5Yo.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LocationProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocationProductController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/pages/product_location/product/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/pages/product_location/product/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -265,7 +257,7 @@
       <workItem from="1611281905174" duration="2907000" />
       <workItem from="1611284838397" duration="9000" />
       <workItem from="1611303908882" duration="487000" />
-      <workItem from="1620706172750" duration="16307000" />
+      <workItem from="1620706172750" duration="17292000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <created>1602576633325</created>
@@ -435,7 +427,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620721810068</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="เก็บงานเสร็จตามที่คุยกัน">
+      <created>1620723064683</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1620723064683</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,21 +464,26 @@
     <MESSAGE value="กันบัคถ้าไม่มีหน่วย" />
     <MESSAGE value="ทำปุ่มอัพโหลดรูป และเพิ่มฟิลดาต้าเบส" />
     <MESSAGE value="เหลือเก็บงาน" />
-    <option name="LAST_COMMIT_MESSAGE" value="เหลือเก็บงาน" />
+    <MESSAGE value="เก็บงานเสร็จตามที่คุยกัน" />
+    <option name="LAST_COMMIT_MESSAGE" value="เก็บงานเสร็จตามที่คุยกัน" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1620715446798">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1620715446798" />
-    <state x="386" y="0" key="CommitChangelistDialog2" timestamp="1620721806015">
+    <state x="386" y="0" key="CommitChangelistDialog2" timestamp="1620723060978">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="386" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1620721806015" />
+    <state x="386" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1620723060978" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1620714536594">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1620714536594" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1620723069068">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1620723069068" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
