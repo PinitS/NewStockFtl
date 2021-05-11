@@ -18,6 +18,7 @@ class GroupPartsController extends Controller
             $data = [
                 'id' => $item->id,
                 'name' => $item->name,
+                'cost' => $item->cost,
                 'unit' => ($item->unitPart == null ? '-' : $item->unitPart->name),
                 'delete_active' => $item->delete_active,
             ];
@@ -32,6 +33,7 @@ class GroupPartsController extends Controller
         $dataSet = [
             'id' => $item->id,
             'name' => $item->name,
+            'cost' => $item->cost,
             'unit_id' => $item->unit_parts_id,
             'unit' => ($item->unitPart == null ? '-' : $item->unitPart->name),
         ];
@@ -48,6 +50,7 @@ class GroupPartsController extends Controller
         }
         $item = new GroupParts;
         $item->name = $request->input('name');
+        $item->cost = $request->input('cost');
         $item->unit_parts_id = $request->input('unit');
 
         if ($item->save()) {
@@ -61,6 +64,7 @@ class GroupPartsController extends Controller
     {
         $item = GroupParts::find($id);
         $item->name = $request->input('name');
+        $item->cost = $request->input('cost');
         $item->unit_parts_id = $request->input('unit');
         if ($item->save()) {
             return response()->json(['status' => true]);

@@ -21,6 +21,8 @@
                                     <th class="text-dark">#</th>
                                     <th class="text-dark">@lang('Name')</th>
                                     <th class="text-dark">@lang('Model')</th>
+                                    <th class="text-dark">@lang('Cost')</th>
+                                    <th class="text-dark">@lang('Price')</th>
                                     <th class="text-dark">@lang('Description')</th>
                                     <th class="text-dark">@lang('Manage')</th>
                                 </tr>
@@ -62,6 +64,12 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="mb-1"><strong>@lang('Price')</strong></label>
+                            <input type="text" class="form-control pnt-modal-add-product-price"
+                                   name="price" id="price" placeholder="Price" required>
+                        </div>
+
+                        <div class="form-group">
                             <label class="mb-1"><strong>@lang('Description')</strong></label>
                             <input type="text" class="form-control pnt-modal-add-product-description">
                         </div>
@@ -100,6 +108,12 @@
                             <label class="mb-1"><strong>@lang('Name')</strong></label>
                             <input type="text" class="form-control pnt-modal-edit-product-name"
                                    name="name" id="name" placeholder="Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="mb-1"><strong>@lang('Price')</strong></label>
+                            <input type="text" class="form-control pnt-modal-edit-product-price"
+                                   name="price" id="price" placeholder="Price" required>
                         </div>
 
                         <div class="form-group">
@@ -263,6 +277,7 @@
                 },
                 success: function (data) {
                     window.table.destroy();
+                    console.log(data)
                     if (data.status) {
                         $('.data-section').html(null);
                         $.each(data.dataSet.product, function (index, value) {
@@ -273,6 +288,10 @@
                                 value.name +
                                 "</td><td>" +
                                 (value.location_model == null ? "-" : value.location_model.name) +
+                                "</td><td>" +
+                                value.sum_cost +
+                                "</td><td>" +
+                                value.price +
                                 "</td><td>" +
                                 (value.description == null ? "-" : value.description) +
                                 "</td><td>" +
@@ -386,6 +405,7 @@
         $(document).off('click', '.pnt-bnt-add-product').on('click', '.pnt-bnt-add-product', (e) => {
             $('.pnt-modal-add-product').modal();
             $('.pnt-modal-add-product-name').val('');
+            $('.pnt-modal-add-product-price').val('');
             $('.pnt-modal-add-product-description').val('');
 
         });
@@ -394,16 +414,20 @@
         // btn-save-add-product
         $(document).off('click', '.pnt-btn-modal-add-product-save').on('click', '.pnt-btn-modal-add-product-save', e => {
             var model_id = $('.pnt-modal-sel-add-product-model option:selected').val();
+            var formData = new FormData();
+            formData.append("name", $('.pnt-modal-add-product-name').val());
+            formData.append("price", $('.pnt-modal-add-product-price').val());
+            formData.append("model_id", model_id);
+            formData.append("description", $('.pnt-modal-add-product-description').val());
+            formData.append("_token", window.token);
+
             if ($("#add-product-modal").valid()) {
                 $.ajax({
                     type: "post",
                     url: '{{route('createProduct')}}',
-                    data: {
-                        model_id: model_id,
-                        name: $('.pnt-modal-add-product-name').val(),
-                        description: $('.pnt-modal-add-product-description').val(),
-                        '_token': window.token,
-                    },
+                    data: formData,
+                    contentType: false,
+                    processData: false,
                     beforeSend: function () {
                         $('#pnt-loading').show();
                     },
@@ -448,6 +472,7 @@
                     if (data.status) {
                         $('.pnt-modal-sel-edit-product-model').val(data.product.location_model_id).change();
                         $('.pnt-modal-edit-product-name').val(data.product.name);
+                        $('.pnt-modal-edit-product-price').val(data.product.price);
                         $('.pnt-modal-edit-product-description').val(data.product.description);
                     }
                 }
@@ -459,17 +484,20 @@
         // pnt-btn-edit-save
         $(document).off('click', '.pnt-btn-modal-edit-product-save').on('click', '.pnt-btn-modal-edit-product-save', (e) => {
             var model_id = $('.pnt-modal-sel-edit-product-model option:selected').val();
+            var formData = new FormData();
+            formData.append("name", $('.pnt-modal-edit-product-name').val());
+            formData.append("price", $('.pnt-modal-edit-product-price').val());
+            formData.append("model_id", model_id);
+            formData.append("description", $('.pnt-modal-edit-product-description').val());
+            formData.append("_token", window.token);
+
             if ($("#edit-product-modal").valid()) {
                 $.ajax({
                     type: "post",
                     url: '{!! url('product_location/product/update') !!}/' + window.id,
-                    data: {
-                        model_id: model_id,
-                        name: $('.pnt-modal-edit-product-name').val(),
-                        description: $('.pnt-modal-edit-product-description').val(),
-                        '_token': window.token,
-                    },
-
+                    data: formData,
+                    contentType: false,
+                    processData: false,
                     beforeSend: function () {
                         $('#pnt-loading').show();
                     },
@@ -602,6 +630,7 @@
                                 timer: 1500
                             })
                         }
+                        resetTable();
                         resetProductParts();
                         $('#pnt-loading').hide();
                     },
@@ -682,6 +711,7 @@
                 });
                 $('#pnt-loading').hide();
                 $('.pnt-add-path-edit-data-toggle').hide(150);
+                resetTable();
                 resetProductParts();
             }
         });

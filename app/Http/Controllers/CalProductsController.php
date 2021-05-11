@@ -28,27 +28,32 @@ class CalProductsController extends Controller
     public function getCalProductParts($id, $value)
     {
         $product = LocationProduct::findOrFail($id);
-
         $stockParts = [];
+
+        $sum_cost = $product->sum_cost * $value;
+
         foreach ($product->productParts as $part) {
             $use_quantity = $part->quantity * $value;
             $use_quantity_unit = $part->quantity;
-            $part = $part->groupPart;
             $partQuantity = 0;
-            foreach ($part->stockParts as $stockPart) {
-                $partQuantity += $stockPart->quantity;
+
+            if($part->groupPart->stockPart != null){
+                foreach ($part->stockParts as $stockPart) {
+                    $partQuantity += $stockPart->quantity;
+                }
             }
+
             $sum = $use_quantity - $partQuantity;
             $data = [
-                'part_name' => $part->name,
+                'part_name' => $part->groupPart->name,
                 'use_quantity_unit' => $use_quantity_unit,
                 'use_quantity' => $use_quantity,
-                'unit' => ($stockPart->groupPart->unitPart == null ? '-' : $stockPart->groupPart->unitPart->name),
+                'unit' => ($part->groupPart == null ? '-' :$part->groupPart->name),
                 'stock_quantity' => $partQuantity,
                 'sum' => $sum > 0 ? $sum : 0,
             ];
             array_push($stockParts, $data);
         }
-        return response()->json(['status' => true, 'stockParts' => $stockParts]);
+        return response()->json(['status' => true, 'stockParts' => $stockParts , 'sum_cost' => number_format($sum_cost)]);
     }
 }

@@ -19,6 +19,7 @@ class ProductPartsController extends Controller
         $dataSet = [];
         foreach ($items as $item) {
             $data = [
+                'id' => $item->id,
                 'group_part' => ($item->groupPart == null ? '-' : $item->groupPart->name),
                 'quantity' => $item->quantity,
                 'unit' => (($item->groupPart == null ? '-' : ($item->groupPart->unitPart == null ? '-' : $item->groupPart->unitPart->name)))

@@ -20,6 +20,7 @@
                             <tr>
                                 <th class="text-dark">#</th>
                                 <th class="text-dark">@lang('Name')</th>
+                                <th class="text-dark">@lang('Cost')</th>
                                 <th class="text-dark">@lang('Unit')</th>
                                 <th class="text-dark">@lang('Manage')</th>
                             </tr>
@@ -48,6 +49,11 @@
                         <div class="form-group">
                             <label class="mb-1"><strong>@lang('Groups Name')</strong></label>
                             <input type="text" class="form-control pnt-modal-edit-group-name" id="name" name="name"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>@lang('Cost')</strong></label>
+                            <input type="number" class="form-control pnt-modal-edit-group-cost" id="cost" name="cost"
                                    required>
                         </div>
                         <div class="form-group">
@@ -82,6 +88,11 @@
                         <div class="form-group">
                             <label class="mb-1"><strong>@lang('Groups Name')</strong></label>
                             <input type="text" class="form-control pnt-input-add-name-gp" id="name" name="name"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1"><strong>@lang('Cost')</strong></label>
+                            <input type="number" class="form-control pnt-input-add-cost-gp" id="cost" name="cost"
                                    required>
                         </div>
                         <div class="form-group">
@@ -135,6 +146,8 @@
                                 "</td><td>" +
                                 value.name +
                                 "</td><td>" +
+                                value.cost +
+                                "</td><td>" +
                                 value.unit +
                                 "</td><td>" +
                                 "<div class = 'd-flex'>" +
@@ -182,17 +195,7 @@
                     name: {
                         required: true,
                     },
-                },
-                // <span class='text-danger'></span>
-                messages: {
-                    name: {
-                        required: "<span class='text-danger'>{!! __('Please enter a Group Parts name') !!}</span>",
-                    },
-                }
-            });
-            $('#edit-modal-gp').validate({
-                rules: {
-                    name: {
+                    cost: {
                         required: true,
                     },
                 },
@@ -200,6 +203,29 @@
                 messages: {
                     name: {
                         required: "<span class='text-danger'>{!! __('Please enter a Group Parts name') !!}</span>",
+                    },
+                    cost: {
+                        required: "<span class='text-danger'>{!! __('Please enter a Cost') !!}</span>",
+                    },
+                }
+            });
+
+            $('#edit-modal-gp').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                    cost: {
+                        required: true,
+                    },
+                },
+                // <span class='text-danger'></span>
+                messages: {
+                    name: {
+                        required: "<span class='text-danger'>{!! __('Please enter a Group Parts name') !!}</span>",
+                    },
+                    cost: {
+                        required: "<span class='text-danger'>{!! __('Please enter a Cost') !!}</span>",
                     },
                 }
             });
@@ -215,6 +241,7 @@
                     console.log(data)
                     if (data.status) {
                         $('.pnt-modal-edit-group-name').val(data.group.name);
+                        $('.pnt-modal-edit-group-cost').val(data.group.cost);
                         $('.pnt-modal-sel-edit-unit').val(data.group.unit_id).change();
                         $('.pnt-modal-edit').modal();
                     }
@@ -232,6 +259,7 @@
                     url: '{!! url('manage/groupParts/update') !!}/' + window.id,
                     data: {
                         name: $('.pnt-modal-edit-group-name').val(),
+                        cost: $('.pnt-modal-edit-group-cost').val(),
                         unit: $('.pnt-modal-sel-edit-unit option:selected').val(),
                         '_token': window.token,
                     },
@@ -321,6 +349,7 @@
 
         $(document).off('click', '.pnt-bnt-add-group').on('click', '.pnt-bnt-add-group', (e) => {
             $('.pnt-input-add-name-gp').val('');
+            $('.pnt-input-add-cost-gp').val('');
             $('.pnt-btn-modal-add-group-save').prop('disabled', false);
             $('.pnt-modal-add-group').modal('show');
         });
@@ -335,6 +364,7 @@
                     url: '{!! url('manage/groupParts/create') !!}',
                     data: {
                         name: $('.pnt-input-add-name-gp').val(),
+                        cost: $('.pnt-input-add-cost-gp').val(),
                         unit: $('.pnt-modal-sel-add-unit option:selected').val(),
                         '_token': window.token,
                     },

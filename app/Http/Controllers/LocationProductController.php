@@ -31,6 +31,7 @@ class LocationProductController extends Controller
         $item = new LocationProduct;
         $item->location_model_id = $request->input('model_id');
         $item->name = $request->input('name');
+        $item->price = $request->input('price');
         $item->description = $request->input('description');
         if ($item->save()) {
             return response()->json(['status' => true]);
@@ -44,6 +45,7 @@ class LocationProductController extends Controller
         $item = LocationProduct::find($id);
         $item->location_model_id = $request->input('model_id');
         $item->name = $request->input('name');
+        $item->price = $request->input('price');
         $item->description = $request->input('description');
         if ($item->save()) {
             return response()->json(['status' => true]);

@@ -17,6 +17,8 @@ class CreateLocationProductsTable extends Migration
             $table->id();
             $table->integer('location_model_id');
             $table->string('name',50)->unique();
+//            $table->text('img_path')->nullable();
+            $table->integer('price')->default(0);
             $table->string('description')->nullable();
             $table->timestamps();
         });

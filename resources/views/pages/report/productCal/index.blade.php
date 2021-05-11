@@ -10,11 +10,22 @@
                     <h4 class="card-title text-dark">@lang('Calculator Information')</h4>
 
                     <div class="row pull-right text-center ">
-                        <div class="form-group  pull-right justify-content-sm-end mt-2 mt-sm-0 d-flex">
-                            <select class="form-control mr-2 pnt-sel-filter-product">
-                            </select>
-                            <input class="form-control col-md-4 pnt-input-cal-value" type="number" value="1">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group  pull-right justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                                    <select class="form-control mr-2 pnt-sel-filter-product">
+                                    </select>
+                                    <input class="form-control col-md-4 pnt-input-cal-value" type="number" value="1">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group  pull-right justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                                    <p class="text-success pnt-sum-cost"></p>
+
+                                </div>
+                            </div>
                         </div>
+
 
                     </div>
 
@@ -121,6 +132,7 @@
                             );
                         });
                         window.table = $('#calculatorInformation').DataTable();
+                        $(".pnt-sum-cost").text("{!! __('Cost') !!} : " + data.sum_cost);
                         $('#pnt-loading').hide();
                     }
                 }

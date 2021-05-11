@@ -9,7 +9,7 @@ class LocationProduct extends Model
 {
     use HasFactory;
 
-    protected $appends = ['delete_active'];
+    protected $appends = ['delete_active' , 'sum_cost'];
 
     public function dealerProduct()
     {
@@ -38,5 +38,13 @@ class LocationProduct extends Model
         } else {
             return true;
         }
+    }
+    public function getSumCostAttribute()
+    {
+        $sum = 0;
+        foreach ($this->productParts as $item){
+            $sum += $item->groupPart->cost * $item->quantity;
+        }
+        return $sum;
     }
 }

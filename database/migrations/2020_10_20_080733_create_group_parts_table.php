@@ -16,6 +16,7 @@ class CreateGroupPartsTable extends Migration
         Schema::create('group_parts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('cost')->default(0);
             $table->integer('unit_parts_id');
             $table->timestamps();
         });
