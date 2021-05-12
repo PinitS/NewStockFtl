@@ -15,6 +15,8 @@
                                 class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
+                {{Auth::user()->status}}
+
                 <div class="card-body">
                     <div class="div">
                         <div class="table-responsive">
@@ -278,8 +280,7 @@
         var addModel = $('.pnt-modal-sel-add-product-model');
         var editModel = $('.pnt-modal-sel-edit-product-model');
         var addGroup = $('.pnt-modal-sel-add-group-part');
-        {{--console.log("test url" , "{!! url('/') !!}/"+ )--}}
-        var user_status = $('meta[name="user_status]').attr('content');
+        var user_status = $('meta[name="user_status"]').attr('content');
 
         $('.pnt-modal-add-product-img').change(function () {
             var preview = $('#imagePreview-add');
@@ -354,8 +355,8 @@
                                 (value.location_model == null ? "-" : value.location_model.name) +
                                 "</td><td>" +
                                 (value.img_path == null ? "<img src='https://via.placeholder.com/150'>" : "<img src='{!! url("/") !!}/" + value.img_path + "' width='150' >") +
-                                (user_status == 1 ? "</td><td>" : "") +
-                                (user_status == 1 ? value.sum_cost : "") +
+                                (user_status == 1 ? "</td><td> +" : "")+
+                                (user_status == 1 ? value.sum_cost : "" )+
                                 "</td><td>" +
                                 value.price +
                                 "</td><td>" +
