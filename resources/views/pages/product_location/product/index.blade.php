@@ -353,7 +353,7 @@
                                 (value.location_model == null ? "-" : value.location_model.name) +
                                 "</td><td>" +
                                 (value.img_path == null ? "<img src='https://via.placeholder.com/150'>" : "<img src='{!! url("/") !!}/" + value.img_path + "' width='150' >") +
-                                (user_status == 1 ? "</td><td> +" : "")+
+                                (user_status == 1 ? "</td><td>" : "")+
                                 (user_status == 1 ? value.sum_cost : "" )+
                                 "</td><td>" +
                                 value.price +
