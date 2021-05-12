@@ -15,8 +15,6 @@
                                 class="fa fa-plus color-info"></i></span>
                     </button>
                 </div>
-                {{Auth::user()->status}}
-
                 <div class="card-body">
                     <div class="div">
                         <div class="table-responsive">
