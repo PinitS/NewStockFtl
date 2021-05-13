@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('create', [LocationProductController::class, 'create'])->name('createProduct');
+Route::get('getCalProductParts/{id}&{value}', [\App\Http\Controllers\CalProductsController::class, 'getCalProductParts']);

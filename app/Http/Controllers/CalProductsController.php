@@ -37,8 +37,8 @@ class CalProductsController extends Controller
             $use_quantity_unit = $part->quantity;
             $partQuantity = 0;
 
-            if($part->groupPart->stockPart != null){
-                foreach ($part->stockParts as $stockPart) {
+            if($part->groupPart->stockParts != null){
+                foreach ($part->groupPart->stockParts as $stockPart) {
                     $partQuantity += $stockPart->quantity;
                 }
             }
