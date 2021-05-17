@@ -42,6 +42,10 @@ Route::middleware(['hasAuth'])->get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/readme', function () {
+    return view('pages.readme.index');
+});
+
 Route::middleware(['auth'])->group(function () {
 
 //    Route::get('setLocale/{locale}', function ($locale) {
@@ -49,6 +53,8 @@ Route::middleware(['auth'])->group(function () {
 //        return redirect()->back();
 //    });
     Route::get('setLocale/{locale}', [languageController::class, 'setLocale']);
+
+
 
 
     Route::group(['middleware' => 'language'], function () {

@@ -276,7 +276,7 @@
                 success: function (data) {
 
 
-                    console.log(data);
+                    console.log('data',data);
 
                     var dataTimeline = '';
                     var cnt = 0;
@@ -387,6 +387,7 @@
                     window.color_set = data.dataSet.color;
                     window.product_name = data.dataSet.productNameSet;
                     window.data_donut_chart = data.dataSet.cntProduct;
+                    console.log('find data.dataSet.cntProduct',data);
                     callDoughnutChart(window.product_name, window.color_set, window.data_donut_chart);
                     $('#pnt-loading').hide();
                 }

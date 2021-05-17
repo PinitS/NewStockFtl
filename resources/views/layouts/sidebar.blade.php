@@ -1,6 +1,15 @@
 <div class="deznav">
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
+
+            <li><a href="{{ url('readme') }}" aria-expanded="false">
+                    <i class="fa fa-book"></i>
+                    <span class="nav-text">@lang('ReadMe')</span>
+                </a>
+            </li>
+            <p class="pnt-side-border"></p>
+
+
             @if(!session()->has('customer') && !session()->has('branch') && !session()->has('dealer'))
                 {{--                <li class="nav-label">FARM THAILAND</li>--}}
                 <li><a href="{{ url('report/dashBoard') }}" aria-expanded="false">
