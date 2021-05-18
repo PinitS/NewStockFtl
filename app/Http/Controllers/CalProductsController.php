@@ -54,6 +54,6 @@ class CalProductsController extends Controller
             ];
             array_push($stockParts, $data);
         }
-        return response()->json(['status' => true, 'stockParts' => $stockParts , 'sum_cost' => number_format($sum_cost)]);
+        return response()->json(['status' => true, 'stockParts' => $stockParts , 'sum_cost' => number_format($sum_cost,2)]);
     }
 }

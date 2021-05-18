@@ -45,6 +45,6 @@ class LocationProduct extends Model
         foreach ($this->productParts as $item){
             $sum += $item->groupPart->cost * $item->quantity;
         }
-        return $sum;
+        return number_format($sum,2);
     }
 }
