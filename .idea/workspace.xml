@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0fde719-c7b0-4ec5-bf8a-93c264a6b79f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/uploads/NGtgEpTUKZJcGFjVMj772ZEh1Kw509sVbp65uyzB.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CalProductsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CalProductsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LocationProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LocationProduct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_16_085806_create_location_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_16_085806_create_location_products_table.php" afterDir="false" />
-    </list>
+    <list default="true" id="c0fde719-c7b0-4ec5-bf8a-93c264a6b79f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -267,7 +261,7 @@
       <workItem from="1620890442163" duration="3079000" />
       <workItem from="1621218775926" duration="2108000" />
       <workItem from="1621222628871" duration="8583000" />
-      <workItem from="1621310767796" duration="2617000" />
+      <workItem from="1621310767796" duration="3198000" />
     </task>
     <task id="LOCAL-00001" summary="git init">
       <created>1602576633325</created>
@@ -507,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621311752672</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="เพิ่มทศนิยม ทั้งหมด">
+      <created>1621313752525</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1621313752525</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -517,7 +518,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="เหลือ ทำรีพอท กับ เก็บงาน" />
     <MESSAGE value="เตรียมเก็บงาน" />
     <MESSAGE value="ทำหน้า profile" />
     <MESSAGE value="กำลังเริ่มทำ การป้องกัน delete" />
@@ -542,25 +542,26 @@
     <MESSAGE value="แก้ไข บัค คำนวนการสั่งซื้อ" />
     <MESSAGE value="เตรียมทำ คู่มือ" />
     <MESSAGE value="เพิ่มทศนิยม" />
-    <option name="LAST_COMMIT_MESSAGE" value="เพิ่มทศนิยม" />
+    <MESSAGE value="เพิ่มทศนิยม ทั้งหมด" />
+    <option name="LAST_COMMIT_MESSAGE" value="เพิ่มทศนิยม ทั้งหมด" />
   </component>
   <component name="WindowStateProjectService">
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1620715446798">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1620715446798" />
-    <state x="386" y="0" key="CommitChangelistDialog2" timestamp="1621311729121">
+    <state x="386" y="0" key="CommitChangelistDialog2" timestamp="1621313750723">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="386" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1621311729121" />
+    <state x="386" y="0" key="CommitChangelistDialog2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1621313750723" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1620714536594">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1620714536594" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1620894576795">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1621313756173">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1620894576795" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1621313756173" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
